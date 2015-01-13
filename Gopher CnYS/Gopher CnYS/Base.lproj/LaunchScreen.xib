@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="Isc-bP-MyB">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Isc-bP-MyB" secondAttribute="trailing" id="AL8-80-qNw"/>
+                <constraint firstAttribute="bottom" secondItem="Isc-bP-MyB" secondAttribute="bottom" id="bSD-cP-4Am"/>
+                <constraint firstItem="Isc-bP-MyB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="r1g-fm-yyT"/>
+                <constraint firstItem="Isc-bP-MyB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="rq6-y1-fdn"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="Isc-bP-MyB"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="AL8-80-qNw"/>
+                    <exclude reference="bSD-cP-4Am"/>
+                    <exclude reference="r1g-fm-yyT"/>
+                    <exclude reference="rq6-y1-fdn"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular">
+                <mask key="subviews">
+                    <include reference="Isc-bP-MyB"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="AL8-80-qNw"/>
+                    <include reference="bSD-cP-4Am"/>
+                    <include reference="r1g-fm-yyT"/>
+                    <include reference="rq6-y1-fdn"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="601" y="529"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="LaunchImage" width="411" height="686"/>
+    </resources>
+</document>
