@@ -10,8 +10,11 @@
 #import "NextViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
-#import <GoogleOpenSource/GoogleOpenSource.h>
+#import <ParseFacebookUtils/PFFacebookUtils.h>
+#import "ProductListViewController.h"
 #import <GooglePlus/GooglePlus.h>
+#import <GoogleOpenSource/GoogleOpenSource.h>
+
 
 @interface HomeViewController () <GPPSignInDelegate>
 
@@ -19,39 +22,58 @@
 
 @implementation HomeViewController
 
-@synthesize gPlusButton;
+static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7jlr.apps.googleusercontent.com";
 
-- (void)viewDidLoad {
+//@synthesize gPlusButton;
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
-    
-    /*
-     Initialize UI
-     */
-    //[self loadUI];
-    
-    /*
-     Add click event for buttons
-     */
-    //UITapGestureRecognizer* fbTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(facebookButtonPressed:)];
-    //[self.facebookButon setUserInteractionEnabled:YES];
-    //[_facebookButon addGestureRecognizer:fbTap];
-    
-    //UITapGestureRecognizer* gPlusTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gPlusButtonPressed:)];
-    //[self.gPlusButton setUserInteractionEnabled:YES];
-    //[_gPlusButton addGestureRecognizer:gPlusTap];
-    
-    //UITapGestureRecognizer* signInTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(signInButtonPressed:)];
-    //[self.gPlusButton setUserInteractionEnabled:YES];
-    //[_signinButton addGestureRecognizer:signInTap];
-    
-    
+    if ([self checkIfUserLoggedIn])
+    {
+        NSLog(@"User has logged in with FB. Let's load data");
+        [self openProductList];
+    }
+}
+
+-(void) gpSignInEnable {
     GPPSignIn *signIn = [GPPSignIn sharedInstance];
     signIn.shouldFetchGooglePlusUser = YES;
-    signIn.shouldFetchGoogleUserEmail = YES;
+    signIn.shouldFetchGoogleUserEmail = YES;  // Uncomment to get the user's email
     
+    // You previously set kClientId in the "Initialize the Google+ client" step
+    signIn.clientID = kClientId;
+    
+    // Uncomment one of these two statements for the scope you chose in the previous step
+    //signIn.scopes = @[ kGTLAuthScopePlusLogin ];  // "https://www.googleapis.com/auth/plus.login" scope
+    signIn.scopes = @[ @"profile" ];            // "profile" scope
+    
+    // Optional: declare signIn.actions, see "app activities"
     signIn.delegate = self;
     
+    [signIn authenticate];
+}
+
+- (void)finishedWithAuth: (GTMOAuth2Authentication *)auth
+                   error: (NSError *) error {
+    NSLog(@"Received error %@ and auth object %@",error, auth);
+}
+
+-(BOOL) checkIfUserLoggedIn
+{
+    if ([[PFUser currentUser] isAuthenticated])
+    {
+        return YES;
+    }
+    return NO;
+}
+
+-(void) openProductList
+{
+    [self performSegueWithIdentifier:@"product_list_from_home" sender:self];
+    //ProductListViewController *productListViewController = [[ProductListViewController alloc] init];
+    //[self.navigationController pushViewController:productListViewController animated:YES];
 }
 
 -(void) loadUI
@@ -66,16 +88,6 @@
     ivBackground.translatesAutoresizingMaskIntoConstraints = NO;
     ivBackground.frame = self.view.frame;
     [self.view addSubview:ivBackground];
-    
-    // FB
-    //UIImage *imageFB = [UIImage imageNamed:@"fb_normal.png"];
-    
-    //CGSize fbSize = CGSizeMake(self.view.frame.size.width/4, self.view.frame.size.width/4);
-    //UIImage *resizedFB = [self resizeImage:imageFB imageSize:fbSize];
-    
-    //self.facebookButon = [[UIImageView alloc] initWithImage:resizedFB];
-   // self.facebookButon.translatesAutoresizingMaskIntoConstraints = NO;
-    //[self.view addSubview:self.facebookButon];
 }
 
 -(UIImage*)resizeImage:(UIImage *)image imageSize:(CGSize)size
@@ -89,23 +101,11 @@
     
 }
 
--(void)refreshInterfaceBasedOnSignIn {
-    if ([[GPPSignIn sharedInstance] authentication]) {
-        // The user is signed in.
-        self.gPlusButton.hidden = YES;
-        // Perform other actions here, such as showing a sign-out button
-    } else {
-        self.gPlusButton.hidden = NO;
-        // Perform other actions here
-    }
-}
-
 -(void)viewWillAppear:(BOOL)animated
 {
     //[self loadUI];
     //[self.navigationController setNavigationBarHidden:YES];
     self.navigationController.navigationBar.hidden = YES;
-   // [[GPPSignIn sharedInstance] trySilentAuthentication];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -121,77 +121,103 @@
 
 -(IBAction)facebookButtonPressed:(id)sender
 {
-    NSLog(@"fb login");
+    // Set permissions required from the facebook user account
+    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
     
-    NSArray *permissions=[[NSArray alloc] initWithObjects:@"publish_stream",@"publish_actions",@"user_likes",@"user_about_me",nil];
+    // Login PFUser using Facebook
+    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+        
+        [_activityIndicator stopAnimating];
+        
+        if (!user) {
+            NSString *errorMessage = nil;
+            if (!error) {
+                NSLog(@"Uh oh. The user cancelled the Facebook login.");
+                errorMessage = @"Uh oh. The user cancelled the Facebook login.";
+            } else {
+                NSLog(@"Uh oh. An error occurred: %@", error);
+                errorMessage = [error localizedDescription];
+            }
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error"
+                                                            message:errorMessage
+                                                           delegate:nil
+                                                  cancelButtonTitle:nil
+                                                  otherButtonTitles:@"Dismiss", nil];
+            [alert show];
+        } else {
+            
+            [self openProductList];
+            
+            if (user.isNew) {
+                NSLog(@"User with facebook signed up and logged in!");
+            } else {
+                NSLog(@"User with facebook logged in!");
+            }
+            FBRequest *request = [FBRequest requestForMe];
+            [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                if (!error) {
+                    NSString *facebookUsername = [result objectForKey:@"name"];
+                    [PFUser currentUser].username = facebookUsername;
+                    [[PFUser currentUser] setObject:[result objectForKey:@"id"] forKey:@"fbId"];
+                    [[PFUser currentUser] setObject:facebookUsername forKey:@"name"];
+                    NSNumber *userType = [[NSNumber alloc] initWithInt:1];
+                    [[PFUser currentUser] setObject:userType forKey:@"userType"];
+                    [[PFUser currentUser] saveEventually];
+                } else {
+                    NSLog(@"Error getting the FB username %@", [error description]);
+                }
+            }];
+            
+            [self addUserToParseBackend:[PFUser currentUser]];
+        }
+    }];
     
-    // Ask for publish_actions permissions in context
-    
-    // Permission hasn't been granted, so ask for publish_actions
-    [FBSession openActiveSessionWithPublishPermissions:permissions
-                                       defaultAudience:FBSessionDefaultAudienceFriends
-                                          allowLoginUI:YES
-                                     completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-                                         if (FBSession.activeSession.isOpen && !error) {
-                                             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Facebook"
-                                                                                             message:@"Facebook Login Success!!!"
-                                                                                            delegate:self
-                                                                                   cancelButtonTitle:@"OK"
-                                                                                   otherButtonTitles:nil];
-                                             [alert show];
-                                         }
-                                     }];
+    [_activityIndicator startAnimating]; // Show loading indicator until login is finished
 }
 
--(IBAction)gPlusButtonPressed:(id)sender
+- (void) addUserToParseBackend: (PFUser *)user
 {
-    NSLog(@"gplus");
+    NSLog(@"addUserToParseBackend");
+    if (user)
+    {
+        NSLog(@"%@", [user username]);
+        NSLog(@"%@", [user objectId]);
+        NSLog(@"%@", [user email]);
+        
+        NSLog(@"%@", [user objectForKey:@"*"] );
+        
+        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            
+            if (succeeded)
+            {
+                NSLog(@"addUserToParseBackend --- OK");
+            }
+            else
+            {
+                NSLog(@"addUserToParseBackend --- Error: %@", [error description]);
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error"
+                                                                message:@"There's an error with log in. Please try again"
+                                                               delegate:nil
+                                                      cancelButtonTitle:nil
+                                                      otherButtonTitles:@"Dismiss", nil];
+                [alert show];
+            }
+            
+        }];
+    }
+    
     
 }
+
+//-(IBAction)gPlusButtonPressed:(id)sender
+//{
+//    NSLog(@"gplus");
+//    //[self gpSignInEnable];
+//}
 
 -(IBAction)signInButtonPressed:(id)sender
 {
     NSLog(@"signin");
-}
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    if ([segue.identifier isEqualToString:@"buttonSegue"])
-//    {
-//        NextViewController* vc = segue.destinationViewController;
-//        vc.num = @2;
-//    }
-//}
-//
-//-(IBAction)longPressed:(UILongPressGestureRecognizer*)sender
-//{
-//    if(sender.state == UIGestureRecognizerStateBegan)
-//        [self performSegueWithIdentifier:@"longSegue" sender:nil];
-//}
-
-#pragma mark - GPPSignInDelegate
-
-- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth
-                   error:(NSError *)error {
-    if (error) {
-        NSString *strError = [NSString stringWithFormat:@"Status: Authentication error: %@", error];
-        NSLog(@"%@", strError);
-        return;
-    } else {
-        [self refreshInterfaceBasedOnSignIn];
-    }
-}
-
-- (void)didDisconnectWithError:(NSError *)error {
-    if (error) {
-        NSString *strError = [NSString stringWithFormat:@"Status: Failed to disconnect: %@", error];
-        NSLog(@"%@", strError);
-    } else {
-        NSLog(@"Status: Disconnected");
-    }
-}
-
-- (void)presentSignInViewController:(UIViewController *)viewController {
-    [[self navigationController] pushViewController:viewController animated:YES];
 }
 
 @end

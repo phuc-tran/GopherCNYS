@@ -7,15 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GooglePlus/GooglePlus.h>
+#import <StoreKit/StoreKit.h>
 
 @class GPPSignInButton;
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : UIViewController <GPPSignInDelegate>
 
 @property (retain, nonatomic) IBOutlet UIButton *facebookButon;
 @property (retain, nonatomic) IBOutlet UIButton *signinButton;
-@property (retain, nonatomic) IBOutlet GPPSignInButton *gPlusButton;
+@property (retain, nonatomic) IBOutlet UIButton *gPlusButton;
 @property (retain, nonatomic) IBOutlet UIView *createAccountButton;
+
+@property UIActivityIndicatorView *activityIndicator;
 
 @end
 
