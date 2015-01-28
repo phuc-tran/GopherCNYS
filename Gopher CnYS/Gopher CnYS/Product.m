@@ -10,4 +10,6 @@
 
 @implementation Product
 
+@synthesize description;
+
 @end
