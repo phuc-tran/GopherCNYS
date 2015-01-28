@@ -53,7 +53,7 @@ NSArray *productData;
     cell.lblProductName.text = [[productData objectAtIndex:indexPath.row] valueForKey:@"title"];
     
     NSInteger price  = [[[productData objectAtIndex:indexPath.row] valueForKey:@"price"] integerValue];
-    cell.lblProductPrice.text = [NSString stringWithFormat:@"%ld", (long)price];
+    cell.lblProductPrice.text = [NSString stringWithFormat:@"$%ld", (long)price];
     
     cell.lblProductDescription.text = [[[productData objectAtIndex:indexPath.row] objectForKey:@"description"] description];
     
