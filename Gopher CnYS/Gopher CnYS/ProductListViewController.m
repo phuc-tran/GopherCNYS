@@ -51,11 +51,14 @@ NSArray *productData;
     cell.ivProductThumb.image = nil;
     
     cell.lblProductName.text = [[productData objectAtIndex:indexPath.row] valueForKey:@"title"];
+    cell.lblProductDescription.text = [[[productData objectAtIndex:indexPath.row] objectForKey:@"description"] description];
     
     NSInteger price  = [[[productData objectAtIndex:indexPath.row] valueForKey:@"price"] integerValue];
     cell.lblProductPrice.text = [NSString stringWithFormat:@"$%ld", (long)price];
     
-    cell.lblProductDescription.text = [[[productData objectAtIndex:indexPath.row] objectForKey:@"description"] description];
+    PFGeoPoint *positionItem  = [[productData objectAtIndex:indexPath.row] objectForKey:@"position"];
+    cell.lblProductMiles.text = [NSString stringWithFormat:@"%.2f miles", positionItem.latitude];
+    
     
     PFFile *imageFile = [[productData objectAtIndex:indexPath.row] objectForKey:@"photo1"];
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
@@ -90,7 +93,7 @@ NSArray *productData;
     
     PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    [query selectKeys:@[@"description", @"title", @"photo1", @"price", @"createdDate"]];
+    [query selectKeys:@[@"description", @"title", @"photo1", @"price", @"position", @"createdDate"]];
     [query orderByDescending:@"createdDate"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
