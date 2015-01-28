@@ -186,8 +186,8 @@
 		185FDE061A73F72A00A452CE /* ProductCell */ = {
 			isa = PBXGroup;
 			children = (
-				182E35FF1A73A7AB00FA4378 /* ProductTableViewCell.m */,
 				182E35FE1A73A7AB00FA4378 /* ProductTableViewCell.h */,
+				182E35FF1A73A7AB00FA4378 /* ProductTableViewCell.m */,
 				18BA5C571A736180002EBF83 /* ProductTableViewCell.xib */,
 				185FDE071A73F7AD00A452CE /* Product.h */,
 				185FDE081A73F7AD00A452CE /* Product.m */,

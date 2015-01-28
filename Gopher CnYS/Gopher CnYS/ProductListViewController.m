@@ -29,13 +29,12 @@ NSArray *productData;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 156;
+    return 128;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [productData count];
-    //return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -53,7 +52,9 @@ NSArray *productData;
     
     cell.lblProductName.text = [[productData objectAtIndex:indexPath.row] valueForKey:@"title"];
     
-    [cell.lblProductName setFrame:CGRectMake(120, 15, 200, 40)];
+    NSInteger price  = [[[productData objectAtIndex:indexPath.row] valueForKey:@"price"] integerValue];
+    cell.lblProductPrice.text = [NSString stringWithFormat:@"%ld", (long)price];
+    
     cell.lblProductDescription.text = [[[productData objectAtIndex:indexPath.row] objectForKey:@"description"] description];
     
     PFFile *imageFile = [[productData objectAtIndex:indexPath.row] objectForKey:@"photo1"];
@@ -89,7 +90,7 @@ NSArray *productData;
     
     PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    [query selectKeys:@[@"description", @"title", @"photo1", @"createdDate"]];
+    [query selectKeys:@[@"description", @"title", @"photo1", @"price", @"createdDate"]];
     [query orderByDescending:@"createdDate"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
