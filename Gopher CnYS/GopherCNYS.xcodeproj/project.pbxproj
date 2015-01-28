@@ -188,6 +188,7 @@
 			children = (
 				182E35FF1A73A7AB00FA4378 /* ProductTableViewCell.m */,
 				182E35FE1A73A7AB00FA4378 /* ProductTableViewCell.h */,
+				18BA5C571A736180002EBF83 /* ProductTableViewCell.xib */,
 				185FDE071A73F7AD00A452CE /* Product.h */,
 				185FDE081A73F7AD00A452CE /* Product.m */,
 			);
@@ -228,7 +229,6 @@
 				1864BF081A4B1EA200EF5DD7 /* Supporting Files */,
 				1846ADAF1A62907C00964738 /* NextViewController.h */,
 				1846ADB01A62907C00964738 /* NextViewController.m */,
-				18BA5C571A736180002EBF83 /* ProductTableViewCell.xib */,
 			);
 			name = GopherCNYS;
 			path = "Gopher CnYS";
