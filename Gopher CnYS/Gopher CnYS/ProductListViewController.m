@@ -56,6 +56,7 @@ NSArray *productData;
     NSInteger price  = [[[productData objectAtIndex:indexPath.row] valueForKey:@"price"] integerValue];
     cell.lblProductPrice.text = [NSString stringWithFormat:@"$%ld", (long)price];
     
+    
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
         if (!error) {
             // do something with the new geoPoint

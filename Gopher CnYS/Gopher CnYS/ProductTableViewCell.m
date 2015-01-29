@@ -10,6 +10,8 @@
 
 @implementation ProductTableViewCell
 
+@synthesize btnFavorited;
+
 - (void)awakeFromNib {
     // Initialization code
 }
@@ -21,4 +23,20 @@
     
 }
 
+#pragma mark - Action
+
+- (IBAction)favoriteItemBtnClick:(id)sender
+{
+    isFavorited = !isFavorited;
+    
+    if (isFavorited) {
+        [btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateNormal];
+        [btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateHighlighted];
+        [btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateSelected];
+    } else {
+        [btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateNormal];
+        [btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateHighlighted];
+        [btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateSelected];
+    }
+}
 @end
