@@ -10,7 +10,7 @@
 #import "ProductTableViewCell.h"
 #import <Parse/Parse.h>
 
-@interface ProductListViewController ()
+@interface ProductListViewController () <ProductTableViewCellDelegate>
 
 @end
 
@@ -47,6 +47,9 @@ NSArray *productData;
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ProductTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
+    
+    cell.delegate = self;
+    cell.cellIndex = indexPath.row;
     
     cell.ivProductThumb.image = nil;
     
@@ -99,7 +102,7 @@ NSArray *productData;
     
     PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    [query selectKeys:@[@"description", @"title", @"photo1", @"price", @"position", @"createdAt", @"updatedAt"]];
+    [query selectKeys:@[@"description", @"title", @"photo1", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors"]];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -173,4 +176,21 @@ NSArray *productData;
     
 }
 
+#pragma mark - ProductTableViewCellDelegate
+
+- (void)onFavoriteCheck:(NSInteger)index isFavorite:(BOOL)isFv
+{
+    NSLog(@"index %ld is check %d", (long)index, isFv);
+    if(isFv)
+    {
+        NSArray *array = [[productData objectAtIndex:index] objectForKey:@"favoritors"];
+        if(array == nil)
+            array = [[NSArray alloc] init];
+        //array.add(ParseUser.getCurrentUser().getObjectId());
+        //productlist.get(pos).getObject().put("favoritors", array);
+        //productlist.get(pos).getObject().saveInBackground();
+        
+    }
+
+}
 @end

@@ -11,6 +11,9 @@
 @implementation ProductTableViewCell
 
 @synthesize btnFavorited;
+@synthesize cellIndex;
+@synthesize delegate;
+
 
 - (void)awakeFromNib {
     // Initialization code
@@ -28,6 +31,9 @@
 - (IBAction)favoriteItemBtnClick:(id)sender
 {
     isFavorited = !isFavorited;
+    if(delegate) {
+        [delegate onFavoriteCheck:cellIndex isFavorite:isFavorited];
+    }
     
     if (isFavorited) {
         [btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateNormal];
