@@ -548,6 +548,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = GopherCNYS;
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
@@ -570,6 +571,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = GopherCNYS;
 				PROVISIONING_PROFILE = "77bf2d32-755f-460d-a82b-ddbb3e5c9f6c";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
