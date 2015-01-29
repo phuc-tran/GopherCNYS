@@ -56,9 +56,14 @@ NSArray *productData;
     NSInteger price  = [[[productData objectAtIndex:indexPath.row] valueForKey:@"price"] integerValue];
     cell.lblProductPrice.text = [NSString stringWithFormat:@"$%ld", (long)price];
     
-    PFGeoPoint *positionItem  = [[productData objectAtIndex:indexPath.row] objectForKey:@"position"];
-    cell.lblProductMiles.text = [NSString stringWithFormat:@"%.2f miles", positionItem.latitude];
-    
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+        if (!error) {
+            // do something with the new geoPoint
+            PFGeoPoint *positionItem  = [[productData objectAtIndex:indexPath.row] objectForKey:@"position"];
+            cell.lblProductMiles.text = [NSString stringWithFormat:@"%.2f miles", [geoPoint distanceInMilesTo:positionItem]];
+        }
+        NSLog(@"PFGeoPoint error %@", error);
+    }];
     
     PFFile *imageFile = [[productData objectAtIndex:indexPath.row] objectForKey:@"photo1"];
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
@@ -93,8 +98,8 @@ NSArray *productData;
     
     PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    [query selectKeys:@[@"description", @"title", @"photo1", @"price", @"position", @"createdDate"]];
-    [query orderByDescending:@"createdDate"];
+    [query selectKeys:@[@"description", @"title", @"photo1", @"price", @"position", @"createdAt", @"updatedAt"]];
+    [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
@@ -141,5 +146,30 @@ NSArray *productData;
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - Action
+
+- (IBAction)priceBtnClick:(id)sender
+{
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"price" ascending:YES];
+    NSArray *finalArray = [productData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+    
+    productData = finalArray;
+    [_tableView reloadData];
+}
+
+- (IBAction)newBtnClick:(id)sender
+{
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"createdDate" ascending:YES];
+    NSArray *finalArray = [productData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+    
+    productData = finalArray;
+    [_tableView reloadData];
+}
+
+- (IBAction)favoriteBtnClick:(id)sender
+{
+    
+}
 
 @end
