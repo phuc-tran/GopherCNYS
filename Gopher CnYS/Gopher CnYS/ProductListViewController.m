@@ -196,6 +196,11 @@ NSArray *productData;
     [_tableView reloadData];
 }
 
+- (IBAction)selecetCategoryBtnClick:(id)sender
+{
+    
+}
+
 #pragma mark - ProductTableViewCellDelegate
 
 - (void)onFavoriteCheck:(NSInteger)index isFavorite:(BOOL)isFv
