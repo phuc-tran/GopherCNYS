@@ -23,8 +23,22 @@ NSArray *productData;
     // Do any additional setup after loading the view.
     
     [self loadProductList];
+    categoryData = [NSArray arrayWithObjects:@"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];
     
-//    productData = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
+    [self createToolbarItems];
+}
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    //self.navigationController.navigationBar.hidden = YES;
+    [self.navigationItem setHidesBackButton:YES];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor blueColor]];
+    [self.navigationItem setTitle:@"Products"];
+    
+    [self.navigationItem setLeftBarButtonItems:nil];
+    
+    [self hidePickerViewAnimation];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -143,16 +157,6 @@ NSArray *productData;
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    //self.navigationController.navigationBar.hidden = YES;
-    [self.navigationItem setHidesBackButton:YES];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor blueColor]];
-    [self.navigationItem setTitle:@"Products"];
-    
-    [self.navigationItem setLeftBarButtonItems:nil];
-}
-
 /*
 #pragma mark - Navigation
 
@@ -176,7 +180,7 @@ NSArray *productData;
 
 - (IBAction)newBtnClick:(id)sender
 {
-    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:YES];
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
     NSArray *finalArray = [productData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
     
     productData = finalArray;
@@ -198,7 +202,7 @@ NSArray *productData;
 
 - (IBAction)selecetCategoryBtnClick:(id)sender
 {
-    
+    [self showPickerViewAnimation];
 }
 
 #pragma mark - ProductTableViewCellDelegate
@@ -216,6 +220,65 @@ NSArray *productData;
         //productlist.get(pos).getObject().saveInBackground();
         
     }
+}
 
+#pragma mark - UIPickerViewDelegate
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return categoryData.count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
+{
+    return [categoryData objectAtIndex:row];
+}
+
+- (void)hidePickerViewAnimation{
+    //    isHiddenPicker = YES;
+    [UIView beginAnimations:@"hidePickerView" context:nil];
+    [UIView setAnimationDuration:0.3];
+    CGRect frame = self.containerPickerView.frame;
+    frame.origin.y += (float)frame.size.height;
+    self.containerPickerView.frame = frame;
+    [UIView commitAnimations];
+}
+
+- (void)showPickerViewAnimation{
+    //    isHiddenPicker = NO;
+    [UIView beginAnimations:@"showPickerView" context:nil];
+    [UIView setAnimationDuration:0.3];
+    float heightOfScreen = self.view.frame.size.height;
+    float yCoordinate = heightOfScreen - self.containerPickerView.frame.size.height;
+    CGRect frame = self.containerPickerView.frame;
+    frame.origin.y = yCoordinate;
+    self.containerPickerView.frame = frame;
+    [UIView commitAnimations];
+}
+
+- (void)createToolbarItems
+{
+    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                               target:nil
+                                                                               action:NULL];
+    UIBarButtonItem *doneItem = nil;
+    doneItem = [self createDoneButton];
+    [self.pickerToolbar setItems:[NSArray arrayWithObjects:spaceItem, doneItem, nil]];
+}
+
+- (UIBarButtonItem*)createDoneButton
+{
+    UIBarButtonItem *doneItem = nil;
+    doneItem = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                    style:UIBarButtonItemStyleDone
+                                                   target:self
+                                                   action:@selector(pickerDoneClick:)];
+    return doneItem;
+}
+
+- (IBAction)pickerDoneClick:(id)sender {
+    [self hidePickerViewAnimation];
 }
 @end

@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProductListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface ProductListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate>
+{
+    NSArray *categoryData;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *btnSignIn;
+@property (weak, nonatomic) IBOutlet UIPickerView *categoryPicker;
+@property (weak, nonatomic) IBOutlet UIView *containerPickerView;
+@property (weak, nonatomic) IBOutlet UIToolbar *pickerToolbar;
 
 @end
