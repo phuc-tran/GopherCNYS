@@ -56,6 +56,18 @@ NSArray *productData;
     cell.lblProductName.text = [[productData objectAtIndex:indexPath.row] valueForKey:@"title"];
     cell.lblProductDescription.text = [[[productData objectAtIndex:indexPath.row] objectForKey:@"description"] description];
     
+    NSArray *favoriteArr = [[productData objectAtIndex:indexPath.row] objectForKey:@"favoritors"];
+    
+    if (favoriteArr.count > 0) { // is favorited
+        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateNormal];
+        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateHighlighted];
+        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateSelected];
+    } else {
+        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateNormal];
+        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateHighlighted];
+        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateSelected];
+    }
+    
     NSInteger price  = [[[productData objectAtIndex:indexPath.row] valueForKey:@"price"] integerValue];
     cell.lblProductPrice.text = [NSString stringWithFormat:@"$%ld", (long)price];
     
@@ -173,7 +185,15 @@ NSArray *productData;
 
 - (IBAction)favoriteBtnClick:(id)sender
 {
-    
+    NSMutableArray *finalArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < productData.count; i++) {
+        NSArray *iFavorite = [[productData objectAtIndex:i] objectForKey:@"favoritors"];
+        if (iFavorite.count > 0) {
+            [finalArray addObject:[productData objectAtIndex:i]];
+        }
+    }
+    productData = finalArray;
+    [_tableView reloadData];
 }
 
 #pragma mark - ProductTableViewCellDelegate
