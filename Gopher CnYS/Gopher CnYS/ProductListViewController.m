@@ -18,9 +18,14 @@ NSArray *productData;
 
 @implementation ProductListViewController
 
+@synthesize productTableView;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self.productTableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil]
+               forCellReuseIdentifier:@"ProductTableViewCell"];
     
     [self loadProductList];
     categoryData = [NSArray arrayWithObjects:@"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];
@@ -53,14 +58,7 @@ NSArray *productData;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"ProductTableViewCell";
-    
-    ProductTableViewCell *cell = (ProductTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    if (cell == nil)
-    {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ProductTableViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
+    ProductTableViewCell *cell = (ProductTableViewCell *)[productTableView dequeueReusableCellWithIdentifier:@"ProductTableViewCell"];
     
     cell.delegate = self;
     cell.cellIndex = indexPath.row;
@@ -144,7 +142,7 @@ NSArray *productData;
                 
             }
             
-            [_tableView reloadData];
+            [productTableView reloadData];
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -175,7 +173,7 @@ NSArray *productData;
     NSArray *finalArray = [productData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
     
     productData = finalArray;
-    [_tableView reloadData];
+    [productTableView reloadData];
 }
 
 - (IBAction)newBtnClick:(id)sender
@@ -184,7 +182,7 @@ NSArray *productData;
     NSArray *finalArray = [productData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
     
     productData = finalArray;
-    [_tableView reloadData];
+    [productTableView reloadData];
 }
 
 - (IBAction)favoriteBtnClick:(id)sender
@@ -197,7 +195,7 @@ NSArray *productData;
         }
     }
     productData = finalArray;
-    [_tableView reloadData];
+    [productTableView reloadData];
 }
 
 - (IBAction)selecetCategoryBtnClick:(id)sender

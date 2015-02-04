@@ -170,7 +170,7 @@
                         <outlet property="categoryPicker" destination="d6U-dZ-vMZ" id="IwH-rk-2l1"/>
                         <outlet property="containerPickerView" destination="bYb-Pz-Tjs" id="TV0-zm-wqJ"/>
                         <outlet property="pickerToolbar" destination="uJl-Rw-kU1" id="DhO-S3-y7h"/>
-                        <outlet property="tableView" destination="nZk-jv-vLb" id="rbX-Fk-Qp1"/>
+                        <outlet property="productTableView" destination="nZk-jv-vLb" id="Yqv-pb-VFx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P3v-JF-HVC" userLabel="First Responder" sceneMemberID="firstResponder"/>
