@@ -126,7 +126,7 @@ NSArray *productData;
     
     PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    [query selectKeys:@[@"description", @"title", @"photo1", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors"]];
+    [query selectKeys:@[@"description", @"title", @"photo1", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors", @"category"]];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -229,9 +229,21 @@ NSArray *productData;
     return categoryData.count;
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
-{
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     return [categoryData objectAtIndex:row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    
+    NSMutableArray *finalArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < productData.count; i++) {
+        NSInteger ctg = [[[productData objectAtIndex:i] valueForKey:@"category"] integerValue];
+        if (ctg == row) {
+            [finalArray addObject:[productData objectAtIndex:i]];
+        }
+    }
+    productData = finalArray;
+    [productTableView reloadData];
 }
 
 - (void)hidePickerViewAnimation{
