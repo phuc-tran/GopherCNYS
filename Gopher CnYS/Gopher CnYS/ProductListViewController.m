@@ -15,6 +15,7 @@
 @end
 
 NSArray *productData;
+NSArray *productMasterData;
 
 @implementation ProductListViewController
 
@@ -132,6 +133,7 @@ NSArray *productData;
         if (!error) {
             // The find succeeded.
             productData = objects;
+            productMasterData = productData;
             NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
             // Do something with the found objects
             for (PFObject *product in productData) {
@@ -236,10 +238,10 @@ NSArray *productData;
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     
     NSMutableArray *finalArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < productData.count; i++) {
-        NSInteger ctg = [[[productData objectAtIndex:i] valueForKey:@"category"] integerValue];
+    for (int i = 0; i < productMasterData.count; i++) {
+        NSInteger ctg = [[[productMasterData objectAtIndex:i] valueForKey:@"category"] integerValue];
         if (ctg == row) {
-            [finalArray addObject:[productData objectAtIndex:i]];
+            [finalArray addObject:[productMasterData objectAtIndex:i]];
         }
     }
     productData = finalArray;
