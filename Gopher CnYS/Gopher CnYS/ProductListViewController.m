@@ -37,7 +37,7 @@ NSArray *productData;
     [self.navigationItem setTitle:@"Products"];
     
     [self.navigationItem setLeftBarButtonItems:nil];
-    
+    self.containerPickerView.hidden = YES;
     [self hidePickerViewAnimation];
 }
 
@@ -248,6 +248,7 @@ NSArray *productData;
 
 - (void)showPickerViewAnimation{
     //    isHiddenPicker = NO;
+    self.containerPickerView.hidden = NO;
     [UIView beginAnimations:@"showPickerView" context:nil];
     [UIView setAnimationDuration:0.3];
     float heightOfScreen = self.view.frame.size.height;
