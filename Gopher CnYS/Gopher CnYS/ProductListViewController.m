@@ -72,10 +72,12 @@ NSArray *productMasterData;
     NSArray *favoriteArr = [[productData objectAtIndex:indexPath.row] objectForKey:@"favoritors"];
     
     if (favoriteArr.count > 0) { // is favorited
+        cell.isFavorited = YES;
         [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateNormal];
         [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateHighlighted];
         [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateSelected];
     } else {
+        cell.isFavorited = NO;
         [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateNormal];
         [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateHighlighted];
         [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateSelected];
@@ -212,13 +214,24 @@ NSArray *productMasterData;
     NSLog(@"index %ld is check %d", (long)index, isFv);
     if(isFv)
     {
-        NSArray *array = [[productData objectAtIndex:index] objectForKey:@"favoritors"];
+        NSMutableArray *array = [[productData objectAtIndex:index] objectForKey:@"favoritors"];
         if(array == nil)
-            array = [[NSArray alloc] init];
-        //array.add(ParseUser.getCurrentUser().getObjectId());
-        //productlist.get(pos).getObject().put("favoritors", array);
-        //productlist.get(pos).getObject().saveInBackground();
+            array = [[NSMutableArray alloc] init];
+        [array addObject:[PFUser currentUser].objectId];
+        PFObject *item = [productData objectAtIndex:index];
+        [item addObject:array forKey:@"favoritors"];
+        [item saveInBackground];
         
+    } else {
+        
+        NSMutableArray *array = [[productData objectAtIndex:index] objectForKey:@"favoritors"];
+        if(array != nil)
+        {
+            [array removeObject:[PFUser currentUser].objectId];
+            PFObject *item = [productData objectAtIndex:index];
+            [item addObject:array forKey:@"favoritors"];
+            [item saveInBackground];
+        }
     }
 }
 

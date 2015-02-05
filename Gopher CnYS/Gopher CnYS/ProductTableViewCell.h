@@ -15,7 +15,7 @@
 
 @interface ProductTableViewCell : UITableViewCell
 {
-    BOOL isFavorited;
+    
 }
 
 @property (nonatomic, weak) IBOutlet UIImageView *ivProductThumb;
@@ -24,6 +24,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *lblProductPrice;
 @property (nonatomic, weak) IBOutlet UILabel *lblProductMiles;
 @property (nonatomic, weak) IBOutlet UIButton *btnFavorited;
+@property (nonatomic, assign) BOOL isFavorited;
 
 @property (unsafe_unretained, nonatomic) NSUInteger cellIndex;
 @property (assign, nonatomic) id<ProductTableViewCellDelegate> delegate;

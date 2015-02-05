@@ -13,7 +13,7 @@
 @synthesize btnFavorited;
 @synthesize cellIndex;
 @synthesize delegate;
-
+@synthesize isFavorited;
 
 - (void)awakeFromNib {
     // Initialization code
