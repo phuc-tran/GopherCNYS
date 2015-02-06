@@ -29,7 +29,7 @@ NSArray *productMasterData;
                forCellReuseIdentifier:@"ProductTableViewCell"];
     
     [self loadProductList];
-    categoryData = [NSArray arrayWithObjects:@"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];
+    categoryData = [NSArray arrayWithObjects:@"All Categories", @"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];
     
     [self createToolbarItems];
 }
@@ -250,6 +250,11 @@ NSArray *productMasterData;
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     
+    if(row == 0) {
+        productData = productMasterData;
+        [productTableView reloadData];
+        return;
+    }
     NSMutableArray *finalArray = [[NSMutableArray alloc] init];
     for (int i = 0; i < productMasterData.count; i++) {
         NSInteger ctg = [[[productMasterData objectAtIndex:i] valueForKey:@"category"] integerValue];
