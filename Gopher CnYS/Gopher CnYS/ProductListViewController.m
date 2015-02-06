@@ -20,6 +20,7 @@ NSArray *productMasterData;
 @implementation ProductListViewController
 
 @synthesize productTableView;
+@synthesize btnFavorite, btnNew, btnPrice, btnSignIn;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,6 +46,10 @@ NSArray *productMasterData;
     [self.navigationItem setLeftBarButtonItems:nil];
     self.containerPickerView.hidden = YES;
     [self hidePickerViewAnimation];
+    
+    isFavoriteTopSelected = NO;
+    isNewTopSelected = NO;
+    isPriceTopSelected = NO;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -108,26 +113,7 @@ NSArray *productMasterData;
 }
 
 - (void) loadProductList {
-    //ParseRelation<ParseUser> relation = ParseUser.getCurrentUser().getRelation("follow");
-    //ParseQuery<ParseUser> query1 = relation.getQuery();
-    
-//    PFRelation *relation = [[PFUser currentUser] relationForKey:@"follow"];
-//    PFQuery *query = [relation query];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-//        if (!error) {
-//            NSLog(@"OK");
-//            productData = results;
-//            
-//            for (PFObject *object in results) {
-//                NSLog(@"%@", object.objectId);
-//                // add to your array here
-//            }
-//        } else {
-//            
-//        }
-//    }];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Products"];
+     PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
     [query selectKeys:@[@"description", @"title", @"photo1", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors", @"category"]];
     [query orderByDescending:@"createdAt"];
@@ -141,9 +127,7 @@ NSArray *productMasterData;
             for (PFObject *product in productData) {
                 //NSLog(@"%@", object.objectId);
                 PFObject *descriptionObject = [product objectForKey:@"description"];
-                
                 NSLog(@"%@", descriptionObject.description);
-                
             }
             
             [productTableView reloadData];
@@ -159,46 +143,76 @@ NSArray *productMasterData;
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - Action
 
 - (IBAction)priceBtnClick:(id)sender
 {
-    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"price" ascending:YES];
-    NSArray *finalArray = [productData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+    isPriceTopSelected = !isPriceTopSelected;
     
-    productData = finalArray;
+    if(isPriceTopSelected) {
+        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter.png"] forState:UIControlStateNormal];
+        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter.png"] forState:UIControlStateHighlighted];
+        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter.png"] forState:UIControlStateSelected];
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"price" ascending:YES];
+        NSArray *finalArray = [productData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+        productData = finalArray;
+    } else {
+        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter1.png"] forState:UIControlStateNormal];
+        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter1.png"] forState:UIControlStateHighlighted];
+        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter1.png"] forState:UIControlStateSelected];
+        productData = productMasterData;
+    }
+    
     [productTableView reloadData];
 }
 
 - (IBAction)newBtnClick:(id)sender
 {
-    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
-    NSArray *finalArray = [productData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+    isNewTopSelected = !isNewTopSelected;
     
-    productData = finalArray;
+    if(isNewTopSelected) {
+        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter.png"] forState:UIControlStateNormal];
+        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter.png"] forState:UIControlStateHighlighted];
+        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter.png"] forState:UIControlStateSelected];
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
+        NSArray *finalArray = [productData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+        productData = finalArray;
+    } else {
+        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter1.png"] forState:UIControlStateNormal];
+        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter1.png"] forState:UIControlStateHighlighted];
+        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter1.png"] forState:UIControlStateSelected];
+        productData = productMasterData;
+    }
+    
+   
     [productTableView reloadData];
 }
 
 - (IBAction)favoriteBtnClick:(id)sender
 {
-    NSMutableArray *finalArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < productData.count; i++) {
-        NSArray *iFavorite = [[productData objectAtIndex:i] objectForKey:@"favoritors"];
-        if (iFavorite.count > 0) {
-            [finalArray addObject:[productData objectAtIndex:i]];
+    isFavoriteTopSelected = !isFavoriteTopSelected;
+    
+    if(isFavoriteTopSelected) {
+        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateNormal];
+        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateHighlighted];
+        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateSelected];
+        
+        NSMutableArray *finalArray = [[NSMutableArray alloc] init];
+        for (int i = 0; i < productData.count; i++) {
+            NSArray *iFavorite = [[productData objectAtIndex:i] objectForKey:@"favoritors"];
+            if (iFavorite.count > 0) {
+                [finalArray addObject:[productData objectAtIndex:i]];
+            }
         }
+        productData = finalArray;
+    } else {
+        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateNormal];
+        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateHighlighted];
+        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateSelected];
+        
+        productData = productMasterData;
     }
-    productData = finalArray;
     [productTableView reloadData];
 }
 

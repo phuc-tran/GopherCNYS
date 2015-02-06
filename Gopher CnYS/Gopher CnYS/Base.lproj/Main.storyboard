@@ -167,6 +167,9 @@
                     </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="btnFavorite" destination="yTB-fP-W3S" id="Hpk-Dc-RWQ"/>
+                        <outlet property="btnNew" destination="b0A-6e-Qq0" id="Glm-Ab-YTd"/>
+                        <outlet property="btnPrice" destination="Q7J-HF-hzO" id="az9-37-B8e"/>
                         <outlet property="categoryPicker" destination="d6U-dZ-vMZ" id="IwH-rk-2l1"/>
                         <outlet property="containerPickerView" destination="bYb-Pz-Tjs" id="TV0-zm-wqJ"/>
                         <outlet property="pickerToolbar" destination="uJl-Rw-kU1" id="DhO-S3-y7h"/>

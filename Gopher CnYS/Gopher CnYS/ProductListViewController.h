@@ -11,6 +11,9 @@
 @interface ProductListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate>
 {
     NSArray *categoryData;
+    BOOL isFavoriteTopSelected;
+    BOOL isPriceTopSelected;
+    BOOL isNewTopSelected;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *productTableView;
@@ -18,5 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *categoryPicker;
 @property (weak, nonatomic) IBOutlet UIView *containerPickerView;
 @property (weak, nonatomic) IBOutlet UIToolbar *pickerToolbar;
+@property (weak, nonatomic) IBOutlet UIButton *btnFavorite;
+@property (weak, nonatomic) IBOutlet UIButton *btnPrice;
+@property (weak, nonatomic) IBOutlet UIButton *btnNew;
 
 @end
