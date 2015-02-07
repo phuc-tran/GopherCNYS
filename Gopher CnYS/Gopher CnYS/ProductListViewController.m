@@ -124,7 +124,6 @@ PFGeoPoint *currentLocaltion;
         if (!error) {
             // The find succeeded.
             productData = objects;
-            productMasterData = productData;
             distanceProducts = [[NSMutableArray alloc] init];
             NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
             // Do something with the found objects
@@ -133,20 +132,13 @@ PFGeoPoint *currentLocaltion;
                 NSLog(@"%@", descriptionObject.description);
             }
             
-           // productMasterData = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-                //return [self compare:[productData objectAtIndex:i] withProduct:[productData objectAtIndex:j]]
-           // }];
-            
-            /*for(NSInteger i=0; i< productData.count - 1; i++) {
-                for(NSInteger j=1; j<productData.count; j++) {
-                    if([self compare:[productData objectAtIndex:i] withProduct:[productData objectAtIndex:j]])
-                    {
-                        PFObject *tam= [productData objectAtIndex:i];
-                        //[productData objectAtIndex:i] = [productData objectAtIndex:j];
-                        //a[j]=tam;
-                    }
-                }
-            }*/
+            NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                PFObject *first = (PFObject*)a;
+                PFObject *second = (PFObject*)b;
+                return [self compare:first withProduct:second];
+            }];
+            productData = tmpArr;
+            productMasterData = productData;
             
             [productTableView reloadData];
         } else {
