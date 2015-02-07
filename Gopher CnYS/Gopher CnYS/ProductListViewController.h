@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface ProductListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate>
 {
@@ -24,5 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnFavorite;
 @property (weak, nonatomic) IBOutlet UIButton *btnPrice;
 @property (weak, nonatomic) IBOutlet UIButton *btnNew;
+
+- (int)compare:(PFObject*)product1 withProduct:(PFObject*)product2;
 
 @end

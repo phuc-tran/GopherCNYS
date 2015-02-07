@@ -8,7 +8,7 @@
 
 #import "ProductListViewController.h"
 #import "ProductTableViewCell.h"
-#import <Parse/Parse.h>
+
 
 @interface ProductListViewController () <ProductTableViewCellDelegate>
 
@@ -16,6 +16,8 @@
 
 NSArray *productData;
 NSArray *productMasterData;
+NSMutableArray *distanceProducts;
+PFGeoPoint *currentLocaltion;
 
 @implementation ProductListViewController
 
@@ -25,6 +27,14 @@ NSArray *productMasterData;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+        if (!error) {
+            // do something with the new geoPoint
+            currentLocaltion = geoPoint;
+        }
+        NSLog(@"get location %@", currentLocaltion);
+    }];
+
     
     [self.productTableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil]
                forCellReuseIdentifier:@"ProductTableViewCell"];
@@ -91,15 +101,8 @@ NSArray *productMasterData;
     NSInteger price  = [[[productData objectAtIndex:indexPath.row] valueForKey:@"price"] integerValue];
     cell.lblProductPrice.text = [NSString stringWithFormat:@"$%ld", (long)price];
     
-    
-    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
-        if (!error) {
-            // do something with the new geoPoint
-            PFGeoPoint *positionItem  = [[productData objectAtIndex:indexPath.row] objectForKey:@"position"];
-            cell.lblProductMiles.text = [NSString stringWithFormat:@"%.2f miles", [geoPoint distanceInMilesTo:positionItem]];
-        }
-        NSLog(@"PFGeoPoint error %@", error);
-    }];
+    PFGeoPoint *positionItem  = [[productData objectAtIndex:indexPath.row] objectForKey:@"position"];
+    cell.lblProductMiles.text = [NSString stringWithFormat:@"%.2f miles", [currentLocaltion distanceInMilesTo:positionItem]];
     
     PFFile *imageFile = [[productData objectAtIndex:indexPath.row] objectForKey:@"photo1"];
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
@@ -122,13 +125,28 @@ NSArray *productMasterData;
             // The find succeeded.
             productData = objects;
             productMasterData = productData;
+            distanceProducts = [[NSMutableArray alloc] init];
             NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
             // Do something with the found objects
             for (PFObject *product in productData) {
-                //NSLog(@"%@", object.objectId);
                 PFObject *descriptionObject = [product objectForKey:@"description"];
                 NSLog(@"%@", descriptionObject.description);
             }
+            
+           // productMasterData = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                //return [self compare:[productData objectAtIndex:i] withProduct:[productData objectAtIndex:j]]
+           // }];
+            
+            /*for(NSInteger i=0; i< productData.count - 1; i++) {
+                for(NSInteger j=1; j<productData.count; j++) {
+                    if([self compare:[productData objectAtIndex:i] withProduct:[productData objectAtIndex:j]])
+                    {
+                        PFObject *tam= [productData objectAtIndex:i];
+                        //[productData objectAtIndex:i] = [productData objectAtIndex:j];
+                        //a[j]=tam;
+                    }
+                }
+            }*/
             
             [productTableView reloadData];
         } else {
@@ -138,6 +156,27 @@ NSArray *productMasterData;
     }];
 }
 
+
+- (int)compare:(PFObject*)product1 withProduct:(PFObject*)product2
+{
+    PFGeoPoint *point1 = [product1 objectForKey:@"position"];
+    PFGeoPoint *point2 = [product2 objectForKey:@"position"];
+    
+    if(currentLocaltion != nil && point1 != nil && point2 != nil)
+    {
+        double dist1 = [currentLocaltion distanceInMilesTo:point1];
+        double dist2 = [currentLocaltion distanceInMilesTo:point2];
+        if(dist1 > dist2)
+            return 1;
+        else if(dist1 == dist2)
+            return 0;
+        else
+            return -1;
+    } else {
+        return 0;
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -145,59 +184,96 @@ NSArray *productMasterData;
 
 
 #pragma mark - Action
-
-- (IBAction)priceBtnClick:(id)sender
-{
-    isPriceTopSelected = !isPriceTopSelected;
+-(void)updateSelected:(NSInteger)index {
+    switch (index) {
+        case 0:
+            isFavoriteTopSelected = !isFavoriteTopSelected;
+            isNewTopSelected = NO;
+            isPriceTopSelected = NO;
+            break;
+        case 1:
+            isFavoriteTopSelected = NO;
+            isNewTopSelected = !isNewTopSelected;
+            isPriceTopSelected = NO;
+            break;
+        case 2:
+            isFavoriteTopSelected = NO;
+            isNewTopSelected = NO;
+            isPriceTopSelected = !isPriceTopSelected;
+            break;
+        default:
+            break;
+    }
     
     if(isPriceTopSelected) {
         [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter.png"] forState:UIControlStateNormal];
         [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter.png"] forState:UIControlStateHighlighted];
         [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter.png"] forState:UIControlStateSelected];
-        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"price" ascending:YES];
-        NSArray *finalArray = [productData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
-        productData = finalArray;
     } else {
         [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter1.png"] forState:UIControlStateNormal];
         [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter1.png"] forState:UIControlStateHighlighted];
         [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter1.png"] forState:UIControlStateSelected];
-        productData = productMasterData;
     }
-    
-    [productTableView reloadData];
-}
-
-- (IBAction)newBtnClick:(id)sender
-{
-    isNewTopSelected = !isNewTopSelected;
     
     if(isNewTopSelected) {
         [btnNew setImage:[UIImage imageNamed:@"ic_new_filter.png"] forState:UIControlStateNormal];
         [btnNew setImage:[UIImage imageNamed:@"ic_new_filter.png"] forState:UIControlStateHighlighted];
         [btnNew setImage:[UIImage imageNamed:@"ic_new_filter.png"] forState:UIControlStateSelected];
-        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
-        NSArray *finalArray = [productData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
-        productData = finalArray;
     } else {
         [btnNew setImage:[UIImage imageNamed:@"ic_new_filter1.png"] forState:UIControlStateNormal];
         [btnNew setImage:[UIImage imageNamed:@"ic_new_filter1.png"] forState:UIControlStateHighlighted];
         [btnNew setImage:[UIImage imageNamed:@"ic_new_filter1.png"] forState:UIControlStateSelected];
-        productData = productMasterData;
     }
-    
-   
-    [productTableView reloadData];
-}
-
-- (IBAction)favoriteBtnClick:(id)sender
-{
-    isFavoriteTopSelected = !isFavoriteTopSelected;
     
     if(isFavoriteTopSelected) {
         [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateNormal];
         [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateHighlighted];
         [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateSelected];
-        
+    } else {
+        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateNormal];
+        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateHighlighted];
+        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateSelected];
+    }
+}
+- (IBAction)priceBtnClick:(id)sender
+{
+    //isPriceTopSelected = !isPriceTopSelected;
+    UIButton *btn = (UIButton*)sender;
+    [self updateSelected:btn.tag];
+    
+    if(isPriceTopSelected) {
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"price" ascending:YES];
+        NSArray *finalArray = [productData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+        productData = finalArray;
+    } else {
+        productData = productMasterData;
+    }
+    [productTableView reloadData];
+}
+
+- (IBAction)newBtnClick:(id)sender
+{
+    //isNewTopSelected = !isNewTopSelected;
+    UIButton *btn = (UIButton*)sender;
+    [self updateSelected:btn.tag];
+    
+    if(isNewTopSelected) {
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
+        NSArray *finalArray = [productData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+        productData = finalArray;
+    } else {
+        productData = productMasterData;
+    }
+    [productTableView reloadData];
+}
+
+- (IBAction)favoriteBtnClick:(id)sender
+{
+    //isFavoriteTopSelected = !isFavoriteTopSelected;
+    UIButton *btn = (UIButton*)sender;
+    [self updateSelected:btn.tag];
+    
+    if(isFavoriteTopSelected) {
         NSMutableArray *finalArray = [[NSMutableArray alloc] init];
         for (int i = 0; i < productData.count; i++) {
             NSArray *iFavorite = [[productData objectAtIndex:i] objectForKey:@"favoritors"];
@@ -207,10 +283,6 @@ NSArray *productMasterData;
         }
         productData = finalArray;
     } else {
-        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateNormal];
-        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateHighlighted];
-        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateSelected];
-        
         productData = productMasterData;
     }
     [productTableView reloadData];
