@@ -50,7 +50,7 @@ PFGeoPoint *currentLocaltion;
 {
     //self.navigationController.navigationBar.hidden = YES;
     [self.navigationItem setHidesBackButton:YES];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor blueColor]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:68/255.0f green:162/255.0f blue:225/255.0f alpha:1.0f]];
     [self.navigationItem setTitle:@"Products"];
     
     [self.navigationItem setLeftBarButtonItems:nil];
