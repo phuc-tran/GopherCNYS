@@ -31,11 +31,8 @@
                             <constraint firstAttribute="height" constant="126" id="g8X-fP-A9Y"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83T-zf-1Pm">
-                        <rect key="frame" x="123" y="39" width="189" height="22"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="189" id="bd0-60-dzq"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83T-zf-1Pm">
+                        <rect key="frame" x="123" y="39" width="189" height="58"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -76,15 +73,17 @@
                 <constraints>
                     <constraint firstItem="zIR-dr-MKF" firstAttribute="top" secondItem="PeF-X6-R3F" secondAttribute="topMargin" constant="-7" id="24A-Yr-ntp"/>
                     <constraint firstItem="mSf-Gs-TJU" firstAttribute="top" secondItem="PeF-X6-R3F" secondAttribute="topMargin" id="3HW-An-2fV"/>
+                    <constraint firstItem="83T-zf-1Pm" firstAttribute="leading" secondItem="PeF-X6-R3F" secondAttribute="leadingMargin" constant="115" id="3Tl-wd-ycl"/>
                     <constraint firstItem="TDr-Pn-zjK" firstAttribute="leading" secondItem="zIR-dr-MKF" secondAttribute="trailing" constant="8" id="6Xy-Pc-Ot5"/>
                     <constraint firstItem="zIR-dr-MKF" firstAttribute="leading" secondItem="PeF-X6-R3F" secondAttribute="leadingMargin" constant="-7" id="7pz-8B-8bW"/>
                     <constraint firstAttribute="trailingMargin" secondItem="mSf-Gs-TJU" secondAttribute="trailing" constant="-2" id="8JM-wz-1kN"/>
                     <constraint firstAttribute="bottomMargin" secondItem="vYg-7t-76M" secondAttribute="bottom" constant="-5" id="AaS-L1-mcC"/>
                     <constraint firstItem="1H7-mL-EH0" firstAttribute="trailing" secondItem="PeF-X6-R3F" secondAttribute="trailingMargin" id="Abt-0i-E8p"/>
-                    <constraint firstItem="83T-zf-1Pm" firstAttribute="leading" secondItem="zIR-dr-MKF" secondAttribute="trailing" constant="8" id="Fdg-PM-1u6"/>
                     <constraint firstAttribute="bottomMargin" secondItem="1H7-mL-EH0" secondAttribute="bottom" constant="-6" id="Wx0-37-SUU"/>
-                    <constraint firstItem="83T-zf-1Pm" firstAttribute="top" secondItem="TDr-Pn-zjK" secondAttribute="bottom" constant="3" id="gZc-Jp-etQ"/>
+                    <constraint firstItem="83T-zf-1Pm" firstAttribute="trailing" secondItem="PeF-X6-R3F" secondAttribute="trailingMargin" id="aCO-3b-fh4"/>
+                    <constraint firstItem="83T-zf-1Pm" firstAttribute="top" secondItem="PeF-X6-R3F" secondAttribute="topMargin" constant="31" id="dZZ-8o-0nw"/>
                     <constraint firstItem="TDr-Pn-zjK" firstAttribute="top" secondItem="PeF-X6-R3F" secondAttribute="topMargin" id="ly7-FD-b0s"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="83T-zf-1Pm" secondAttribute="bottom" constant="24" id="mkB-Z8-vfA"/>
                     <constraint firstItem="vYg-7t-76M" firstAttribute="leading" secondItem="zIR-dr-MKF" secondAttribute="trailing" constant="8" id="wE7-xh-NQZ"/>
                 </constraints>
             </tableViewCellContentView>
