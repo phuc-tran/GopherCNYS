@@ -76,7 +76,7 @@
                                 <rect key="frame" x="0.0" y="44" width="320" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guX-2K-Mpg">
-                                        <rect key="frame" x="8" y="7" width="130" height="30"/>
+                                        <rect key="frame" x="4" y="7" width="135" height="30"/>
                                         <state key="normal" title="Select Category">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -85,11 +85,11 @@
                                             <action selector="selecetCategoryBtnClick:" destination="dzp-kP-Fi0" eventType="touchUpInside" id="Ij0-LK-fny"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z97-sO-yFM">
-                                        <rect key="frame" x="163" y="0.0" width="157" height="44"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z97-sO-yFM">
+                                        <rect key="frame" x="157" y="0.0" width="163" height="44"/>
                                         <subviews>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0A-6e-Qq0">
-                                                <rect key="frame" x="55" y="2" width="45" height="41"/>
+                                                <rect key="frame" x="59" y="2" width="45" height="41"/>
                                                 <state key="normal" image="ic_new_filter1">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -98,7 +98,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTB-fP-W3S">
-                                                <rect key="frame" x="2" y="3" width="45" height="41"/>
+                                                <rect key="frame" x="7" y="3" width="45" height="41"/>
                                                 <state key="normal" image="ic_favorite_filter1">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -107,7 +107,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7J-HF-hzO">
-                                                <rect key="frame" x="107" y="1" width="45" height="41"/>
+                                                <rect key="frame" x="112" y="1" width="45" height="41"/>
                                                 <state key="normal" image="ic_price_filter1">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -117,10 +117,17 @@
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="163" id="TIj-SH-kwV"/>
+                                            <constraint firstAttribute="height" constant="44" id="X8M-PO-2KS"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="z97-sO-yFM" secondAttribute="bottom" id="5oj-1o-Bqk"/>
+                                    <constraint firstAttribute="trailing" secondItem="z97-sO-yFM" secondAttribute="trailing" id="fI0-k8-KzN"/>
                                     <constraint firstAttribute="height" constant="44" id="huv-fw-Cdg"/>
+                                    <constraint firstItem="z97-sO-yFM" firstAttribute="top" secondItem="VQ7-sL-El7" secondAttribute="top" id="jv0-RY-ben"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nZk-jv-vLb">
