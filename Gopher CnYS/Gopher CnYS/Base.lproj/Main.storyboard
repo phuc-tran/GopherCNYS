@@ -75,24 +75,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VQ7-sL-El7">
                                 <rect key="frame" x="0.0" y="44" width="320" height="44"/>
                                 <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0A-6e-Qq0">
-                                        <rect key="frame" x="214" y="3" width="45" height="41"/>
-                                        <state key="normal" image="ic_new_filter1">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="newBtnClick:" destination="dzp-kP-Fi0" eventType="touchUpInside" id="cGX-OC-kB7"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7J-HF-hzO">
-                                        <rect key="frame" x="268" y="4" width="45" height="41"/>
-                                        <state key="normal" image="ic_price_filter1">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="priceBtnClick:" destination="dzp-kP-Fi0" eventType="touchUpInside" id="qKl-fs-4qP"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guX-2K-Mpg">
                                         <rect key="frame" x="8" y="7" width="130" height="30"/>
                                         <state key="normal" title="Select Category">
@@ -103,23 +85,45 @@
                                             <action selector="selecetCategoryBtnClick:" destination="dzp-kP-Fi0" eventType="touchUpInside" id="Ij0-LK-fny"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTB-fP-W3S">
-                                        <rect key="frame" x="157" y="3" width="45" height="41"/>
-                                        <state key="normal" image="ic_favorite_filter1">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="favoriteBtnClick:" destination="dzp-kP-Fi0" eventType="touchUpInside" id="fJn-uG-rAx"/>
-                                        </connections>
-                                    </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z97-sO-yFM">
+                                        <rect key="frame" x="163" y="0.0" width="157" height="44"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0A-6e-Qq0">
+                                                <rect key="frame" x="55" y="2" width="45" height="41"/>
+                                                <state key="normal" image="ic_new_filter1">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="newBtnClick:" destination="dzp-kP-Fi0" eventType="touchUpInside" id="cGX-OC-kB7"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTB-fP-W3S">
+                                                <rect key="frame" x="2" y="3" width="45" height="41"/>
+                                                <state key="normal" image="ic_favorite_filter1">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="favoriteBtnClick:" destination="dzp-kP-Fi0" eventType="touchUpInside" id="fJn-uG-rAx"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7J-HF-hzO">
+                                                <rect key="frame" x="107" y="1" width="45" height="41"/>
+                                                <state key="normal" image="ic_price_filter1">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="priceBtnClick:" destination="dzp-kP-Fi0" eventType="touchUpInside" id="qKl-fs-4qP"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="Azn-58-i5Z"/>
-                                    <constraint firstAttribute="height" constant="44" id="lom-gA-aLs"/>
+                                    <constraint firstAttribute="height" constant="44" id="huv-fw-Cdg"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nZk-jv-vLb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nZk-jv-vLb">
                                 <rect key="frame" x="0.0" y="88" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -128,16 +132,16 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYb-Pz-Tjs">
-                                <rect key="frame" x="0.0" y="350" width="320" height="218"/>
+                                <rect key="frame" x="0.0" y="362" width="320" height="206"/>
                                 <subviews>
-                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uJl-Rw-kU1">
-                                        <rect key="frame" x="0.0" y="7" width="320" height="44"/>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJl-Rw-kU1">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <items>
                                             <barButtonItem title="Item" id="kOY-bC-05S"/>
                                         </items>
                                     </toolbar>
-                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d6U-dZ-vMZ">
-                                        <rect key="frame" x="0.0" y="44" width="320" height="174"/>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d6U-dZ-vMZ">
+                                        <rect key="frame" x="0.0" y="44" width="320" height="162"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="dataSource" destination="dzp-kP-Fi0" id="JwA-Fd-akl"/>
@@ -145,21 +149,33 @@
                                         </connections>
                                     </pickerView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="218" id="C1x-1O-cno"/>
-                                    <constraint firstAttribute="width" constant="320" id="mls-aG-0Ew"/>
+                                    <constraint firstAttribute="trailing" secondItem="d6U-dZ-vMZ" secondAttribute="trailing" id="3RP-JM-Z6o"/>
+                                    <constraint firstItem="uJl-Rw-kU1" firstAttribute="leading" secondItem="bYb-Pz-Tjs" secondAttribute="leading" id="9lo-NO-oyc"/>
+                                    <constraint firstItem="d6U-dZ-vMZ" firstAttribute="top" secondItem="uJl-Rw-kU1" secondAttribute="bottom" id="Gbe-h9-LdR"/>
+                                    <constraint firstItem="uJl-Rw-kU1" firstAttribute="top" secondItem="bYb-Pz-Tjs" secondAttribute="top" id="Md2-ow-v8n"/>
+                                    <constraint firstAttribute="trailing" secondItem="uJl-Rw-kU1" secondAttribute="trailing" id="OiX-KC-uCp"/>
+                                    <constraint firstItem="d6U-dZ-vMZ" firstAttribute="leading" secondItem="bYb-Pz-Tjs" secondAttribute="leading" id="R88-fG-iFQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="d6U-dZ-vMZ" secondAttribute="bottom" id="Ued-ZA-oZO"/>
+                                    <constraint firstItem="d6U-dZ-vMZ" firstAttribute="top" secondItem="uJl-Rw-kU1" secondAttribute="bottom" id="Ymc-xX-Lmg"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="nZk-jv-vLb" firstAttribute="leading" secondItem="a1B-4G-lZW" secondAttribute="leading" id="5FG-bU-inl"/>
+                            <constraint firstItem="VQ7-sL-El7" firstAttribute="leading" secondItem="a1B-4G-lZW" secondAttribute="leading" id="8Kd-BU-pJp"/>
+                            <constraint firstItem="bYb-Pz-Tjs" firstAttribute="leading" secondItem="a1B-4G-lZW" secondAttribute="leading" id="AsM-Ib-yj7"/>
                             <constraint firstItem="VQ7-sL-El7" firstAttribute="top" secondItem="txT-YT-VG0" secondAttribute="bottom" id="CGW-EJ-uAx"/>
+                            <constraint firstAttribute="trailing" secondItem="bYb-Pz-Tjs" secondAttribute="trailing" id="Py0-zL-upx"/>
                             <constraint firstItem="nZk-jv-vLb" firstAttribute="top" secondItem="VQ7-sL-El7" secondAttribute="bottom" id="SmC-MT-M4v"/>
+                            <constraint firstAttribute="trailing" secondItem="nZk-jv-vLb" secondAttribute="trailing" id="UJj-qA-Gc9"/>
                             <constraint firstAttribute="centerX" secondItem="bYb-Pz-Tjs" secondAttribute="centerX" id="XRz-ho-uur"/>
-                            <constraint firstAttribute="centerX" secondItem="VQ7-sL-El7" secondAttribute="centerX" id="ZU7-KX-eDz"/>
+                            <constraint firstItem="SvB-kn-OqY" firstAttribute="top" secondItem="nZk-jv-vLb" secondAttribute="bottom" id="c6H-h4-fpK"/>
+                            <constraint firstAttribute="trailing" secondItem="VQ7-sL-El7" secondAttribute="trailing" id="oka-dL-9ew"/>
                             <constraint firstItem="SvB-kn-OqY" firstAttribute="top" secondItem="bYb-Pz-Tjs" secondAttribute="bottom" id="pc0-Ab-cHW"/>
                             <constraint firstAttribute="centerX" secondItem="nZk-jv-vLb" secondAttribute="centerX" id="pvh-X9-3Ct"/>
+                            <constraint firstAttribute="bottom" secondItem="bYb-Pz-Tjs" secondAttribute="bottom" id="z3y-dn-NLe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qb2-21-LDw">
@@ -359,6 +375,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Azd-6I-B5X"/>
+        <segue reference="v6T-QQ-5i6"/>
     </inferredMetricsTieBreakers>
 </document>
