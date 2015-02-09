@@ -302,17 +302,28 @@ PFGeoPoint *currentLocaltion;
         [item addObject:array forKey:@"favoritors"];
         [item saveInBackground];
         
-    } else {
+    }
+    /*else {
         
         NSMutableArray *array = [[productData objectAtIndex:index] objectForKey:@"favoritors"];
         if(array != nil)
         {
-            [array removeObject:[PFUser currentUser].objectId];
+            //[array removeObject:[PFUser currentUser].objectId];
+            NSString *str = [PFUser currentUser].objectId;
+            for (NSInteger i=array.count-1; i>-1; i--) {
+                NSArray *data = [array objectAtIndex:i];
+                NSArray *item = [data objectAtIndex:0];
+                NSString *strItem = [item objectAtIndex:0];
+                if ([strItem rangeOfString:str].location == NSNotFound) {
+                    [array removeObject:data];
+                }
+            }
+            
             PFObject *item = [productData objectAtIndex:index];
             [item addObject:array forKey:@"favoritors"];
             [item saveInBackground];
         }
-    }
+    }*/
 }
 
 #pragma mark - UIPickerViewDelegate

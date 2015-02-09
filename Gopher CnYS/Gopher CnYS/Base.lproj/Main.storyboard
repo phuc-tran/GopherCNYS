@@ -111,17 +111,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z97-sO-yFM">
                                         <rect key="frame" x="157" y="0.0" width="163" height="44"/>
                                         <subviews>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0A-6e-Qq0">
-                                                <rect key="frame" x="59" y="2" width="45" height="41"/>
-                                                <state key="normal" image="ic_new_filter1">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="newBtnClick:" destination="dzp-kP-Fi0" eventType="touchUpInside" id="cGX-OC-kB7"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTB-fP-W3S">
-                                                <rect key="frame" x="7" y="3" width="45" height="41"/>
+                                                <rect key="frame" x="58" y="1" width="45" height="41"/>
                                                 <state key="normal" image="ic_favorite_filter1">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -136,6 +127,15 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="priceBtnClick:" destination="dzp-kP-Fi0" eventType="touchUpInside" id="qKl-fs-4qP"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0A-6e-Qq0">
+                                                <rect key="frame" x="4" y="1" width="45" height="41"/>
+                                                <state key="normal" image="ic_new_filter1">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="newBtnClick:" destination="dzp-kP-Fi0" eventType="touchUpInside" id="cGX-OC-kB7"/>
                                                 </connections>
                                             </button>
                                         </subviews>
