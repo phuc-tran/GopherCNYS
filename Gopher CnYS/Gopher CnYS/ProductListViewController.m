@@ -40,7 +40,7 @@ PFGeoPoint *currentLocaltion;
                forCellReuseIdentifier:@"ProductTableViewCell"];
     
     [self loadProductList];
-    categoryData = [NSArray arrayWithObjects:@"All Categories", @"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];
+    categoryData = [NSArray arrayWithObjects:@"All Categories", @"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];
     
     [self createToolbarItems];
 }
@@ -102,7 +102,7 @@ PFGeoPoint *currentLocaltion;
     cell.lblProductPrice.text = [NSString stringWithFormat:@"$%ld", (long)price];
     
     PFGeoPoint *positionItem  = [[productData objectAtIndex:indexPath.row] objectForKey:@"position"];
-    cell.lblProductMiles.text = [NSString stringWithFormat:@"%.2f miles", [currentLocaltion distanceInMilesTo:positionItem]];
+    cell.lblProductMiles.text = [NSString stringWithFormat:@"%.f miles", [currentLocaltion distanceInMilesTo:positionItem]];
     
     PFFile *imageFile = [[productData objectAtIndex:indexPath.row] objectForKey:@"photo1"];
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
@@ -177,6 +177,8 @@ PFGeoPoint *currentLocaltion;
 
 #pragma mark - Action
 -(void)updateSelected:(NSInteger)index {
+    self.containerPickerView.hidden = YES;
+    [self hidePickerViewAnimation];
     switch (index) {
         case 0:
             isFavoriteTopSelected = !isFavoriteTopSelected;
