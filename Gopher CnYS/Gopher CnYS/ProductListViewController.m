@@ -16,6 +16,7 @@
 
 NSArray *productData;
 NSArray *productMasterData;
+NSArray *productFavoriteData;
 NSMutableArray *distanceProducts;
 PFGeoPoint *currentLocaltion;
 
@@ -249,7 +250,7 @@ PFGeoPoint *currentLocaltion;
     
     if(isPriceTopSelected) {
         NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"price" ascending:YES];
-        NSArray *finalArray = [productData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+        NSArray *finalArray = [productMasterData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
         productData = finalArray;
     } else {
         productData = productMasterData;
@@ -265,7 +266,7 @@ PFGeoPoint *currentLocaltion;
     
     if(isNewTopSelected) {
         NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
-        NSArray *finalArray = [productData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+        NSArray *finalArray = [productMasterData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
         productData = finalArray;
     } else {
         productData = productMasterData;
@@ -275,22 +276,23 @@ PFGeoPoint *currentLocaltion;
 
 - (IBAction)favoriteBtnClick:(id)sender
 {
-    //isFavoriteTopSelected = !isFavoriteTopSelected;
     UIButton *btn = (UIButton*)sender;
     [self updateSelected:btn.tag];
     
     if(isFavoriteTopSelected) {
         NSMutableArray *finalArray = [[NSMutableArray alloc] init];
-        for (int i = 0; i < productData.count; i++) {
-            NSArray *iFavorite = [[productData objectAtIndex:i] objectForKey:@"favoritors"];
+        for (int i = 0; i < productMasterData.count; i++) {
+            NSArray *iFavorite = [[productMasterData objectAtIndex:i] objectForKey:@"favoritors"];
             if ([self checkItemisFavorited:iFavorite]) {
-                [finalArray addObject:[productData objectAtIndex:i]];
+                [finalArray addObject:[productMasterData objectAtIndex:i]];
             }
         }
         productData = finalArray;
+        productFavoriteData = productData;
     } else {
         productData = productMasterData;
     }
+    
     [productTableView reloadData];
 }
 
@@ -349,19 +351,37 @@ PFGeoPoint *currentLocaltion;
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     
-    if(row == 0) {
-        productData = productMasterData;
-        [productTableView reloadData];
-        return;
-    }
-    NSMutableArray *finalArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < productMasterData.count; i++) {
-        NSInteger ctg = [[[productMasterData objectAtIndex:i] valueForKey:@"category"] integerValue];
-        if (ctg == row) {
-            [finalArray addObject:[productMasterData objectAtIndex:i]];
+    if(isFavoriteTopSelected) {
+        if(row == 0) {
+            productData = productFavoriteData;
+            [productTableView reloadData];
+            return;
+        } else {
+            NSMutableArray *finalArray = [[NSMutableArray alloc] init];
+            for (int i = 0; i < productFavoriteData.count; i++) {
+                NSInteger ctg = [[[productFavoriteData objectAtIndex:i] valueForKey:@"category"] integerValue];
+                if (ctg == row) {
+                    [finalArray addObject:[productFavoriteData objectAtIndex:i]];
+                }
+            }
+            productData = finalArray;
         }
+    } else {
+        if(row == 0) {
+            productData = productMasterData;
+            [productTableView reloadData];
+            return;
+        }
+        NSMutableArray *finalArray = [[NSMutableArray alloc] init];
+        for (int i = 0; i < productMasterData.count; i++) {
+            NSInteger ctg = [[[productMasterData objectAtIndex:i] valueForKey:@"category"] integerValue];
+            if (ctg == row) {
+                [finalArray addObject:[productMasterData objectAtIndex:i]];
+            }
+        }
+        productData = finalArray;
     }
-    productData = finalArray;
+    
     [productTableView reloadData];
 }
 
