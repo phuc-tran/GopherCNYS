@@ -66,7 +66,7 @@
                             <constraint firstAttribute="height" constant="22" id="CaR-Hw-pAE"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.035294117647058823" green="0.41960784313725491" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
