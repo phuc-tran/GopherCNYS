@@ -86,7 +86,7 @@ PFGeoPoint *currentLocaltion;
     
     NSArray *favoriteArr = [[productData objectAtIndex:indexPath.row] objectForKey:@"favoritors"];
     
-    if (favoriteArr.count > 0) { // is favorited
+    if ([self checkItemisFavorited:favoriteArr]) { // is favorited
         cell.isFavorited = YES;
         [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateNormal];
         [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateHighlighted];
@@ -113,6 +113,18 @@ PFGeoPoint *currentLocaltion;
     }];
     
     return cell;
+}
+
+- (BOOL)checkItemisFavorited:(NSArray*)array {
+    
+    NSString *str = [PFUser currentUser].objectId;
+    for (NSInteger i = array.count-1; i>-1; i--) {
+        NSString *item = [array objectAtIndex:i];
+        if ([item rangeOfString:str].location != NSNotFound) {
+            return true;
+        }
+    }
+    return FALSE;
 }
 
 - (void) loadProductList {
@@ -271,7 +283,7 @@ PFGeoPoint *currentLocaltion;
         NSMutableArray *finalArray = [[NSMutableArray alloc] init];
         for (int i = 0; i < productData.count; i++) {
             NSArray *iFavorite = [[productData objectAtIndex:i] objectForKey:@"favoritors"];
-            if (iFavorite.count > 0) {
+            if ([self checkItemisFavorited:iFavorite]) {
                 [finalArray addObject:[productData objectAtIndex:i]];
             }
         }
@@ -316,7 +328,7 @@ PFGeoPoint *currentLocaltion;
             }
             
             PFObject *item = [productData objectAtIndex:index];
-            [item addObject:array forKey:@"favoritors"];
+            [item setObject:array forKey:@"favoritors"];
             [item saveInBackground];
         }
     }
