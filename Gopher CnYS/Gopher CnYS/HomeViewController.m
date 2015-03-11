@@ -30,11 +30,34 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
 {
     [super viewDidLoad];
     
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:@"UIKeyboardWillShowNotification" object:nil];
+    
+   // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:@"UIKeyboardDidHideNotification" object:nil];
+    
     if ([self checkIfUserLoggedIn])
     {
         NSLog(@"User has logged in with FB. Let's load data");
         [self openProductList];
     }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBar.hidden = YES;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.navigationBar.hidden = NO;
+    
+   // [[NSNotificationCenter defaultCenter] removeObserver:@"UIKeyboardWillShowNotification"];
+    
+    //[[NSNotificationCenter defaultCenter] removeObserver:@"UIKeyboardDidHideNotification"];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 -(void) gpSignInEnable {
@@ -99,24 +122,6 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
     UIGraphicsEndImageContext();
     return newImage;
     
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    //[self loadUI];
-    //[self.navigationController setNavigationBarHidden:YES];
-    self.navigationController.navigationBar.hidden = YES;
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    //[self.navigationController setNavigationBarHidden:NO];
-    self.navigationController.navigationBar.hidden = NO;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(IBAction)facebookButtonPressed:(id)sender
@@ -235,5 +240,33 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
     [textField resignFirstResponder];
     
     return YES;
+}
+
+- (void) keyboardWillShow:(NSNotification *)note {
+    NSDictionary *userInfo = [note userInfo];
+    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    NSLog(@"Keyboard Height: %f Width: %f", kbSize.height, kbSize.width);
+    NSLog(@"yyyy %f", self.viewLogin.frame.origin.y);
+    // move the view up by 30 pts
+    CGRect frame = self.viewLogin.frame;
+    frame.origin.y = 160;
+    
+    self.viewLogin.frame = frame;
+    NSLog(@"yyyy %f", self.viewLogin.frame.origin.y);
+//    [UIView animateWithDuration:0.3 animations:^{
+//        self.viewLogin.frame = frame;
+//    }];
+}
+
+- (void) keyboardDidHide:(NSNotification *)note {
+    
+    // move the view back to the origin
+    CGRect frame = self.viewLogin.frame;
+    frame.origin.y = 0;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.viewLogin.frame = frame;
+    }];
 }
 @end
