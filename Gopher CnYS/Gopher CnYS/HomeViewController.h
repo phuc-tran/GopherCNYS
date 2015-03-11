@@ -12,7 +12,7 @@
 
 @class GPPSignInButton;
 
-@interface HomeViewController : UIViewController <GPPSignInDelegate>
+@interface HomeViewController : UIViewController <GPPSignInDelegate, UITextFieldDelegate>
 
 @property (retain, nonatomic) IBOutlet UIButton *facebookButon;
 @property (retain, nonatomic) IBOutlet UIButton *gPlusButton;
@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtUserName;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
 @property (weak, nonatomic) IBOutlet UIButton *btnSignIn;
+@property (weak, nonatomic) IBOutlet UIView *viewLogin;
 
 -(IBAction) signIn:(id)sender;
 
