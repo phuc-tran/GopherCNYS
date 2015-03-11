@@ -81,14 +81,14 @@
                                         <color key="textColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H2m-dA-P04">
-                                        <rect key="frame" x="12" y="124" width="300" height="35"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" background="password_btn" translatesAutoresizingMaskIntoConstraints="NO" id="H2m-dA-P04">
+                                        <rect key="frame" x="12" y="120" width="300" height="44"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JBp-bF-UpY">
-                                        <rect key="frame" x="12" y="81" width="300" height="35"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" minimumFontSize="17" background="username_btn" translatesAutoresizingMaskIntoConstraints="NO" id="JBp-bF-UpY">
+                                        <rect key="frame" x="12" y="69" width="300" height="44"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -437,7 +437,9 @@
         <image name="ic_favorite_filter1" width="100" height="100"/>
         <image name="ic_new_filter1" width="100" height="100"/>
         <image name="ic_price_filter1" width="100" height="100"/>
+        <image name="password_btn" width="625" height="89"/>
         <image name="sign_normal" width="625" height="89"/>
+        <image name="username_btn" width="625" height="89"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
