@@ -15,9 +15,13 @@
 @interface HomeViewController : UIViewController <GPPSignInDelegate>
 
 @property (retain, nonatomic) IBOutlet UIButton *facebookButon;
-@property (retain, nonatomic) IBOutlet UIButton *signinButton;
 @property (retain, nonatomic) IBOutlet UIButton *gPlusButton;
-@property (retain, nonatomic) IBOutlet UIView *createAccountButton;
+
+@property (weak, nonatomic) IBOutlet UITextField *txtUserName;
+@property (weak, nonatomic) IBOutlet UITextField *txtPassword;
+@property (weak, nonatomic) IBOutlet UIButton *btnSignIn;
+
+-(IBAction) signIn:(id)sender;
 
 @property UIActivityIndicatorView *activityIndicator;
 

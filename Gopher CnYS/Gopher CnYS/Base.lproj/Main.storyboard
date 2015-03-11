@@ -63,7 +63,7 @@
                                         <rect key="frame" x="12" y="178" width="300" height="44"/>
                                         <state key="normal" title="Sign In" backgroundImage="sign_normal"/>
                                         <connections>
-                                            <segue destination="pix-b2-981" kind="push" identifier="" id="eAu-2V-Grj"/>
+                                            <action selector="signIn:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="o4d-aW-jZm"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qD-Wj-uu0">
@@ -116,7 +116,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="TUX-DC-EsF"/>
                     <connections>
+                        <outlet property="btnSignIn" destination="I1r-o2-zbF" id="foj-cN-2ub"/>
                         <outlet property="facebookButon" destination="1qD-Wj-uu0" id="E8K-8a-Wjb"/>
+                        <outlet property="txtPassword" destination="H2m-dA-P04" id="psz-35-IEM"/>
+                        <outlet property="txtUserName" destination="JBp-bF-UpY" id="cbq-4W-AT6"/>
                         <segue destination="dzp-kP-Fi0" kind="push" identifier="product_list_from_home" id="v6T-QQ-5i6"/>
                     </connections>
                 </viewController>
@@ -333,12 +336,11 @@
                         <outlet property="btnSignIn" destination="0mr-H2-hqq" id="YzA-Um-h2I"/>
                         <outlet property="txtPassword" destination="GGK-zP-PjQ" id="hGu-mt-Yby"/>
                         <outlet property="txtUserName" destination="3BR-Rt-dpj" id="Ykc-WB-a81"/>
-                        <segue destination="dzp-kP-Fi0" kind="push" identifier="product_list_from_sign_in" id="Azd-6I-B5X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hmr-bK-G64" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-996" y="-908"/>
+            <point key="canvasLocation" x="-1282" y="-1038"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aOA-DJ-ZgZ">
@@ -356,7 +358,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Flh-cC-SDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2077" y="-421"/>
+            <point key="canvasLocation" x="-2069" y="-353"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="Py4-Na-neX">

@@ -205,19 +205,28 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
             
         }];
     }
-    
-    
 }
 
-//-(IBAction)gPlusButtonPressed:(id)sender
-//{
-//    NSLog(@"gplus");
-//    //[self gpSignInEnable];
-//}
 
--(IBAction)signInButtonPressed:(id)sender
+-(IBAction)signIn:(id)sender
 {
-    NSLog(@"signin");
+    NSString *userName = _txtUserName.text;
+    NSString *password = _txtPassword.text;
+    
+    if (userName.length <= 0) {
+        return;
+    } else if (password.length <= 0) {
+        return;
+    }
+    
+    [PFUser logInWithUsernameInBackground:userName password:password
+                                    block:^(PFUser *user, NSError *error) {
+                                        if (user) {
+                                            NSLog(@"Login OK");
+                                            [self openProductList];
+                                        } else {
+                                            NSLog(@"Failed");
+                                        }
+                                    }];
 }
-
 @end
