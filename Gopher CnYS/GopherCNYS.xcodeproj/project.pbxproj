@@ -14,7 +14,6 @@
 		1837DAFB1A64F65E00C48A51 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1837DAF61A64F65E00C48A51 /* ParseFacebookUtils.framework */; };
 		1837DB0A1A65233C00C48A51 /* SigninViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1837DB091A65233C00C48A51 /* SigninViewController.m */; };
 		183DDC6A1A644C460085F53C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183DDC691A644C460085F53C /* FacebookSDK.framework */; };
-		1846ADB11A62907C00964738 /* NextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846ADB01A62907C00964738 /* NextViewController.m */; };
 		184962A61A6657B30054AFFE /* ProductListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184962A51A6657B30054AFFE /* ProductListViewController.m */; };
 		185F4B411A677D84002D1D1A /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185F4B401A677D84002D1D1A /* AddressBook.framework */; };
 		185F4B431A677D8B002D1D1A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185F4B421A677D8B002D1D1A /* AssetsLibrary.framework */; };
@@ -49,6 +48,8 @@
 		18A6B7C91A6566BC0043E08A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A6B7C81A6566BC0043E08A /* MobileCoreServices.framework */; };
 		18A6B7CC1A657F420043E08A /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A6B7CB1A657F420043E08A /* CreateAccountViewController.m */; };
 		18BA5C581A736180002EBF83 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BA5C571A736180002EBF83 /* ProductTableViewCell.xib */; };
+		AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7CB4C91AB1F0A20017E183 /* ProductHeaderView.m */; };
+		AB7CB4CC1AB1F0A20017E183 /* ProductHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7CB4CA1AB1F0A20017E183 /* ProductHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,8 +79,6 @@
 		1837DB081A65233C00C48A51 /* SigninViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SigninViewController.h; sourceTree = "<group>"; };
 		1837DB091A65233C00C48A51 /* SigninViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SigninViewController.m; sourceTree = "<group>"; };
 		183DDC691A644C460085F53C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
-		1846ADAF1A62907C00964738 /* NextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextViewController.h; sourceTree = "<group>"; };
-		1846ADB01A62907C00964738 /* NextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextViewController.m; sourceTree = "<group>"; };
 		184962A41A6657B30054AFFE /* ProductListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListViewController.h; sourceTree = "<group>"; };
 		184962A51A6657B30054AFFE /* ProductListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListViewController.m; sourceTree = "<group>"; };
 		185F4B401A677D84002D1D1A /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -116,6 +115,9 @@
 		18A6B7CA1A657F420043E08A /* CreateAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAccountViewController.h; sourceTree = "<group>"; };
 		18A6B7CB1A657F420043E08A /* CreateAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAccountViewController.m; sourceTree = "<group>"; };
 		18BA5C571A736180002EBF83 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
+		AB7CB4C81AB1F0A20017E183 /* ProductHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductHeaderView.h; sourceTree = "<group>"; };
+		AB7CB4C91AB1F0A20017E183 /* ProductHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductHeaderView.m; sourceTree = "<group>"; };
+		AB7CB4CA1AB1F0A20017E183 /* ProductHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,9 @@
 		185FDE061A73F72A00A452CE /* ProductCell */ = {
 			isa = PBXGroup;
 			children = (
+				AB7CB4C81AB1F0A20017E183 /* ProductHeaderView.h */,
+				AB7CB4C91AB1F0A20017E183 /* ProductHeaderView.m */,
+				AB7CB4CA1AB1F0A20017E183 /* ProductHeaderView.xib */,
 				182E35FE1A73A7AB00FA4378 /* ProductTableViewCell.h */,
 				182E35FF1A73A7AB00FA4378 /* ProductTableViewCell.m */,
 				18BA5C571A736180002EBF83 /* ProductTableViewCell.xib */,
@@ -227,8 +232,6 @@
 				1864BF151A4B1EA300EF5DD7 /* Images.xcassets */,
 				1864BF171A4B1EA300EF5DD7 /* LaunchScreen.xib */,
 				1864BF081A4B1EA200EF5DD7 /* Supporting Files */,
-				1846ADAF1A62907C00964738 /* NextViewController.h */,
-				1846ADB01A62907C00964738 /* NextViewController.m */,
 			);
 			name = GopherCNYS;
 			path = "Gopher CnYS";
@@ -381,6 +384,7 @@
 				18BA5C581A736180002EBF83 /* ProductTableViewCell.xib in Resources */,
 				18801F2B1A6A57CE006D956B /* GooglePlus.bundle in Resources */,
 				1864BF161A4B1EA300EF5DD7 /* Images.xcassets in Resources */,
+				AB7CB4CC1AB1F0A20017E183 /* ProductHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,10 +404,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1864BF111A4B1EA300EF5DD7 /* HomeViewController.m in Sources */,
-				1846ADB11A62907C00964738 /* NextViewController.m in Sources */,
 				18A6B7CC1A657F420043E08A /* CreateAccountViewController.m in Sources */,
 				185FDE091A73F7AD00A452CE /* Product.m in Sources */,
 				1864BF0E1A4B1EA300EF5DD7 /* AppDelegate.m in Sources */,
+				AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */,
 				1837DB0A1A65233C00C48A51 /* SigninViewController.m in Sources */,
 				182E36001A73A7AB00FA4378 /* ProductTableViewCell.m in Sources */,
 				184962A61A6657B30054AFFE /* ProductListViewController.m in Sources */,

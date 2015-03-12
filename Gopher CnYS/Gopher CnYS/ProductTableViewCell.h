@@ -17,7 +17,7 @@
 {
     
 }
-
+@property (nonatomic, weak) IBOutlet UIView *productView;
 @property (nonatomic, weak) IBOutlet UIImageView *ivProductThumb;
 @property (nonatomic, weak) IBOutlet UILabel *lblProductName;
 @property (nonatomic, weak) IBOutlet UILabel *lblProductDescription;
@@ -28,4 +28,5 @@
 
 @property (unsafe_unretained, nonatomic) NSUInteger cellIndex;
 @property (assign, nonatomic) id<ProductTableViewCellDelegate> delegate;
+- (void)loadData;
 @end

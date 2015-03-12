@@ -12,6 +12,9 @@
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import <GooglePlus/GooglePlus.h>
 
+
+#define kNavigationBarText                            [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], UITextAttributeTextColor, [UIFont fontWithName:appConfigInstance.kFontDefaultBold size:14.0], UITextAttributeFont, [NSValue valueWithUIOffset:UIOffsetMake(0, -1)], UITextAttributeTextShadowOffset, [UIColor clearColor],UITextAttributeTextShadowColor, nil]
+
 @interface AppDelegate ()
 
 @end
@@ -32,6 +35,15 @@
 //                                                                             categories:nil];
 //    [application registerUserNotificationSettings:settings];
 //    [application registerForRemoteNotifications];
+    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:64/255.0f green:222/255.0f blue:172/255.0f alpha:1.0f]];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:64/255.0f green:222/255.0f blue:172/255.0f alpha:1.0f]];
+    
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:20.0], NSFontAttributeName,
+                                [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:attributes];
     
     if ([application respondsToSelector:@selector(isRegisteredForRemoteNotifications)])
     {

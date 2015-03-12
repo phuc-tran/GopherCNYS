@@ -8,6 +8,7 @@
 
 #import "ProductListViewController.h"
 #import "ProductTableViewCell.h"
+#import "ProductHeaderView.h"
 
 
 @interface ProductListViewController () <ProductTableViewCellDelegate>
@@ -51,7 +52,7 @@ PFGeoPoint *currentLocaltion;
 {
     //self.navigationController.navigationBar.hidden = YES;
     [self.navigationItem setHidesBackButton:YES];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:68/255.0f green:162/255.0f blue:225/255.0f alpha:1.0f]];
+    //[self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:64/255.0f green:222/255.0f blue:172/255.0f alpha:1.0f]];
     [self.navigationItem setTitle:@"Products"];
     
     [self.navigationItem setLeftBarButtonItems:nil];
@@ -62,7 +63,26 @@ PFGeoPoint *currentLocaltion;
     isNewTopSelected = NO;
     isPriceTopSelected = NO;
 }
+#pragma mark - TableView delegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    
+    return 4;
+}
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+
+    ProductHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([ProductHeaderView class]) owner:self options:nil] firstObject];
+    
+    return headerView;
+    
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    
+    return 20.0;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 128;
@@ -70,7 +90,7 @@ PFGeoPoint *currentLocaltion;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [productData count];
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -84,7 +104,7 @@ PFGeoPoint *currentLocaltion;
     
     cell.lblProductName.text = [[productData objectAtIndex:indexPath.row] valueForKey:@"title"];
     cell.lblProductDescription.text = [[[productData objectAtIndex:indexPath.row] objectForKey:@"description"] description];
-    
+    [cell loadData];
     NSArray *favoriteArr = [[productData objectAtIndex:indexPath.row] objectForKey:@"favoritors"];
     
 //    if ([self checkItemisFavorited:favoriteArr]) { // is favorited
@@ -337,6 +357,7 @@ PFGeoPoint *currentLocaltion;
 }
 
 #pragma mark - UIPickerViewDelegate
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
 }

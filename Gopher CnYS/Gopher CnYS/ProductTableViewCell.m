@@ -9,7 +9,8 @@
 #import "ProductTableViewCell.h"
 
 @implementation ProductTableViewCell
-
+@synthesize productView;
+@synthesize ivProductThumb;
 @synthesize btnFavorited;
 @synthesize cellIndex;
 @synthesize delegate;
@@ -22,15 +23,31 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+    
+    
 
     // Configure the view for the selected state
     
 }
 
+- (void)loadData
+{
+    [ivProductThumb.layer setMasksToBounds:YES];
+    [ivProductThumb.layer setCornerRadius:4.0];
+    [productView setBackgroundColor:[UIColor whiteColor]];
+    [productView.layer setMasksToBounds:YES];
+    [productView.layer setBorderColor: [[UIColor groupTableViewBackgroundColor] CGColor]];
+    [productView.layer setBorderWidth: 1.0];
+    [productView.layer setCornerRadius:8.0];
+    productView.layer.shadowColor = [UIColor darkGrayColor].CGColor;
+    productView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    productView.layer.shadowOpacity = 0.6f;
+}
 #pragma mark - Action
 
 - (IBAction)favoriteItemBtnClick:(id)sender
 {
+    
     isFavorited = !isFavorited;
     if(delegate) {
         [delegate onFavoriteCheck:cellIndex isFavorite:isFavorited];

@@ -7,7 +7,6 @@
 //
 
 #import "HomeViewController.h"
-#import "NextViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
@@ -32,7 +31,7 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
     
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:@"UIKeyboardWillShowNotification" object:nil];
     
-   // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:@"UIKeyboardDidHideNotification" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:@"UIKeyboardDidHideNotification" object:nil];
     
     if ([self checkIfUserLoggedIn])
     {
@@ -50,7 +49,7 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
 {
     self.navigationController.navigationBar.hidden = NO;
     
-   // [[NSNotificationCenter defaultCenter] removeObserver:@"UIKeyboardWillShowNotification"];
+    //[[NSNotificationCenter defaultCenter] removeObserver:@"UIKeyboardWillShowNotification"];
     
     //[[NSNotificationCenter defaultCenter] removeObserver:@"UIKeyboardDidHideNotification"];
 }
@@ -253,6 +252,10 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
     frame.origin.y = 160;
     
     self.viewLogin.frame = frame;
+    
+    //self.viewLogin
+    //self.bottomConstraint.constant = newFrame.origin.y - CGRectGetHeight(self.view.frame);
+    
     NSLog(@"yyyy %f", self.viewLogin.frame.origin.y);
 //    [UIView animateWithDuration:0.3 animations:^{
 //        self.viewLogin.frame = frame;
