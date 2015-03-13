@@ -75,12 +75,6 @@
                                             <action selector="facebookButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="tbC-Gg-YXq"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign in with social networks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ike-po-Abf">
-                                        <rect key="frame" x="12" y="11" width="182" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uKK-r0-ET2">
                                         <rect key="frame" x="147" y="47" width="27" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -119,6 +113,12 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign in with social networks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ike-po-Abf">
+                                        <rect key="frame" x="12" y="11" width="182" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="239" id="8Fe-hh-ybd"/>
@@ -144,9 +144,11 @@
                     <connections>
                         <outlet property="btnSignIn" destination="I1r-o2-zbF" id="foj-cN-2ub"/>
                         <outlet property="facebookButon" destination="1qD-Wj-uu0" id="E8K-8a-Wjb"/>
+                        <outlet property="gPlusButton" destination="YqZ-bi-2k6" id="GFw-SN-ML4"/>
                         <outlet property="txtPassword" destination="H2m-dA-P04" id="psz-35-IEM"/>
                         <outlet property="txtUserName" destination="JBp-bF-UpY" id="cbq-4W-AT6"/>
                         <outlet property="viewLogin" destination="YV7-QP-sH2" id="9R3-hm-HL2"/>
+                        <outlet property="viewLoginTopConstraint" destination="WYQ-56-YKQ" id="ije-n9-xQO"/>
                         <segue destination="dzp-kP-Fi0" kind="push" identifier="product_list_from_home" id="v6T-QQ-5i6"/>
                     </connections>
                 </viewController>
@@ -171,7 +173,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guX-2K-Mpg">
                                         <rect key="frame" x="4" y="7" width="135" height="30"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="Select Category" backgroundImage="select_category">
                                             <color key="titleColor" red="0.72549019607843135" green="0.72549019607843135" blue="0.72549019607843135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -185,7 +187,7 @@
                                         <rect key="frame" x="157" y="0.0" width="163" height="44"/>
                                         <subviews>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7J-HF-hzO">
-                                                <rect key="frame" x="119" y="4" width="35" height="35"/>
+                                                <rect key="frame" x="122" y="6" width="32" height="32"/>
                                                 <state key="normal" image="ic_price_filter1">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -194,7 +196,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0A-6e-Qq0">
-                                                <rect key="frame" x="29" y="4" width="35" height="35"/>
+                                                <rect key="frame" x="38" y="6" width="32" height="32"/>
                                                 <state key="normal" image="ic_new_filter1">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -203,7 +205,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTB-fP-W3S">
-                                                <rect key="frame" x="74" y="4" width="35" height="35"/>
+                                                <rect key="frame" x="80" y="6" width="32" height="32"/>
                                                 <state key="normal" image="ic_favorite_filter1">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -226,14 +228,6 @@
                                     <constraint firstItem="z97-sO-yFM" firstAttribute="top" secondItem="VQ7-sL-El7" secondAttribute="top" id="jv0-RY-ben"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nZk-jv-vLb">
-                                <rect key="frame" x="0.0" y="88" width="320" height="480"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="dzp-kP-Fi0" id="xsi-hM-6nV"/>
-                                    <outlet property="delegate" destination="dzp-kP-Fi0" id="D7M-fB-x0i"/>
-                                </connections>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYb-Pz-Tjs">
                                 <rect key="frame" x="0.0" y="362" width="320" height="206"/>
                                 <subviews>
@@ -263,6 +257,14 @@
                                     <constraint firstItem="d6U-dZ-vMZ" firstAttribute="top" secondItem="uJl-Rw-kU1" secondAttribute="bottom" id="Ymc-xX-Lmg"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nZk-jv-vLb">
+                                <rect key="frame" x="0.0" y="88" width="320" height="480"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="dzp-kP-Fi0" id="xsi-hM-6nV"/>
+                                    <outlet property="delegate" destination="dzp-kP-Fi0" id="D7M-fB-x0i"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

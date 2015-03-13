@@ -23,15 +23,13 @@
 
 static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7jlr.apps.googleusercontent.com";
 
-//@synthesize gPlusButton;
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:@"UIKeyboardWillShowNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:@"UIKeyboardWillShowNotification" object:nil];
     
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:@"UIKeyboardDidHideNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:@"UIKeyboardDidHideNotification" object:nil];
     
     if ([self checkIfUserLoggedIn])
     {
@@ -43,15 +41,17 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
 -(void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = YES;
+    NSLog(@"viewLoginHeightConstraint %f", self.viewLoginTopConstraint.constant);
+    //self.viewLoginTopConstraint.constant = 100;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = NO;
     
-    //[[NSNotificationCenter defaultCenter] removeObserver:@"UIKeyboardWillShowNotification"];
+    [[NSNotificationCenter defaultCenter] removeObserver:@"UIKeyboardWillShowNotification"];
     
-    //[[NSNotificationCenter defaultCenter] removeObserver:@"UIKeyboardDidHideNotification"];
+    [[NSNotificationCenter defaultCenter] removeObserver:@"UIKeyboardDidHideNotification"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,8 +94,6 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
 -(void) openProductList
 {
     [self performSegueWithIdentifier:@"product_list_from_home" sender:self];
-    //ProductListViewController *productListViewController = [[ProductListViewController alloc] init];
-    //[self.navigationController pushViewController:productListViewController animated:YES];
 }
 
 -(void) loadUI
@@ -247,19 +245,10 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
     
     NSLog(@"Keyboard Height: %f Width: %f", kbSize.height, kbSize.width);
     NSLog(@"yyyy %f", self.viewLogin.frame.origin.y);
-    // move the view up by 30 pts
-    CGRect frame = self.viewLogin.frame;
-    frame.origin.y = 160;
     
-    self.viewLogin.frame = frame;
-    
-    //self.viewLogin
-    //self.bottomConstraint.constant = newFrame.origin.y - CGRectGetHeight(self.view.frame);
-    
-    NSLog(@"yyyy %f", self.viewLogin.frame.origin.y);
-//    [UIView animateWithDuration:0.3 animations:^{
-//        self.viewLogin.frame = frame;
-//    }];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.viewLoginTopConstraint.constant = 100;
+    }];
 }
 
 - (void) keyboardDidHide:(NSNotification *)note {
@@ -269,7 +258,7 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
     frame.origin.y = 0;
     
     [UIView animateWithDuration:0.3 animations:^{
-        self.viewLogin.frame = frame;
+        self.viewLoginTopConstraint.constant = 273;
     }];
 }
 @end

@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnSignIn;
 @property (weak, nonatomic) IBOutlet UIView *viewLogin;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewLoginTopConstraint;
+
 -(IBAction) signIn:(id)sender;
 
 @property UIActivityIndicatorView *activityIndicator;

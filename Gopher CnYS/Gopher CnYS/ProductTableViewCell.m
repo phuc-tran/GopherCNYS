@@ -33,7 +33,7 @@
 - (void)loadData
 {
     [ivProductThumb.layer setMasksToBounds:YES];
-    [ivProductThumb.layer setCornerRadius:4.0];
+    [ivProductThumb.layer setCornerRadius:5.0];
     [productView setBackgroundColor:[UIColor whiteColor]];
     [productView.layer setMasksToBounds:YES];
     [productView.layer setBorderColor: [[UIColor groupTableViewBackgroundColor] CGColor]];

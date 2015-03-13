@@ -20,7 +20,7 @@
 @property (nonatomic, weak) IBOutlet UIView *productView;
 @property (nonatomic, weak) IBOutlet UIImageView *ivProductThumb;
 @property (nonatomic, weak) IBOutlet UILabel *lblProductName;
-@property (nonatomic, weak) IBOutlet UILabel *lblProductDescription;
+@property (nonatomic, weak) IBOutlet UITextView *lblProductDescription;
 @property (nonatomic, weak) IBOutlet UILabel *lblProductPrice;
 @property (nonatomic, weak) IBOutlet UILabel *lblProductMiles;
 @property (nonatomic, weak) IBOutlet UIButton *btnFavorited;

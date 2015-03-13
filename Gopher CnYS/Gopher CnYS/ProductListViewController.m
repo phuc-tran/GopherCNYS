@@ -52,7 +52,6 @@ PFGeoPoint *currentLocaltion;
 {
     //self.navigationController.navigationBar.hidden = YES;
     [self.navigationItem setHidesBackButton:YES];
-    //[self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:64/255.0f green:222/255.0f blue:172/255.0f alpha:1.0f]];
     [self.navigationItem setTitle:@"Products"];
     
     [self.navigationItem setLeftBarButtonItems:nil];
@@ -66,8 +65,7 @@ PFGeoPoint *currentLocaltion;
 #pragma mark - TableView delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    
-    return 4;
+    return 1;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -85,12 +83,12 @@ PFGeoPoint *currentLocaltion;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 128;
+    return 162;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return productData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -107,17 +105,17 @@ PFGeoPoint *currentLocaltion;
     [cell loadData];
     NSArray *favoriteArr = [[productData objectAtIndex:indexPath.row] objectForKey:@"favoritors"];
     
-//    if ([self checkItemisFavorited:favoriteArr]) { // is favorited
-//        cell.isFavorited = YES;
-//        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateNormal];
-//        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateHighlighted];
-//        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateSelected];
-//    } else {
-//        cell.isFavorited = NO;
-//        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateNormal];
-//        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateHighlighted];
-//        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateSelected];
-//    }
+    if ([self checkItemisFavorited:favoriteArr]) { // is favorited
+        cell.isFavorited = YES;
+        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateNormal];
+        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateHighlighted];
+        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateSelected];
+    } else {
+        cell.isFavorited = NO;
+        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateNormal];
+        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateHighlighted];
+        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateSelected];
+    }
     
     NSInteger price  = [[[productData objectAtIndex:indexPath.row] valueForKey:@"price"] integerValue];
     cell.lblProductPrice.text = [NSString stringWithFormat:@"$%ld", (long)price];
@@ -140,12 +138,15 @@ PFGeoPoint *currentLocaltion;
     
     NSString *str = [PFUser currentUser].objectId;
     for (NSInteger i = array.count-1; i>-1; i--) {
-        NSString *item = [array objectAtIndex:i];
-        if ([item rangeOfString:str].location != NSNotFound) {
-            return true;
+        NSObject *object = [array objectAtIndex:i];
+        if ([object isKindOfClass:[NSString class]]) {
+            NSString *item = [NSString stringWithFormat:@"%@", object];
+            if ([item rangeOfString:str].location != NSNotFound) {
+                return true;
+            }
         }
     }
-    return FALSE;
+    return false;
 }
 
 - (void) loadProductList {
