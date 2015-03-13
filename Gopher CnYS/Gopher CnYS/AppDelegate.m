@@ -13,8 +13,6 @@
 #import <GooglePlus/GooglePlus.h>
 
 
-#define kNavigationBarText                            [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], UITextAttributeTextColor, [UIFont fontWithName:appConfigInstance.kFontDefaultBold size:14.0], UITextAttributeFont, [NSValue valueWithUIOffset:UIOffsetMake(0, -1)], UITextAttributeTextShadowOffset, [UIColor clearColor],UITextAttributeTextShadowColor, nil]
-
 @interface AppDelegate ()
 
 @end
@@ -44,6 +42,7 @@
                                 [UIColor whiteColor], NSForegroundColorAttributeName, nil];
     
     [[UINavigationBar appearance] setTitleTextAttributes:attributes];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
     if ([application respondsToSelector:@selector(isRegisteredForRemoteNotifications)])
     {

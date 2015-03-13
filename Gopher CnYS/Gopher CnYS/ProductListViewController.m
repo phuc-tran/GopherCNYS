@@ -51,13 +51,9 @@ PFGeoPoint *currentLocaltion;
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    //self.navigationController.navigationBar.hidden = YES;
-    //[self.navigationItem setHidesBackButton:true];
-    self.navigationItem.leftBarButtonItem = nil;
     [self.navigationItem setTitle:@"Products"];
     [self setupMenuBarButtonItems];
     
-    [self.navigationItem setLeftBarButtonItems:nil];
     self.containerPickerView.hidden = YES;
     [self hidePickerViewAnimation];
     
@@ -67,17 +63,22 @@ PFGeoPoint *currentLocaltion;
 }
 
 - (void)setupMenuBarButtonItems {
-    //self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
-    self.navigationItem.rightBarButtonItem = [self leftMenuBarButtonItem];
+    self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
+    self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
+}
+- (UIBarButtonItem *)rightMenuBarButtonItem {
+    UIButton *a1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [a1 setFrame:CGRectMake(0.0f, 0.0f, 25.0f, 25.0f)];
+    [a1 setImage:[UIImage imageNamed:@"search.png"] forState:UIControlStateNormal];
+    return [[UIBarButtonItem alloc] initWithCustomView:a1];
 }
 
 - (UIBarButtonItem *)leftMenuBarButtonItem {
-    UIButton *a1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [a1 setFrame:CGRectMake(0.0f, 0.0f, 25.0f, 25.0f)];
-    //[a1 addTarget:self action:@selector(leftSideMenuButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [a1 setImage:[UIImage imageNamed:@"menu-icon.png"] forState:UIControlStateNormal];
-    
-    return [[UIBarButtonItem alloc] initWithCustomView:a1];
+    UIImage *buttonImage = [UIImage imageNamed:@"menu-icon.png"];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    button.frame = CGRectMake(0.0f, 0.0f, 25.0f, 25.0f);
+   return [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 
 #pragma mark - TableView delegate
