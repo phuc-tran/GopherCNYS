@@ -23,6 +23,7 @@
 
 static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7jlr.apps.googleusercontent.com";
 
+#pragma mark - Self View Life Cycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -48,10 +49,11 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
 -(void)viewWillDisappear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = NO;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:@"UIKeyboardWillShowNotification"];
+    //[[NSNotificationCenter defaultCenter] removeObserver:@"UIKeyboardWillShowNotification"];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:@"UIKeyboardDidHideNotification"];
+    //[[NSNotificationCenter defaultCenter] removeObserver:@"UIKeyboardDidHideNotification"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -232,13 +234,14 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
                                     }];
 }
 
+#pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    
     return YES;
 }
 
+#pragma mark - Keyboard Handler
 - (void) keyboardWillShow:(NSNotification *)note {
     NSDictionary *userInfo = [note userInfo];
     CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;

@@ -16,9 +16,15 @@
 
 @implementation CreateAccountViewController
 
+#pragma mark - Self View Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationItem setTitle:@"Sign up"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,6 +67,13 @@
 -(void) openProductList
 {
     [self performSegueWithIdentifier:@"product_list_from_sign_up" sender:self];
+}
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 /*

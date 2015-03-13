@@ -26,6 +26,7 @@ PFGeoPoint *currentLocaltion;
 @synthesize productTableView;
 @synthesize btnFavorite, btnNew, btnPrice, btnSignIn;
 
+#pragma mark - Self View Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -51,8 +52,10 @@ PFGeoPoint *currentLocaltion;
 -(void)viewWillAppear:(BOOL)animated
 {
     //self.navigationController.navigationBar.hidden = YES;
-    [self.navigationItem setHidesBackButton:YES];
+    //[self.navigationItem setHidesBackButton:true];
+    self.navigationItem.leftBarButtonItem = nil;
     [self.navigationItem setTitle:@"Products"];
+    [self setupMenuBarButtonItems];
     
     [self.navigationItem setLeftBarButtonItems:nil];
     self.containerPickerView.hidden = YES;
@@ -62,6 +65,21 @@ PFGeoPoint *currentLocaltion;
     isNewTopSelected = NO;
     isPriceTopSelected = NO;
 }
+
+- (void)setupMenuBarButtonItems {
+    //self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
+    self.navigationItem.rightBarButtonItem = [self leftMenuBarButtonItem];
+}
+
+- (UIBarButtonItem *)leftMenuBarButtonItem {
+    UIButton *a1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [a1 setFrame:CGRectMake(0.0f, 0.0f, 25.0f, 25.0f)];
+    //[a1 addTarget:self action:@selector(leftSideMenuButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [a1 setImage:[UIImage imageNamed:@"menu-icon.png"] forState:UIControlStateNormal];
+    
+    return [[UIBarButtonItem alloc] initWithCustomView:a1];
+}
+
 #pragma mark - TableView delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
