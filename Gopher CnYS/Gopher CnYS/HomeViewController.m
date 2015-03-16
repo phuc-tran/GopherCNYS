@@ -250,7 +250,8 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
     NSLog(@"yyyy %f", self.viewLogin.frame.origin.y);
     
     [UIView animateWithDuration:0.3 animations:^{
-        self.viewLoginTopConstraint.constant = 100;
+        self.viewLoginTopConstraint.constant = 150;
+        self.bgTopConstraint.constant = -100;
     }];
 }
 
@@ -262,6 +263,7 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
     
     [UIView animateWithDuration:0.3 animations:^{
         self.viewLoginTopConstraint.constant = 273;
+        self.bgTopConstraint.constant = 20;
     }];
 }
 @end

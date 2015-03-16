@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIView *viewLogin;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewLoginTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bgTopConstraint;
 
 -(IBAction) signIn:(id)sender;
 
