@@ -24,7 +24,7 @@ PFGeoPoint *currentLocaltion;
 @implementation ProductListViewController
 
 @synthesize productTableView;
-@synthesize btnFavorite, btnNew, btnPrice, btnSignIn;
+@synthesize btnFavorite, btnNew, btnPrice, btnSignIn, btnSelectCategory;
 
 #pragma mark - Self View Life Cycle
 - (void)viewDidLoad {
@@ -422,7 +422,9 @@ PFGeoPoint *currentLocaltion;
         }
         productData = finalArray;
     }
-    
+    [btnSelectCategory setTitle:[categoryData objectAtIndex:row] forState:UIControlStateNormal];
+    //[categoryData objectAtIndex:row];
+
     [productTableView reloadData];
 }
 

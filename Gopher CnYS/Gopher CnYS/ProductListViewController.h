@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnFavorite;
 @property (weak, nonatomic) IBOutlet UIButton *btnPrice;
 @property (weak, nonatomic) IBOutlet UIButton *btnNew;
+@property (weak, nonatomic) IBOutlet UIButton *btnSelectCategory;
 
 - (int)compare:(PFObject*)product1 withProduct:(PFObject*)product2;
 
