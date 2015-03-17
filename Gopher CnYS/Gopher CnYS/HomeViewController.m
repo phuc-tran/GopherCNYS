@@ -37,23 +37,20 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
         NSLog(@"User has logged in with FB. Let's load data");
         [self openProductList];
     }
+    
+    self.contentScrollView.contentSize = CGSizeMake(self.contentScrollView.frame.size.width, self.contentScrollView.frame.size.height);
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = YES;
-    NSLog(@"viewLoginHeightConstraint %f", self.viewLoginTopConstraint.constant);
-    //self.viewLoginTopConstraint.constant = 100;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = NO;
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    //[[NSNotificationCenter defaultCenter] removeObserver:@"UIKeyboardWillShowNotification"];
-    
-    //[[NSNotificationCenter defaultCenter] removeObserver:@"UIKeyboardDidHideNotification"];
+    [[NSNotificationCenter defaultCenter] removeObserver:@"UIKeyboardWillShowNotification"];
+    [[NSNotificationCenter defaultCenter] removeObserver:@"UIKeyboardDidHideNotification"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -241,29 +238,40 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
     return YES;
 }
 
+- (IBAction)textFieldDidBeginEditing:(UITextField *)sender
+{
+    self.activeField = sender;
+}
+
+- (IBAction)textFieldDidEndEditing:(UITextField *)sender
+{
+    self.activeField = nil;
+}
+
 #pragma mark - Keyboard Handler
-- (void) keyboardWillShow:(NSNotification *)note {
-    NSDictionary *userInfo = [note userInfo];
-    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+- (void) keyboardWillShow:(NSNotification *)notification {
+    NSDictionary* info = [notification userInfo];
+    CGRect kbRect = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    kbRect = [self.view convertRect:kbRect fromView:nil];
     
-    NSLog(@"Keyboard Height: %f Width: %f", kbSize.height, kbSize.width);
-    NSLog(@"yyyy %f", self.viewLogin.frame.origin.y);
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbRect.size.height, 0.0);
+    self.contentScrollView.contentInset = contentInsets;
+    self.contentScrollView.scrollIndicatorInsets = contentInsets;
     
-    [UIView animateWithDuration:0.3 animations:^{
-        self.viewLoginTopConstraint.constant = 150;
-        self.bgTopConstraint.constant = -100;
-    }];
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbRect.size.height;
+    if (!CGRectContainsPoint(aRect, self.activeField.frame.origin) ) {
+        [self.contentScrollView scrollRectToVisible:self.activeField.frame animated:YES];
+    }
 }
 
 - (void) keyboardDidHide:(NSNotification *)note {
-    
-    // move the view back to the origin
-    CGRect frame = self.viewLogin.frame;
-    frame.origin.y = 0;
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        self.viewLoginTopConstraint.constant = 273;
-        self.bgTopConstraint.constant = 20;
-    }];
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.contentScrollView.contentInset = contentInsets;
+    self.contentScrollView.scrollIndicatorInsets = contentInsets;
+}
+
+- (IBAction)handleTap:(id)sender {
+    [self.view endEditing:true];
 }
 @end

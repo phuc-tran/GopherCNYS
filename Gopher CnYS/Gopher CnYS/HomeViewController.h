@@ -21,9 +21,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
 @property (weak, nonatomic) IBOutlet UIButton *btnSignIn;
 @property (weak, nonatomic) IBOutlet UIView *viewLogin;
+@property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewLoginTopConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bgTopConstraint;
+@property (weak, nonatomic) UITextField *activeField;
 
 -(IBAction) signIn:(id)sender;
 
