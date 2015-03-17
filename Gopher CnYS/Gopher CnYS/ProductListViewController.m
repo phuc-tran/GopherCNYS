@@ -448,7 +448,7 @@ PFGeoPoint *currentLocaltion;
     [UIView beginAnimations:@"showPickerView" context:nil];
     [UIView setAnimationDuration:0.3];
     float heightOfScreen = self.view.frame.size.height;
-    float yCoordinate = heightOfScreen - self.containerPickerView.frame.size.height - 66;
+    float yCoordinate = heightOfScreen - self.containerPickerView.frame.size.height - self.bottomView.frame.size.height;
     CGRect frame = self.containerPickerView.frame;
     frame.origin.y = yCoordinate;
     self.containerPickerView.frame = frame;
