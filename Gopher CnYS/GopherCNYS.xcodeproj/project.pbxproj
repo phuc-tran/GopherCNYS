@@ -48,6 +48,7 @@
 		18A6B7C91A6566BC0043E08A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A6B7C81A6566BC0043E08A /* MobileCoreServices.framework */; };
 		18A6B7CC1A657F420043E08A /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A6B7CB1A657F420043E08A /* CreateAccountViewController.m */; };
 		18BA5C581A736180002EBF83 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BA5C571A736180002EBF83 /* ProductTableViewCell.xib */; };
+		AB72F3391AB734D6003900E9 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB72F3381AB734D6003900E9 /* ProductDetailViewController.m */; };
 		AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7CB4C91AB1F0A20017E183 /* ProductHeaderView.m */; };
 		AB7CB4CC1AB1F0A20017E183 /* ProductHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7CB4CA1AB1F0A20017E183 /* ProductHeaderView.xib */; };
 /* End PBXBuildFile section */
@@ -115,6 +116,8 @@
 		18A6B7CA1A657F420043E08A /* CreateAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAccountViewController.h; sourceTree = "<group>"; };
 		18A6B7CB1A657F420043E08A /* CreateAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAccountViewController.m; sourceTree = "<group>"; };
 		18BA5C571A736180002EBF83 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
+		AB72F3371AB734D6003900E9 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
+		AB72F3381AB734D6003900E9 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
 		AB7CB4C81AB1F0A20017E183 /* ProductHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductHeaderView.h; sourceTree = "<group>"; };
 		AB7CB4C91AB1F0A20017E183 /* ProductHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductHeaderView.m; sourceTree = "<group>"; };
 		AB7CB4CA1AB1F0A20017E183 /* ProductHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductHeaderView.xib; sourceTree = "<group>"; };
@@ -181,6 +184,8 @@
 				18A6B7CB1A657F420043E08A /* CreateAccountViewController.m */,
 				184962A41A6657B30054AFFE /* ProductListViewController.h */,
 				184962A51A6657B30054AFFE /* ProductListViewController.m */,
+				AB72F3371AB734D6003900E9 /* ProductDetailViewController.h */,
+				AB72F3381AB734D6003900E9 /* ProductDetailViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -404,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1864BF111A4B1EA300EF5DD7 /* HomeViewController.m in Sources */,
+				AB72F3391AB734D6003900E9 /* ProductDetailViewController.m in Sources */,
 				18A6B7CC1A657F420043E08A /* CreateAccountViewController.m in Sources */,
 				185FDE091A73F7AD00A452CE /* Product.m in Sources */,
 				1864BF0E1A4B1EA300EF5DD7 /* AppDelegate.m in Sources */,

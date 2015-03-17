@@ -52,8 +52,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GvC-6M-yYJ">
-                                <rect key="frame" x="4" y="125" width="25" height="25"/>
-                                <state key="normal" image="price_icon_active">
+                                <rect key="frame" x="4" y="128" width="20" height="20"/>
+                                <state key="normal" image="price_icon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -61,7 +61,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axX-6c-WJt">
-                                <rect key="frame" x="64" y="125" width="25" height="25"/>
+                                <rect key="frame" x="64" y="128" width="20" height="20"/>
                                 <state key="normal" image="location_icon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -121,8 +121,8 @@
     </objects>
     <resources>
         <image name="btn_star_big_off" width="55" height="55"/>
-        <image name="location_icon" width="55" height="55"/>
-        <image name="price_icon_active" width="55" height="55"/>
+        <image name="location_icon" width="20" height="20"/>
+        <image name="price_icon" width="20" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

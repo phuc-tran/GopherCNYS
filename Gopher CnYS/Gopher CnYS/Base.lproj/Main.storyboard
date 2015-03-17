@@ -157,6 +157,25 @@
             </objects>
             <point key="canvasLocation" x="-1598" y="-353"/>
         </scene>
+        <!--Product Detail View Controller-->
+        <scene sceneID="due-rf-1Vr">
+            <objects>
+                <viewController id="QTk-UD-8JY" customClass="ProductDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5kI-x3-c8N"/>
+                        <viewControllerLayoutGuide type="bottom" id="lfK-AI-oFJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DzN-HX-7FJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="nMy-wG-xqb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jj9-Z8-wAm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-468" y="-667"/>
+        </scene>
         <!--Product List View Controller-->
         <scene sceneID="Il9-mZ-BOA">
             <objects>
@@ -329,83 +348,12 @@
                         <outlet property="containerPickerView" destination="bYb-Pz-Tjs" id="TV0-zm-wqJ"/>
                         <outlet property="pickerToolbar" destination="uJl-Rw-kU1" id="DhO-S3-y7h"/>
                         <outlet property="productTableView" destination="nZk-jv-vLb" id="Yqv-pb-VFx"/>
+                        <segue destination="QTk-UD-8JY" kind="push" identifier="ProductDetaiFormProduct" id="uUn-LV-bNW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P3v-JF-HVC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-436" y="-735"/>
-        </scene>
-        <!--Signin View Controller-->
-        <scene sceneID="x4F-fz-wo3">
-            <objects>
-                <viewController id="pix-b2-981" customClass="SigninViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Zcg-Zh-iWW"/>
-                        <viewControllerLayoutGuide type="bottom" id="PxB-Mj-dCV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Bjz-Pa-mL1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDH-QR-Jah">
-                                <rect key="frame" x="23" y="84" width="84" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTx-qa-4Af">
-                                <rect key="frame" x="23" y="144" width="76" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3BR-Rt-dpj">
-                                <rect key="frame" x="115" y="80" width="189" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GGK-zP-PjQ">
-                                <rect key="frame" x="115" y="140" width="189" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVF-9T-s0S">
-                                <rect key="frame" x="66" y="295" width="189" height="50"/>
-                                <state key="normal" title="Cancel" backgroundImage="btn_blue">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Forgot password?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzh-jI-pLx">
-                                <rect key="frame" x="180" y="194" width="140" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mr-H2-hqq">
-                                <rect key="frame" x="66" y="237" width="189" height="50"/>
-                                <state key="normal" title="Sign in" backgroundImage="btn_blue">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="signIn:" destination="pix-b2-981" eventType="touchUpInside" id="Hh7-xK-Y7n"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="KfH-Go-Qat"/>
-                    <connections>
-                        <outlet property="btnCancel" destination="GVF-9T-s0S" id="vVf-vw-0CE"/>
-                        <outlet property="btnSignIn" destination="0mr-H2-hqq" id="YzA-Um-h2I"/>
-                        <outlet property="txtPassword" destination="GGK-zP-PjQ" id="hGu-mt-Yby"/>
-                        <outlet property="txtUserName" destination="3BR-Rt-dpj" id="Ykc-WB-a81"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Hmr-bK-G64" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1282" y="-1038"/>
+            <point key="canvasLocation" x="-860" y="-667"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aOA-DJ-ZgZ">
@@ -513,12 +461,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0e4-Xu-EOS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-996" y="-91"/>
+            <point key="canvasLocation" x="-1108" y="173"/>
         </scene>
     </scenes>
     <resources>
         <image name="background" width="750" height="1334"/>
-        <image name="btn_blue" width="422" height="97"/>
         <image name="camera_icon" width="31" height="25"/>
         <image name="fb_normal" width="76" height="76"/>
         <image name="g_normal" width="76" height="76"/>
