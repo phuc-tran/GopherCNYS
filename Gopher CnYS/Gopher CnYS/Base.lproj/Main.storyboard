@@ -55,7 +55,7 @@
                                                         <rect key="frame" x="12" y="134" width="300" height="44"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="vXZ-lx-hvc" id="XfM-ii-ET7"/>
                                                         </connections>
@@ -534,6 +534,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="BDB-Mb-ivd"/>
+        <segue reference="v6T-QQ-5i6"/>
     </inferredMetricsTieBreakers>
 </document>
