@@ -184,10 +184,10 @@ PFGeoPoint *currentLocaltion;
             distanceProducts = [[NSMutableArray alloc] init];
             NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
             // Do something with the found objects
-            for (PFObject *product in productData) {
-                PFObject *descriptionObject = [product objectForKey:@"description"];
-                NSLog(@"%@", descriptionObject.description);
-            }
+//            for (PFObject *product in productData) {
+//                PFObject *descriptionObject = [product objectForKey:@"description"];
+               // NSLog(@"%@", descriptionObject.description);
+           // }
             
             NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
                 PFObject *first = (PFObject*)a;
