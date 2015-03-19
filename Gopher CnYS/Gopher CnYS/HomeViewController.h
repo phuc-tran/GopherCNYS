@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <GooglePlus/GooglePlus.h>
 #import <StoreKit/StoreKit.h>
+#import "MBProgressHUD.h"
 
 @class GPPSignInButton;
 

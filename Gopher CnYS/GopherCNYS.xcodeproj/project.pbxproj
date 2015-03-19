@@ -51,6 +51,7 @@
 		AB72F3391AB734D6003900E9 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB72F3381AB734D6003900E9 /* ProductDetailViewController.m */; };
 		AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7CB4C91AB1F0A20017E183 /* ProductHeaderView.m */; };
 		AB7CB4CC1AB1F0A20017E183 /* ProductHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7CB4CA1AB1F0A20017E183 /* ProductHeaderView.xib */; };
+		AB8B70A11ABB388B0028DC47 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8B709F1ABB388B0028DC47 /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,8 @@
 		AB7CB4C81AB1F0A20017E183 /* ProductHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductHeaderView.h; sourceTree = "<group>"; };
 		AB7CB4C91AB1F0A20017E183 /* ProductHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductHeaderView.m; sourceTree = "<group>"; };
 		AB7CB4CA1AB1F0A20017E183 /* ProductHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductHeaderView.xib; sourceTree = "<group>"; };
+		AB8B709E1ABB388B0028DC47 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		AB8B709F1ABB388B0028DC47 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +230,7 @@
 		1864BF071A4B1EA200EF5DD7 /* GopherCNYS */ = {
 			isa = PBXGroup;
 			children = (
+				AB8B709A1ABB388B0028DC47 /* ThirdParty */,
 				182E35F71A73A70300FA4378 /* CustomCells */,
 				1837DB071A65230B00C48A51 /* ViewControllers */,
 				1864BF0C1A4B1EA300EF5DD7 /* AppDelegate.h */,
@@ -301,6 +305,23 @@
 				183DDC691A644C460085F53C /* FacebookSDK.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB8B709A1ABB388B0028DC47 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				AB8B709D1ABB388B0028DC47 /* MBProgressHUD */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		AB8B709D1ABB388B0028DC47 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				AB8B709E1ABB388B0028DC47 /* MBProgressHUD.h */,
+				AB8B709F1ABB388B0028DC47 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,6 +435,7 @@
 				185FDE091A73F7AD00A452CE /* Product.m in Sources */,
 				1864BF0E1A4B1EA300EF5DD7 /* AppDelegate.m in Sources */,
 				AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */,
+				AB8B70A11ABB388B0028DC47 /* MBProgressHUD.m in Sources */,
 				1837DB0A1A65233C00C48A51 /* SigninViewController.m in Sources */,
 				182E36001A73A7AB00FA4378 /* ProductTableViewCell.m in Sources */,
 				184962A61A6657B30054AFFE /* ProductListViewController.m in Sources */,
