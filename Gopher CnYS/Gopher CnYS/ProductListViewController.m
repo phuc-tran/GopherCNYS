@@ -173,22 +173,18 @@ PFGeoPoint *currentLocaltion;
 }
 
 - (void) loadProductList {
-     PFQuery *query = [PFQuery queryWithClassName:@"Products"];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
     [query selectKeys:@[@"description", @"title", @"photo1", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors", @"category"]];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (!error) {
             // The find succeeded.
             productData = objects;
             distanceProducts = [[NSMutableArray alloc] init];
             NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
-            // Do something with the found objects
-//            for (PFObject *product in productData) {
-//                PFObject *descriptionObject = [product objectForKey:@"description"];
-               // NSLog(@"%@", descriptionObject.description);
-           // }
-            
             NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
                 PFObject *first = (PFObject*)a;
                 PFObject *second = (PFObject*)b;
