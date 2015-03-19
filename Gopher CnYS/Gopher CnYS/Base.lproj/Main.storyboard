@@ -412,76 +412,96 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aPE-tN-Vxa">
-                                <rect key="frame" x="10" y="80" width="300" height="30"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="taM-qa-JSd">
+                                <rect key="frame" x="0.0" y="143" width="320" height="282"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wze-l7-Ffh">
+                                        <rect key="frame" x="10" y="197" width="300" height="44"/>
+                                        <state key="normal" title="Sign up" backgroundImage="sign_normal">
+                                            <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="register:" destination="Ls0-i8-dBA" eventType="touchUpInside" id="vPd-oB-JO3"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r4V-EZ-Dy7">
+                                        <rect key="frame" x="10" y="10" width="300" height="47"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="signup_usename" translatesAutoresizingMaskIntoConstraints="NO" id="din-jX-U2T">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
+                                            </imageView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aPE-tN-Vxa">
+                                                <rect key="frame" x="52" y="9" width="249" height="30"/>
+                                                <color key="textColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Ls0-i8-dBA" id="weM-zm-EE8"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zw1-9U-X3j">
+                                        <rect key="frame" x="10" y="70" width="300" height="47"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="signup_email" translatesAutoresizingMaskIntoConstraints="NO" id="eB9-Xt-E4Y">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
+                                            </imageView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jFh-N4-8wQ">
+                                                <rect key="frame" x="52" y="9" width="249" height="30"/>
+                                                <color key="textColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Ls0-i8-dBA" id="Z27-jv-4TN"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C00-TR-THs">
+                                        <rect key="frame" x="10" y="130" width="300" height="47"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="signup_pass" translatesAutoresizingMaskIntoConstraints="NO" id="B2b-es-L88">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
+                                            </imageView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8YL-bP-3cc">
+                                                <rect key="frame" x="52" y="9" width="249" height="30"/>
+                                                <color key="textColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Ls0-i8-dBA" id="hIw-T4-E2Q"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="*Email will be verified, use correct email." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JnP-on-BUW">
+                                        <rect key="frame" x="10" y="256" width="300" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.72941176470588232" green="0.72941176470588232" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="LrX-zL-smi"/>
-                                    <constraint firstAttribute="width" constant="300" id="a7e-Ki-fw8"/>
+                                    <constraint firstAttribute="height" constant="282" id="9OW-lb-weI"/>
+                                    <constraint firstAttribute="width" constant="320" id="sX3-7Z-97i"/>
                                 </constraints>
-                                <color key="textColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Ls0-i8-dBA" id="weM-zm-EE8"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6Ys-bm-H1r">
-                                <rect key="frame" x="10" y="160" width="300" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="8Jv-MP-3Db"/>
-                                    <constraint firstAttribute="height" constant="30" id="RNd-zS-2n6"/>
-                                </constraints>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Ls0-i8-dBA" id="mJf-YW-7CZ"/>
-                                </connections>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wze-l7-Ffh">
-                                <rect key="frame" x="10" y="198" width="300" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="9UJ-Oy-4YG"/>
-                                    <constraint firstAttribute="height" constant="44" id="hgM-da-NdQ"/>
-                                </constraints>
-                                <state key="normal" title="Submit" backgroundImage="sign_normal">
-                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="register:" destination="Ls0-i8-dBA" eventType="touchUpInside" id="vPd-oB-JO3"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K4E-5O-hF6">
-                                <rect key="frame" x="10" y="120" width="300" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="Iuj-so-lhh"/>
-                                    <constraint firstAttribute="height" constant="30" id="sS5-4n-7Jy"/>
-                                </constraints>
-                                <color key="textColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Ls0-i8-dBA" id="LbU-Xv-77V"/>
-                                </connections>
-                            </textField>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="aPE-tN-Vxa" firstAttribute="top" secondItem="ahf-7y-A98" secondAttribute="top" constant="80" id="1QZ-I4-e74"/>
-                            <constraint firstAttribute="centerX" secondItem="K4E-5O-hF6" secondAttribute="centerX" id="ARb-HC-tdQ"/>
-                            <constraint firstAttribute="centerX" secondItem="aPE-tN-Vxa" secondAttribute="centerX" id="FDT-Ya-hrY"/>
-                            <constraint firstItem="K4E-5O-hF6" firstAttribute="top" secondItem="ahf-7y-A98" secondAttribute="top" constant="120" id="IGC-Aw-hhh"/>
-                            <constraint firstAttribute="centerX" secondItem="6Ys-bm-H1r" secondAttribute="centerX" id="ZEg-Mw-gah"/>
-                            <constraint firstItem="Wze-l7-Ffh" firstAttribute="top" secondItem="ahf-7y-A98" secondAttribute="top" constant="198" id="ZxP-9P-Td8"/>
-                            <constraint firstAttribute="centerX" secondItem="Wze-l7-Ffh" secondAttribute="centerX" id="cNS-Qf-w7a"/>
-                            <constraint firstItem="6Ys-bm-H1r" firstAttribute="top" secondItem="ahf-7y-A98" secondAttribute="top" constant="160" id="yZf-8o-3Wx"/>
+                            <constraint firstAttribute="centerY" secondItem="taM-qa-JSd" secondAttribute="centerY" id="9PK-mh-tnv"/>
+                            <constraint firstAttribute="centerX" secondItem="taM-qa-JSd" secondAttribute="centerX" id="e5e-XN-xY0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tid-AO-wvI"/>
                     <connections>
                         <outlet property="btnSubmit" destination="Wze-l7-Ffh" id="aRC-xO-hyR"/>
-                        <outlet property="txtEmail" destination="K4E-5O-hF6" id="T2O-2C-1hv"/>
-                        <outlet property="txtPassword" destination="6Ys-bm-H1r" id="fho-tx-T6b"/>
+                        <outlet property="txtEmail" destination="jFh-N4-8wQ" id="KnY-Kk-l8r"/>
+                        <outlet property="txtPassword" destination="8YL-bP-3cc" id="5zL-wV-Ezk"/>
                         <outlet property="txtUserName" destination="aPE-tN-Vxa" id="GEe-eM-7c8"/>
                         <segue destination="dzp-kP-Fi0" kind="push" identifier="product_list_from_sign_up" id="BDB-Mb-ivd"/>
                     </connections>
@@ -503,6 +523,9 @@
         <image name="select_category" width="251" height="57"/>
         <image name="setting_icon" width="29" height="29"/>
         <image name="sign_normal" width="625" height="89"/>
+        <image name="signup_email" width="313" height="45"/>
+        <image name="signup_pass" width="313" height="45"/>
+        <image name="signup_usename" width="313" height="45"/>
         <image name="username_btn" width="625" height="89"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -511,6 +534,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="v6T-QQ-5i6"/>
+        <segue reference="BDB-Mb-ivd"/>
     </inferredMetricsTieBreakers>
 </document>
