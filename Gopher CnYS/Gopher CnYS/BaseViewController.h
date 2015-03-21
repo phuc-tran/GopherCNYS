@@ -13,6 +13,8 @@
 @interface BaseViewController : UIViewController
 
 - (void)setupMenuBarButtonItems;
+- (void)setupLeftMenuBarButtonItem;
+- (void)setupRightMenuBarButtonItem;
 -(void)leftMenuClick:(UIBarButtonItem*)btn;
 
 @end

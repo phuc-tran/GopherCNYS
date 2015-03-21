@@ -16,7 +16,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self setupMenuBarButtonItems];
+    [self setupLeftMenuBarButtonItem];
 }
 
 - (IBAction)pushViewController:(id)sender

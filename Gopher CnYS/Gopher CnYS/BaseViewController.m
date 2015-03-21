@@ -25,8 +25,16 @@
 }
 
 - (void)setupMenuBarButtonItems {
+    [self setupLeftMenuBarButtonItem];
+    [self setupRightMenuBarButtonItem];
+}
+
+- (void)setupLeftMenuBarButtonItem {
     self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
-    self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
+}
+
+- (void)setupRightMenuBarButtonItem {
+    self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
 }
 
 -(void)leftMenuClick:(UIBarButtonItem*)btn
