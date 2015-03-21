@@ -62,32 +62,6 @@ PFGeoPoint *currentLocaltion;
     isPriceTopSelected = NO;
 }
 
-- (void)setupMenuBarButtonItems {
-    self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
-    self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
-}
-
--(void)leftMenuClick:(UIBarButtonItem*)btn
-{
-    [self.sideMenuViewController presentLeftMenuViewController];
-}
-
-- (UIBarButtonItem *)rightMenuBarButtonItem {
-    UIButton *a1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [a1 setFrame:CGRectMake(0.0f, 0.0f, 25.0f, 25.0f)];
-    [a1 setImage:[UIImage imageNamed:@"search.png"] forState:UIControlStateNormal];
-    return [[UIBarButtonItem alloc] initWithCustomView:a1];
-}
-
-- (UIBarButtonItem *)leftMenuBarButtonItem {
-    UIImage *buttonImage = [UIImage imageNamed:@"menu-icon.png"];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    button.frame = CGRectMake(0.0f, 0.0f, 25.0f, 25.0f);
-    [button addTarget:self action:@selector(leftMenuClick:) forControlEvents:UIControlEventTouchUpInside];
-    return [[UIBarButtonItem alloc] initWithCustomView:button];
-}
-
 #pragma mark - TableView delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

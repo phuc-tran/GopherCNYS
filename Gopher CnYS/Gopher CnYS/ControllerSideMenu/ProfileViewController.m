@@ -1,18 +1,23 @@
 //
-//  SecondViewController.m
-//  RESideMenuStoryboards
+//  ProfileViewController.m
+//  Gopher CnYS
 //
-//  Created by Roman Efimov on 10/9/13.
-//  Copyright (c) 2013 Roman Efimov. All rights reserved.
+//  Created by Trần Huy Phúc on 3/21/15.
+//  Copyright (c) 2015 cnys. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "ProfileViewController.h"
 
-@interface SecondViewController ()
+@interface ProfileViewController ()
 
 @end
 
-@implementation SecondViewController
+@implementation ProfileViewController
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self setupMenuBarButtonItems];
+}
 
 - (IBAction)pushViewController:(id)sender
 {

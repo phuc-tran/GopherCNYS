@@ -55,11 +55,14 @@
 		AB6E34BD1ABC6A9A00867CA3 /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34B51ABC6A9A00867CA3 /* LeftMenuViewController.m */; };
 		AB6E34BE1ABC6A9A00867CA3 /* RightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34B71ABC6A9A00867CA3 /* RightMenuViewController.m */; };
 		AB6E34BF1ABC6A9A00867CA3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34B91ABC6A9A00867CA3 /* RootViewController.m */; };
-		AB6E34C01ABC6A9A00867CA3 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34BB1ABC6A9A00867CA3 /* SecondViewController.m */; };
+		AB6E34C01ABC6A9A00867CA3 /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34BB1ABC6A9A00867CA3 /* MessagesViewController.m */; };
 		AB72F3391AB734D6003900E9 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB72F3381AB734D6003900E9 /* ProductDetailViewController.m */; };
 		AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7CB4C91AB1F0A20017E183 /* ProductHeaderView.m */; };
 		AB7CB4CC1AB1F0A20017E183 /* ProductHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7CB4CA1AB1F0A20017E183 /* ProductHeaderView.xib */; };
 		AB8B70A11ABB388B0028DC47 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8B709F1ABB388B0028DC47 /* MBProgressHUD.m */; };
+		ABEC4DB91ABD6719000CF27C /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DB81ABD6719000CF27C /* AboutViewController.m */; };
+		ABEC4DBC1ABD6898000CF27C /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DBB1ABD6898000CF27C /* ProfileViewController.m */; };
+		ABEC4DBF1ABD6A12000CF27C /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DBE1ABD6A12000CF27C /* BaseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,8 +142,8 @@
 		AB6E34B71ABC6A9A00867CA3 /* RightMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightMenuViewController.m; sourceTree = "<group>"; };
 		AB6E34B81ABC6A9A00867CA3 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		AB6E34B91ABC6A9A00867CA3 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		AB6E34BA1ABC6A9A00867CA3 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		AB6E34BB1ABC6A9A00867CA3 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		AB6E34BA1ABC6A9A00867CA3 /* MessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesViewController.h; sourceTree = "<group>"; };
+		AB6E34BB1ABC6A9A00867CA3 /* MessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesViewController.m; sourceTree = "<group>"; };
 		AB72F3371AB734D6003900E9 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
 		AB72F3381AB734D6003900E9 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
 		AB7CB4C81AB1F0A20017E183 /* ProductHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductHeaderView.h; sourceTree = "<group>"; };
@@ -148,6 +151,12 @@
 		AB7CB4CA1AB1F0A20017E183 /* ProductHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductHeaderView.xib; sourceTree = "<group>"; };
 		AB8B709E1ABB388B0028DC47 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		AB8B709F1ABB388B0028DC47 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		ABEC4DB71ABD6719000CF27C /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		ABEC4DB81ABD6719000CF27C /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		ABEC4DBA1ABD6898000CF27C /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		ABEC4DBB1ABD6898000CF27C /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		ABEC4DBD1ABD6A12000CF27C /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		ABEC4DBE1ABD6A12000CF27C /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +222,8 @@
 				184962A51A6657B30054AFFE /* ProductListViewController.m */,
 				AB72F3371AB734D6003900E9 /* ProductDetailViewController.h */,
 				AB72F3381AB734D6003900E9 /* ProductDetailViewController.m */,
+				ABEC4DBD1ABD6A12000CF27C /* BaseViewController.h */,
+				ABEC4DBE1ABD6A12000CF27C /* BaseViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -254,9 +265,9 @@
 		1864BF071A4B1EA200EF5DD7 /* GopherCNYS */ = {
 			isa = PBXGroup;
 			children = (
-				AB6E34B11ABC6A9A00867CA3 /* ControllerSideMenu */,
 				AB8B709A1ABB388B0028DC47 /* ThirdParty */,
 				182E35F71A73A70300FA4378 /* CustomCells */,
+				AB6E34B11ABC6A9A00867CA3 /* ControllerSideMenu */,
 				1837DB071A65230B00C48A51 /* ViewControllers */,
 				1864BF0C1A4B1EA300EF5DD7 /* AppDelegate.h */,
 				1864BF0D1A4B1EA300EF5DD7 /* AppDelegate.m */,
@@ -348,6 +359,10 @@
 		AB6E34B11ABC6A9A00867CA3 /* ControllerSideMenu */ = {
 			isa = PBXGroup;
 			children = (
+				ABEC4DBA1ABD6898000CF27C /* ProfileViewController.h */,
+				ABEC4DBB1ABD6898000CF27C /* ProfileViewController.m */,
+				ABEC4DB71ABD6719000CF27C /* AboutViewController.h */,
+				ABEC4DB81ABD6719000CF27C /* AboutViewController.m */,
 				AB6E34B21ABC6A9A00867CA3 /* FirstViewController.h */,
 				AB6E34B31ABC6A9A00867CA3 /* FirstViewController.m */,
 				AB6E34B41ABC6A9A00867CA3 /* LeftMenuViewController.h */,
@@ -356,8 +371,8 @@
 				AB6E34B71ABC6A9A00867CA3 /* RightMenuViewController.m */,
 				AB6E34B81ABC6A9A00867CA3 /* RootViewController.h */,
 				AB6E34B91ABC6A9A00867CA3 /* RootViewController.m */,
-				AB6E34BA1ABC6A9A00867CA3 /* SecondViewController.h */,
-				AB6E34BB1ABC6A9A00867CA3 /* SecondViewController.m */,
+				AB6E34BA1ABC6A9A00867CA3 /* MessagesViewController.h */,
+				AB6E34BB1ABC6A9A00867CA3 /* MessagesViewController.m */,
 			);
 			path = ControllerSideMenu;
 			sourceTree = "<group>";
@@ -489,19 +504,22 @@
 				AB72F3391AB734D6003900E9 /* ProductDetailViewController.m in Sources */,
 				18A6B7CC1A657F420043E08A /* CreateAccountViewController.m in Sources */,
 				AB6E34BC1ABC6A9A00867CA3 /* FirstViewController.m in Sources */,
+				ABEC4DBC1ABD6898000CF27C /* ProfileViewController.m in Sources */,
 				185FDE091A73F7AD00A452CE /* Product.m in Sources */,
 				1864BF0E1A4B1EA300EF5DD7 /* AppDelegate.m in Sources */,
+				ABEC4DB91ABD6719000CF27C /* AboutViewController.m in Sources */,
 				AB6E34B01ABC69D900867CA3 /* UIViewController+RESideMenu.m in Sources */,
 				AB6E34AF1ABC69D900867CA3 /* RESideMenu.m in Sources */,
 				AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */,
 				AB8B70A11ABB388B0028DC47 /* MBProgressHUD.m in Sources */,
 				AB6E34AE1ABC69D900867CA3 /* RECommonFunctions.m in Sources */,
+				ABEC4DBF1ABD6A12000CF27C /* BaseViewController.m in Sources */,
 				AB6E34BE1ABC6A9A00867CA3 /* RightMenuViewController.m in Sources */,
 				AB6E34BD1ABC6A9A00867CA3 /* LeftMenuViewController.m in Sources */,
 				1837DB0A1A65233C00C48A51 /* SigninViewController.m in Sources */,
 				182E36001A73A7AB00FA4378 /* ProductTableViewCell.m in Sources */,
 				184962A61A6657B30054AFFE /* ProductListViewController.m in Sources */,
-				AB6E34C01ABC6A9A00867CA3 /* SecondViewController.m in Sources */,
+				AB6E34C01ABC6A9A00867CA3 /* MessagesViewController.m in Sources */,
 				1864BF0B1A4B1EA300EF5DD7 /* main.m in Sources */,
 				AB6E34BF1ABC6A9A00867CA3 /* RootViewController.m in Sources */,
 			);

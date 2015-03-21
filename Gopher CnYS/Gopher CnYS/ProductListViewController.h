@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
-#import "UIViewController+RESideMenu.h"
-#import "RESideMenu.h"
+#import "BaseViewController.h"
 
-@interface ProductListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface ProductListViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate>
 {
     NSArray *categoryData;
     BOOL isFavoriteTopSelected;
