@@ -62,6 +62,8 @@
 		ABEC4DB91ABD6719000CF27C /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DB81ABD6719000CF27C /* AboutViewController.m */; };
 		ABEC4DBC1ABD6898000CF27C /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DBB1ABD6898000CF27C /* ProfileViewController.m */; };
 		ABEC4DBF1ABD6A12000CF27C /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DBE1ABD6A12000CF27C /* BaseViewController.m */; };
+		ABEC4DC41ABD801B000CF27C /* SellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DC31ABD801B000CF27C /* SellViewController.m */; };
+		ABEC4DCA1ABD8188000CF27C /* BorderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DC91ABD8188000CF27C /* BorderTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +156,10 @@
 		ABEC4DBB1ABD6898000CF27C /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		ABEC4DBD1ABD6A12000CF27C /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		ABEC4DBE1ABD6A12000CF27C /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		ABEC4DC21ABD801B000CF27C /* SellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SellViewController.h; sourceTree = "<group>"; };
+		ABEC4DC31ABD801B000CF27C /* SellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellViewController.m; sourceTree = "<group>"; };
+		ABEC4DC81ABD8188000CF27C /* BorderTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorderTextField.h; sourceTree = "<group>"; };
+		ABEC4DC91ABD8188000CF27C /* BorderTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorderTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,6 +371,7 @@
 		AB8B709A1ABB388B0028DC47 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				ABEC4DC51ABD8152000CF27C /* CustomView */,
 				AB6E34A71ABC69D900867CA3 /* RESideMenu */,
 				AB8B709D1ABB388B0028DC47 /* MBProgressHUD */,
 			);
@@ -396,6 +403,8 @@
 		ABEC4DC11ABD6E2A000CF27C /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				ABEC4DC21ABD801B000CF27C /* SellViewController.h */,
+				ABEC4DC31ABD801B000CF27C /* SellViewController.m */,
 				ABEC4DBA1ABD6898000CF27C /* ProfileViewController.h */,
 				ABEC4DBB1ABD6898000CF27C /* ProfileViewController.m */,
 				ABEC4DB71ABD6719000CF27C /* AboutViewController.h */,
@@ -404,6 +413,15 @@
 				AB6E34BB1ABC6A9A00867CA3 /* MessagesViewController.m */,
 			);
 			name = Content;
+			sourceTree = "<group>";
+		};
+		ABEC4DC51ABD8152000CF27C /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				ABEC4DC81ABD8188000CF27C /* BorderTextField.h */,
+				ABEC4DC91ABD8188000CF27C /* BorderTextField.m */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -519,6 +537,7 @@
 				1864BF0E1A4B1EA300EF5DD7 /* AppDelegate.m in Sources */,
 				ABEC4DB91ABD6719000CF27C /* AboutViewController.m in Sources */,
 				AB6E34B01ABC69D900867CA3 /* UIViewController+RESideMenu.m in Sources */,
+				ABEC4DC41ABD801B000CF27C /* SellViewController.m in Sources */,
 				AB6E34AF1ABC69D900867CA3 /* RESideMenu.m in Sources */,
 				AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */,
 				AB8B70A11ABB388B0028DC47 /* MBProgressHUD.m in Sources */,
@@ -528,6 +547,7 @@
 				AB6E34BD1ABC6A9A00867CA3 /* LeftMenuViewController.m in Sources */,
 				1837DB0A1A65233C00C48A51 /* SigninViewController.m in Sources */,
 				182E36001A73A7AB00FA4378 /* ProductTableViewCell.m in Sources */,
+				ABEC4DCA1ABD8188000CF27C /* BorderTextField.m in Sources */,
 				184962A61A6657B30054AFFE /* ProductListViewController.m in Sources */,
 				AB6E34C01ABC6A9A00867CA3 /* MessagesViewController.m in Sources */,
 				1864BF0B1A4B1EA300EF5DD7 /* main.m in Sources */,
