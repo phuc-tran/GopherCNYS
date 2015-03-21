@@ -8,7 +8,7 @@
         <!--Root View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="rootController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" customClass="DEMORootViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="rootController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" customClass="RootViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WNK-cX-8Pi"/>
                         <viewControllerLayoutGuide type="bottom" id="wP7-gT-Emx"/>
@@ -46,7 +46,7 @@
         <!--Left Menu View Controller-->
         <scene sceneID="zM8-E4-2tq">
             <objects>
-                <viewController restorationIdentifier="leftMenuViewController" storyboardIdentifier="leftMenuViewController" id="NMs-sm-msE" customClass="DEMOLeftMenuViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="leftMenuViewController" storyboardIdentifier="leftMenuViewController" id="NMs-sm-msE" customClass="LeftMenuViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kFr-5l-QCb"/>
                         <viewControllerLayoutGuide type="bottom" id="TK6-Z2-kRl"/>
@@ -64,7 +64,7 @@
         <!--Right Menu View Controller-->
         <scene sceneID="wN7-Cy-r0G">
             <objects>
-                <viewController restorationIdentifier="rightMenuViewController" storyboardIdentifier="rightMenuViewController" id="atb-wu-hdZ" customClass="DEMORightMenuViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="rightMenuViewController" storyboardIdentifier="rightMenuViewController" id="atb-wu-hdZ" customClass="RightMenuViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dzs-Tx-K26"/>
                         <viewControllerLayoutGuide type="bottom" id="sgV-YY-IWf"/>
@@ -82,7 +82,7 @@
         <!--Second Controller-->
         <scene sceneID="ajy-0O-wjT">
             <objects>
-                <viewController restorationIdentifier="secondViewController" storyboardIdentifier="secondViewController" id="yGP-ij-jME" customClass="DEMOSecondViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="secondViewController" storyboardIdentifier="secondViewController" id="yGP-ij-jME" customClass="SecondViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ov5-EA-oMP"/>
                         <viewControllerLayoutGuide type="bottom" id="ZXp-Hm-Fsf"/>

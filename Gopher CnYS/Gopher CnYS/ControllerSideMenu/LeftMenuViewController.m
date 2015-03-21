@@ -1,29 +1,29 @@
 //
-//  DEMORightMenuViewController.m
+//  LeftMenuViewController.m
 //  RESideMenuStoryboards
 //
-//  Created by Roman Efimov on 2/11/14.
-//  Copyright (c) 2014 Roman Efimov. All rights reserved.
+//  Created by Roman Efimov on 10/9/13.
+//  Copyright (c) 2013 Roman Efimov. All rights reserved.
 //
 
-#import "DEMORightMenuViewController.h"
-#import "DEMOFirstViewController.h"
-#import "DEMOSecondViewController.h"
-#import "DEMOLeftMenuViewController.h"
+#import "LeftMenuViewController.h"
+#import "FirstViewController.h"
+#import "SecondViewController.h"
+#import "UIViewController+RESideMenu.h"
 
-@interface DEMORightMenuViewController ()
+@interface LeftMenuViewController ()
 
 @property (strong, readwrite, nonatomic) UITableView *tableView;
 
 @end
 
-@implementation DEMORightMenuViewController
+@implementation LeftMenuViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.tableView = ({
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height - 54 * 2) / 2.0f, self.view.frame.size.width, 54 * 2) style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height - 47 * 6) / 2.0f, self.view.frame.size.width, 47 * 6) style:UITableViewStylePlain];
         tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
         tableView.delegate = self;
         tableView.dataSource = self;
@@ -32,6 +32,7 @@
         tableView.backgroundView = nil;
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         tableView.bounces = NO;
+        tableView.scrollsToTop = NO;
         tableView;
     });
     [self.view addSubview:self.tableView];
@@ -64,7 +65,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 54;
+    return 47;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -74,7 +75,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-    return 2;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -85,16 +86,20 @@
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        cell.backgroundColor = [UIColor clearColor];
-        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:21];
+        cell.backgroundColor = [UIColor colorWithRed:54/255.0f green:54/255.0f blue:54/255.0f alpha:1.0];
+        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
         cell.selectedBackgroundView = [[UIView alloc] init];
+        UIView *line = [[UIView alloc] initWithFrame: CGRectMake ( 0, cell.frame.size.height + 1, cell.frame.size.width, 1)];
+        line.backgroundColor = [UIColor colorWithRed:46/255.0f green:46/255.0f blue:46/255.0f alpha:1.0];
+        [cell addSubview:line];
     }
     
-    NSArray *titles = @[@"Test 1", @"Test 2"];
+    NSArray *titles = @[@"Sell", @"Messages", @"Profile", @"About", @"Logout", @"Add New Search"];
+    NSArray *images = @[@"ico_sell", @"ico_message", @"ico_profile", @"ico_about", @"ico_logout", @"ico_newsearch"];
     cell.textLabel.text = titles[indexPath.row];
-    cell.textLabel.textAlignment = NSTextAlignmentRight;
+    cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
     
     return cell;
 }

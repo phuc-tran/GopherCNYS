@@ -1,5 +1,5 @@
 //
-//  DEMOSecondViewController.h
+//  SecondViewController.h
 //  RESideMenuStoryboards
 //
 //  Created by Roman Efimov on 10/9/13.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 
-@interface DEMOSecondViewController : UIViewController
+@interface SecondViewController : UIViewController
 
 - (IBAction)pushViewController:(id)sender;
 

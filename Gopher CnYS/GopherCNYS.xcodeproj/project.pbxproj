@@ -51,11 +51,11 @@
 		AB6E34AE1ABC69D900867CA3 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34A91ABC69D900867CA3 /* RECommonFunctions.m */; };
 		AB6E34AF1ABC69D900867CA3 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34AB1ABC69D900867CA3 /* RESideMenu.m */; };
 		AB6E34B01ABC69D900867CA3 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34AD1ABC69D900867CA3 /* UIViewController+RESideMenu.m */; };
-		AB6E34BC1ABC6A9A00867CA3 /* DEMOFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34B31ABC6A9A00867CA3 /* DEMOFirstViewController.m */; };
-		AB6E34BD1ABC6A9A00867CA3 /* DEMOLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34B51ABC6A9A00867CA3 /* DEMOLeftMenuViewController.m */; };
-		AB6E34BE1ABC6A9A00867CA3 /* DEMORightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34B71ABC6A9A00867CA3 /* DEMORightMenuViewController.m */; };
-		AB6E34BF1ABC6A9A00867CA3 /* DEMORootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34B91ABC6A9A00867CA3 /* DEMORootViewController.m */; };
-		AB6E34C01ABC6A9A00867CA3 /* DEMOSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34BB1ABC6A9A00867CA3 /* DEMOSecondViewController.m */; };
+		AB6E34BC1ABC6A9A00867CA3 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34B31ABC6A9A00867CA3 /* FirstViewController.m */; };
+		AB6E34BD1ABC6A9A00867CA3 /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34B51ABC6A9A00867CA3 /* LeftMenuViewController.m */; };
+		AB6E34BE1ABC6A9A00867CA3 /* RightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34B71ABC6A9A00867CA3 /* RightMenuViewController.m */; };
+		AB6E34BF1ABC6A9A00867CA3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34B91ABC6A9A00867CA3 /* RootViewController.m */; };
+		AB6E34C01ABC6A9A00867CA3 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34BB1ABC6A9A00867CA3 /* SecondViewController.m */; };
 		AB72F3391AB734D6003900E9 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB72F3381AB734D6003900E9 /* ProductDetailViewController.m */; };
 		AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7CB4C91AB1F0A20017E183 /* ProductHeaderView.m */; };
 		AB7CB4CC1AB1F0A20017E183 /* ProductHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7CB4CA1AB1F0A20017E183 /* ProductHeaderView.xib */; };
@@ -131,16 +131,16 @@
 		AB6E34AB1ABC69D900867CA3 /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
 		AB6E34AC1ABC69D900867CA3 /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
 		AB6E34AD1ABC69D900867CA3 /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
-		AB6E34B21ABC6A9A00867CA3 /* DEMOFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOFirstViewController.h; sourceTree = "<group>"; };
-		AB6E34B31ABC6A9A00867CA3 /* DEMOFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOFirstViewController.m; sourceTree = "<group>"; };
-		AB6E34B41ABC6A9A00867CA3 /* DEMOLeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOLeftMenuViewController.h; sourceTree = "<group>"; };
-		AB6E34B51ABC6A9A00867CA3 /* DEMOLeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOLeftMenuViewController.m; sourceTree = "<group>"; };
-		AB6E34B61ABC6A9A00867CA3 /* DEMORightMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMORightMenuViewController.h; sourceTree = "<group>"; };
-		AB6E34B71ABC6A9A00867CA3 /* DEMORightMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMORightMenuViewController.m; sourceTree = "<group>"; };
-		AB6E34B81ABC6A9A00867CA3 /* DEMORootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMORootViewController.h; sourceTree = "<group>"; };
-		AB6E34B91ABC6A9A00867CA3 /* DEMORootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMORootViewController.m; sourceTree = "<group>"; };
-		AB6E34BA1ABC6A9A00867CA3 /* DEMOSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOSecondViewController.h; sourceTree = "<group>"; };
-		AB6E34BB1ABC6A9A00867CA3 /* DEMOSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOSecondViewController.m; sourceTree = "<group>"; };
+		AB6E34B21ABC6A9A00867CA3 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		AB6E34B31ABC6A9A00867CA3 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		AB6E34B41ABC6A9A00867CA3 /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuViewController.h; sourceTree = "<group>"; };
+		AB6E34B51ABC6A9A00867CA3 /* LeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuViewController.m; sourceTree = "<group>"; };
+		AB6E34B61ABC6A9A00867CA3 /* RightMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightMenuViewController.h; sourceTree = "<group>"; };
+		AB6E34B71ABC6A9A00867CA3 /* RightMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightMenuViewController.m; sourceTree = "<group>"; };
+		AB6E34B81ABC6A9A00867CA3 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		AB6E34B91ABC6A9A00867CA3 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		AB6E34BA1ABC6A9A00867CA3 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		AB6E34BB1ABC6A9A00867CA3 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		AB72F3371AB734D6003900E9 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
 		AB72F3381AB734D6003900E9 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
 		AB7CB4C81AB1F0A20017E183 /* ProductHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductHeaderView.h; sourceTree = "<group>"; };
@@ -348,16 +348,16 @@
 		AB6E34B11ABC6A9A00867CA3 /* ControllerSideMenu */ = {
 			isa = PBXGroup;
 			children = (
-				AB6E34B21ABC6A9A00867CA3 /* DEMOFirstViewController.h */,
-				AB6E34B31ABC6A9A00867CA3 /* DEMOFirstViewController.m */,
-				AB6E34B41ABC6A9A00867CA3 /* DEMOLeftMenuViewController.h */,
-				AB6E34B51ABC6A9A00867CA3 /* DEMOLeftMenuViewController.m */,
-				AB6E34B61ABC6A9A00867CA3 /* DEMORightMenuViewController.h */,
-				AB6E34B71ABC6A9A00867CA3 /* DEMORightMenuViewController.m */,
-				AB6E34B81ABC6A9A00867CA3 /* DEMORootViewController.h */,
-				AB6E34B91ABC6A9A00867CA3 /* DEMORootViewController.m */,
-				AB6E34BA1ABC6A9A00867CA3 /* DEMOSecondViewController.h */,
-				AB6E34BB1ABC6A9A00867CA3 /* DEMOSecondViewController.m */,
+				AB6E34B21ABC6A9A00867CA3 /* FirstViewController.h */,
+				AB6E34B31ABC6A9A00867CA3 /* FirstViewController.m */,
+				AB6E34B41ABC6A9A00867CA3 /* LeftMenuViewController.h */,
+				AB6E34B51ABC6A9A00867CA3 /* LeftMenuViewController.m */,
+				AB6E34B61ABC6A9A00867CA3 /* RightMenuViewController.h */,
+				AB6E34B71ABC6A9A00867CA3 /* RightMenuViewController.m */,
+				AB6E34B81ABC6A9A00867CA3 /* RootViewController.h */,
+				AB6E34B91ABC6A9A00867CA3 /* RootViewController.m */,
+				AB6E34BA1ABC6A9A00867CA3 /* SecondViewController.h */,
+				AB6E34BB1ABC6A9A00867CA3 /* SecondViewController.m */,
 			);
 			path = ControllerSideMenu;
 			sourceTree = "<group>";
@@ -488,7 +488,7 @@
 				1864BF111A4B1EA300EF5DD7 /* HomeViewController.m in Sources */,
 				AB72F3391AB734D6003900E9 /* ProductDetailViewController.m in Sources */,
 				18A6B7CC1A657F420043E08A /* CreateAccountViewController.m in Sources */,
-				AB6E34BC1ABC6A9A00867CA3 /* DEMOFirstViewController.m in Sources */,
+				AB6E34BC1ABC6A9A00867CA3 /* FirstViewController.m in Sources */,
 				185FDE091A73F7AD00A452CE /* Product.m in Sources */,
 				1864BF0E1A4B1EA300EF5DD7 /* AppDelegate.m in Sources */,
 				AB6E34B01ABC69D900867CA3 /* UIViewController+RESideMenu.m in Sources */,
@@ -496,14 +496,14 @@
 				AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */,
 				AB8B70A11ABB388B0028DC47 /* MBProgressHUD.m in Sources */,
 				AB6E34AE1ABC69D900867CA3 /* RECommonFunctions.m in Sources */,
-				AB6E34BE1ABC6A9A00867CA3 /* DEMORightMenuViewController.m in Sources */,
-				AB6E34BD1ABC6A9A00867CA3 /* DEMOLeftMenuViewController.m in Sources */,
+				AB6E34BE1ABC6A9A00867CA3 /* RightMenuViewController.m in Sources */,
+				AB6E34BD1ABC6A9A00867CA3 /* LeftMenuViewController.m in Sources */,
 				1837DB0A1A65233C00C48A51 /* SigninViewController.m in Sources */,
 				182E36001A73A7AB00FA4378 /* ProductTableViewCell.m in Sources */,
 				184962A61A6657B30054AFFE /* ProductListViewController.m in Sources */,
-				AB6E34C01ABC6A9A00867CA3 /* DEMOSecondViewController.m in Sources */,
+				AB6E34C01ABC6A9A00867CA3 /* SecondViewController.m in Sources */,
 				1864BF0B1A4B1EA300EF5DD7 /* main.m in Sources */,
-				AB6E34BF1ABC6A9A00867CA3 /* DEMORootViewController.m in Sources */,
+				AB6E34BF1ABC6A9A00867CA3 /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

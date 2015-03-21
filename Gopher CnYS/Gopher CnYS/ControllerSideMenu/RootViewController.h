@@ -1,5 +1,5 @@
 //
-//  DEMOFirstViewController.h
+//  RootViewController.h
 //  RESideMenuStoryboards
 //
 //  Created by Roman Efimov on 10/9/13.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 
-@interface DEMOFirstViewController : UIViewController
+@interface RootViewController : RESideMenu <RESideMenuDelegate>
 
 @end

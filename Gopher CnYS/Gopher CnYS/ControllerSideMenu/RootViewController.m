@@ -1,19 +1,19 @@
 //
-//  DEMOViewController.m
+//  RootViewController.m
 //  RESideMenuStoryboards
 //
 //  Created by Roman Efimov on 10/9/13.
 //  Copyright (c) 2013 Roman Efimov. All rights reserved.
 //
 
-#import "DEMORootViewController.h"
-#import "DEMOLeftMenuViewController.h"
+#import "RootViewController.h"
+#import "LeftMenuViewController.h"
 
-@interface DEMORootViewController ()
+@interface RootViewController ()
 
 @end
 
-@implementation DEMORootViewController
+@implementation RootViewController
 
 - (void)awakeFromNib
 {

@@ -1,18 +1,18 @@
 //
-//  DEMOSecondViewController.m
+//  SecondViewController.m
 //  RESideMenuStoryboards
 //
 //  Created by Roman Efimov on 10/9/13.
 //  Copyright (c) 2013 Roman Efimov. All rights reserved.
 //
 
-#import "DEMOSecondViewController.h"
+#import "SecondViewController.h"
 
-@interface DEMOSecondViewController ()
+@interface SecondViewController ()
 
 @end
 
-@implementation DEMOSecondViewController
+@implementation SecondViewController
 
 - (IBAction)pushViewController:(id)sender
 {
