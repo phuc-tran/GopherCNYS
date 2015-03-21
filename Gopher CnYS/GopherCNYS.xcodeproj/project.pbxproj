@@ -51,7 +51,6 @@
 		AB6E34AE1ABC69D900867CA3 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34A91ABC69D900867CA3 /* RECommonFunctions.m */; };
 		AB6E34AF1ABC69D900867CA3 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34AB1ABC69D900867CA3 /* RESideMenu.m */; };
 		AB6E34B01ABC69D900867CA3 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34AD1ABC69D900867CA3 /* UIViewController+RESideMenu.m */; };
-		AB6E34BC1ABC6A9A00867CA3 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34B31ABC6A9A00867CA3 /* FirstViewController.m */; };
 		AB6E34BD1ABC6A9A00867CA3 /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34B51ABC6A9A00867CA3 /* LeftMenuViewController.m */; };
 		AB6E34BE1ABC6A9A00867CA3 /* RightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34B71ABC6A9A00867CA3 /* RightMenuViewController.m */; };
 		AB6E34BF1ABC6A9A00867CA3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34B91ABC6A9A00867CA3 /* RootViewController.m */; };
@@ -134,8 +133,6 @@
 		AB6E34AB1ABC69D900867CA3 /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
 		AB6E34AC1ABC69D900867CA3 /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
 		AB6E34AD1ABC69D900867CA3 /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
-		AB6E34B21ABC6A9A00867CA3 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		AB6E34B31ABC6A9A00867CA3 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		AB6E34B41ABC6A9A00867CA3 /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuViewController.h; sourceTree = "<group>"; };
 		AB6E34B51ABC6A9A00867CA3 /* LeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuViewController.m; sourceTree = "<group>"; };
 		AB6E34B61ABC6A9A00867CA3 /* RightMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightMenuViewController.h; sourceTree = "<group>"; };
@@ -359,20 +356,8 @@
 		AB6E34B11ABC6A9A00867CA3 /* ControllerSideMenu */ = {
 			isa = PBXGroup;
 			children = (
-				ABEC4DBA1ABD6898000CF27C /* ProfileViewController.h */,
-				ABEC4DBB1ABD6898000CF27C /* ProfileViewController.m */,
-				ABEC4DB71ABD6719000CF27C /* AboutViewController.h */,
-				ABEC4DB81ABD6719000CF27C /* AboutViewController.m */,
-				AB6E34B21ABC6A9A00867CA3 /* FirstViewController.h */,
-				AB6E34B31ABC6A9A00867CA3 /* FirstViewController.m */,
-				AB6E34B41ABC6A9A00867CA3 /* LeftMenuViewController.h */,
-				AB6E34B51ABC6A9A00867CA3 /* LeftMenuViewController.m */,
-				AB6E34B61ABC6A9A00867CA3 /* RightMenuViewController.h */,
-				AB6E34B71ABC6A9A00867CA3 /* RightMenuViewController.m */,
-				AB6E34B81ABC6A9A00867CA3 /* RootViewController.h */,
-				AB6E34B91ABC6A9A00867CA3 /* RootViewController.m */,
-				AB6E34BA1ABC6A9A00867CA3 /* MessagesViewController.h */,
-				AB6E34BB1ABC6A9A00867CA3 /* MessagesViewController.m */,
+				ABEC4DC11ABD6E2A000CF27C /* Content */,
+				ABEC4DC01ABD6E0E000CF27C /* General */,
 			);
 			path = ControllerSideMenu;
 			sourceTree = "<group>";
@@ -393,6 +378,32 @@
 				AB8B709F1ABB388B0028DC47 /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		ABEC4DC01ABD6E0E000CF27C /* General */ = {
+			isa = PBXGroup;
+			children = (
+				AB6E34B41ABC6A9A00867CA3 /* LeftMenuViewController.h */,
+				AB6E34B51ABC6A9A00867CA3 /* LeftMenuViewController.m */,
+				AB6E34B61ABC6A9A00867CA3 /* RightMenuViewController.h */,
+				AB6E34B71ABC6A9A00867CA3 /* RightMenuViewController.m */,
+				AB6E34B81ABC6A9A00867CA3 /* RootViewController.h */,
+				AB6E34B91ABC6A9A00867CA3 /* RootViewController.m */,
+			);
+			name = General;
+			sourceTree = "<group>";
+		};
+		ABEC4DC11ABD6E2A000CF27C /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				ABEC4DBA1ABD6898000CF27C /* ProfileViewController.h */,
+				ABEC4DBB1ABD6898000CF27C /* ProfileViewController.m */,
+				ABEC4DB71ABD6719000CF27C /* AboutViewController.h */,
+				ABEC4DB81ABD6719000CF27C /* AboutViewController.m */,
+				AB6E34BA1ABC6A9A00867CA3 /* MessagesViewController.h */,
+				AB6E34BB1ABC6A9A00867CA3 /* MessagesViewController.m */,
+			);
+			name = Content;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,7 +514,6 @@
 				1864BF111A4B1EA300EF5DD7 /* HomeViewController.m in Sources */,
 				AB72F3391AB734D6003900E9 /* ProductDetailViewController.m in Sources */,
 				18A6B7CC1A657F420043E08A /* CreateAccountViewController.m in Sources */,
-				AB6E34BC1ABC6A9A00867CA3 /* FirstViewController.m in Sources */,
 				ABEC4DBC1ABD6898000CF27C /* ProfileViewController.m in Sources */,
 				185FDE091A73F7AD00A452CE /* Product.m in Sources */,
 				1864BF0E1A4B1EA300EF5DD7 /* AppDelegate.m in Sources */,

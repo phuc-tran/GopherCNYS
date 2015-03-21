@@ -7,7 +7,6 @@
 //
 
 #import "LeftMenuViewController.h"
-#import "FirstViewController.h"
 #import "MessagesViewController.h"
 #import "UIViewController+RESideMenu.h"
 
@@ -97,7 +96,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.backgroundColor = [UIColor colorWithRed:54/255.0f green:54/255.0f blue:54/255.0f alpha:1.0];
-        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
         cell.selectedBackgroundView = [[UIView alloc] init];
