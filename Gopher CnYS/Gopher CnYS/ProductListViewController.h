@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
+#import "UIViewController+RESideMenu.h"
+#import "RESideMenu.h"
 
 @interface ProductListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate>
 {

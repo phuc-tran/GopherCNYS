@@ -66,6 +66,12 @@ PFGeoPoint *currentLocaltion;
     self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
     self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
 }
+
+-(void)leftMenuClick:(UIBarButtonItem*)btn
+{
+    [self.sideMenuViewController presentLeftMenuViewController];
+}
+
 - (UIBarButtonItem *)rightMenuBarButtonItem {
     UIButton *a1 = [UIButton buttonWithType:UIButtonTypeCustom];
     [a1 setFrame:CGRectMake(0.0f, 0.0f, 25.0f, 25.0f)];
@@ -78,7 +84,8 @@ PFGeoPoint *currentLocaltion;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:buttonImage forState:UIControlStateNormal];
     button.frame = CGRectMake(0.0f, 0.0f, 25.0f, 25.0f);
-   return [[UIBarButtonItem alloc] initWithCustomView:button];
+    [button addTarget:self action:@selector(leftMenuClick:) forControlEvents:UIControlEventTouchUpInside];
+    return [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 
 #pragma mark - TableView delegate

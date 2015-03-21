@@ -24,16 +24,7 @@
     // Override point for customization after application launch.
     [Parse setApplicationId:@"5ipBuTmdEryP29CFELzxMx2qXGzgndRPhG4ltAnc"
                   clientKey:@"JI5AkADSTQmssXVE4Y1o6T5lLDkZumXWUgH2MV2J"];
-    
-    // Register for Push Notitications
-//    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
-//                                                    UIUserNotificationTypeBadge |
-//                                                    UIUserNotificationTypeSound);
-//    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
-//                                                                             categories:nil];
-//    [application registerUserNotificationSettings:settings];
-//    [application registerForRemoteNotifications];
-    
+     
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:64/255.0f green:222/255.0f blue:172/255.0f alpha:1.0f]];
     [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:64/255.0f green:222/255.0f blue:172/255.0f alpha:1.0f]];
     
