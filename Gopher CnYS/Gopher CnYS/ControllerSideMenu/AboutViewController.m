@@ -17,6 +17,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self setupLeftMenuBarButtonItem];
+    if (![self checkIfUserLoggedIn]) {
+        [self performSegueWithIdentifier:@"about_from_login" sender:self];
+    }
 }
 
 - (IBAction)pushViewController:(id)sender

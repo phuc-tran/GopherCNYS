@@ -10,10 +10,11 @@
 #import <GooglePlus/GooglePlus.h>
 #import <StoreKit/StoreKit.h>
 #import "MBProgressHUD.h"
+#import "BaseViewController.h"
 
 @class GPPSignInButton;
 
-@interface HomeViewController : UIViewController <GPPSignInDelegate, UITextFieldDelegate>
+@interface HomeViewController : BaseViewController <GPPSignInDelegate, UITextFieldDelegate>
 
 @property (retain, nonatomic) IBOutlet UIButton *facebookButon;
 @property (retain, nonatomic) IBOutlet UIButton *gPlusButton;

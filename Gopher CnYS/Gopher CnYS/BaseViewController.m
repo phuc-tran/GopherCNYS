@@ -42,6 +42,11 @@
     [self.sideMenuViewController presentLeftMenuViewController];
 }
 
+-(void)leftBackClick:(UIBarButtonItem*)btn
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (UIBarButtonItem *)rightMenuBarButtonItem {
     UIButton *a1 = [UIButton buttonWithType:UIButtonTypeCustom];
     [a1 setFrame:CGRectMake(0.0f, 0.0f, 25.0f, 25.0f)];
@@ -58,5 +63,13 @@
     return [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 
+-(BOOL) checkIfUserLoggedIn
+{
+    if ([[PFUser currentUser] isAuthenticated])
+    {
+        return YES;
+    }
+    return NO;
+}
 
 @end

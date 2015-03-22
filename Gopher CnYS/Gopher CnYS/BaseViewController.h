@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+RESideMenu.h"
 #import "RESideMenu.h"
+#import <ParseFacebookUtils/PFFacebookUtils.h>
 
 @interface BaseViewController : UIViewController
 
@@ -16,5 +17,7 @@
 - (void)setupLeftMenuBarButtonItem;
 - (void)setupRightMenuBarButtonItem;
 -(void)leftMenuClick:(UIBarButtonItem*)btn;
+
+-(BOOL) checkIfUserLoggedIn;
 
 @end

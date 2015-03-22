@@ -60,6 +60,8 @@ PFGeoPoint *currentLocaltion;
     isFavoriteTopSelected = NO;
     isNewTopSelected = NO;
     isPriceTopSelected = NO;
+    
+    [productTableView reloadData];
 }
 
 #pragma mark - TableView delegate
@@ -106,18 +108,23 @@ PFGeoPoint *currentLocaltion;
     cell.lblProductName.text = [[productData objectAtIndex:indexPath.row] valueForKey:@"title"];
     cell.lblProductDescription.text = [[[productData objectAtIndex:indexPath.row] objectForKey:@"description"] description];
     [cell loadData];
-    NSArray *favoriteArr = [[productData objectAtIndex:indexPath.row] objectForKey:@"favoritors"];
     
-    if ([self checkItemisFavorited:favoriteArr]) { // is favorited
-        cell.isFavorited = YES;
-        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateNormal];
-        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateHighlighted];
-        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateSelected];
+    if ([self checkIfUserLoggedIn]) {
+        NSArray *favoriteArr = [[productData objectAtIndex:indexPath.row] objectForKey:@"favoritors"];
+    
+        if ([self checkItemisFavorited:favoriteArr]) { // is favorited
+            cell.isFavorited = YES;
+            [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateNormal];
+            [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateHighlighted];
+            [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateSelected];
+        } else {
+            cell.isFavorited = NO;
+            [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateNormal];
+            [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateHighlighted];
+            [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateSelected];
+        }
     } else {
-        cell.isFavorited = NO;
-        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateNormal];
-        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateHighlighted];
-        [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateSelected];
+        cell.btnFavorited.hidden = TRUE;
     }
     
     NSInteger price  = [[[productData objectAtIndex:indexPath.row] valueForKey:@"price"] integerValue];
@@ -296,24 +303,28 @@ PFGeoPoint *currentLocaltion;
 
 - (IBAction)favoriteBtnClick:(id)sender
 {
-    UIButton *btn = (UIButton*)sender;
-    [self updateSelected:btn.tag];
-    
-    if(isFavoriteTopSelected) {
-        NSMutableArray *finalArray = [[NSMutableArray alloc] init];
-        for (int i = 0; i < productMasterData.count; i++) {
-            NSArray *iFavorite = [[productMasterData objectAtIndex:i] objectForKey:@"favoritors"];
-            if ([self checkItemisFavorited:iFavorite]) {
-                [finalArray addObject:[productMasterData objectAtIndex:i]];
-            }
-        }
-        productData = finalArray;
-        productFavoriteData = productData;
+    if (![self checkIfUserLoggedIn]) {
+        [self performSegueWithIdentifier:@"product_list_form_login" sender:self];
     } else {
-        productData = productMasterData;
-    }
+        UIButton *btn = (UIButton*)sender;
+        [self updateSelected:btn.tag];
     
-    [productTableView reloadData];
+        if(isFavoriteTopSelected) {
+            NSMutableArray *finalArray = [[NSMutableArray alloc] init];
+            for (int i = 0; i < productMasterData.count; i++) {
+                NSArray *iFavorite = [[productMasterData objectAtIndex:i] objectForKey:@"favoritors"];
+                if ([self checkItemisFavorited:iFavorite]) {
+                    [finalArray addObject:[productMasterData objectAtIndex:i]];
+                }
+            }
+            productData = finalArray;
+            productFavoriteData = productData;
+        } else {
+            productData = productMasterData;
+        }
+    
+        [productTableView reloadData];
+    }
 }
 
 - (IBAction)selecetCategoryBtnClick:(id)sender

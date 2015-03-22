@@ -81,18 +81,10 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
     NSLog(@"Received error %@ and auth object %@",error, auth);
 }
 
--(BOOL) checkIfUserLoggedIn
-{
-    if ([[PFUser currentUser] isAuthenticated])
-    {
-        return YES;
-    }
-    return NO;
-}
-
 -(void) openProductList
 {
-    [self performSegueWithIdentifier:@"product_list_from_home" sender:self];
+    //[self performSegueWithIdentifier:@"product_list_from_home" sender:self];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void) loadUI

@@ -12,7 +12,6 @@
 		1837DAF91A64F65E00C48A51 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1837DAF41A64F65E00C48A51 /* Parse.framework */; };
 		1837DAFA1A64F65E00C48A51 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1837DAF51A64F65E00C48A51 /* ParseCrashReporting.framework */; };
 		1837DAFB1A64F65E00C48A51 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1837DAF61A64F65E00C48A51 /* ParseFacebookUtils.framework */; };
-		1837DB0A1A65233C00C48A51 /* SigninViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1837DB091A65233C00C48A51 /* SigninViewController.m */; };
 		183DDC6A1A644C460085F53C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183DDC691A644C460085F53C /* FacebookSDK.framework */; };
 		184962A61A6657B30054AFFE /* ProductListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184962A51A6657B30054AFFE /* ProductListViewController.m */; };
 		185F4B411A677D84002D1D1A /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185F4B401A677D84002D1D1A /* AddressBook.framework */; };
@@ -90,8 +89,6 @@
 		1837DB011A650DDD00C48A51 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		1837DB031A650DE500C48A51 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		1837DB051A650DEE00C48A51 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		1837DB081A65233C00C48A51 /* SigninViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SigninViewController.h; sourceTree = "<group>"; };
-		1837DB091A65233C00C48A51 /* SigninViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SigninViewController.m; sourceTree = "<group>"; };
 		183DDC691A644C460085F53C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		184962A41A6657B30054AFFE /* ProductListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListViewController.h; sourceTree = "<group>"; };
 		184962A51A6657B30054AFFE /* ProductListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListViewController.m; sourceTree = "<group>"; };
@@ -217,8 +214,6 @@
 		1837DB071A65230B00C48A51 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				1837DB081A65233C00C48A51 /* SigninViewController.h */,
-				1837DB091A65233C00C48A51 /* SigninViewController.m */,
 				18A6B7CA1A657F420043E08A /* CreateAccountViewController.h */,
 				18A6B7CB1A657F420043E08A /* CreateAccountViewController.m */,
 				184962A41A6657B30054AFFE /* ProductListViewController.h */,
@@ -545,7 +540,6 @@
 				ABEC4DBF1ABD6A12000CF27C /* BaseViewController.m in Sources */,
 				AB6E34BE1ABC6A9A00867CA3 /* RightMenuViewController.m in Sources */,
 				AB6E34BD1ABC6A9A00867CA3 /* LeftMenuViewController.m in Sources */,
-				1837DB0A1A65233C00C48A51 /* SigninViewController.m in Sources */,
 				182E36001A73A7AB00FA4378 /* ProductTableViewCell.m in Sources */,
 				ABEC4DCA1ABD8188000CF27C /* BorderTextField.m in Sources */,
 				184962A61A6657B30054AFFE /* ProductListViewController.m in Sources */,
