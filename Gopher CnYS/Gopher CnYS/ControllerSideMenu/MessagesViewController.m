@@ -16,7 +16,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self setupLeftMenuBarButtonItem];
+    [self setupLeftBackBarButtonItem];
     if (![self checkIfUserLoggedIn]) {
         [self performSegueWithIdentifier:@"message_from_login" sender:self];
     }

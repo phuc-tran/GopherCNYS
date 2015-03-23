@@ -22,7 +22,7 @@
 {
     [super viewDidLoad];
     self.tableView = ({
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height - 47 * 7) / 2.0f, self.view.frame.size.width, 47 * 7) style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height - 47 * 6) / 2.0f, self.view.frame.size.width, 47 * 6) style:UITableViewStylePlain];
         tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
         tableView.delegate = self;
         tableView.dataSource = self;
@@ -45,32 +45,26 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.row) {
         case 0:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"productListViewController"]]
-                                                         animated:YES];
-            [self.sideMenuViewController hideMenuViewController];
-            break;
-        case 1:
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"sellViewController"]]
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
-        case 2:
+        case 1:
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"messageViewController"]]
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
-        case 3:
+        case 2:
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"profileViewController"]]
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
-        case 4:
+        case 3:
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"aboutViewController"]]
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
-        case 5:
-            //[PFUser logOut];
+        case 4:
             {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @""
                                                             message:@"Are you sure you want to log out?"
@@ -100,7 +94,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-    return 7;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -121,8 +115,8 @@
         [cell addSubview:line];
     }
     
-    NSArray *titles = @[@"Home", @"Sell", @"Messages", @"Profile", @"About", @"Logout", @"Add New Search"];
-    NSArray *images = @[@"IconEmpty", @"ico_sell", @"ico_message", @"ico_profile", @"ico_about", @"ico_logout", @"ico_newsearch"];
+    NSArray *titles = @[@"Sell", @"Messages", @"Profile", @"About", @"Logout", @"Add New Search"];
+    NSArray *images = @[@"ico_sell", @"ico_message", @"ico_profile", @"ico_about", @"ico_logout", @"ico_newsearch"];
     cell.textLabel.text = titles[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
     

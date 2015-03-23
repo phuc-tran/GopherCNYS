@@ -239,7 +239,11 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    if (textField == self.txtUserName) {
+        [self.txtPassword becomeFirstResponder];
+    } else if (textField == self.txtPassword) {
+        [self signIn:self.btnSignIn];
+    }
     return YES;
 }
 

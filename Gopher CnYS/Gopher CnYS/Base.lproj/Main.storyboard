@@ -178,7 +178,7 @@
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="User name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vl9-48-JUV">
                                                                 <rect key="frame" x="51" y="8" width="241" height="30"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="KBN-7p-nVk" id="i4z-g8-NOo"/>
                                                                 </connections>
@@ -195,7 +195,7 @@
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nob-Eb-yoh">
                                                                 <rect key="frame" x="51" y="8" width="241" height="30"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="KBN-7p-nVk" id="nfh-Xc-PC1"/>
                                                                 </connections>
@@ -755,7 +755,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="olT-yf-bqi">
-                                                <rect key="frame" x="52" y="9" width="249" height="30"/>
+                                                <rect key="frame" x="51" y="9" width="249" height="30"/>
                                                 <color key="textColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1196,7 +1196,7 @@
         <image name="add_productDes" width="291" height="142"/>
         <image name="avatarDefault" width="58" height="58"/>
         <image name="background" width="750" height="1334"/>
-        <image name="camera_icon" width="31" height="25"/>
+        <image name="camera_icon" width="15" height="12"/>
         <image name="cancel_btn" width="312" height="44"/>
         <image name="fb_normal" width="76" height="76"/>
         <image name="ic_favorite_filter1" width="32" height="32"/>
@@ -1205,15 +1205,15 @@
         <image name="listing_comment" width="35" height="35"/>
         <image name="listing_facebook" width="35" height="35"/>
         <image name="listing_info" width="35" height="35"/>
-        <image name="password_btn" width="625" height="89"/>
+        <image name="password_btn" width="312" height="44"/>
         <image name="price_icon" width="20" height="20"/>
-        <image name="select_category" width="251" height="57"/>
-        <image name="setting_icon" width="29" height="29"/>
-        <image name="sign_normal" width="625" height="89"/>
+        <image name="select_category" width="125" height="28"/>
+        <image name="setting_icon" width="14" height="14"/>
+        <image name="sign_normal" width="312" height="44"/>
         <image name="signup_email" width="313" height="45"/>
         <image name="signup_pass" width="313" height="45"/>
         <image name="signup_usename" width="313" height="45"/>
-        <image name="username_btn" width="625" height="89"/>
+        <image name="username_btn" width="312" height="44"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -1221,6 +1221,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="amZ-Vo-ytg"/>
+        <segue reference="G1w-cs-YeN"/>
     </inferredMetricsTieBreakers>
 </document>

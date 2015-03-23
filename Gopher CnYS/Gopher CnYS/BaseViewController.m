@@ -33,8 +33,12 @@
     self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
 }
 
+- (void)setupLeftBackBarButtonItem {
+    self.navigationItem.leftBarButtonItem = [self leftBackBarButtonItem];
+}
+
 - (void)setupRightMenuBarButtonItem {
-    self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
+    self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
 }
 
 -(void)leftMenuClick:(UIBarButtonItem*)btn
@@ -44,7 +48,8 @@
 
 -(void)leftBackClick:(UIBarButtonItem*)btn
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"productListViewController"]]
+                                                                                                           animated:YES];
 }
 
 - (UIBarButtonItem *)rightMenuBarButtonItem {
@@ -60,6 +65,15 @@
     [button setImage:buttonImage forState:UIControlStateNormal];
     button.frame = CGRectMake(0.0f, 0.0f, 25.0f, 25.0f);
     [button addTarget:self action:@selector(leftMenuClick:) forControlEvents:UIControlEventTouchUpInside];
+    return [[UIBarButtonItem alloc] initWithCustomView:button];
+}
+
+- (UIBarButtonItem *)leftBackBarButtonItem {
+    UIImage *buttonImage = [UIImage imageNamed:@"back_icon.png"];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    button.frame = CGRectMake(0.0f, 0.0f, 25.0f, 25.0f);
+    [button addTarget:self action:@selector(leftBackClick:) forControlEvents:UIControlEventTouchUpInside];
     return [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 

@@ -16,6 +16,7 @@
 - (void)setupMenuBarButtonItems;
 - (void)setupLeftMenuBarButtonItem;
 - (void)setupRightMenuBarButtonItem;
+- (void)setupLeftBackBarButtonItem;
 -(void)leftMenuClick:(UIBarButtonItem*)btn;
 
 -(BOOL) checkIfUserLoggedIn;
