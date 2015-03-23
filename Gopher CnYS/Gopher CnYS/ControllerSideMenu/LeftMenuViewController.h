@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
+#import "BaseViewController.h"
 
-@interface LeftMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RESideMenuDelegate>
+@interface LeftMenuViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, RESideMenuDelegate, UIAlertViewDelegate>
 
 @end

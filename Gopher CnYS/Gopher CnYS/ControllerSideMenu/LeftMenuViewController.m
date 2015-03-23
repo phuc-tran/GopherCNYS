@@ -69,6 +69,17 @@
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
+        case 5:
+            //[PFUser logOut];
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @""
+                                                            message:@"Are you sure you want to log out?"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"OK", nil];
+                [alert show];
+            }
+            break;
         default:
             break;
     }
@@ -116,6 +127,22 @@
     cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
     
     return cell;
+}
+
+#pragma mark UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // the user clicked one of the OK/Cancel buttons
+    if (buttonIndex == 1)
+    {
+        [PFUser logOut];
+        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"homeViewController"]]
+                                                     animated:YES];
+        [self.sideMenuViewController hideMenuViewController];
+    }
+    else
+    {
+        NSLog(@"cancel");
+    }
 }
 
 @end

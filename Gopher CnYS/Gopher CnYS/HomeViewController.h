@@ -28,6 +28,7 @@
 @property (weak, nonatomic) UITextField *activeField;
 
 -(IBAction) signIn:(id)sender;
+-(IBAction) cancelClick:(id)sender;
 
 @property UIActivityIndicatorView *activityIndicator;
 

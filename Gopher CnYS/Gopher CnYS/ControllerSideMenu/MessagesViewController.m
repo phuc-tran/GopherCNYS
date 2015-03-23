@@ -18,7 +18,7 @@
 {
     [self setupLeftMenuBarButtonItem];
     if (![self checkIfUserLoggedIn]) {
-        [self performSegueWithIdentifier:@"messgae_from_login" sender:self];
+        [self performSegueWithIdentifier:@"message_from_login" sender:self];
     }
 }
 

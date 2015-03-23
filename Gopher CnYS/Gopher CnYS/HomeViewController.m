@@ -83,7 +83,6 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
 
 -(void) openProductList
 {
-    //[self performSegueWithIdentifier:@"product_list_from_home" sender:self];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -229,6 +228,12 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
                                             [alert show];
                                         }
                                     }];
+}
+
+-(IBAction) cancelClick:(id)sender {
+    
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"productListViewController"]]
+                                                 animated:YES];
 }
 
 #pragma mark - UITextFieldDelegate

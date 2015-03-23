@@ -22,7 +22,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="119" y="314"/>
+            <point key="canvasLocation" x="139" y="292"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jO9-85-nrD">
@@ -45,7 +45,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zzD-df-7on" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="551" y="292"/>
+            <point key="canvasLocation" x="529" y="292"/>
         </scene>
         <!--Left Menu View Controller-->
         <scene sceneID="zM8-E4-2tq">
@@ -63,7 +63,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIA-V3-1kK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="499" y="1019"/>
+            <point key="canvasLocation" x="119" y="957"/>
         </scene>
         <!--Right Menu View Controller-->
         <scene sceneID="wN7-Cy-r0G">
@@ -81,7 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y4j-oZ-6la" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="119" y="1019"/>
+            <point key="canvasLocation" x="119" y="1619"/>
         </scene>
         <!--Messages-->
         <scene sceneID="ajy-0O-wjT">
@@ -123,12 +123,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="KBN-7p-nVk" kind="push" identifier="messgae_from_login" id="9LB-a3-ghb"/>
+                        <segue destination="KBN-7p-nVk" kind="push" identifier="message_from_login" id="amZ-Vo-ytg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SBM-yN-hYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="923" y="1049"/>
+            <point key="canvasLocation" x="551" y="1029"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="XFj-ad-uKN">
@@ -152,24 +152,25 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRX-Dm-OZj" userLabel="LoginView">
-                                                <rect key="frame" x="0.0" y="270" width="320" height="239"/>
+                                                <rect key="frame" x="0.0" y="230" width="320" height="287"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIE-jT-xFi">
-                                                        <rect key="frame" x="147" y="47" width="27" height="21"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a37-Ye-wVd">
+                                                        <rect key="frame" x="252" y="0.0" width="38" height="38"/>
+                                                        <state key="normal" image="fb_normal">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="facebookButtonPressed:" destination="KBN-7p-nVk" eventType="touchUpInside" id="HRv-9J-2v4"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign in with social networks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ug7-BW-HAO">
+                                                        <rect key="frame" x="30" y="8" width="182" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W9d-3H-owa">
-                                                        <rect key="frame" x="50" y="58" width="100" height="1"/>
-                                                        <color key="backgroundColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vTW-k4-0a1">
-                                                        <rect key="frame" x="172" y="58" width="100" height="1"/>
-                                                        <color key="backgroundColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </view>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bZi-gA-1ra">
-                                                        <rect key="frame" x="10" y="79" width="300" height="47"/>
+                                                        <rect key="frame" x="10" y="67" width="300" height="47"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="username_btn" translatesAutoresizingMaskIntoConstraints="NO" id="viS-YQ-ZC3">
                                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
@@ -186,7 +187,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdd-rb-qmI">
-                                                        <rect key="frame" x="10" y="134" width="300" height="47"/>
+                                                        <rect key="frame" x="10" y="122" width="300" height="47"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="password_btn" translatesAutoresizingMaskIntoConstraints="NO" id="bc9-cd-T0b">
                                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
@@ -203,43 +204,49 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cM-Nj-dFw">
-                                                        <rect key="frame" x="10" y="189" width="300" height="44"/>
+                                                        <rect key="frame" x="10" y="185" width="300" height="44"/>
                                                         <state key="normal" title="Sign In" backgroundImage="sign_normal"/>
                                                         <connections>
                                                             <action selector="signIn:" destination="KBN-7p-nVk" eventType="touchUpInside" id="iEa-r0-Lf0"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a37-Ye-wVd">
-                                                        <rect key="frame" x="252" y="1" width="38" height="38"/>
-                                                        <state key="normal" image="fb_normal">
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZQ-ez-SQh">
+                                                        <rect key="frame" x="10" y="237" width="300" height="44"/>
+                                                        <state key="normal" title="Cancel" backgroundImage="cancel_btn"/>
                                                         <connections>
-                                                            <action selector="facebookButtonPressed:" destination="KBN-7p-nVk" eventType="touchUpInside" id="HRv-9J-2v4"/>
+                                                            <action selector="cancelClick:" destination="KBN-7p-nVk" eventType="touchUpInside" id="wA4-Lt-4x1"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign in with social networks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ug7-BW-HAO">
-                                                        <rect key="frame" x="30" y="9" width="182" height="21"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <color key="textColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="320" id="L33-S5-cOd"/>
-                                                    <constraint firstAttribute="height" constant="239" id="ynF-7X-Jav"/>
+                                                    <constraint firstAttribute="height" constant="287" id="ynF-7X-Jav"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="7Wb-9o-z64" secondAttribute="bottom" id="8vP-Rn-IQb"/>
-                                            <constraint firstItem="fRX-Dm-OZj" firstAttribute="top" secondItem="pc5-lq-HOU" secondAttribute="top" constant="270" id="9yt-yO-h00"/>
+                                            <constraint firstItem="fRX-Dm-OZj" firstAttribute="top" secondItem="pc5-lq-HOU" secondAttribute="top" constant="230" id="9yt-yO-h00"/>
                                             <constraint firstAttribute="height" constant="568" id="Khg-Ae-arz"/>
                                             <constraint firstItem="7Wb-9o-z64" firstAttribute="leading" secondItem="pc5-lq-HOU" secondAttribute="leading" id="NsH-dN-mMy"/>
                                             <constraint firstItem="7Wb-9o-z64" firstAttribute="top" secondItem="pc5-lq-HOU" secondAttribute="top" id="r7q-nk-hLd"/>
                                             <constraint firstAttribute="trailing" secondItem="7Wb-9o-z64" secondAttribute="trailing" id="sox-05-Lmi"/>
                                             <constraint firstAttribute="centerX" secondItem="fRX-Dm-OZj" secondAttribute="centerX" id="vnK-pJ-Ykq"/>
                                         </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIE-jT-xFi">
+                                        <rect key="frame" x="146" y="273" width="27" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W9d-3H-owa">
+                                        <rect key="frame" x="49" y="284" width="100" height="1"/>
+                                        <color key="backgroundColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vTW-k4-0a1">
+                                        <rect key="frame" x="171" y="284" width="100" height="1"/>
+                                        <color key="backgroundColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -321,7 +328,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1458" y="1049"/>
+            <point key="canvasLocation" x="1146" y="1029"/>
         </scene>
         <!--Product Detail View Controller-->
         <scene sceneID="MlV-gF-cLB">
@@ -540,7 +547,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UgI-q2-fAo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2006" y="298"/>
+            <point key="canvasLocation" x="2070" y="292"/>
         </scene>
         <!--Product List View Controller-->
         <scene sceneID="6n8-01-IEE">
@@ -715,7 +722,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gVE-G0-K9Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1604" y="298"/>
+            <point key="canvasLocation" x="1606" y="292"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="soy-75-C68">
@@ -824,7 +831,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8M-an-cfy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1877" y="1049"/>
+            <point key="canvasLocation" x="1783" y="1029"/>
         </scene>
         <!--Profile-->
         <scene sceneID="HD5-GB-WVB">
@@ -860,12 +867,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="V0M-9h-cRb"/>
                     <connections>
-                        <segue destination="KBN-7p-nVk" kind="push" identifier="profile_from_login" id="euq-ly-zvk"/>
+                        <segue destination="KBN-7p-nVk" kind="push" identifier="profile_from_login" id="vS2-dj-XjI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42z-DX-Eua" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="319" y="-378"/>
+            <point key="canvasLocation" x="437" y="-559"/>
         </scene>
         <!--About-->
         <scene sceneID="7lU-rF-5aV">
@@ -998,12 +1005,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="About" id="j9p-LG-ved"/>
                     <connections>
-                        <segue destination="KBN-7p-nVk" kind="push" identifier="about_from_login" id="LMh-h7-bm8"/>
+                        <segue destination="KBN-7p-nVk" kind="push" identifier="about_from_login" id="kQN-Gd-hej"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pva-7Q-YYY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="777" y="-373"/>
+            <point key="canvasLocation" x="923" y="-559"/>
         </scene>
         <!--Add Product-->
         <scene sceneID="rIX-bF-MLo">
@@ -1169,12 +1176,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Product" id="tAm-Yr-nCX"/>
                     <connections>
-                        <segue destination="KBN-7p-nVk" kind="push" identifier="add_product_from_login" id="doe-xA-hnl"/>
+                        <segue destination="KBN-7p-nVk" kind="push" identifier="add_product_from_login" id="vu3-Jp-7Xk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hYo-kG-6iH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1227" y="-378"/>
+            <point key="canvasLocation" x="1513" y="-559"/>
         </scene>
     </scenes>
     <resources>
@@ -1190,10 +1197,11 @@
         <image name="avatarDefault" width="58" height="58"/>
         <image name="background" width="750" height="1334"/>
         <image name="camera_icon" width="31" height="25"/>
+        <image name="cancel_btn" width="312" height="44"/>
         <image name="fb_normal" width="76" height="76"/>
         <image name="ic_favorite_filter1" width="32" height="32"/>
         <image name="ic_new_filter1" width="32" height="32"/>
-        <image name="ic_price_filter1" width="65" height="65"/>
+        <image name="ic_price_filter1" width="32" height="32"/>
         <image name="listing_comment" width="35" height="35"/>
         <image name="listing_facebook" width="35" height="35"/>
         <image name="listing_info" width="35" height="35"/>
@@ -1213,6 +1221,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="G1w-cs-YeN"/>
+        <segue reference="amZ-Vo-ytg"/>
     </inferredMetricsTieBreakers>
 </document>

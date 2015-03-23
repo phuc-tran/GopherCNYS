@@ -62,6 +62,7 @@ PFGeoPoint *currentLocaltion;
     isPriceTopSelected = NO;
     
     [productTableView reloadData];
+    NSLog(@"reload table");
 }
 
 #pragma mark - TableView delegate
@@ -110,6 +111,7 @@ PFGeoPoint *currentLocaltion;
     [cell loadData];
     
     if ([self checkIfUserLoggedIn]) {
+        cell.btnFavorited.hidden = FALSE;
         NSArray *favoriteArr = [[productData objectAtIndex:indexPath.row] objectForKey:@"favoritors"];
     
         if ([self checkItemisFavorited:favoriteArr]) { // is favorited
