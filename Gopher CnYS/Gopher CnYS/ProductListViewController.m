@@ -9,6 +9,7 @@
 #import "ProductListViewController.h"
 #import "ProductTableViewCell.h"
 #import "ProductHeaderView.h"
+#import "ProductDetailViewController.h"
 
 
 @interface ProductListViewController () <ProductTableViewCellDelegate>
@@ -20,6 +21,7 @@ NSArray *productMasterData;
 NSArray *productFavoriteData;
 NSMutableArray *distanceProducts;
 PFGeoPoint *currentLocaltion;
+NSUInteger selectedIndex;
 
 @implementation ProductListViewController
 
@@ -48,7 +50,6 @@ PFGeoPoint *currentLocaltion;
     [self createToolbarItems];
 }
 
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationItem setTitle:@"Products"];
@@ -63,6 +64,17 @@ PFGeoPoint *currentLocaltion;
     
     [productTableView reloadData];
     NSLog(@"reload table");
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"ProductDetaiFormProduct"])
+    {
+        ProductDetailViewController *vc = [segue destinationViewController];
+        [vc setProductData:productMasterData];
+        [vc setSelectedIndex:selectedIndex];
+    }
 }
 
 #pragma mark - TableView delegate
@@ -94,6 +106,7 @@ PFGeoPoint *currentLocaltion;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    selectedIndex = indexPath.row;
     [self performSegueWithIdentifier:@"ProductDetaiFormProduct" sender:self];
 }
 
@@ -165,7 +178,7 @@ PFGeoPoint *currentLocaltion;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    [query selectKeys:@[@"description", @"title", @"photo1", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors", @"category"]];
+    [query selectKeys:@[@"description", @"title", @"photo1", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors", @"category", @"condition", @"quantity"]];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];

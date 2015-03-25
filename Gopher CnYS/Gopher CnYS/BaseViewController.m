@@ -19,6 +19,11 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -39,6 +44,10 @@
 
 - (void)setupRightMenuBarButtonItem {
     self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
+}
+
+- (void)setupBackBarButtonItem {
+    self.navigationItem.backBarButtonItem = [self backCustomBarButtonItem];
 }
 
 -(void)leftMenuClick:(UIBarButtonItem*)btn
@@ -74,6 +83,14 @@
     [button setImage:buttonImage forState:UIControlStateNormal];
     button.frame = CGRectMake(0.0f, 0.0f, 25.0f, 25.0f);
     [button addTarget:self action:@selector(leftBackClick:) forControlEvents:UIControlEventTouchUpInside];
+    return [[UIBarButtonItem alloc] initWithCustomView:button];
+}
+
+- (UIBarButtonItem *)backCustomBarButtonItem {
+    UIImage *buttonImage = [UIImage imageNamed:@"back_icon.png"];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    button.frame = CGRectMake(0.0f, 0.0f, 25.0f, 25.0f);
     return [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 

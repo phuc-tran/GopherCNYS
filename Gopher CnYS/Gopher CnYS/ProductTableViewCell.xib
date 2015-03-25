@@ -120,7 +120,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="btn_star_big_off" width="55" height="55"/>
+        <image name="btn_star_big_off" width="27" height="27"/>
         <image name="location_icon" width="20" height="20"/>
         <image name="price_icon" width="20" height="20"/>
     </resources>
