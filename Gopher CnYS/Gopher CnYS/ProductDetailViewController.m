@@ -7,14 +7,14 @@
 //
 
 #import "ProductDetailViewController.h"
-#import <Parse/Parse.h>
+
 @interface ProductDetailViewController ()
 
 @end
 
 @implementation ProductDetailViewController
 
-@synthesize productData, selectedIndex;
+@synthesize productData, selectedIndex, currentLocaltion, carousel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,16 +24,39 @@
 //    UIBarButtonItem *backbtn = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 //    backbtn.tintColor = [UIColor blackColor];
 //    self.navigationItem.backBarButtonItem = backbtn;
+    
+    self.carouselController = [[FPCarouselNonXIBViewController alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, carousel.frame.size.height)];
+    [self.carousel addSubview:self.carouselController.view];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    PFFile *imageFile = [[productData objectAtIndex:selectedIndex] objectForKey:@"photo1"];
-    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-        if (!error) {
-            UIImage *image = [UIImage imageWithData:data];
-            self.productImgaeView.image = image;
-        }
-    }];
+    
+//    PFFile *imageFile = [[productData objectAtIndex:selectedIndex] objectForKey:@"photo1"];
+//    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+//        if (!error) {
+//            UIImage *image = [UIImage imageWithData:data];
+//            self.productImgaeView.image = image;
+//        }
+//    }];
+    
+    
+    PFGeoPoint *positionItem  = [[productData objectAtIndex:selectedIndex] objectForKey:@"position"];
+    self.productlocationLbl.text = [NSString stringWithFormat:@"%.f miles", [currentLocaltion distanceInMilesTo:positionItem]];
+    
+//    PFUser *seller = [[productData objectAtIndex:selectedIndex] valueForKey:@"seller"];
+//    PFQuery *query = [PFQuery queryWithClassName:@"User"];
+//    [query whereKey:@"objectId" equalTo:[seller objectId]];
+//    [query selectKeys:@[@"username", @"name"]];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (!error) {
+//            // The find succeeded.
+//            self.productSellerLbl.text = [[objects objectAtIndex:0] valueForKey:@"username"];
+//        } else {
+//            // Log details of the failure
+//            NSLog(@"Error: %@ %@", error, [error userInfo]);
+//        }
+//    }];
+
     
     self.productNameLbl.text = [[productData objectAtIndex:selectedIndex] valueForKey:@"title"];
     self.productDescription.textColor = [UIColor colorWithRed:148/255.0f green:148/255.0f blue:148/255.0f alpha:1.0f];
@@ -54,6 +77,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

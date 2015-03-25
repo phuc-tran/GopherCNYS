@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import <Parse/Parse.h>
+#import "FPCarouselNonXIBViewController.h"
 
 @interface ProductDetailViewController : BaseViewController
 {
     NSArray *productData;
     NSUInteger selectedIndex;
+    PFGeoPoint *currentLocaltion;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *productImgaeView;
@@ -22,8 +25,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *productPriceLbl;
 @property (weak, nonatomic) IBOutlet UILabel *productQuantityLbl;
 @property (weak, nonatomic) IBOutlet UILabel *productPostedLbl;
+@property (weak, nonatomic) IBOutlet UILabel *productlocationLbl;
+@property (weak, nonatomic) IBOutlet UILabel *productSellerLbl;
 
 @property (nonatomic, retain) NSArray *productData;
 @property (nonatomic, assign) NSUInteger selectedIndex;
+@property (nonatomic, retain) PFGeoPoint *currentLocaltion;
+
+@property (nonatomic, strong) IBOutlet UIView *carousel;
+@property (strong,nonatomic) FPCarouselNonXIBViewController *carouselController;
 
 @end

@@ -47,6 +47,7 @@
 		18A6B7C91A6566BC0043E08A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A6B7C81A6566BC0043E08A /* MobileCoreServices.framework */; };
 		18A6B7CC1A657F420043E08A /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A6B7CB1A657F420043E08A /* CreateAccountViewController.m */; };
 		18BA5C581A736180002EBF83 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BA5C571A736180002EBF83 /* ProductTableViewCell.xib */; };
+		AB519E3B1AC31E70008543B1 /* FPCarouselNonXIBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB519E3A1AC31E70008543B1 /* FPCarouselNonXIBViewController.m */; };
 		AB6E34AE1ABC69D900867CA3 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34A91ABC69D900867CA3 /* RECommonFunctions.m */; };
 		AB6E34AF1ABC69D900867CA3 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34AB1ABC69D900867CA3 /* RESideMenu.m */; };
 		AB6E34B01ABC69D900867CA3 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34AD1ABC69D900867CA3 /* UIViewController+RESideMenu.m */; };
@@ -126,6 +127,8 @@
 		18A6B7CA1A657F420043E08A /* CreateAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAccountViewController.h; sourceTree = "<group>"; };
 		18A6B7CB1A657F420043E08A /* CreateAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAccountViewController.m; sourceTree = "<group>"; };
 		18BA5C571A736180002EBF83 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
+		AB519E391AC31E70008543B1 /* FPCarouselNonXIBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPCarouselNonXIBViewController.h; sourceTree = "<group>"; };
+		AB519E3A1AC31E70008543B1 /* FPCarouselNonXIBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPCarouselNonXIBViewController.m; sourceTree = "<group>"; };
 		AB6E34A81ABC69D900867CA3 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		AB6E34A91ABC69D900867CA3 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		AB6E34AA1ABC69D900867CA3 /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
@@ -341,6 +344,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AB519E351AC316ED008543B1 /* iCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				AB519E391AC31E70008543B1 /* FPCarouselNonXIBViewController.h */,
+				AB519E3A1AC31E70008543B1 /* FPCarouselNonXIBViewController.m */,
+			);
+			path = iCarousel;
+			sourceTree = "<group>";
+		};
 		AB6E34A71ABC69D900867CA3 /* RESideMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,6 +378,7 @@
 		AB8B709A1ABB388B0028DC47 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				AB519E351AC316ED008543B1 /* iCarousel */,
 				ABEC4DC51ABD8152000CF27C /* CustomView */,
 				AB6E34A71ABC69D900867CA3 /* RESideMenu */,
 				AB8B709D1ABB388B0028DC47 /* MBProgressHUD */,
@@ -531,6 +544,7 @@
 				185FDE091A73F7AD00A452CE /* Product.m in Sources */,
 				1864BF0E1A4B1EA300EF5DD7 /* AppDelegate.m in Sources */,
 				ABEC4DB91ABD6719000CF27C /* AboutViewController.m in Sources */,
+				AB519E3B1AC31E70008543B1 /* FPCarouselNonXIBViewController.m in Sources */,
 				AB6E34B01ABC69D900867CA3 /* UIViewController+RESideMenu.m in Sources */,
 				ABEC4DC41ABD801B000CF27C /* SellViewController.m in Sources */,
 				AB6E34AF1ABC69D900867CA3 /* RESideMenu.m in Sources */,

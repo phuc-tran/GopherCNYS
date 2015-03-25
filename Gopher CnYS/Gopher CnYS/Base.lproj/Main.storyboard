@@ -391,9 +391,15 @@
                                         <color key="textColor" red="0.25098039220000001" green="0.87058823529999996" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance: 3 miles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nrp-5d-N8N">
-                                        <rect key="frame" x="72" y="38" width="117" height="25"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nrp-5d-N8N">
+                                        <rect key="frame" x="72" y="42" width="59" height="25"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                                        <color key="textColor" red="0.72941176470000002" green="0.72941176470000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="miles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUV-Tp-PoS">
+                                        <rect key="frame" x="127" y="42" width="67" height="25"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                                         <color key="textColor" red="0.72941176470000002" green="0.72941176470000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -564,23 +570,22 @@
                                     <constraint firstAttribute="trailing" secondItem="HgQ-St-R1v" secondAttribute="trailing" id="zMN-z7-iAN"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K3a-lA-gAy">
-                                <rect key="frame" x="100" y="129" width="120" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="B7t-6X-uAM"/>
-                                    <constraint firstAttribute="height" constant="120" id="ReH-fT-bBC"/>
-                                </constraints>
-                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xud-ug-0bV">
+                                <rect key="frame" x="0.0" y="114" width="320" height="148"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="ixs-rb-8S4" secondAttribute="centerX" id="2wx-5a-gJT"/>
-                            <constraint firstItem="ixs-rb-8S4" firstAttribute="top" secondItem="K3a-lA-gAy" secondAttribute="bottom" constant="21" id="3E9-88-mgn"/>
-                            <constraint firstItem="K3a-lA-gAy" firstAttribute="top" secondItem="NmB-5v-OEL" secondAttribute="bottom" constant="15" id="4EW-01-Ld8"/>
                             <constraint firstItem="ixs-rb-8S4" firstAttribute="leading" secondItem="XiY-Js-Gj8" secondAttribute="leading" id="4HC-bJ-dHW"/>
                             <constraint firstItem="Qcp-Fe-wP3" firstAttribute="leading" secondItem="XiY-Js-Gj8" secondAttribute="leading" id="8ak-ST-QR0"/>
-                            <constraint firstAttribute="centerX" secondItem="K3a-lA-gAy" secondAttribute="centerX" id="UNt-ga-b6D"/>
+                            <constraint firstItem="ixs-rb-8S4" firstAttribute="top" secondItem="XiY-Js-Gj8" secondAttribute="top" constant="270" id="9Rb-jh-qPV"/>
+                            <constraint firstAttribute="centerX" secondItem="xud-ug-0bV" secondAttribute="centerX" id="K79-Na-3UZ"/>
+                            <constraint firstAttribute="trailing" secondItem="xud-ug-0bV" secondAttribute="trailing" id="Puu-B6-kBs"/>
+                            <constraint firstItem="xud-ug-0bV" firstAttribute="top" secondItem="NmB-5v-OEL" secondAttribute="bottom" id="TJ3-v3-Hnx"/>
+                            <constraint firstItem="ixs-rb-8S4" firstAttribute="top" secondItem="xud-ug-0bV" secondAttribute="bottom" constant="8" id="TNn-NN-iJQ"/>
                             <constraint firstItem="NmB-5v-OEL" firstAttribute="top" secondItem="osG-1v-41Q" secondAttribute="bottom" id="URw-cB-a4j"/>
+                            <constraint firstItem="xud-ug-0bV" firstAttribute="leading" secondItem="XiY-Js-Gj8" secondAttribute="leading" id="bc6-Al-DA4"/>
                             <constraint firstAttribute="trailing" secondItem="Qcp-Fe-wP3" secondAttribute="trailing" id="dHX-Oj-wg6"/>
                             <constraint firstItem="Qcp-Fe-wP3" firstAttribute="top" secondItem="ixs-rb-8S4" secondAttribute="bottom" id="fm2-A4-kxO"/>
                             <constraint firstItem="8w3-6j-fU2" firstAttribute="top" secondItem="Qcp-Fe-wP3" secondAttribute="bottom" id="jFf-r8-8mo"/>
@@ -591,13 +596,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="RKD-lP-4ee"/>
                     <connections>
+                        <outlet property="carousel" destination="xud-ug-0bV" id="Ynl-lv-3UN"/>
                         <outlet property="productConditionLbl" destination="132-jK-1lQ" id="0pg-GN-zLV"/>
                         <outlet property="productDescription" destination="gHT-vu-Tvi" id="GP4-Yp-Mv2"/>
-                        <outlet property="productImgaeView" destination="K3a-lA-gAy" id="oSX-9m-HYW"/>
                         <outlet property="productNameLbl" destination="1mc-dE-ewM" id="GBj-GS-dMc"/>
                         <outlet property="productPostedLbl" destination="HgQ-St-R1v" id="Ej6-u1-JKk"/>
                         <outlet property="productPriceLbl" destination="XW2-pu-Kka" id="Ko6-M2-CYv"/>
                         <outlet property="productQuantityLbl" destination="6KJ-5R-DD0" id="PCh-Qc-nEg"/>
+                        <outlet property="productSellerLbl" destination="CQH-yD-79N" id="QMi-gB-1mI"/>
+                        <outlet property="productlocationLbl" destination="HUV-Tp-PoS" id="4pe-L2-gbf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UgI-q2-fAo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1237,6 +1244,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hYo-kG-6iH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1513" y="-559"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="7As-Nb-97l">
+            <objects>
+                <viewController id="lX6-SL-y1v" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xRT-iC-Lgp"/>
+                        <viewControllerLayoutGuide type="bottom" id="G35-cW-VtZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YDN-Vf-Npg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bZw-7M-DoC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="DMy-LA-q8k">
+            <objects>
+                <viewController id="xkV-Sd-Ryu" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NK2-Uj-UtR"/>
+                        <viewControllerLayoutGuide type="bottom" id="TH1-dp-q5V"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="X2e-8q-lrJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dZD-La-go2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>
