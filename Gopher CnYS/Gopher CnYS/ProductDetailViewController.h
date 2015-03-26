@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *productPostedLbl;
 @property (weak, nonatomic) IBOutlet UILabel *productlocationLbl;
 @property (weak, nonatomic) IBOutlet UILabel *productSellerLbl;
+@property (weak, nonatomic) IBOutlet UIImageView *profileAvatar;
 
 @property (nonatomic, retain) NSArray *productData;
 @property (nonatomic, assign) NSUInteger selectedIndex;

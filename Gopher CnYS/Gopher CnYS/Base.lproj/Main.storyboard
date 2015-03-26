@@ -605,6 +605,7 @@
                         <outlet property="productQuantityLbl" destination="6KJ-5R-DD0" id="PCh-Qc-nEg"/>
                         <outlet property="productSellerLbl" destination="CQH-yD-79N" id="QMi-gB-1mI"/>
                         <outlet property="productlocationLbl" destination="HUV-Tp-PoS" id="4pe-L2-gbf"/>
+                        <outlet property="profileAvatar" destination="9Ns-w9-hG7" id="Mox-ef-emw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UgI-q2-fAo" userLabel="First Responder" sceneMemberID="firstResponder"/>

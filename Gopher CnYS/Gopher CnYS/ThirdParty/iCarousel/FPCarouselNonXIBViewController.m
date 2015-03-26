@@ -111,6 +111,10 @@
     [self setupCarousel];
 }
 
+- (void)viewDidUnload {
+    [self removeObserver:self forKeyPath:@"data" context:nil];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -328,4 +332,5 @@
 - (void)initWithArray:(NSArray *)array keyPathForImageOfItem:(NSString *)keyPath {
     
 }
+
 @end
