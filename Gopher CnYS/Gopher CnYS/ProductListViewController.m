@@ -26,7 +26,7 @@ NSUInteger selectedIndex;
 @implementation ProductListViewController
 
 @synthesize productTableView;
-@synthesize btnFavorite, btnNew, btnPrice, btnSignIn, btnSelectCategory;
+@synthesize btnFavorite, btnNew, btnPrice, btnSelectCategory;
 
 #pragma mark - Self View Life Cycle
 - (void)viewDidLoad {
@@ -45,18 +45,13 @@ NSUInteger selectedIndex;
                forCellReuseIdentifier:@"ProductTableViewCell"];
     
     [self loadProductList];
-    categoryData = [NSArray arrayWithObjects:@"All Categories", @"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];
-    
-    [self createToolbarItems];
+    categoryData = [NSArray arrayWithObjects:@"All Categories", @"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationItem setTitle:@"Products"];
     [self setupMenuBarButtonItems];
-    
-    self.containerPickerView.hidden = YES;
-    [self hidePickerViewAnimation];
     
     isFavoriteTopSelected = NO;
     isNewTopSelected = NO;
@@ -233,8 +228,6 @@ NSUInteger selectedIndex;
 
 #pragma mark - Action
 -(void)updateSelected:(NSInteger)index {
-    self.containerPickerView.hidden = YES;
-    [self hidePickerViewAnimation];
     switch (index) {
         case 0:
             isFavoriteTopSelected = !isFavoriteTopSelected;
@@ -345,7 +338,55 @@ NSUInteger selectedIndex;
 
 - (IBAction)selecetCategoryBtnClick:(id)sender
 {
-    [self showPickerViewAnimation];
+    //[self showPickerViewAnimation];
+    SBPickerSelector *picker = [SBPickerSelector picker];
+    picker.pickerData = [[NSMutableArray alloc] initWithArray:categoryData];
+    picker.delegate = self;
+    picker.pickerType = SBPickerSelectorTypeText;
+    picker.doneButtonTitle = @"Done";
+    picker.cancelButtonTitle = @"Cancel";
+    picker.tag = 100;
+    [picker showPickerIpadFromRect:self.view.frame inView:self.view];
+}
+
+#pragma mark - SBPickerSelectorDelegate
+-(void) pickerSelector:(SBPickerSelector *)selector selectedValue:(NSString *)value index:(NSInteger)idx;
+{
+    if(isFavoriteTopSelected) {
+        if(idx == 0) {
+            productData = productFavoriteData;
+            [productTableView reloadData];
+            return;
+        } else {
+            NSMutableArray *finalArray = [[NSMutableArray alloc] init];
+            for (int i = 0; i < productFavoriteData.count; i++) {
+                NSInteger ctg = [[[productFavoriteData objectAtIndex:i] valueForKey:@"category"] integerValue];
+                if (ctg == idx) {
+                    [finalArray addObject:[productFavoriteData objectAtIndex:i]];
+                }
+            }
+            productData = finalArray;
+        }
+    } else {
+        if(idx == 0) {
+            productData = productMasterData;
+            [productTableView reloadData];
+            return;
+        }
+        NSMutableArray *finalArray = [[NSMutableArray alloc] init];
+        for (int i = 0; i < productMasterData.count; i++) {
+            NSInteger ctg = [[[productMasterData objectAtIndex:i] valueForKey:@"category"] integerValue];
+            if (ctg == idx) {
+                [finalArray addObject:[productMasterData objectAtIndex:i]];
+            }
+        }
+        productData = finalArray;
+    }
+    [self.btnSelectCategory setTitle:value forState:UIControlStateNormal];
+    [productTableView reloadData];
+}
+-(void) pickerSelector:(SBPickerSelector *)selector cancelPicker:(BOOL)cancel {
+    
 }
 
 #pragma mark - ProductTableViewCellDelegate
@@ -381,104 +422,5 @@ NSUInteger selectedIndex;
             [item saveInBackground];
         }
     }
-}
-
-#pragma mark - UIPickerViewDelegate
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return categoryData.count;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return [categoryData objectAtIndex:row];
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    
-    if(isFavoriteTopSelected) {
-        if(row == 0) {
-            productData = productFavoriteData;
-            [productTableView reloadData];
-            return;
-        } else {
-            NSMutableArray *finalArray = [[NSMutableArray alloc] init];
-            for (int i = 0; i < productFavoriteData.count; i++) {
-                NSInteger ctg = [[[productFavoriteData objectAtIndex:i] valueForKey:@"category"] integerValue];
-                if (ctg == row) {
-                    [finalArray addObject:[productFavoriteData objectAtIndex:i]];
-                }
-            }
-            productData = finalArray;
-        }
-    } else {
-        if(row == 0) {
-            productData = productMasterData;
-            [productTableView reloadData];
-            return;
-        }
-        NSMutableArray *finalArray = [[NSMutableArray alloc] init];
-        for (int i = 0; i < productMasterData.count; i++) {
-            NSInteger ctg = [[[productMasterData objectAtIndex:i] valueForKey:@"category"] integerValue];
-            if (ctg == row) {
-                [finalArray addObject:[productMasterData objectAtIndex:i]];
-            }
-        }
-        productData = finalArray;
-    }
-    [btnSelectCategory setTitle:[categoryData objectAtIndex:row] forState:UIControlStateNormal];
-    //[categoryData objectAtIndex:row];
-
-    [productTableView reloadData];
-}
-
-- (void)hidePickerViewAnimation{
-    //    isHiddenPicker = YES;
-    [UIView beginAnimations:@"hidePickerView" context:nil];
-    [UIView setAnimationDuration:0.3];
-    CGRect frame = self.containerPickerView.frame;
-    frame.origin.y += (float)frame.size.height;
-    self.containerPickerView.frame = frame;
-    [UIView commitAnimations];
-}
-
-- (void)showPickerViewAnimation{
-    //    isHiddenPicker = NO;
-    self.containerPickerView.hidden = NO;
-    [UIView beginAnimations:@"showPickerView" context:nil];
-    [UIView setAnimationDuration:0.3];
-    float heightOfScreen = self.view.frame.size.height;
-    float yCoordinate = heightOfScreen - self.containerPickerView.frame.size.height - self.bottomView.frame.size.height;
-    CGRect frame = self.containerPickerView.frame;
-    frame.origin.y = yCoordinate;
-    self.containerPickerView.frame = frame;
-    [UIView commitAnimations];
-}
-
-- (void)createToolbarItems
-{
-    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                               target:nil
-                                                                               action:NULL];
-    UIBarButtonItem *doneItem = nil;
-    doneItem = [self createDoneButton];
-    [self.pickerToolbar setItems:[NSArray arrayWithObjects:spaceItem, doneItem, nil]];
-}
-
-- (UIBarButtonItem*)createDoneButton
-{
-    UIBarButtonItem *doneItem = nil;
-    doneItem = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                    style:UIBarButtonItemStyleDone
-                                                   target:self
-                                                   action:@selector(pickerDoneClick:)];
-    return doneItem;
-}
-
-- (IBAction)pickerDoneClick:(id)sender {
-    [self hidePickerViewAnimation];
 }
 @end

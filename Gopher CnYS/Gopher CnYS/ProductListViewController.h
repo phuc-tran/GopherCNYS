@@ -10,8 +10,9 @@
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
 #import "BaseViewController.h"
+#import "SBPickerSelector.h"
 
-@interface ProductListViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface ProductListViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource, SBPickerSelectorDelegate>
 {
     NSArray *categoryData;
     BOOL isFavoriteTopSelected;
@@ -20,10 +21,6 @@
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *productTableView;
-@property (weak, nonatomic) IBOutlet UIButton *btnSignIn;
-@property (weak, nonatomic) IBOutlet UIPickerView *categoryPicker;
-@property (weak, nonatomic) IBOutlet UIView *containerPickerView;
-@property (weak, nonatomic) IBOutlet UIToolbar *pickerToolbar;
 @property (weak, nonatomic) IBOutlet UIButton *btnFavorite;
 @property (weak, nonatomic) IBOutlet UIButton *btnPrice;
 @property (weak, nonatomic) IBOutlet UIButton *btnNew;

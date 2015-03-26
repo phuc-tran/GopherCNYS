@@ -59,6 +59,10 @@
 		AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7CB4C91AB1F0A20017E183 /* ProductHeaderView.m */; };
 		AB7CB4CC1AB1F0A20017E183 /* ProductHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7CB4CA1AB1F0A20017E183 /* ProductHeaderView.xib */; };
 		AB8B70A11ABB388B0028DC47 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8B709F1ABB388B0028DC47 /* MBProgressHUD.m */; };
+		ABA4F0CF1AC46F9E008915F7 /* SBPickerSelector.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABA4F0CB1AC46F9E008915F7 /* SBPickerSelector.xib */; };
+		ABA4F0D01AC46F9E008915F7 /* SBPickerSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA4F0CE1AC46F9E008915F7 /* SBPickerSelector.m */; };
+		ABA4F0D51AC4711E008915F7 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ABA4F0D21AC4711E008915F7 /* CountryPicker.bundle */; };
+		ABA4F0D61AC4711E008915F7 /* CountryPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA4F0D41AC4711E008915F7 /* CountryPicker.m */; };
 		ABEC4DB91ABD6719000CF27C /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DB81ABD6719000CF27C /* AboutViewController.m */; };
 		ABEC4DBC1ABD6898000CF27C /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DBB1ABD6898000CF27C /* ProfileViewController.m */; };
 		ABEC4DBF1ABD6A12000CF27C /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DBE1ABD6A12000CF27C /* BaseViewController.m */; };
@@ -150,6 +154,12 @@
 		AB7CB4CA1AB1F0A20017E183 /* ProductHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductHeaderView.xib; sourceTree = "<group>"; };
 		AB8B709E1ABB388B0028DC47 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		AB8B709F1ABB388B0028DC47 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		ABA4F0CB1AC46F9E008915F7 /* SBPickerSelector.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SBPickerSelector.xib; sourceTree = "<group>"; };
+		ABA4F0CD1AC46F9E008915F7 /* SBPickerSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPickerSelector.h; sourceTree = "<group>"; };
+		ABA4F0CE1AC46F9E008915F7 /* SBPickerSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPickerSelector.m; sourceTree = "<group>"; };
+		ABA4F0D21AC4711E008915F7 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPicker.bundle; sourceTree = "<group>"; };
+		ABA4F0D31AC4711E008915F7 /* CountryPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryPicker.h; sourceTree = "<group>"; };
+		ABA4F0D41AC4711E008915F7 /* CountryPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryPicker.m; sourceTree = "<group>"; };
 		ABEC4DB71ABD6719000CF27C /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		ABEC4DB81ABD6719000CF27C /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		ABEC4DBA1ABD6898000CF27C /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -378,6 +388,8 @@
 		AB8B709A1ABB388B0028DC47 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				ABA4F0D11AC4711E008915F7 /* CountryPicker */,
+				ABA4F0C91AC46F9E008915F7 /* SBPickerSelector */,
 				AB519E351AC316ED008543B1 /* iCarousel */,
 				ABEC4DC51ABD8152000CF27C /* CustomView */,
 				AB6E34A71ABC69D900867CA3 /* RESideMenu */,
@@ -393,6 +405,42 @@
 				AB8B709F1ABB388B0028DC47 /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		ABA4F0C91AC46F9E008915F7 /* SBPickerSelector */ = {
+			isa = PBXGroup;
+			children = (
+				ABA4F0CA1AC46F9E008915F7 /* Resources */,
+				ABA4F0CC1AC46F9E008915F7 /* Source */,
+			);
+			path = SBPickerSelector;
+			sourceTree = "<group>";
+		};
+		ABA4F0CA1AC46F9E008915F7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ABA4F0CB1AC46F9E008915F7 /* SBPickerSelector.xib */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		ABA4F0CC1AC46F9E008915F7 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				ABA4F0CD1AC46F9E008915F7 /* SBPickerSelector.h */,
+				ABA4F0CE1AC46F9E008915F7 /* SBPickerSelector.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		ABA4F0D11AC4711E008915F7 /* CountryPicker */ = {
+			isa = PBXGroup;
+			children = (
+				ABA4F0D21AC4711E008915F7 /* CountryPicker.bundle */,
+				ABA4F0D31AC4711E008915F7 /* CountryPicker.h */,
+				ABA4F0D41AC4711E008915F7 /* CountryPicker.m */,
+			);
+			path = CountryPicker;
 			sourceTree = "<group>";
 		};
 		ABEC4DC01ABD6E0E000CF27C /* General */ = {
@@ -516,8 +564,10 @@
 				1864BF141A4B1EA300EF5DD7 /* Main.storyboard in Resources */,
 				1864BF191A4B1EA300EF5DD7 /* LaunchScreen.xib in Resources */,
 				18BA5C581A736180002EBF83 /* ProductTableViewCell.xib in Resources */,
+				ABA4F0CF1AC46F9E008915F7 /* SBPickerSelector.xib in Resources */,
 				18801F2B1A6A57CE006D956B /* GooglePlus.bundle in Resources */,
 				1864BF161A4B1EA300EF5DD7 /* Images.xcassets in Resources */,
+				ABA4F0D51AC4711E008915F7 /* CountryPicker.bundle in Resources */,
 				AB7CB4CC1AB1F0A20017E183 /* ProductHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -537,6 +587,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABA4F0D61AC4711E008915F7 /* CountryPicker.m in Sources */,
 				1864BF111A4B1EA300EF5DD7 /* HomeViewController.m in Sources */,
 				AB72F3391AB734D6003900E9 /* ProductDetailViewController.m in Sources */,
 				18A6B7CC1A657F420043E08A /* CreateAccountViewController.m in Sources */,
@@ -546,6 +597,7 @@
 				ABEC4DB91ABD6719000CF27C /* AboutViewController.m in Sources */,
 				AB519E3B1AC31E70008543B1 /* FPCarouselNonXIBViewController.m in Sources */,
 				AB6E34B01ABC69D900867CA3 /* UIViewController+RESideMenu.m in Sources */,
+				ABA4F0D01AC46F9E008915F7 /* SBPickerSelector.m in Sources */,
 				ABEC4DC41ABD801B000CF27C /* SellViewController.m in Sources */,
 				AB6E34AF1ABC69D900867CA3 /* RESideMenu.m in Sources */,
 				AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */,

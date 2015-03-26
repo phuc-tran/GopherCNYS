@@ -692,35 +692,6 @@
                                     <outlet property="delegate" destination="KUb-wv-JfL" id="PS5-rj-9Yu"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lOi-a4-w8z">
-                                <rect key="frame" x="0.0" y="315" width="320" height="206"/>
-                                <subviews>
-                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9Q-pX-xKI">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <items>
-                                            <barButtonItem title="Item" id="gsk-8o-7UZ"/>
-                                        </items>
-                                    </toolbar>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zYp-ZP-Dmj">
-                                        <rect key="frame" x="0.0" y="44" width="320" height="162"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="KUb-wv-JfL" id="np9-EF-dLt"/>
-                                            <outlet property="delegate" destination="KUb-wv-JfL" id="jU0-FA-AJg"/>
-                                        </connections>
-                                    </pickerView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="zYp-ZP-Dmj" firstAttribute="top" secondItem="V9Q-pX-xKI" secondAttribute="bottom" id="0do-1H-72p"/>
-                                    <constraint firstItem="zYp-ZP-Dmj" firstAttribute="leading" secondItem="lOi-a4-w8z" secondAttribute="leading" id="A7u-0E-Ouu"/>
-                                    <constraint firstItem="V9Q-pX-xKI" firstAttribute="top" secondItem="lOi-a4-w8z" secondAttribute="top" id="HBS-Od-oqw"/>
-                                    <constraint firstAttribute="trailing" secondItem="zYp-ZP-Dmj" secondAttribute="trailing" id="IJH-VJ-Fmu"/>
-                                    <constraint firstItem="zYp-ZP-Dmj" firstAttribute="top" secondItem="V9Q-pX-xKI" secondAttribute="bottom" id="fhD-1N-cCp"/>
-                                    <constraint firstAttribute="trailing" secondItem="V9Q-pX-xKI" secondAttribute="trailing" id="hxH-HZ-2eB"/>
-                                    <constraint firstItem="V9Q-pX-xKI" firstAttribute="leading" secondItem="lOi-a4-w8z" secondAttribute="leading" id="sK5-Bh-Ycg"/>
-                                    <constraint firstAttribute="bottom" secondItem="zYp-ZP-Dmj" secondAttribute="bottom" id="yhi-th-CE2"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJo-1g-VxG" userLabel="BottomView">
                                 <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                                 <subviews>
@@ -751,13 +722,9 @@
                             <constraint firstItem="2mK-JS-62S" firstAttribute="leading" secondItem="uc3-gh-lbp" secondAttribute="leading" id="3tB-zO-n08"/>
                             <constraint firstAttribute="trailing" secondItem="zJo-1g-VxG" secondAttribute="trailing" id="6Mu-MK-PZD"/>
                             <constraint firstAttribute="bottom" secondItem="zJo-1g-VxG" secondAttribute="bottom" id="6nd-3e-OYW"/>
-                            <constraint firstAttribute="bottom" secondItem="lOi-a4-w8z" secondAttribute="bottom" constant="47" id="Eam-Cu-Zex"/>
                             <constraint firstItem="zJo-1g-VxG" firstAttribute="leading" secondItem="uc3-gh-lbp" secondAttribute="leading" id="N7Y-wQ-1Sv"/>
                             <constraint firstItem="7Hq-iF-pDA" firstAttribute="top" secondItem="2mK-JS-62S" secondAttribute="bottom" id="Ogh-a3-uTo"/>
-                            <constraint firstAttribute="centerX" secondItem="lOi-a4-w8z" secondAttribute="centerX" id="T1N-28-CSA"/>
                             <constraint firstItem="7Hq-iF-pDA" firstAttribute="leading" secondItem="uc3-gh-lbp" secondAttribute="leading" id="c48-bh-jHC"/>
-                            <constraint firstItem="lOi-a4-w8z" firstAttribute="leading" secondItem="uc3-gh-lbp" secondAttribute="leading" id="giu-b0-8qf"/>
-                            <constraint firstAttribute="trailing" secondItem="lOi-a4-w8z" secondAttribute="trailing" id="guA-nW-pSE"/>
                             <constraint firstItem="5Ug-d9-gBZ" firstAttribute="top" secondItem="7Hq-iF-pDA" secondAttribute="bottom" constant="47" id="jja-Mz-0BW"/>
                             <constraint firstAttribute="trailing" secondItem="7Hq-iF-pDA" secondAttribute="trailing" id="pe4-H9-0jA"/>
                             <constraint firstItem="2mK-JS-62S" firstAttribute="top" secondItem="hRF-yn-HF8" secondAttribute="bottom" id="w35-FH-C9g"/>
@@ -775,9 +742,6 @@
                         <outlet property="btnNew" destination="Kbi-8K-JaU" id="5f9-lz-Scx"/>
                         <outlet property="btnPrice" destination="4xv-bf-0oc" id="1ai-gF-Vep"/>
                         <outlet property="btnSelectCategory" destination="AdY-gr-72r" id="Yik-xF-hRr"/>
-                        <outlet property="categoryPicker" destination="zYp-ZP-Dmj" id="VDY-OF-7y1"/>
-                        <outlet property="containerPickerView" destination="lOi-a4-w8z" id="arW-IF-p7e"/>
-                        <outlet property="pickerToolbar" destination="V9Q-pX-xKI" id="QjE-ht-d9g"/>
                         <outlet property="productTableView" destination="7Hq-iF-pDA" id="Jpm-L5-DxK"/>
                         <segue destination="yMM-1Y-rcA" kind="push" identifier="ProductDetaiFormProduct" id="Hcj-1n-Msb"/>
                         <segue destination="KBN-7p-nVk" kind="push" identifier="product_list_form_login" id="G1w-cs-YeN"/>
@@ -1090,6 +1054,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lot-Bb-3Po" userLabel="CaptureView">
                                 <rect key="frame" x="0.0" y="66" width="320" height="120"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ptI-kg-ulU">
+                                        <rect key="frame" x="119" y="18" width="83" height="83"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="83" id="OKS-Jp-rJ1"/>
+                                            <constraint firstAttribute="width" constant="83" id="m7k-LK-mU7"/>
+                                        </constraints>
+                                        <state key="normal" image="camera_btn">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="caputerBtnClick:" destination="tyi-7c-ZIe" eventType="touchUpInside" id="agB-b6-fTt"/>
+                                        </connections>
+                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UAu-zK-7VK">
                                         <rect key="frame" x="119" y="18" width="83" height="83"/>
                                         <constraints>
@@ -1100,9 +1077,11 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="ptI-kg-ulU" firstAttribute="top" secondItem="lot-Bb-3Po" secondAttribute="top" constant="18" id="C7J-t6-FjU"/>
                                     <constraint firstAttribute="height" constant="120" id="JTD-7b-hnh"/>
                                     <constraint firstAttribute="centerX" secondItem="UAu-zK-7VK" secondAttribute="centerX" id="LNm-rM-2V1"/>
                                     <constraint firstItem="UAu-zK-7VK" firstAttribute="top" secondItem="lot-Bb-3Po" secondAttribute="top" constant="18" id="RYF-yQ-bAl"/>
+                                    <constraint firstAttribute="centerX" secondItem="ptI-kg-ulU" secondAttribute="centerX" id="hZa-ML-tNB"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JJ6-Vx-CEX">
@@ -1159,15 +1138,9 @@
                                                             <color key="titleColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEr-Uw-DfV">
-                                                        <rect key="frame" x="0.0" y="38" width="121" height="30"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                                                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="New" backgroundImage="select_category">
-                                                            <color key="titleColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
+                                                        <connections>
+                                                            <action selector="categoryBtnClick:" destination="tyi-7c-ZIe" eventType="touchUpInside" id="v8G-md-ZFL"/>
+                                                        </connections>
                                                     </button>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y3W-F8-n7b">
                                                         <rect key="frame" x="207" y="39" width="84" height="30"/>
@@ -1194,6 +1167,18 @@
                                                         <color key="textColor" red="0.74509803921568629" green="0.74509803921568629" blue="0.74509803921568629" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEr-Uw-DfV">
+                                                        <rect key="frame" x="0.0" y="38" width="121" height="30"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                                                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <state key="normal" title="New" backgroundImage="select_category">
+                                                            <color key="titleColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="conditionBtnClick:" destination="tyi-7c-ZIe" eventType="touchUpInside" id="hJd-Uw-bP7"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="4OM-E7-RUG"/>
@@ -1225,6 +1210,7 @@
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="lot-Bb-3Po" firstAttribute="leading" secondItem="0wz-Zm-sNQ" secondAttribute="leading" id="1i5-To-Ews"/>
                             <constraint firstAttribute="centerX" secondItem="lot-Bb-3Po" secondAttribute="centerX" id="K38-YH-UVd"/>
@@ -1236,13 +1222,25 @@
                             <constraint firstAttribute="centerX" secondItem="JJ6-Vx-CEX" secondAttribute="centerX" id="uHn-xy-meO"/>
                             <constraint firstItem="JJ6-Vx-CEX" firstAttribute="top" secondItem="0wz-Zm-sNQ" secondAttribute="top" constant="186" id="zij-OK-tLl"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="jGu-Y4-xxw" appends="YES" id="bHF-GM-Gvm"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Add Product" id="tAm-Yr-nCX"/>
                     <connections>
+                        <outlet property="btnCapture" destination="ptI-kg-ulU" id="ZTc-X0-njP"/>
+                        <outlet property="btnCategory" destination="Vy2-jI-AIq" id="mrc-Yf-Kf5"/>
+                        <outlet property="btnCondition" destination="MEr-Uw-DfV" id="ygy-c3-DuK"/>
+                        <outlet property="productImageView" destination="UAu-zK-7VK" id="yOS-0q-IwS"/>
                         <segue destination="KBN-7p-nVk" kind="push" identifier="add_product_from_login" id="vu3-Jp-7Xk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hYo-kG-6iH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="jGu-Y4-xxw">
+                    <connections>
+                        <action selector="handleTap:" destination="tyi-7c-ZIe" id="LFs-Hh-Gqu"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1513" y="-559"/>
         </scene>
@@ -1293,6 +1291,7 @@
         <image name="add_productDes" width="291" height="142"/>
         <image name="avatarDefault" width="58" height="58"/>
         <image name="background" width="750" height="1334"/>
+        <image name="camera_btn" width="83" height="83"/>
         <image name="camera_icon" width="15" height="12"/>
         <image name="cancel_btn" width="312" height="44"/>
         <image name="fb_normal" width="76" height="76"/>
@@ -1318,6 +1317,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="G1w-cs-YeN"/>
+        <segue reference="vu3-Jp-7Xk"/>
     </inferredMetricsTieBreakers>
 </document>

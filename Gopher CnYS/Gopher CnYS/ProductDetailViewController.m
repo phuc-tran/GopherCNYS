@@ -48,22 +48,13 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     
-//    PFFile *imageFile = [[productData objectAtIndex:selectedIndex] objectForKey:@"photo1"];
-//    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-//        if (!error) {
-//            UIImage *image = [UIImage imageWithData:data];
-//            self.productImgaeView.image = image;
-//        }
-//    }];
-    
-    
     self.productNameLbl.text = [[productData objectAtIndex:selectedIndex] valueForKey:@"title"];
     self.productDescription.textColor = [UIColor colorWithRed:148/255.0f green:148/255.0f blue:148/255.0f alpha:1.0f];
     self.productDescription.text = [[[productData objectAtIndex:selectedIndex] objectForKey:@"description"] description];
     NSInteger price  = [[[productData objectAtIndex:selectedIndex] valueForKey:@"price"] integerValue];
     self.productPriceLbl.text = [NSString stringWithFormat:@"$%ld", (long)price];
     bool condition = [[productData objectAtIndex:selectedIndex] valueForKey:@"condition"];
-    self.productConditionLbl.text = ((condition == true) ? @"Used" : @"");
+    self.productConditionLbl.text = ((condition == true) ? @"New" : @"Used");
     NSInteger quantity = [[[productData objectAtIndex:selectedIndex] valueForKey:@"quantity"] integerValue];
     self.productQuantityLbl.text = [NSString stringWithFormat:@"%ld", (long)quantity];
     NSDateFormatter *dateformater = [[NSDateFormatter alloc] init];
