@@ -59,6 +59,14 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 @property (weak, nonatomic) UIView *snapshotView;
 
+// Customizing
+@property (weak, nonatomic) IBOutlet UIImageView *conversationImageView;
+@property (weak, nonatomic) IBOutlet UILabel *conversationTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *conversationDescLabel;
+@property (weak, nonatomic) IBOutlet UILabel *conversationPriceLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *priceSign;
+
+
 @property (strong, nonatomic) JSQMessagesKeyboardController *keyboardController;
 
 @property (assign, nonatomic) BOOL jsq_isObserving;

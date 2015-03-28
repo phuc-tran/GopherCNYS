@@ -102,9 +102,7 @@
     static NSString *cellIdentifier = @"MessageListCell";
     
     MessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-//    cell.textLabel.text = [NSString stringWithFormat:@"row %ld", (long)indexPath.row];
-    
+
     // Calculate the days / mins / hours of the latest message
     // The maximum days is 7
     NSString *updatedStr = @"";
@@ -138,7 +136,8 @@
     }
     cell.timeLabel.text = updatedStr;
     cell.messageLabel.text = [self.messagesList[indexPath.row] valueForKey:@"message"];
-    
+    cell.avatarImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:[UIImage imageNamed:@"avatarDefault"] withDiameter:70];
+
     PFUser *messenger = [[self.messagesList[indexPath.row] valueForKey:@"roomId"] valueForKey:@"seller"];
     if ([messenger isEqual:[PFUser currentUser]]) {
         messenger = [[self.messagesList[indexPath.row] valueForKey:@"roomId"] valueForKey:@"buyer"];
@@ -148,9 +147,10 @@
         NSLog(@"messenger %@", [messenger valueForKey:@"username"]);
         UIImage *profileAvatar = [messenger valueForKey:@"profileImage"];
         if (profileAvatar != nil) {
-            cell.avatarImageView.image = profileAvatar;
+            cell.avatarImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:profileAvatar withDiameter:70];
         }
     }];
+    
     
     NSString *statusStr = [[self.messagesList [indexPath.row] valueForKey:@"roomId"] valueForKey:@"new"];
     if ([statusStr caseInsensitiveCompare:@"read"] == NSOrderedSame) {

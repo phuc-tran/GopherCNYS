@@ -262,4 +262,12 @@
  */
 - (void)scrollToBottomAnimated:(BOOL)animated;
 
+
+// Customizing
+@property (weak, nonatomic, readonly) UIImageView *conversationImageView;
+@property (weak, nonatomic, readonly) UILabel *conversationTitleLabel;
+@property (weak, nonatomic, readonly) UILabel *conversationDescLabel;
+@property (weak, nonatomic, readonly) UILabel *conversationPriceLabel;
+@property (weak, nonatomic, readonly) UIImageView *priceSign;
+
 @end

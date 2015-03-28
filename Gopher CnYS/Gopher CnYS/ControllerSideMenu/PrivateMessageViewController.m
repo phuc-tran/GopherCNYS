@@ -41,6 +41,8 @@
     
 //    self.title = @"JSQMessages";
     
+    self.collectionView.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:244.0/255.0 blue:244.0/255.0 alpha:1.0];
+    
     /**
      *  You MUST set your senderId and display name
      */
@@ -49,8 +51,6 @@
     
     UIImage *profileAvatar = [[PFUser currentUser] valueForKey:@"profileImage"];
     if (profileAvatar != nil) {
-        self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeMake(70, 70);
-        
         self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:profileAvatar
                                                                                        diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
     }
@@ -60,7 +60,6 @@
     }
 
     if (self.incomingImage) {
-       self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeMake(70, 70);
         self.incomingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:self.incomingImage
                                                                          diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
     }
@@ -148,7 +147,36 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+    
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Products"];
+    [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
+    [query whereKey:@"objectId" equalTo:[[self.chatRoom valueForKey:@"listingId"] valueForKey:@"objectId"]];
+    [query selectKeys:@[@"description", @"title", @"photo1", @"price"]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"found product %@", objects);
+            
+            PFFile *imageFile = [objects[0] objectForKey:@"photo1"];
+            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                if (!error) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    self.conversationImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:image withDiameter:78];
+                }
+            }];
 
+            self.conversationTitleLabel.text = [objects[0] valueForKey:@"title"];
+            self.conversationDescLabel.text = [[objects[0] objectForKey:@"description"] description];
+            self.conversationPriceLabel.text = [NSString stringWithFormat:@"%ld", (long)[[objects[0] valueForKey:@"price"] integerValue]];
+            self.priceSign.hidden = NO;
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 /*
