@@ -10,7 +10,6 @@
 		0D4213B81A64D6EA003F7F01 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4213B71A64D6EA003F7F01 /* CoreMotion.framework */; };
 		182E36001A73A7AB00FA4378 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182E35FF1A73A7AB00FA4378 /* ProductTableViewCell.m */; };
 		1837DAF91A64F65E00C48A51 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1837DAF41A64F65E00C48A51 /* Parse.framework */; };
-		1837DAFA1A64F65E00C48A51 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1837DAF51A64F65E00C48A51 /* ParseCrashReporting.framework */; };
 		1837DAFB1A64F65E00C48A51 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1837DAF61A64F65E00C48A51 /* ParseFacebookUtils.framework */; };
 		183DDC6A1A644C460085F53C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183DDC691A644C460085F53C /* FacebookSDK.framework */; };
 		184962A61A6657B30054AFFE /* ProductListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184962A51A6657B30054AFFE /* ProductListViewController.m */; };
@@ -68,6 +67,10 @@
 		ABEC4DBF1ABD6A12000CF27C /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DBE1ABD6A12000CF27C /* BaseViewController.m */; };
 		ABEC4DC41ABD801B000CF27C /* SellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DC31ABD801B000CF27C /* SellViewController.m */; };
 		ABEC4DCA1ABD8188000CF27C /* BorderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DC91ABD8188000CF27C /* BorderTextField.m */; };
+		B9B1EC261AC6A4F400377E36 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC251AC6A4F400377E36 /* libstdc++.dylib */; };
+		B9B1EC281AC6A7CE00377E36 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC271AC6A7CE00377E36 /* libz.dylib */; };
+		B9B1EC2A1AC6A7E700377E36 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC291AC6A7E700377E36 /* CFNetwork.framework */; };
+		B9B1EC2C1AC6A82900377E36 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC2B1AC6A82900377E36 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +173,10 @@
 		ABEC4DC31ABD801B000CF27C /* SellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellViewController.m; sourceTree = "<group>"; };
 		ABEC4DC81ABD8188000CF27C /* BorderTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorderTextField.h; sourceTree = "<group>"; };
 		ABEC4DC91ABD8188000CF27C /* BorderTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorderTextField.m; sourceTree = "<group>"; };
+		B9B1EC251AC6A4F400377E36 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		B9B1EC271AC6A7CE00377E36 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		B9B1EC291AC6A7E700377E36 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		B9B1EC2B1AC6A82900377E36 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C119F51C40B91BB5CDECEAC6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,26 +185,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A6B7C71A6566530043E08A /* SystemConfiguration.framework in Frameworks */,
+				18801F1D1A6A295F006D956B /* StoreKit.framework in Frameworks */,
+				18A6B7C21A6564F60043E08A /* Security.framework in Frameworks */,
+				B9B1EC2C1AC6A82900377E36 /* QuartzCore.framework in Frameworks */,
+				185F4B4B1A677DB4002D1D1A /* CoreGraphics.framework in Frameworks */,
+				18A6B7C91A6566BC0043E08A /* MobileCoreServices.framework in Frameworks */,
+				B9B1EC2A1AC6A7E700377E36 /* CFNetwork.framework in Frameworks */,
+				B9B1EC281AC6A7CE00377E36 /* libz.dylib in Frameworks */,
+				B9B1EC261AC6A4F400377E36 /* libstdc++.dylib in Frameworks */,
 				185F4B411A677D84002D1D1A /* AddressBook.framework in Frameworks */,
 				185F4B431A677D8B002D1D1A /* AssetsLibrary.framework in Frameworks */,
 				185F4B451A677D94002D1D1A /* Foundation.framework in Frameworks */,
 				185F4B4C1A677DB4002D1D1A /* CoreLocation.framework in Frameworks */,
 				0D4213B81A64D6EA003F7F01 /* CoreMotion.framework in Frameworks */,
-				185F4B4B1A677DB4002D1D1A /* CoreGraphics.framework in Frameworks */,
 				185F4B4D1A677DB4002D1D1A /* CoreText.framework in Frameworks */,
 				185F4B4F1A677DE3002D1D1A /* MediaPlayer.framework in Frameworks */,
-				18A6B7C21A6564F60043E08A /* Security.framework in Frameworks */,
-				18801F1D1A6A295F006D956B /* StoreKit.framework in Frameworks */,
-				18A6B7C71A6566530043E08A /* SystemConfiguration.framework in Frameworks */,
 				185F4B511A677E2E002D1D1A /* UIKit.framework in Frameworks */,
-				18A6B7C91A6566BC0043E08A /* MobileCoreServices.framework in Frameworks */,
 				18A6B7C51A6565EC0043E08A /* AudioToolbox.framework in Frameworks */,
 				18A6B7C31A6565000043E08A /* Social.framework in Frameworks */,
 				18A6B7C11A6564CC0043E08A /* libsqlite3.dylib in Frameworks */,
 				18A6B7C01A6564B90043E08A /* AdSupport.framework in Frameworks */,
 				18A6B7BF1A6564B30043E08A /* Accounts.framework in Frameworks */,
 				1837DAF91A64F65E00C48A51 /* Parse.framework in Frameworks */,
-				1837DAFA1A64F65E00C48A51 /* ParseCrashReporting.framework in Frameworks */,
 				1837DAFB1A64F65E00C48A51 /* ParseFacebookUtils.framework in Frameworks */,
 				183DDC6A1A644C460085F53C /* FacebookSDK.framework in Frameworks */,
 				18801F281A6A57C4006D956B /* GoogleOpenSource.framework in Frameworks */,
@@ -316,6 +326,10 @@
 		186D31991A5E7D49001CBED4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B9B1EC2B1AC6A82900377E36 /* QuartzCore.framework */,
+				B9B1EC291AC6A7E700377E36 /* CFNetwork.framework */,
+				B9B1EC271AC6A7CE00377E36 /* libz.dylib */,
+				B9B1EC251AC6A4F400377E36 /* libstdc++.dylib */,
 				18801F2A1A6A57CE006D956B /* GooglePlus.bundle */,
 				18801F271A6A57C4006D956B /* GoogleOpenSource.framework */,
 				18801F241A6A57B7006D956B /* GooglePlus.framework */,
@@ -718,7 +732,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 			};
@@ -780,7 +794,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CODE_SIGN_FLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = GopherCNYS;
 				PROVISIONING_PROFILE = "504b125b-e053-4c8a-a7ba-44e109e667e6";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -805,7 +819,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CODE_SIGN_FLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = GopherCNYS;
 				PROVISIONING_PROFILE = "504b125b-e053-4c8a-a7ba-44e109e667e6";
 				TARGETED_DEVICE_FAMILY = 1;

@@ -7,6 +7,8 @@
 //
 
 #import "MessagesViewController.h"
+#import "MBProgressHUD.h"
+#import <Parse/Parse.h>
 
 @interface MessagesViewController ()
 
@@ -20,6 +22,9 @@
     [super viewDidLoad];
     self.messagesListTable.allowsMultipleSelectionDuringEditing = NO;
     [self.messagesListTable registerClass:[UITableViewCell class] forCellReuseIdentifier:@"MessageListCell"];
+    
+    // Get list of messages
+    [self loadMessagesList];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -37,6 +42,30 @@
     viewController.view.backgroundColor = [UIColor whiteColor];
     [self.navigationController pushViewController:viewController animated:YES];
 }
+
+
+- (void) loadMessagesList {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    PFQuery *buyerQuery = [PFQuery queryWithClassName:@"Chatroom"];
+    [buyerQuery whereKey:@"buyer" equalTo:[PFUser currentUser]];
+    
+    PFQuery *sellerQuery = [PFQuery queryWithClassName:@"Chatroom"];
+    [sellerQuery whereKey:@"seller" equalTo:[PFUser currentUser]];
+    
+    PFQuery *messagesListQuery = [PFQuery orQueryWithSubqueries:@[buyerQuery, sellerQuery]];
+    [messagesListQuery orderByDescending:@"createdAt"];
+    [messagesListQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu chatrooms.", (unsigned long)objects.count);
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
 
 #pragma mark - UITableView Datasource & Delegate
 
