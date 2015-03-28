@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface MessagesViewController : BaseViewController
+@interface MessagesViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 
 - (IBAction)pushViewController:(id)sender;
 

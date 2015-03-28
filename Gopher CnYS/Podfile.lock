@@ -1,0 +1,16 @@
+PODS:
+  - JSQMessagesViewController (7.0.0):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
+  - UzysAssetsPickerController (0.9.7)
+
+DEPENDENCIES:
+  - JSQMessagesViewController
+  - UzysAssetsPickerController
+
+SPEC CHECKSUMS:
+  JSQMessagesViewController: 9fd7e9ac96e9fc91f2deca86928e2cc916aeebaa
+  JSQSystemSoundPlayer: 55528c699a283aae2220d3ae7b8b527d2ecef4b4
+  UzysAssetsPickerController: eed407c2ddf5a40c48bd492914c1ff9e1cc479ed
+
+COCOAPODS: 0.36.1

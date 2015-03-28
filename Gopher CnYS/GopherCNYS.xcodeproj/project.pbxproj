@@ -29,7 +29,6 @@
 		1864BF141A4B1EA300EF5DD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1864BF121A4B1EA300EF5DD7 /* Main.storyboard */; };
 		1864BF161A4B1EA300EF5DD7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1864BF151A4B1EA300EF5DD7 /* Images.xcassets */; };
 		1864BF191A4B1EA300EF5DD7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1864BF171A4B1EA300EF5DD7 /* LaunchScreen.xib */; };
-		1864BF251A4B1EA300EF5DD7 /* Gopher_CnYSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864BF241A4B1EA300EF5DD7 /* Gopher_CnYSTests.m */; };
 		18801F1D1A6A295F006D956B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18801F1C1A6A295F006D956B /* StoreKit.framework */; };
 		18801F251A6A57B7006D956B /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18801F241A6A57B7006D956B /* GooglePlus.framework */; };
 		18801F261A6A57B7006D956B /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18801F241A6A57B7006D956B /* GooglePlus.framework */; };
@@ -47,6 +46,7 @@
 		18A6B7C91A6566BC0043E08A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A6B7C81A6566BC0043E08A /* MobileCoreServices.framework */; };
 		18A6B7CC1A657F420043E08A /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A6B7CB1A657F420043E08A /* CreateAccountViewController.m */; };
 		18BA5C581A736180002EBF83 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BA5C571A736180002EBF83 /* ProductTableViewCell.xib */; };
+		A7B9F332FC78D0276CDD2C5A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 620EC0CA756B2526347C759D /* libPods.a */; };
 		AB519E3B1AC31E70008543B1 /* FPCarouselNonXIBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB519E3A1AC31E70008543B1 /* FPCarouselNonXIBViewController.m */; };
 		AB6E34AE1ABC69D900867CA3 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34A91ABC69D900867CA3 /* RECommonFunctions.m */; };
 		AB6E34AF1ABC69D900867CA3 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34AB1ABC69D900867CA3 /* RESideMenu.m */; };
@@ -119,8 +119,6 @@
 		1864BF151A4B1EA300EF5DD7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1864BF181A4B1EA300EF5DD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1864BF1E1A4B1EA300EF5DD7 /* GopherCNYSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GopherCNYSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1864BF231A4B1EA300EF5DD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1864BF241A4B1EA300EF5DD7 /* Gopher_CnYSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Gopher_CnYSTests.m; sourceTree = "<group>"; };
 		18801F1C1A6A295F006D956B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		18801F241A6A57B7006D956B /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
 		18801F271A6A57C4006D956B /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
@@ -131,6 +129,8 @@
 		18A6B7CA1A657F420043E08A /* CreateAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAccountViewController.h; sourceTree = "<group>"; };
 		18A6B7CB1A657F420043E08A /* CreateAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAccountViewController.m; sourceTree = "<group>"; };
 		18BA5C571A736180002EBF83 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
+		620EC0CA756B2526347C759D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E1623EF4C607474E22E40C7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AB519E391AC31E70008543B1 /* FPCarouselNonXIBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPCarouselNonXIBViewController.h; sourceTree = "<group>"; };
 		AB519E3A1AC31E70008543B1 /* FPCarouselNonXIBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPCarouselNonXIBViewController.m; sourceTree = "<group>"; };
 		AB6E34A81ABC69D900867CA3 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
@@ -170,6 +170,7 @@
 		ABEC4DC31ABD801B000CF27C /* SellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellViewController.m; sourceTree = "<group>"; };
 		ABEC4DC81ABD8188000CF27C /* BorderTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorderTextField.h; sourceTree = "<group>"; };
 		ABEC4DC91ABD8188000CF27C /* BorderTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorderTextField.m; sourceTree = "<group>"; };
+		C119F51C40B91BB5CDECEAC6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +202,7 @@
 				183DDC6A1A644C460085F53C /* FacebookSDK.framework in Frameworks */,
 				18801F281A6A57C4006D956B /* GoogleOpenSource.framework in Frameworks */,
 				18801F251A6A57B7006D956B /* GooglePlus.framework in Frameworks */,
+				A7B9F332FC78D0276CDD2C5A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +218,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0367852E35F5F5C66C56675D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C119F51C40B91BB5CDECEAC6 /* Pods.debug.xcconfig */,
+				9E1623EF4C607474E22E40C7 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		182E35F71A73A70300FA4378 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,8 +270,8 @@
 			children = (
 				186D31991A5E7D49001CBED4 /* Frameworks */,
 				1864BF071A4B1EA200EF5DD7 /* GopherCNYS */,
-				1864BF211A4B1EA300EF5DD7 /* Gopher CnYSTests */,
 				1864BF061A4B1EA200EF5DD7 /* Products */,
+				0367852E35F5F5C66C56675D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -302,23 +313,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		1864BF211A4B1EA300EF5DD7 /* Gopher CnYSTests */ = {
-			isa = PBXGroup;
-			children = (
-				1864BF241A4B1EA300EF5DD7 /* Gopher_CnYSTests.m */,
-				1864BF221A4B1EA300EF5DD7 /* Supporting Files */,
-			);
-			path = "Gopher CnYSTests";
-			sourceTree = "<group>";
-		};
-		1864BF221A4B1EA300EF5DD7 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				1864BF231A4B1EA300EF5DD7 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		186D31991A5E7D49001CBED4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -350,6 +344,7 @@
 				1837DAF71A64F65E00C48A51 /* ParseUI.framework */,
 				0D4213B71A64D6EA003F7F01 /* CoreMotion.framework */,
 				183DDC691A644C460085F53C /* FacebookSDK.framework */,
+				620EC0CA756B2526347C759D /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -487,9 +482,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1864BF281A4B1EA300EF5DD7 /* Build configuration list for PBXNativeTarget "GopherCNYS" */;
 			buildPhases = (
+				63D89A6227F10994AAA935A1 /* Check Pods Manifest.lock */,
 				1864BF011A4B1EA200EF5DD7 /* Sources */,
 				1864BF021A4B1EA200EF5DD7 /* Frameworks */,
 				1864BF031A4B1EA200EF5DD7 /* Resources */,
+				3CEB82EB2D4F267012AE3AEC /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -582,6 +579,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3CEB82EB2D4F267012AE3AEC /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63D89A6227F10994AAA935A1 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1864BF011A4B1EA200EF5DD7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -619,7 +649,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1864BF251A4B1EA300EF5DD7 /* Gopher_CnYSTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -736,6 +765,7 @@
 		};
 		1864BF291A4B1EA300EF5DD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C119F51C40B91BB5CDECEAC6 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Tien Vu (D3UG454RD3)";
@@ -749,6 +779,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CODE_SIGN_FLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = GopherCNYS;
 				PROVISIONING_PROFILE = "504b125b-e053-4c8a-a7ba-44e109e667e6";
@@ -759,6 +790,7 @@
 		};
 		1864BF2A1A4B1EA300EF5DD7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E1623EF4C607474E22E40C7 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Tien Vu (D3UG454RD3)";
@@ -772,6 +804,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CODE_SIGN_FLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = GopherCNYS;
 				PROVISIONING_PROFILE = "504b125b-e053-4c8a-a7ba-44e109e667e6";
