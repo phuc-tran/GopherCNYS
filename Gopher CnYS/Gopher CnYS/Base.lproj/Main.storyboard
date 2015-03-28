@@ -685,7 +685,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Hq-iF-pDA">
-                                <rect key="frame" x="0.0" y="88" width="320" height="433"/>
+                                <rect key="frame" x="0.0" y="88" width="320" height="428"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="KUb-wv-JfL" id="mua-lg-2Ek"/>
@@ -725,7 +725,7 @@
                             <constraint firstItem="zJo-1g-VxG" firstAttribute="leading" secondItem="uc3-gh-lbp" secondAttribute="leading" id="N7Y-wQ-1Sv"/>
                             <constraint firstItem="7Hq-iF-pDA" firstAttribute="top" secondItem="2mK-JS-62S" secondAttribute="bottom" id="Ogh-a3-uTo"/>
                             <constraint firstItem="7Hq-iF-pDA" firstAttribute="leading" secondItem="uc3-gh-lbp" secondAttribute="leading" id="c48-bh-jHC"/>
-                            <constraint firstItem="5Ug-d9-gBZ" firstAttribute="top" secondItem="7Hq-iF-pDA" secondAttribute="bottom" constant="47" id="jja-Mz-0BW"/>
+                            <constraint firstItem="5Ug-d9-gBZ" firstAttribute="top" secondItem="7Hq-iF-pDA" secondAttribute="bottom" constant="52" id="jja-Mz-0BW"/>
                             <constraint firstAttribute="trailing" secondItem="7Hq-iF-pDA" secondAttribute="trailing" id="pe4-H9-0jA"/>
                             <constraint firstItem="2mK-JS-62S" firstAttribute="top" secondItem="hRF-yn-HF8" secondAttribute="bottom" id="w35-FH-C9g"/>
                             <constraint firstAttribute="centerX" secondItem="7Hq-iF-pDA" secondAttribute="centerX" id="wEH-MB-sGq"/>
@@ -1290,6 +1290,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="vu3-Jp-7Xk"/>
+        <segue reference="G1w-cs-YeN"/>
     </inferredMetricsTieBreakers>
 </document>
