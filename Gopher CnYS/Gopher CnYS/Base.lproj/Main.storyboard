@@ -82,6 +82,31 @@
             </objects>
             <point key="canvasLocation" x="119" y="1619"/>
         </scene>
+        <!--Private Message-->
+        <scene sceneID="pHq-VX-mie">
+            <objects>
+                <viewController id="AjW-24-ZQ0" customClass="PrivateMessageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sfg-UD-iaY"/>
+                        <viewControllerLayoutGuide type="bottom" id="UKG-Mz-t2M"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Y1h-mU-Q0Y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Private Message" id="Ehj-vU-l5y">
+                        <barButtonItem key="leftBarButtonItem" title="Left" id="5ct-KR-hyT">
+                            <connections>
+                                <action selector="presentLeftMenuViewController:" destination="yGP-ij-jME" id="zud-qS-RK0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vvA-PI-fwK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="529" y="1798"/>
+        </scene>
         <!--Messages List-->
         <scene sceneID="ajy-0O-wjT">
             <objects>
@@ -121,6 +146,7 @@
                     <connections>
                         <outlet property="messagesListTable" destination="aYc-1N-YVP" id="3bh-WO-HQy"/>
                         <segue destination="KBN-7p-nVk" kind="push" identifier="message_from_login" id="amZ-Vo-ytg"/>
+                        <segue destination="AjW-24-ZQ0" kind="push" identifier="message_to_coversation" id="P9u-bd-GBQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SBM-yN-hYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -916,7 +942,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Social Media" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Tf-9f-2e0">
                                         <rect key="frame" x="98" y="15" width="125" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="about_line" translatesAutoresizingMaskIntoConstraints="NO" id="GKR-mi-PPu">
@@ -928,7 +954,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contact Us" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RiK-WQ-uxt">
                                         <rect key="frame" x="98" y="179" width="125" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="about_line" translatesAutoresizingMaskIntoConstraints="NO" id="3cm-Ki-kXV">
@@ -1000,7 +1026,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Website" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zre-60-cI6">
                                         <rect key="frame" x="249" y="120" width="62" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Support*How to *Suggestions" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="79" translatesAutoresizingMaskIntoConstraints="NO" id="Ifn-wT-00d">

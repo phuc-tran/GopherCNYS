@@ -71,6 +71,9 @@
 		B9B1EC281AC6A7CE00377E36 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC271AC6A7CE00377E36 /* libz.dylib */; };
 		B9B1EC2A1AC6A7E700377E36 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC291AC6A7E700377E36 /* CFNetwork.framework */; };
 		B9B1EC2C1AC6A82900377E36 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC2B1AC6A82900377E36 /* QuartzCore.framework */; };
+		B9B1EC331AC6C50300377E36 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B1EC311AC6C50300377E36 /* MessageTableViewCell.m */; };
+		B9B1EC341AC6C50300377E36 /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B1EC321AC6C50300377E36 /* MessageTableViewCell.xib */; };
+		B9E2EF051AC6FE7F0085BCDC /* PrivateMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E2EF041AC6FE7F0085BCDC /* PrivateMessageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +180,11 @@
 		B9B1EC271AC6A7CE00377E36 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B9B1EC291AC6A7E700377E36 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		B9B1EC2B1AC6A82900377E36 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B9B1EC301AC6C50300377E36 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
+		B9B1EC311AC6C50300377E36 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
+		B9B1EC321AC6C50300377E36 /* MessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
+		B9E2EF031AC6FE7F0085BCDC /* PrivateMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageViewController.h; sourceTree = "<group>"; };
+		B9E2EF041AC6FE7F0085BCDC /* PrivateMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageViewController.m; sourceTree = "<group>"; };
 		C119F51C40B91BB5CDECEAC6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -476,6 +484,11 @@
 				ABEC4DB81ABD6719000CF27C /* AboutViewController.m */,
 				AB6E34BA1ABC6A9A00867CA3 /* MessagesViewController.h */,
 				AB6E34BB1ABC6A9A00867CA3 /* MessagesViewController.m */,
+				B9B1EC301AC6C50300377E36 /* MessageTableViewCell.h */,
+				B9B1EC311AC6C50300377E36 /* MessageTableViewCell.m */,
+				B9B1EC321AC6C50300377E36 /* MessageTableViewCell.xib */,
+				B9E2EF031AC6FE7F0085BCDC /* PrivateMessageViewController.h */,
+				B9E2EF041AC6FE7F0085BCDC /* PrivateMessageViewController.m */,
 			);
 			name = Content;
 			sourceTree = "<group>";
@@ -576,6 +589,7 @@
 				1864BF191A4B1EA300EF5DD7 /* LaunchScreen.xib in Resources */,
 				18BA5C581A736180002EBF83 /* ProductTableViewCell.xib in Resources */,
 				ABA4F0CF1AC46F9E008915F7 /* SBPickerSelector.xib in Resources */,
+				B9B1EC341AC6C50300377E36 /* MessageTableViewCell.xib in Resources */,
 				18801F2B1A6A57CE006D956B /* GooglePlus.bundle in Resources */,
 				1864BF161A4B1EA300EF5DD7 /* Images.xcassets in Resources */,
 				ABA4F0D51AC4711E008915F7 /* CountryPicker.bundle in Resources */,
@@ -653,7 +667,9 @@
 				182E36001A73A7AB00FA4378 /* ProductTableViewCell.m in Sources */,
 				ABEC4DCA1ABD8188000CF27C /* BorderTextField.m in Sources */,
 				184962A61A6657B30054AFFE /* ProductListViewController.m in Sources */,
+				B9E2EF051AC6FE7F0085BCDC /* PrivateMessageViewController.m in Sources */,
 				AB6E34C01ABC6A9A00867CA3 /* MessagesViewController.m in Sources */,
+				B9B1EC331AC6C50300377E36 /* MessageTableViewCell.m in Sources */,
 				1864BF0B1A4B1EA300EF5DD7 /* main.m in Sources */,
 				AB6E34BF1ABC6A9A00867CA3 /* RootViewController.m in Sources */,
 			);
