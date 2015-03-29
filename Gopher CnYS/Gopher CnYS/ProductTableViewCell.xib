@@ -72,26 +72,27 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New York" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1H7-mL-EH0">
                                 <rect key="frame" x="89" y="128" width="216" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.72549019607843135" green="0.72549019607843135" blue="0.72549019607843135" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.72549019607843135" green="0.72549019607843135" blue="0.72549019607843135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Decription" translatesAutoresizingMaskIntoConstraints="NO" id="zlh-G6-4Vd">
-                                <rect key="frame" x="128" y="27" width="177" height="98"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="textColor" red="0.72549019607843135" green="0.72549019607843135" blue="0.72549019607843135" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRV-l6-mH0">
+                                <rect key="frame" x="132" y="27" width="173" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="AGq-EV-OgP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.72549019607843135" green="0.72549019607843135" blue="0.72549019607843135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="mSf-Gs-TJU" secondAttribute="trailing" constant="5" id="Jt7-1G-ANH"/>
-                            <constraint firstItem="zlh-G6-4Vd" firstAttribute="top" secondItem="du5-do-KPu" secondAttribute="top" constant="27" id="OGD-ae-1r0"/>
                             <constraint firstItem="TDr-Pn-zjK" firstAttribute="leading" secondItem="du5-do-KPu" secondAttribute="leading" constant="128" id="OT5-fq-78T"/>
-                            <constraint firstAttribute="bottom" secondItem="zlh-G6-4Vd" secondAttribute="bottom" constant="25" id="Ofm-nq-RgS"/>
+                            <constraint firstItem="vRV-l6-mH0" firstAttribute="leading" secondItem="zIR-dr-MKF" secondAttribute="trailing" constant="8" id="QSk-0e-xNW"/>
+                            <constraint firstAttribute="trailing" secondItem="vRV-l6-mH0" secondAttribute="trailing" constant="5" id="W03-3H-JQT"/>
                             <constraint firstItem="TDr-Pn-zjK" firstAttribute="top" secondItem="du5-do-KPu" secondAttribute="top" constant="5" id="W31-os-Xct"/>
-                            <constraint firstItem="zlh-G6-4Vd" firstAttribute="leading" secondItem="zIR-dr-MKF" secondAttribute="trailing" constant="4" id="WOD-Ow-caI"/>
-                            <constraint firstAttribute="trailing" secondItem="zlh-G6-4Vd" secondAttribute="trailing" constant="5" id="ZrC-JV-QN5"/>
+                            <constraint firstItem="vRV-l6-mH0" firstAttribute="top" secondItem="du5-do-KPu" secondAttribute="top" constant="27" id="eul-KT-bRO"/>
                             <constraint firstAttribute="trailing" secondItem="TDr-Pn-zjK" secondAttribute="trailing" constant="26" id="mqb-6O-Xug"/>
                             <constraint firstItem="zIR-dr-MKF" firstAttribute="top" secondItem="du5-do-KPu" secondAttribute="top" constant="5" id="qXl-ab-4sd"/>
                             <constraint firstItem="mSf-Gs-TJU" firstAttribute="top" secondItem="du5-do-KPu" secondAttribute="top" constant="5" id="soi-5B-cW6"/>
@@ -110,7 +111,7 @@
             <connections>
                 <outlet property="btnFavorited" destination="mSf-Gs-TJU" id="G71-dI-MgO"/>
                 <outlet property="ivProductThumb" destination="zIR-dr-MKF" id="bMG-ag-ahR"/>
-                <outlet property="lblProductDescription" destination="zlh-G6-4Vd" id="mNO-FZ-MCg"/>
+                <outlet property="lblProductDescription" destination="vRV-l6-mH0" id="ofU-FA-A8r"/>
                 <outlet property="lblProductMiles" destination="1H7-mL-EH0" id="Vq8-2v-zbm"/>
                 <outlet property="lblProductName" destination="TDr-Pn-zjK" id="Wg4-AL-vGC"/>
                 <outlet property="lblProductPrice" destination="vYg-7t-76M" id="Dy5-RI-J6M"/>

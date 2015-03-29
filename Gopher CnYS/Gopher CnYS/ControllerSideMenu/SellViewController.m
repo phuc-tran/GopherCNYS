@@ -9,6 +9,8 @@
 #import "SellViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "MBProgressHUD.h"
+#import <AVFoundation/AVFoundation.h>
+#import "ProductImageCollectionViewCell.h"
 
 @interface SellViewController ()
 
@@ -37,6 +39,26 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:@"UIKeyboardWillShowNotification" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:@"UIKeyboardDidHideNotification" object:nil];
+    
+    self.productImageView1.layer.cornerRadius = 5.0f;
+    self.productImageView1.layer.borderWidth = 2.0f;
+    self.productImageView1.layer.borderColor = [UIColor colorWithRed:226/255.0f green:226/255.0f blue:226/255.0f alpha:1.0f].CGColor;
+    self.productImageView1.clipsToBounds = YES;
+    
+    self.productImageView2.layer.cornerRadius = 5.0f;
+    self.productImageView2.layer.borderWidth = 2.0f;
+    self.productImageView2.layer.borderColor = [UIColor colorWithRed:226/255.0f green:226/255.0f blue:226/255.0f alpha:1.0f].CGColor;
+    self.productImageView2.clipsToBounds = YES;
+    
+    self.productImageView3.layer.cornerRadius = 5.0f;
+    self.productImageView3.layer.borderWidth = 2.0f;
+    self.productImageView3.layer.borderColor = [UIColor colorWithRed:226/255.0f green:226/255.0f blue:226/255.0f alpha:1.0f].CGColor;
+    self.productImageView3.clipsToBounds = YES;
+    
+    self.productImageView4.layer.cornerRadius = 5.0f;
+    self.productImageView4.layer.borderWidth = 2.0f;
+    self.productImageView4.layer.borderColor = [UIColor colorWithRed:226/255.0f green:226/255.0f blue:226/255.0f alpha:1.0f].CGColor;
+    self.productImageView4.clipsToBounds = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -45,11 +67,6 @@
     if (![self checkIfUserLoggedIn]) {
         [self performSegueWithIdentifier:@"add_product_from_login" sender:self];
     }
-    
-    self.productImageView.layer.cornerRadius = 5.0f;
-    self.productImageView.layer.borderWidth = 2.0f;
-    self.productImageView.layer.borderColor = [UIColor colorWithRed:226/255.0f green:226/255.0f blue:226/255.0f alpha:1.0f].CGColor;
-    self.productImageView.clipsToBounds = YES;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -69,8 +86,6 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-   // CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    
     CLLocation *currentLocation = newLocation;
     
     if (currentLocation != nil)
@@ -130,11 +145,32 @@
 #pragma mark - Helper
 - (void)addProduct {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    NSData *imageData = UIImagePNGRepresentation(self.productImageView.image);
-    PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-    
     PFObject *product = [PFObject objectWithClassName:@"Products"];
-    product[@"photo1"] = imageFile;
+    
+    if (self.productImageView1.image != nil) {
+        NSData *imageData = UIImagePNGRepresentation(self.productImageView1.image);
+        PFFile *imageFile = [PFFile fileWithName:@"productImage1.png" data:imageData];
+        product[@"photo1"] = imageFile;
+    }
+    
+    if (self.productImageView2.image != nil) {
+        NSData *imageData = UIImagePNGRepresentation(self.productImageView2.image);
+        PFFile *imageFile = [PFFile fileWithName:@"productImage2.png" data:imageData];
+        product[@"photo2"] = imageFile;
+    }
+    
+    if (self.productImageView3.image != nil) {
+        NSData *imageData = UIImagePNGRepresentation(self.productImageView3.image);
+        PFFile *imageFile = [PFFile fileWithName:@"productImage3.png" data:imageData];
+        product[@"photo3"] = imageFile;
+    }
+    
+    if (self.productImageView4.image != nil) {
+        NSData *imageData = UIImagePNGRepresentation(self.productImageView4.image);
+        PFFile *imageFile = [PFFile fileWithName:@"productImage4.png" data:imageData];
+        product[@"photo4"] = imageFile;
+    }
+    
     product[@"title"] = self.productTitleField.text;
     product[@"description"] = self.productDescriptionField.text;
     product[@"category"] = @(categoryId);
@@ -178,9 +214,10 @@
     [self addProduct];
 }
 
-- (IBAction)caputerBtnClick:(id)sender
+- (IBAction)caputerBtnClick:(UIButton*)sender
 {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Upload product image" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Choose Existing", nil];
+    actionSheet.tag = sender.tag;
     [actionSheet showInView:self.view];
 }
 
@@ -189,8 +226,27 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
     UIImage *gotImage = info[UIImagePickerControllerOriginalImage];
-    self.productImageView.image = gotImage;
-    self.btnCapture.hidden = TRUE;
+    switch (picker.view.tag) {
+        case 1:
+            self.productImageView1.image = gotImage;
+            self.btnCapture1.hidden = TRUE;
+            break;
+        case 2:
+            self.productImageView2.image = gotImage;
+            self.btnCapture2.hidden = TRUE;
+            break;
+        case 3:
+            self.productImageView3.image = gotImage;
+            self.btnCapture3.hidden = TRUE;
+            break;
+        case 4:
+            self.productImageView4.image = gotImage;
+            self.btnCapture4.hidden = TRUE;
+            break;
+        default:
+            break;
+    }
+    
 }
 
 - (IBAction)handleTap:(id)sender {
@@ -234,6 +290,7 @@
                 imagePicker.delegate = self;
                 imagePicker.mediaTypes = @[(NSString *) kUTTypeImage];
                 imagePicker.allowsEditing = false;
+                imagePicker.view.tag = actionSheet.tag;
                 [self presentViewController:imagePicker animated:YES completion:nil];
                 
             }
@@ -242,6 +299,7 @@
             {
                 UIImagePickerController *pickerC = [[UIImagePickerController alloc] init];
                 pickerC.delegate = self;
+                pickerC.view.tag = actionSheet.tag;
                 [self presentViewController:pickerC animated:YES completion:nil];
             }
             break;
@@ -306,4 +364,48 @@
     self.contentScrollView.contentInset = contentInsets;
     self.contentScrollView.scrollIndicatorInsets = contentInsets;
 }
+
+#pragma mark - UzysAssetsPickerControllerDelegate methods
+//- (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
+//{
+//    //self.productImageView.backgroundColor = [UIColor clearColor];
+//    DLog(@"assets %ld",(unsigned long)assets.count);
+//    __weak typeof(self) weakSelf = self;
+//    if([[assets[0] valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypePhoto"]) //Photo
+//    {
+//        [assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//            ALAsset *representation = obj;
+//            
+//            UIImage *img = [UIImage imageWithCGImage:representation.defaultRepresentation.fullResolutionImage
+//                                               scale:representation.defaultRepresentation.scale
+//                                         orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
+//            //weakSelf.productImageView.image = img;
+//            gotImage = img;
+//            *stop = YES;
+//        }];
+//        
+//        
+//    }
+//}
+
+#pragma mark - UICollectionViewDelegate
+
+//-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+//    //NSMutableArray *sectionArray = [self.dataArray objectAtIndex:section];
+//    return 4;
+//}
+//
+//-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    // Setup cell identifier
+//    static NSString *cellIdentifier = @"productImageCell";
+//    ProductImageCollectionViewCell *cell = (ProductImageCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+//    cell.productImageView.backgroundColor = [UIColor clearColor];
+//    if (gotImage != nil) {
+//        cell.productImageView.image = gotImage;
+//    }
+//    // Return the cell
+//    return cell;
+//    
+//}
 @end

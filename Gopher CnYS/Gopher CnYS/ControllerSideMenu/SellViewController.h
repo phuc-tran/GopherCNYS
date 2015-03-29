@@ -11,6 +11,7 @@
 #import "BaseViewController.h"
 #import "SBPickerSelector.h"
 #import <Parse/Parse.h>
+#import "UzysAssetsPickerController.h"
 
 @interface SellViewController : BaseViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, SBPickerSelectorDelegate, UITextFieldDelegate, CLLocationManagerDelegate, UIActionSheetDelegate>
 {
@@ -24,13 +25,22 @@
     NSString *postalCodeStr;
     NSString *subLocalityStr;
     NSString *subAdminAreaStr;
-
 }
 
 - (IBAction)pushViewController:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UIButton *btnCapture;
-@property (weak, nonatomic) IBOutlet UIImageView *productImageView;
+@property (weak, nonatomic) IBOutlet UIButton *btnCapture1;
+@property (weak, nonatomic) IBOutlet UIImageView *productImageView1;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnCapture2;
+@property (weak, nonatomic) IBOutlet UIImageView *productImageView2;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnCapture3;
+@property (weak, nonatomic) IBOutlet UIImageView *productImageView3;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnCapture4;
+@property (weak, nonatomic) IBOutlet UIImageView *productImageView4;
+
 @property (weak, nonatomic) IBOutlet UIButton *btnCategory;
 @property (weak, nonatomic) IBOutlet UIButton *btnCondition;
 @property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;
@@ -39,6 +49,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *productDescriptionField;
 @property (weak, nonatomic) IBOutlet UITextField *productPriceField;
 @property (weak, nonatomic) IBOutlet UITextField *productQuatityField;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (weak, nonatomic) UITextField *activeField;
 

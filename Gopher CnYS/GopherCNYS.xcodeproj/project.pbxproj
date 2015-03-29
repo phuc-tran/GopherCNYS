@@ -62,6 +62,7 @@
 		ABA4F0D01AC46F9E008915F7 /* SBPickerSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA4F0CE1AC46F9E008915F7 /* SBPickerSelector.m */; };
 		ABA4F0D51AC4711E008915F7 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ABA4F0D21AC4711E008915F7 /* CountryPicker.bundle */; };
 		ABA4F0D61AC4711E008915F7 /* CountryPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA4F0D41AC4711E008915F7 /* CountryPicker.m */; };
+		ABA8F6B41AC7BB9500198A4A /* ProductImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA8F6B31AC7BB9500198A4A /* ProductImageCollectionViewCell.m */; };
 		ABEC4DB91ABD6719000CF27C /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DB81ABD6719000CF27C /* AboutViewController.m */; };
 		ABEC4DBC1ABD6898000CF27C /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DBB1ABD6898000CF27C /* ProfileViewController.m */; };
 		ABEC4DBF1ABD6A12000CF27C /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DBE1ABD6A12000CF27C /* BaseViewController.m */; };
@@ -166,6 +167,8 @@
 		ABA4F0D21AC4711E008915F7 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPicker.bundle; sourceTree = "<group>"; };
 		ABA4F0D31AC4711E008915F7 /* CountryPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryPicker.h; sourceTree = "<group>"; };
 		ABA4F0D41AC4711E008915F7 /* CountryPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryPicker.m; sourceTree = "<group>"; };
+		ABA8F6B21AC7BB9500198A4A /* ProductImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductImageCollectionViewCell.h; sourceTree = "<group>"; };
+		ABA8F6B31AC7BB9500198A4A /* ProductImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductImageCollectionViewCell.m; sourceTree = "<group>"; };
 		ABEC4DB71ABD6719000CF27C /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		ABEC4DB81ABD6719000CF27C /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		ABEC4DBA1ABD6898000CF27C /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -279,6 +282,8 @@
 				18BA5C571A736180002EBF83 /* ProductTableViewCell.xib */,
 				185FDE071A73F7AD00A452CE /* Product.h */,
 				185FDE081A73F7AD00A452CE /* Product.m */,
+				ABA8F6B21AC7BB9500198A4A /* ProductImageCollectionViewCell.h */,
+				ABA8F6B31AC7BB9500198A4A /* ProductImageCollectionViewCell.m */,
 			);
 			name = ProductCell;
 			sourceTree = "<group>";
@@ -665,6 +670,7 @@
 				AB6E34BE1ABC6A9A00867CA3 /* RightMenuViewController.m in Sources */,
 				AB6E34BD1ABC6A9A00867CA3 /* LeftMenuViewController.m in Sources */,
 				182E36001A73A7AB00FA4378 /* ProductTableViewCell.m in Sources */,
+				ABA8F6B41AC7BB9500198A4A /* ProductImageCollectionViewCell.m in Sources */,
 				ABEC4DCA1ABD8188000CF27C /* BorderTextField.m in Sources */,
 				184962A61A6657B30054AFFE /* ProductListViewController.m in Sources */,
 				B9E2EF051AC6FE7F0085BCDC /* PrivateMessageViewController.m in Sources */,
