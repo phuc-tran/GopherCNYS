@@ -16,7 +16,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self setupLeftBackBarButtonItem];
+    //[self setupLeftBackBarButtonItem];
+    self.navigationController.navigationBar.hidden = YES;
     if (![self checkIfUserLoggedIn]) {
         [self performSegueWithIdentifier:@"profile_from_login" sender:self];
     }
@@ -28,6 +29,11 @@
     viewController.title = @"Pushed Controller";
     viewController.view.backgroundColor = [UIColor whiteColor];
     [self.navigationController pushViewController:viewController animated:YES];
+}
+
+
+- (IBAction)backBtnClick:(id)sender {
+    [self leftBackClick:nil];
 }
 
 @end

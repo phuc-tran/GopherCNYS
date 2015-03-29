@@ -20,6 +20,7 @@
 - (void)setupBackBarButtonItem;
 
 -(void)leftMenuClick:(UIBarButtonItem*)btn;
+-(void)leftBackClick:(UIBarButtonItem*)btn;
 
 -(BOOL) checkIfUserLoggedIn;
 
