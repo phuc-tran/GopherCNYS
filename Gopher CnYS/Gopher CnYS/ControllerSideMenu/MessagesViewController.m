@@ -15,7 +15,7 @@
 @interface MessagesViewController ()
 
 @property (nonatomic, weak) IBOutlet UITableView *messagesListTable;
-@property (nonatomic, strong) NSArray *messagesList;
+@property (nonatomic, strong) NSMutableArray *messagesList;
 @property (nonatomic, strong) UIImage *selectedProfileImage;
 @property (nonatomic, strong) PFObject *selectedChatRoom;
 
@@ -77,7 +77,7 @@
             // The find succeeded.
             NSLog(@"Successfully retrieved %lu chatrooms.", (unsigned long)objects.count);
             NSLog(@"%@", objects);
-            self.messagesList = objects;
+            self.messagesList = [NSMutableArray arrayWithArray:objects];
             [self.messagesListTable reloadData];
         } else {
             // Log details of the failure
@@ -175,7 +175,9 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSLog(@"aww, delete hit");
+//        NSLog(@"aww, delete hit");
+        [self.messagesList removeObjectAtIndex:indexPath.row];
+        [self.messagesListTable reloadData];
     }
 }
 
