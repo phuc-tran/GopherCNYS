@@ -44,6 +44,19 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+    
+    self.productImgaeView.layer.cornerRadius = 5.0f;
+    self.productImgaeView.layer.borderWidth = 2.0f;
+    self.productImgaeView.layer.borderColor = [UIColor colorWithRed:226/255.0f green:226/255.0f blue:226/255.0f alpha:1.0f].CGColor;
+    self.productImgaeView.clipsToBounds = YES;
+    
+    PFFile *imageFile = [[productData objectAtIndex:selectedIndex] objectForKey:@"photo1"];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+        if (!error) {
+            UIImage *image = [UIImage imageWithData:data];
+            self.productImgaeView.image = image;
+        }
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated {

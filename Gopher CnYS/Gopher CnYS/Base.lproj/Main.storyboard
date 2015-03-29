@@ -595,6 +595,20 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xud-ug-0bV">
                                 <rect key="frame" x="0.0" y="114" width="320" height="148"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EOa-kA-3Zv">
+                                        <rect key="frame" x="100" y="14" width="120" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="4Kt-kU-qbd"/>
+                                            <constraint firstAttribute="height" constant="120" id="ZgZ-4B-t7t"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="EOa-kA-3Zv" secondAttribute="bottom" constant="14" id="0ON-jS-uD2"/>
+                                    <constraint firstAttribute="centerX" secondItem="EOa-kA-3Zv" secondAttribute="centerX" id="jFk-Ur-NJo"/>
+                                    <constraint firstItem="EOa-kA-3Zv" firstAttribute="top" secondItem="xud-ug-0bV" secondAttribute="top" constant="14" id="yFW-Nu-drO"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -622,6 +636,7 @@
                         <outlet property="carousel" destination="xud-ug-0bV" id="Ynl-lv-3UN"/>
                         <outlet property="productConditionLbl" destination="132-jK-1lQ" id="0pg-GN-zLV"/>
                         <outlet property="productDescription" destination="gHT-vu-Tvi" id="GP4-Yp-Mv2"/>
+                        <outlet property="productImgaeView" destination="EOa-kA-3Zv" id="EwL-hG-xEq"/>
                         <outlet property="productNameLbl" destination="1mc-dE-ewM" id="GBj-GS-dMc"/>
                         <outlet property="productPostedLbl" destination="HgQ-St-R1v" id="Ej6-u1-JKk"/>
                         <outlet property="productPriceLbl" destination="XW2-pu-Kka" id="Ko6-M2-CYv"/>
