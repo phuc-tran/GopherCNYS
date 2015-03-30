@@ -30,9 +30,6 @@
                 forCellReuseIdentifier:@"MessageListCell"];
 
     self.messagesListTable.rowHeight = 83.0f;
-    
-    // Get list of messages
-    [self loadMessagesList];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -40,6 +37,9 @@
     [self setupLeftBackBarButtonItem];
     if (![self checkIfUserLoggedIn]) {
         [self performSegueWithIdentifier:@"message_from_login" sender:self];
+    } else {
+        // Get list of messages
+        [self loadMessagesList];
     }
 }
 
