@@ -13,6 +13,7 @@
 @interface PrivateMessageViewController : JSQMessagesViewController
 
 @property (nonatomic, strong) PFObject *chatRoom;
+@property (nonatomic, strong) PFObject *product;
 @property (nonatomic, strong) UIImage *incomingImage;
 
 @end

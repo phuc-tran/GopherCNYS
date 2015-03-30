@@ -83,7 +83,8 @@
     self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor colorWithRed:64.0/255.0 green:222.0/255.0 blue:172.0/255.0 alpha:1.0]];
     self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor colorWithRed:188.0/255.0 green:188.0/255.0 blue:188.0/255.0 alpha:1.0]];
  
-    [self loadMessages];
+//    [self loadProductInfo];
+//    [self loadMessages];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -118,65 +119,133 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)loadProductInfo {
+    // Product info
+    if (self.product) {
+        PFFile *imageFile = [self.product objectForKey:@"photo1"];
+        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:data];
+                self.conversationImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:image withDiameter:78];
+            }
+        }];
+        
+        self.conversationTitleLabel.text = [self.product valueForKey:@"title"];
+        self.conversationDescLabel.text = [[self.product objectForKey:@"description"] description];
+        self.conversationPriceLabel.text = [NSString stringWithFormat:@"%ld", (long)[[self.product valueForKey:@"price"] integerValue]];
+        self.priceSign.hidden = NO;
+    }
+    else {
+        // Get Product if there is no product set
+        PFQuery *query = [PFQuery queryWithClassName:@"Products"];
+        [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
+        [query whereKey:@"objectId" equalTo:[[self.chatRoom valueForKey:@"listingId"] valueForKey:@"objectId"]];
+        [query selectKeys:@[@"description", @"title", @"photo1", @"price"]];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if (!error) {
+                // The find succeeded.
+                NSLog(@"found product %@", objects);
+                
+                PFFile *imageFile = [objects[0] objectForKey:@"photo1"];
+                [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                    if (!error) {
+                        UIImage *image = [UIImage imageWithData:data];
+                        self.conversationImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:image withDiameter:78];
+                    }
+                }];
+                
+                self.conversationTitleLabel.text = [objects[0] valueForKey:@"title"];
+                self.conversationDescLabel.text = [[objects[0] objectForKey:@"description"] description];
+                self.conversationPriceLabel.text = [NSString stringWithFormat:@"%ld", (long)[[objects[0] valueForKey:@"price"] integerValue]];
+                self.priceSign.hidden = NO;
+                
+            } else {
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
+    }
+}
+
 - (void)loadMessages {
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
-    PFQuery *messageQuery = [PFQuery queryWithClassName:@"ChatHistory"];
-    [messageQuery whereKey:@"roomId" equalTo:self.chatRoom];
-    [messageQuery orderByAscending:@"updatedAt"];
-    [messageQuery includeKey:@"writer"];
-    
-    [messageQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %lu chatHistories.", (unsigned long)objects.count);
-            for (int i = 0; i < objects.count; i++) {
-                PFObject *iMessage = objects[i];
-                JSQMessage *message = [[JSQMessage alloc] initWithSenderId:[[iMessage valueForKey:@"writer"] valueForKey:@"objectId"]
-                                                         senderDisplayName:[[iMessage valueForKey:@"writer"] valueForKey:@"username"]
-                                                                      date:[iMessage valueForKey:@"updatedAt"]
-                                                                      text:[iMessage valueForKey:@"message"]];
-                NSLog(@"message %@", message);
-                [self.messages addObject:message];
-            }
-            [self.collectionView reloadData];
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-    
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Products"];
-    [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    [query whereKey:@"objectId" equalTo:[[self.chatRoom valueForKey:@"listingId"] valueForKey:@"objectId"]];
-    [query selectKeys:@[@"description", @"title", @"photo1", @"price"]];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"found product %@", objects);
-            
-            PFFile *imageFile = [objects[0] objectForKey:@"photo1"];
-            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-                if (!error) {
-                    UIImage *image = [UIImage imageWithData:data];
-                    self.conversationImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:image withDiameter:78];
+    // Chat history
+    if (self.chatRoom) {
+        PFQuery *messageQuery = [PFQuery queryWithClassName:@"ChatHistory"];
+        [messageQuery whereKey:@"roomId" equalTo:self.chatRoom];
+        [messageQuery orderByAscending:@"updatedAt"];
+        [messageQuery includeKey:@"writer"];
+        
+        [messageQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if (!error) {
+                // The find succeeded.
+                NSLog(@"Successfully retrieved %lu chatHistories.", (unsigned long)objects.count);
+                // Reset self.messages
+                [self.messages removeAllObjects];
+                
+                for (int i = 0; i < objects.count; i++) {
+                    PFObject *iMessage = objects[i];
+                    JSQMessage *message = [[JSQMessage alloc] initWithSenderId:[[iMessage valueForKey:@"writer"] valueForKey:@"objectId"]
+                                                             senderDisplayName:[[iMessage valueForKey:@"writer"] valueForKey:@"username"]
+                                                                          date:[iMessage valueForKey:@"updatedAt"]
+                                                                          text:[iMessage valueForKey:@"message"]];
+                    NSLog(@"message %@", message);
+                    [self.messages addObject:message];
                 }
-            }];
-
-            self.conversationTitleLabel.text = [objects[0] valueForKey:@"title"];
-            self.conversationDescLabel.text = [[objects[0] objectForKey:@"description"] description];
-            self.conversationPriceLabel.text = [NSString stringWithFormat:@"%ld", (long)[[objects[0] valueForKey:@"price"] integerValue]];
-            self.priceSign.hidden = NO;
+                [self.collectionView reloadData];
+            } else {
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
+    }
+    else {
+        // Load chat room from product
+        if (self.product) {
+            PFQuery *chatroomQuery = [PFQuery queryWithClassName:@"ChatRoom"];
+            [chatroomQuery whereKey:@"listingId" equalTo:self.product];
+            [chatroomQuery whereKey:@"seller" equalTo:[self.product valueForKey:@"seller"]];
+            [chatroomQuery whereKey:@"buyer" equalTo:[PFUser currentUser]];
             
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            PFQuery *chatHistoryQuery = [PFQuery queryWithClassName:@"ChatHistory"];
+            [chatHistoryQuery whereKey:@"roomId" matchesQuery:chatroomQuery];
+            [chatHistoryQuery orderByAscending:@"updatedAt"];
+            [chatHistoryQuery includeKey:@"writer"];
+            
+            [chatHistoryQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                if (!error) {
+                    // The find succeeded.
+                    NSLog(@"Successfully retrieved %lu chatHistories.", (unsigned long)objects.count);
+                    // Reset self.messages first
+                    [self.messages removeAllObjects];
+                    
+                    for (int i = 0; i < objects.count; i++) {
+                        PFObject *iMessage = objects[i];
+                        JSQMessage *message = [[JSQMessage alloc] initWithSenderId:[[iMessage valueForKey:@"writer"] valueForKey:@"objectId"]
+                                                                 senderDisplayName:[[iMessage valueForKey:@"writer"] valueForKey:@"username"]
+                                                                              date:[iMessage valueForKey:@"updatedAt"]
+                                                                              text:[iMessage valueForKey:@"message"]];
+                        NSLog(@"message %@", message);
+                        [self.messages addObject:message];
+                    }
+                    [self.collectionView reloadData];
+                } else {
+                    // Log details of the failure
+                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+                }
+                
+                
+                // If there is no chat room yet, create one
+                
+            }];
         }
-    }];
+    }
+    
 }
 
 /*

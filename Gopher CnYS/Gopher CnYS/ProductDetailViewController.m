@@ -7,9 +7,10 @@
 //
 
 #import "ProductDetailViewController.h"
+#import "PrivateMessageViewController.h"
 
 @interface ProductDetailViewController ()
-
+@property (nonatomic, weak) IBOutlet UIButton *messageButton;
 @end
 
 @implementation ProductDetailViewController
@@ -20,6 +21,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.navigationItem setTitle:@"Products Detail"];
+    
+//    NSLog(@"current user objectId -- seller objectId: %@ || %@", [[PFUser currentUser] valueForKey:@"objectId"], [[[productData objectAtIndex:selectedIndex] valueForKey:@"seller"] valueForKey:@"objectId"]);
+    if (![[[PFUser currentUser] valueForKey:@"objectId"] isEqualToString:[[[productData objectAtIndex:selectedIndex] valueForKey:@"seller"] valueForKey:@"objectId"]]) {
+        // enable message button if seller and buyer are different people
+        self.messageButton.enabled = YES;
+    }
     
 //    self.carouselController = [[FPCarouselNonXIBViewController alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, carousel.frame.size.height)];
 //    [self.carousel addSubview:self.carouselController.view];
@@ -80,5 +87,22 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"productDetail_to_privateMessage"])
+    {
+        PrivateMessageViewController *vc = (PrivateMessageViewController *)[segue destinationViewController];
+        vc.product = [[productData objectAtIndex:selectedIndex] valueForKey:@"seller"]; 
+    }
+}
+
+- (IBAction)messageButtonDidTouch:(id)sender {
+    // Go to Private Message screen
+    [self performSegueWithIdentifier:@"productDetail_to_privateMessage" sender:self];
+}
+
+
 
 @end
