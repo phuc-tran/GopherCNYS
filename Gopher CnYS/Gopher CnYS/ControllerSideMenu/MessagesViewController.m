@@ -26,12 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.messagesListTable.allowsMultipleSelectionDuringEditing = NO;
-    [self.messagesListTable registerNib:[UINib nibWithNibName:@"MessageTableViewCell" bundle:nil]
-                forCellReuseIdentifier:@"MessageListCell"];
-
+    [self.messagesListTable registerNib:[UINib nibWithNibName:@"MessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"MessageListCell"];
     self.messagesListTable.rowHeight = 83.0f;
-    
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -39,8 +35,7 @@
     [self setupLeftBackBarButtonItem];
     if (![self checkIfUserLoggedIn]) {
         [self performSegueWithIdentifier:@"message_from_login" sender:self];
-    }
-    else {
+    } else {
         // Get list of messages
         [self loadMessagesList];
     }
