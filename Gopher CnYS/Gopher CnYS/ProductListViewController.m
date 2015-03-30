@@ -117,7 +117,7 @@ NSUInteger selectedIndex;
     
     cell.lblProductName.text = [[productData objectAtIndex:indexPath.row] valueForKey:@"title"];
     cell.lblProductDescription.text = [[[productData objectAtIndex:indexPath.row] objectForKey:@"description"] description];
-    cell.lblProductMiles.text = [[productData objectAtIndex:indexPath.row] valueForKey:@"country"];
+    cell.lblProductMiles.text = [[productData objectAtIndex:indexPath.row] valueForKey:@"adminArea"];
     [cell loadData];
     
     if ([self checkIfUserLoggedIn]) {
@@ -175,7 +175,7 @@ NSUInteger selectedIndex;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    [query selectKeys:@[@"description", @"title", @"photo1", @"photo2", @"photo3", @"photo4", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors", @"category", @"condition", @"quantity", @"seller", @"country"]];
+    [query selectKeys:@[@"description", @"title", @"photo1", @"photo2", @"photo3", @"photo4", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors", @"category", @"condition", @"quantity", @"seller", @"country", @"adminArea"]];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
