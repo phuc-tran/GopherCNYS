@@ -344,12 +344,12 @@
     return YES;
 }
 
-- (IBAction)textFieldDidBeginEditing:(UITextField *)sender
+- (void)textFieldDidBeginEditing:(UITextField *)sender
 {
     self.activeField = sender;
 }
 
-- (IBAction)textFieldDidEndEditing:(UITextField *)sender
+- (void)textFieldDidEndEditing:(UITextField *)sender
 {
     self.activeField = nil;
 }
