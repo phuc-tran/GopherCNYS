@@ -94,7 +94,7 @@
     if ([[segue identifier] isEqualToString:@"productDetail_to_privateMessage"])
     {
         PrivateMessageViewController *vc = (PrivateMessageViewController *)[segue destinationViewController];
-        vc.product = [[productData objectAtIndex:selectedIndex] valueForKey:@"seller"]; 
+        vc.product = [productData objectAtIndex:selectedIndex];
     }
 }
 

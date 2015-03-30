@@ -83,8 +83,8 @@
     self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor colorWithRed:64.0/255.0 green:222.0/255.0 blue:172.0/255.0 alpha:1.0]];
     self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor colorWithRed:188.0/255.0 green:188.0/255.0 blue:188.0/255.0 alpha:1.0]];
  
-//    [self loadProductInfo];
-//    [self loadMessages];
+    [self loadProductInfo];
+    [self loadMessages];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -173,7 +173,7 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     // Chat history
-    if (self.chatRoom) {
+    if (self.chatRoom) { // This case happens when open private message screen from message list screen
         PFQuery *messageQuery = [PFQuery queryWithClassName:@"ChatHistory"];
         [messageQuery whereKey:@"roomId" equalTo:self.chatRoom];
         [messageQuery orderByAscending:@"updatedAt"];
@@ -197,52 +197,85 @@
                     [self.messages addObject:message];
                 }
                 [self.collectionView reloadData];
+                
+                // Mark chat room as read
+                PFObject *readChatroom = [PFObject objectWithoutDataWithClassName:@"Chatroom" objectId:[self.chatRoom valueForKey:@"objectId"]];
+                readChatroom[@"new"] = @"read";
+                [readChatroom saveInBackground];
             } else {
                 // Log details of the failure
                 NSLog(@"Error: %@ %@", error, [error userInfo]);
             }
         }];
     }
-    else {
+    else { // This case happen when open private message screen from product detail screen
         // Load chat room from product
         if (self.product) {
-            PFQuery *chatroomQuery = [PFQuery queryWithClassName:@"ChatRoom"];
+            PFQuery *chatroomQuery = [PFQuery queryWithClassName:@"Chatroom"];
             [chatroomQuery whereKey:@"listingId" equalTo:self.product];
             [chatroomQuery whereKey:@"seller" equalTo:[self.product valueForKey:@"seller"]];
             [chatroomQuery whereKey:@"buyer" equalTo:[PFUser currentUser]];
             
-            PFQuery *chatHistoryQuery = [PFQuery queryWithClassName:@"ChatHistory"];
-            [chatHistoryQuery whereKey:@"roomId" matchesQuery:chatroomQuery];
-            [chatHistoryQuery orderByAscending:@"updatedAt"];
-            [chatHistoryQuery includeKey:@"writer"];
-            
-            [chatHistoryQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [chatroomQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 if (!error) {
                     // The find succeeded.
-                    NSLog(@"Successfully retrieved %lu chatHistories.", (unsigned long)objects.count);
-                    // Reset self.messages first
-                    [self.messages removeAllObjects];
-                    
-                    for (int i = 0; i < objects.count; i++) {
-                        PFObject *iMessage = objects[i];
-                        JSQMessage *message = [[JSQMessage alloc] initWithSenderId:[[iMessage valueForKey:@"writer"] valueForKey:@"objectId"]
-                                                                 senderDisplayName:[[iMessage valueForKey:@"writer"] valueForKey:@"username"]
-                                                                              date:[iMessage valueForKey:@"updatedAt"]
-                                                                              text:[iMessage valueForKey:@"message"]];
-                        NSLog(@"message %@", message);
-                        [self.messages addObject:message];
+                    NSLog(@"Successfully retrieved %lu chatRoomes.", (unsigned long)objects.count);
+                    if (objects.count > 0) {
+                        self.chatRoom = objects[0];
+                        // Get chat history
+                        PFQuery *chatHistoryQuery = [PFQuery queryWithClassName:@"ChatHistory"];
+                        [chatHistoryQuery whereKey:@"roomId" equalTo:objects[0]];
+                        [chatHistoryQuery orderByAscending:@"updatedAt"];
+                        [chatHistoryQuery includeKey:@"writer"];
+                        
+                        [chatHistoryQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                            if (!error) {
+                                // The find succeeded.
+                                NSLog(@"Successfully retrieved %lu chatHistories.", (unsigned long)objects.count);
+                                // Reset self.messages first
+                                [self.messages removeAllObjects];
+                                
+                                for (int i = 0; i < objects.count; i++) {
+                                    PFObject *iMessage = objects[i];
+                                    JSQMessage *message = [[JSQMessage alloc] initWithSenderId:[[iMessage valueForKey:@"writer"] valueForKey:@"objectId"]
+                                                                             senderDisplayName:[[iMessage valueForKey:@"writer"] valueForKey:@"username"]
+                                                                                          date:[iMessage valueForKey:@"updatedAt"]
+                                                                                          text:[iMessage valueForKey:@"message"]];
+                                    NSLog(@"message %@", message);
+                                    [self.messages addObject:message];
+                                }
+                                if (objects.count > 0) {
+                                    [self.collectionView reloadData];
+                                }
+                            } else {
+                                // Log details of the failure
+                                NSLog(@"Error: %@ %@", error, [error userInfo]);
+                            }
+                        }];
+                    } else {
+                        // There is no chat room, create one
+                        PFObject *newChatRoom = [PFObject objectWithClassName:@"Chatroom"];
+                        newChatRoom[@"buyer"] = [PFUser currentUser];
+                        newChatRoom[@"seller"] = [self.product valueForKey:@"seller"];
+                        newChatRoom[@"new"] = @"new";
+                        newChatRoom[@"listingId"] = self.product;
+                        [newChatRoom saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+                            if (succeeded) {
+                                self.chatRoom = newChatRoom;
+                            }
+                            if (error) {
+                                NSLog(@"error when create new chat room: %@", [error localizedDescription]);
+                            }
+                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        }];
                     }
-                    [self.collectionView reloadData];
                 } else {
                     // Log details of the failure
                     NSLog(@"Error: %@ %@", error, [error userInfo]);
                 }
-                
-                
-                // If there is no chat room yet, create one
-                
             }];
+
         }
     }
     
@@ -285,17 +318,17 @@
     
     [self.messages addObject:message];
     
-    // Save to Parse
-//    PFObject *chatHistory = [PFObject objectWithClassName:@"ChatHistory"];
-//    chatHistory[@"message"] = message.text;
-//
-//    PFRelation *writerRelation = [chatHistory relationForKey:@"writer"];
-//    [writerRelation addObject:[PFUser currentUser]];
-//    
-//    PFRelation *roomIdRelation = [chatHistory relationForKey:@"roomId"];
-//    [roomIdRelation addObject:self.chatRoom];
-//    
-//    [chatHistory saveInBackground];
+    // Save to Parse: ChatHistory
+    PFObject *chatHistory = [PFObject objectWithClassName:@"ChatHistory"];
+    chatHistory[@"message"] = message.text;
+    chatHistory[@"writer"] = [PFUser currentUser];
+    chatHistory[@"roomId"] = self.chatRoom;
+    [chatHistory saveInBackground];
+    
+    // Mark chat room as new
+    PFObject *chatroom = [PFObject objectWithoutDataWithClassName:@"Chatroom" objectId:[self.chatRoom valueForKey:@"objectId"]];
+    chatroom[@"new"] = @"new";
+    [chatroom saveInBackground];
     
     [self finishSendingMessageAnimated:YES];
 }

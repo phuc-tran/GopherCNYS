@@ -31,8 +31,7 @@
 
     self.messagesListTable.rowHeight = 83.0f;
     
-    // Get list of messages
-    [self loadMessagesList];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -40,6 +39,10 @@
     [self setupLeftBackBarButtonItem];
     if (![self checkIfUserLoggedIn]) {
         [self performSegueWithIdentifier:@"message_from_login" sender:self];
+    }
+    else {
+        // Get list of messages
+        [self loadMessagesList];
     }
 }
 
@@ -176,8 +179,26 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 //        NSLog(@"aww, delete hit");
+        
+        // Delete messages on Parse
+        PFQuery *chatHistoryQuery = [PFQuery queryWithClassName:@"ChatHistory"];
+        [chatHistoryQuery whereKey:@"roomId" equalTo:[self.messagesList[indexPath.row] valueForKey:@"roomId"]];
+        [chatHistoryQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
+            if (!error) {
+                for (PFObject *object in objects) {
+                    NSLog(@"delete chat history %@", [object valueForKey:@"objectId"]);
+                    [object deleteInBackground];
+                }
+            }
+        }];
+        PFObject *chatroom = [PFObject objectWithoutDataWithClassName:@"Chatroom" objectId:[[self.messagesList[indexPath.row] valueForKey:@"roomId"] valueForKey:@"objectId"]];
+        NSLog(@"chatroom to delete %@", [chatroom valueForKey:@"objectId"]);
+        [chatroom deleteInBackground];
+        
+        // Refresh UI
         [self.messagesList removeObjectAtIndex:indexPath.row];
         [self.messagesListTable reloadData];
+        
     }
 }
 
