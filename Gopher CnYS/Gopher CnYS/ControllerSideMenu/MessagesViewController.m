@@ -26,9 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.messagesListTable.allowsMultipleSelectionDuringEditing = NO;
-    [self.messagesListTable registerNib:[UINib nibWithNibName:@"MessageTableViewCell" bundle:nil]
-                forCellReuseIdentifier:@"MessageListCell"];
-
+    [self.messagesListTable registerNib:[UINib nibWithNibName:@"MessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"MessageListCell"];
     self.messagesListTable.rowHeight = 83.0f;
 }
 

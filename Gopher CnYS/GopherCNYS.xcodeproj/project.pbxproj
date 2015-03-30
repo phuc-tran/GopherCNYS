@@ -46,6 +46,7 @@
 		18A6B7CC1A657F420043E08A /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A6B7CB1A657F420043E08A /* CreateAccountViewController.m */; };
 		18BA5C581A736180002EBF83 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BA5C571A736180002EBF83 /* ProductTableViewCell.xib */; };
 		A7B9F332FC78D0276CDD2C5A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 620EC0CA756B2526347C759D /* libPods.a */; };
+		AB4632061AC9B41500438D7B /* UsersFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4632051AC9B41500438D7B /* UsersFollowViewController.m */; };
 		AB519E3B1AC31E70008543B1 /* FPCarouselNonXIBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB519E3A1AC31E70008543B1 /* FPCarouselNonXIBViewController.m */; };
 		AB6E34AE1ABC69D900867CA3 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34A91ABC69D900867CA3 /* RECommonFunctions.m */; };
 		AB6E34AF1ABC69D900867CA3 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34AB1ABC69D900867CA3 /* RESideMenu.m */; };
@@ -138,6 +139,8 @@
 		18BA5C571A736180002EBF83 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		620EC0CA756B2526347C759D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E1623EF4C607474E22E40C7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		AB4632041AC9B41500438D7B /* UsersFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersFollowViewController.h; sourceTree = "<group>"; };
+		AB4632051AC9B41500438D7B /* UsersFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersFollowViewController.m; sourceTree = "<group>"; };
 		AB519E391AC31E70008543B1 /* FPCarouselNonXIBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPCarouselNonXIBViewController.h; sourceTree = "<group>"; };
 		AB519E3A1AC31E70008543B1 /* FPCarouselNonXIBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPCarouselNonXIBViewController.m; sourceTree = "<group>"; };
 		AB6E34A81ABC69D900867CA3 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
@@ -494,6 +497,8 @@
 				B9B1EC321AC6C50300377E36 /* MessageTableViewCell.xib */,
 				B9E2EF031AC6FE7F0085BCDC /* PrivateMessageViewController.h */,
 				B9E2EF041AC6FE7F0085BCDC /* PrivateMessageViewController.m */,
+				AB4632041AC9B41500438D7B /* UsersFollowViewController.h */,
+				AB4632051AC9B41500438D7B /* UsersFollowViewController.m */,
 			);
 			name = Content;
 			sourceTree = "<group>";
@@ -669,6 +674,7 @@
 				ABEC4DBF1ABD6A12000CF27C /* BaseViewController.m in Sources */,
 				AB6E34BE1ABC6A9A00867CA3 /* RightMenuViewController.m in Sources */,
 				AB6E34BD1ABC6A9A00867CA3 /* LeftMenuViewController.m in Sources */,
+				AB4632061AC9B41500438D7B /* UsersFollowViewController.m in Sources */,
 				182E36001A73A7AB00FA4378 /* ProductTableViewCell.m in Sources */,
 				ABA8F6B41AC7BB9500198A4A /* ProductImageCollectionViewCell.m in Sources */,
 				ABEC4DCA1ABD8188000CF27C /* BorderTextField.m in Sources */,

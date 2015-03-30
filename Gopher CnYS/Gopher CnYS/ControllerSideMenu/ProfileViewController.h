@@ -9,8 +9,19 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
-@interface ProfileViewController : BaseViewController
+#import <MobileCoreServices/MobileCoreServices.h>
+
+@interface ProfileViewController : BaseViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLable;
+@property (weak, nonatomic) IBOutlet UILabel *emailLable;
 
 - (IBAction)pushViewController:(id)sender;
+
+- (IBAction)defaultLocationClick:(UIButton*)sender;
+
+- (IBAction)userfollowClick:(UIButton*)sender;
 
 @end

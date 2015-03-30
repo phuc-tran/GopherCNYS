@@ -195,6 +195,7 @@
         product[@"postalCode"] = postalCodeStr;
     }
     
+    
     [product saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (succeeded) {
@@ -277,6 +278,7 @@
     picker.tag = 200;
     [picker showPickerIpadFromRect:self.view.frame inView:self.view];
 }
+
 #pragma mark - UIActionSheet Delegate Method
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSLog(@"Button at index: %ld clicked\nIts title is '%@'", (long)buttonIndex, [actionSheet buttonTitleAtIndex:buttonIndex]);
@@ -289,7 +291,7 @@
                 imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
                 imagePicker.delegate = self;
                 imagePicker.mediaTypes = @[(NSString *) kUTTypeImage];
-                imagePicker.allowsEditing = false;
+                imagePicker.allowsEditing = true;
                 imagePicker.view.tag = actionSheet.tag;
                 [self presentViewController:imagePicker animated:YES completion:nil];
                 
@@ -378,46 +380,7 @@
 }
 
 #pragma mark - UzysAssetsPickerControllerDelegate methods
-//- (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
-//{
-//    //self.productImageView.backgroundColor = [UIColor clearColor];
-//    DLog(@"assets %ld",(unsigned long)assets.count);
-//    __weak typeof(self) weakSelf = self;
-//    if([[assets[0] valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypePhoto"]) //Photo
-//    {
-//        [assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//            ALAsset *representation = obj;
-//            
-//            UIImage *img = [UIImage imageWithCGImage:representation.defaultRepresentation.fullResolutionImage
-//                                               scale:representation.defaultRepresentation.scale
-//                                         orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
-//            //weakSelf.productImageView.image = img;
-//            gotImage = img;
-//            *stop = YES;
-//        }];
-//        
-//        
-//    }
-//}
 
 #pragma mark - UICollectionViewDelegate
 
-//-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-//    //NSMutableArray *sectionArray = [self.dataArray objectAtIndex:section];
-//    return 4;
-//}
-//
-//-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    // Setup cell identifier
-//    static NSString *cellIdentifier = @"productImageCell";
-//    ProductImageCollectionViewCell *cell = (ProductImageCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-//    cell.productImageView.backgroundColor = [UIColor clearColor];
-//    if (gotImage != nil) {
-//        cell.productImageView.image = gotImage;
-//    }
-//    // Return the cell
-//    return cell;
-//    
-//}
 @end
