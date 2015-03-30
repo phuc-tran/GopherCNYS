@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Root View Controller-->
@@ -1258,8 +1258,8 @@
                                                     <constraint firstAttribute="width" constant="320" id="ztq-Ng-aeK"/>
                                                 </constraints>
                                             </scrollView>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HQL-7W-zfp">
-                                                <rect key="frame" x="-1" y="184" width="320" height="384"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HQL-7W-zfp">
+                                                <rect key="frame" x="0.0" y="184" width="320" height="384"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Product Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Oe-db-0s1">
                                                         <rect key="frame" x="10" y="20" width="300" height="30"/>
@@ -1471,7 +1471,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="amZ-Vo-ytg"/>
+        <segue reference="vu3-Jp-7Xk"/>
         <segue reference="ExP-uq-3s7"/>
     </inferredMetricsTieBreakers>
 </document>

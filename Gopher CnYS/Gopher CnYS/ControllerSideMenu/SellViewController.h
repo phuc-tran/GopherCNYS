@@ -13,7 +13,7 @@
 #import <Parse/Parse.h>
 #import "UzysAssetsPickerController.h"
 
-@interface SellViewController : BaseViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, SBPickerSelectorDelegate, UITextFieldDelegate, CLLocationManagerDelegate, UIActionSheetDelegate>
+@interface SellViewController : BaseViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, SBPickerSelectorDelegate, UITextViewDelegate, CLLocationManagerDelegate, UIActionSheetDelegate>
 {
     NSUInteger categoryId;
     NSUInteger conditionId;
