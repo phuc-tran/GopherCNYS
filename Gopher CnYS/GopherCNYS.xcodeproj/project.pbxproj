@@ -69,6 +69,10 @@
 		ABEC4DBF1ABD6A12000CF27C /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DBE1ABD6A12000CF27C /* BaseViewController.m */; };
 		ABEC4DC41ABD801B000CF27C /* SellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DC31ABD801B000CF27C /* SellViewController.m */; };
 		ABEC4DCA1ABD8188000CF27C /* BorderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DC91ABD8188000CF27C /* BorderTextField.m */; };
+		B904A0981ACAFCB900DCE491 /* UserFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B904A0951ACAFCB800DCE491 /* UserFeedbackViewController.m */; };
+		B904A0991ACAFCB900DCE491 /* UserListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B904A0971ACAFCB900DCE491 /* UserListingViewController.m */; };
+		B904A09D1ACAFF1300DCE491 /* UserListingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B904A09B1ACAFF1300DCE491 /* UserListingTableViewCell.m */; };
+		B904A09E1ACAFF1300DCE491 /* UserListingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B904A09C1ACAFF1300DCE491 /* UserListingTableViewCell.xib */; };
 		B9B1EC261AC6A4F400377E36 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC251AC6A4F400377E36 /* libstdc++.dylib */; };
 		B9B1EC281AC6A7CE00377E36 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC271AC6A7CE00377E36 /* libz.dylib */; };
 		B9B1EC2A1AC6A7E700377E36 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC291AC6A7E700377E36 /* CFNetwork.framework */; };
@@ -182,6 +186,13 @@
 		ABEC4DC31ABD801B000CF27C /* SellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellViewController.m; sourceTree = "<group>"; };
 		ABEC4DC81ABD8188000CF27C /* BorderTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorderTextField.h; sourceTree = "<group>"; };
 		ABEC4DC91ABD8188000CF27C /* BorderTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorderTextField.m; sourceTree = "<group>"; };
+		B904A0941ACAFCB800DCE491 /* UserFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFeedbackViewController.h; sourceTree = "<group>"; };
+		B904A0951ACAFCB800DCE491 /* UserFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFeedbackViewController.m; sourceTree = "<group>"; };
+		B904A0961ACAFCB800DCE491 /* UserListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListingViewController.h; sourceTree = "<group>"; };
+		B904A0971ACAFCB900DCE491 /* UserListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListingViewController.m; sourceTree = "<group>"; };
+		B904A09A1ACAFF1200DCE491 /* UserListingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListingTableViewCell.h; sourceTree = "<group>"; };
+		B904A09B1ACAFF1300DCE491 /* UserListingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListingTableViewCell.m; sourceTree = "<group>"; };
+		B904A09C1ACAFF1300DCE491 /* UserListingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserListingTableViewCell.xib; sourceTree = "<group>"; };
 		B9B1EC251AC6A4F400377E36 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		B9B1EC271AC6A7CE00377E36 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B9B1EC291AC6A7E700377E36 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -262,6 +273,13 @@
 		1837DB071A65230B00C48A51 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B904A0941ACAFCB800DCE491 /* UserFeedbackViewController.h */,
+				B904A0951ACAFCB800DCE491 /* UserFeedbackViewController.m */,
+				B904A0961ACAFCB800DCE491 /* UserListingViewController.h */,
+				B904A0971ACAFCB900DCE491 /* UserListingViewController.m */,
+				B904A09A1ACAFF1200DCE491 /* UserListingTableViewCell.h */,
+				B904A09B1ACAFF1300DCE491 /* UserListingTableViewCell.m */,
+				B904A09C1ACAFF1300DCE491 /* UserListingTableViewCell.xib */,
 				18A6B7CA1A657F420043E08A /* CreateAccountViewController.h */,
 				18A6B7CB1A657F420043E08A /* CreateAccountViewController.m */,
 				184962A41A6657B30054AFFE /* ProductListViewController.h */,
@@ -604,6 +622,7 @@
 				1864BF161A4B1EA300EF5DD7 /* Images.xcassets in Resources */,
 				ABA4F0D51AC4711E008915F7 /* CountryPicker.bundle in Resources */,
 				AB7CB4CC1AB1F0A20017E183 /* ProductHeaderView.xib in Resources */,
+				B904A09E1ACAFF1300DCE491 /* UserListingTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,10 +686,12 @@
 				AB6E34B01ABC69D900867CA3 /* UIViewController+RESideMenu.m in Sources */,
 				ABA4F0D01AC46F9E008915F7 /* SBPickerSelector.m in Sources */,
 				ABEC4DC41ABD801B000CF27C /* SellViewController.m in Sources */,
+				B904A0981ACAFCB900DCE491 /* UserFeedbackViewController.m in Sources */,
 				AB6E34AF1ABC69D900867CA3 /* RESideMenu.m in Sources */,
 				AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */,
 				AB8B70A11ABB388B0028DC47 /* MBProgressHUD.m in Sources */,
 				AB6E34AE1ABC69D900867CA3 /* RECommonFunctions.m in Sources */,
+				B904A09D1ACAFF1300DCE491 /* UserListingTableViewCell.m in Sources */,
 				ABEC4DBF1ABD6A12000CF27C /* BaseViewController.m in Sources */,
 				AB6E34BE1ABC6A9A00867CA3 /* RightMenuViewController.m in Sources */,
 				AB6E34BD1ABC6A9A00867CA3 /* LeftMenuViewController.m in Sources */,
@@ -684,6 +705,7 @@
 				B9B1EC331AC6C50300377E36 /* MessageTableViewCell.m in Sources */,
 				1864BF0B1A4B1EA300EF5DD7 /* main.m in Sources */,
 				AB6E34BF1ABC6A9A00867CA3 /* RootViewController.m in Sources */,
+				B904A0991ACAFCB900DCE491 /* UserListingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
