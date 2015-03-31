@@ -103,6 +103,9 @@
     [self performSegueWithIdentifier:@"productDetail_to_privateMessage" sender:self];
 }
 
+- (IBAction)userListingButtonDidTouch:(id)sender {
+    [self performSegueWithIdentifier:@"productDetail_to_userListing" sender:self];
+}
 
 
 @end

@@ -17,6 +17,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    PFUser *user = [PFUser currentUser];
+    PFRelation *relation = [user relationForKey:@"follow"];
+    
+    [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            // There was an error
+            
+        } else {
+            userFollows = objects;
+        
+            [self.userFollowTableView reloadData];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,13 +45,41 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return userFollows.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"usersFollowCell"];
+    UserFollowTableViewCell *cell = (UserFollowTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"usersFollowCell"];
+    
+    PFUser *user = [userFollows objectAtIndex:indexPath.row];
+    NSString *name = [user objectForKey:@"name"];
+    if (name == nil) {
+        name = user.username;
+    }
+    cell.nameLabel.text = name;
+    cell.btnUnFollow.tag = indexPath.row;
+    PFFile *imageFile = [user objectForKey:@"profileImage"];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+        if (!error) {
+            if (data != nil) {
+                UIImage *image = [UIImage imageWithData:data];
+                cell.avatarImageView.image = image;
+            }
+        }
+    }];
     
     return cell;
+}
+
+- (IBAction)unFollowbtnClick:(UIButton *)sender {
+    
+    PFUser *user = [PFUser currentUser];
+    PFRelation *relation = [user relationForKey:@"follow"];
+    PFUser *userFollow = [userFollows objectAtIndex:sender.tag];
+    [relation removeObject:userFollow];
+    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        NSLog(@"error %@", error);
+    }];
 }
 
 @end
