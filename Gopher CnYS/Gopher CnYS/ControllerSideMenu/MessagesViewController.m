@@ -16,7 +16,7 @@
 
 @property (nonatomic, weak) IBOutlet UITableView *messagesListTable;
 @property (nonatomic, strong) NSMutableArray *messagesList;
-@property (nonatomic, strong) UIImage *selectedProfileImage;
+@property (nonatomic, strong) PFFile *selectedProfileImage;
 @property (nonatomic, strong) PFObject *selectedChatRoom;
 
 @end
@@ -143,9 +143,16 @@
 
     [messenger fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error){
         NSLog(@"messenger %@", [messenger valueForKey:@"username"]);
-        UIImage *profileAvatar = [messenger valueForKey:@"profileImage"];
+        PFFile *profileAvatar = [messenger valueForKey:@"profileImage"];
+        [profileAvatar getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:data];
+                cell.avatarImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:image withDiameter:70];
+                
+            }
+        }];
         if (profileAvatar != nil) {
-            cell.avatarImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:profileAvatar withDiameter:70];
+            
         }
     }];
     
@@ -204,7 +211,7 @@
     if ([messenger isEqual:[PFUser currentUser]]) {
         messenger = [[self.messagesList[indexPath.row] valueForKey:@"roomId"] valueForKey:@"buyer"];
     }
-    UIImage *profileAvatar = [messenger valueForKey:@"profileImage"];
+    PFFile *profileAvatar = [messenger valueForKey:@"profileImage"];
     self.selectedProfileImage = profileAvatar;
     
     self.selectedChatRoom = [self.messagesList[indexPath.row] valueForKey:@"roomId"];

@@ -14,6 +14,6 @@
 
 @property (nonatomic, strong) PFObject *chatRoom;
 @property (nonatomic, strong) PFObject *product;
-@property (nonatomic, strong) UIImage *incomingImage;
+@property (nonatomic, strong) PFFile *incomingImage;
 
 @end

@@ -59,9 +59,16 @@
         self.outgoingAvatar = nil;
     }
 
+    
     if (self.incomingImage) {
-        self.incomingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:self.incomingImage
-                                                                         diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+        [self.incomingImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:data];
+                self.incomingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:image
+                                                                                 diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+
+            }
+        }];
     }
     else {
         self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
