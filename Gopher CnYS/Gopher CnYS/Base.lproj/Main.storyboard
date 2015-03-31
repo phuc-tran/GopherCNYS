@@ -665,68 +665,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2mK-JS-62S">
-                                <rect key="frame" x="0.0" y="44" width="320" height="44"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AdY-gr-72r">
-                                        <rect key="frame" x="4" y="7" width="151" height="30"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Select Category" backgroundImage="select_category">
-                                            <color key="titleColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="selecetCategoryBtnClick:" destination="KUb-wv-JfL" eventType="touchUpInside" id="UNa-Qa-N2T"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GOW-ZZ-COo">
-                                        <rect key="frame" x="157" y="0.0" width="163" height="44"/>
-                                        <subviews>
-                                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xv-bf-0oc">
-                                                <rect key="frame" x="122" y="6" width="32" height="32"/>
-                                                <state key="normal" image="ic_price_filter1">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="priceBtnClick:" destination="KUb-wv-JfL" eventType="touchUpInside" id="z9y-wz-cb0"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kbi-8K-JaU">
-                                                <rect key="frame" x="38" y="6" width="32" height="32"/>
-                                                <state key="normal" image="ic_new_filter1">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="newBtnClick:" destination="KUb-wv-JfL" eventType="touchUpInside" id="HLt-WQ-xDo"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUA-C3-eSZ">
-                                                <rect key="frame" x="80" y="6" width="32" height="32"/>
-                                                <state key="normal" image="ic_favorite_filter1">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="favoriteBtnClick:" destination="KUb-wv-JfL" eventType="touchUpInside" id="WBH-ir-LWj"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="DGc-Hd-OaT"/>
-                                            <constraint firstAttribute="width" constant="163" id="OFP-yb-uZi"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="GOW-ZZ-COo" firstAttribute="top" secondItem="2mK-JS-62S" secondAttribute="top" id="3In-mX-lzz"/>
-                                    <constraint firstAttribute="bottom" secondItem="GOW-ZZ-COo" secondAttribute="bottom" id="Gok-DF-ayY"/>
-                                    <constraint firstAttribute="height" constant="44" id="XFX-E8-sZW"/>
-                                    <constraint firstAttribute="trailing" secondItem="GOW-ZZ-COo" secondAttribute="trailing" id="lDu-I9-BZ8"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Hq-iF-pDA">
-                                <rect key="frame" x="0.0" y="88" width="320" height="428"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="KUb-wv-JfL" id="mua-lg-2Ek"/>
@@ -760,17 +700,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2mK-JS-62S" firstAttribute="leading" secondItem="uc3-gh-lbp" secondAttribute="leading" id="3tB-zO-n08"/>
+                            <constraint firstItem="7Hq-iF-pDA" firstAttribute="leading" secondItem="uc3-gh-lbp" secondAttribute="leading" id="4y1-3N-DfN"/>
                             <constraint firstAttribute="trailing" secondItem="zJo-1g-VxG" secondAttribute="trailing" id="6Mu-MK-PZD"/>
                             <constraint firstAttribute="bottom" secondItem="zJo-1g-VxG" secondAttribute="bottom" id="6nd-3e-OYW"/>
                             <constraint firstItem="zJo-1g-VxG" firstAttribute="leading" secondItem="uc3-gh-lbp" secondAttribute="leading" id="N7Y-wQ-1Sv"/>
-                            <constraint firstItem="7Hq-iF-pDA" firstAttribute="top" secondItem="2mK-JS-62S" secondAttribute="bottom" id="Ogh-a3-uTo"/>
-                            <constraint firstItem="7Hq-iF-pDA" firstAttribute="leading" secondItem="uc3-gh-lbp" secondAttribute="leading" id="c48-bh-jHC"/>
-                            <constraint firstItem="5Ug-d9-gBZ" firstAttribute="top" secondItem="7Hq-iF-pDA" secondAttribute="bottom" constant="52" id="jja-Mz-0BW"/>
-                            <constraint firstAttribute="trailing" secondItem="7Hq-iF-pDA" secondAttribute="trailing" id="pe4-H9-0jA"/>
-                            <constraint firstItem="2mK-JS-62S" firstAttribute="top" secondItem="hRF-yn-HF8" secondAttribute="bottom" id="w35-FH-C9g"/>
-                            <constraint firstAttribute="centerX" secondItem="7Hq-iF-pDA" secondAttribute="centerX" id="wEH-MB-sGq"/>
-                            <constraint firstAttribute="trailing" secondItem="2mK-JS-62S" secondAttribute="trailing" id="yon-yz-OeM"/>
+                            <constraint firstAttribute="centerX" secondItem="7Hq-iF-pDA" secondAttribute="centerX" id="Sfg-HB-wlD"/>
+                            <constraint firstItem="zJo-1g-VxG" firstAttribute="top" secondItem="7Hq-iF-pDA" secondAttribute="bottom" id="d8Q-Ck-RnS"/>
+                            <constraint firstAttribute="trailing" secondItem="7Hq-iF-pDA" secondAttribute="trailing" id="dia-o9-p5W"/>
+                            <constraint firstItem="7Hq-iF-pDA" firstAttribute="top" secondItem="uc3-gh-lbp" secondAttribute="top" id="k65-hj-aum"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eB2-tM-6cZ">
@@ -779,10 +716,6 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="bottomView" destination="zJo-1g-VxG" id="1zY-Tp-RiH"/>
-                        <outlet property="btnFavorite" destination="DUA-C3-eSZ" id="YON-KG-iJD"/>
-                        <outlet property="btnNew" destination="Kbi-8K-JaU" id="5f9-lz-Scx"/>
-                        <outlet property="btnPrice" destination="4xv-bf-0oc" id="1ai-gF-Vep"/>
-                        <outlet property="btnSelectCategory" destination="AdY-gr-72r" id="Yik-xF-hRr"/>
                         <outlet property="productTableView" destination="7Hq-iF-pDA" id="Jpm-L5-DxK"/>
                         <segue destination="yMM-1Y-rcA" kind="push" identifier="ProductDetaiFormProduct" id="Hcj-1n-Msb"/>
                         <segue destination="KBN-7p-nVk" kind="push" identifier="product_list_form_login" id="G1w-cs-YeN"/>
@@ -1573,9 +1506,6 @@
         <image name="camera_icon" width="15" height="12"/>
         <image name="cancel_btn" width="312" height="44"/>
         <image name="fb_normal" width="76" height="76"/>
-        <image name="ic_favorite_filter1" width="32" height="32"/>
-        <image name="ic_new_filter1" width="32" height="32"/>
-        <image name="ic_price_filter1" width="32" height="32"/>
         <image name="listing_comment" width="35" height="35"/>
         <image name="listing_facebook" width="35" height="35"/>
         <image name="listing_info" width="35" height="35"/>
