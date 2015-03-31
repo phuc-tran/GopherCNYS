@@ -10,7 +10,6 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "MBProgressHUD.h"
 #import <AVFoundation/AVFoundation.h>
-#import "ProductImageCollectionViewCell.h"
 
 @interface SellViewController ()
 

@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+#import "UserFollowTableViewCell.h"
 
 @interface UsersFollowViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+{
+    NSArray *userFollows;
+}
+@property (weak, nonatomic) IBOutlet UITableView *userFollowTableView;
 
 @end
