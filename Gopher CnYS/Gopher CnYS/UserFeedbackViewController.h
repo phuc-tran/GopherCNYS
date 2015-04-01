@@ -6,8 +6,10 @@
 //  Copyright (c) 2015 cnys. All rights reserved.
 //
 
-#import "BaseViewController.h"
 
-@interface UserFeedbackViewController : BaseViewController
+#import "JSQMessages.h"
+
+
+@interface UserFeedbackViewController : JSQMessagesViewController
 
 @end

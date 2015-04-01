@@ -49,10 +49,16 @@
     self.senderId = [[PFUser currentUser] valueForKey:@"objectId"];
     self.senderDisplayName = [[PFUser currentUser] valueForKey:@"username"];
     
-    UIImage *profileAvatar = [[PFUser currentUser] valueForKey:@"profileImage"];
+    PFFile *profileAvatar = [[PFUser currentUser] valueForKey:@"profileImage"];
     if (profileAvatar != nil) {
-        self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:profileAvatar
-                                                                                       diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+        [profileAvatar getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:data];
+                self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:image
+                                                                                 diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+                
+            }
+        }];
     }
     else {
         self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;

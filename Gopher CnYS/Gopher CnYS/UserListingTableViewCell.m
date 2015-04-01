@@ -13,7 +13,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.curveView.layer.cornerRadius = 5;
+    self.curveView.layer.cornerRadius = 7;
     self.curveView.layer.masksToBounds = YES;
 }
 

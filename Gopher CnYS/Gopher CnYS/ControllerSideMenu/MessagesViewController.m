@@ -137,7 +137,7 @@
     cell.avatarImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:[UIImage imageNamed:@"avatarDefault"] withDiameter:70];
 
     PFUser *messenger = [[self.messagesList[indexPath.row] valueForKey:@"roomId"] valueForKey:@"seller"];
-    if ([messenger isEqual:[PFUser currentUser]]) {
+    if ([[messenger valueForKey:@"objectId"] isEqualToString:[[PFUser currentUser] valueForKey:@"objectId"]]) {
         messenger = [[self.messagesList[indexPath.row] valueForKey:@"roomId"] valueForKey:@"buyer"];
     }
 
@@ -208,15 +208,19 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     PFUser *messenger = [[self.messagesList[indexPath.row] valueForKey:@"roomId"] valueForKey:@"seller"];
-    if ([messenger isEqual:[PFUser currentUser]]) {
+    if ([[messenger valueForKey:@"objectId"] isEqualToString:[[PFUser currentUser] valueForKey:@"objectId"]]) {
         messenger = [[self.messagesList[indexPath.row] valueForKey:@"roomId"] valueForKey:@"buyer"];
     }
-    PFFile *profileAvatar = [messenger valueForKey:@"profileImage"];
-    self.selectedProfileImage = profileAvatar;
     
-    self.selectedChatRoom = [self.messagesList[indexPath.row] valueForKey:@"roomId"];
+    [messenger fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error){
+        PFFile *profileAvatar = [messenger valueForKey:@"profileImage"];
+        self.selectedProfileImage = profileAvatar;
+        
+        self.selectedChatRoom = [self.messagesList[indexPath.row] valueForKey:@"roomId"];
+        
+        [self performSegueWithIdentifier:@"message_to_coversation" sender:self];
+    }];
     
-    [self performSegueWithIdentifier:@"message_to_coversation" sender:self];
 }
 
  #pragma mark - Navigation

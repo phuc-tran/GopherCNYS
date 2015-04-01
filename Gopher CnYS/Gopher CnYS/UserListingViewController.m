@@ -26,7 +26,9 @@
     // Do any additional setup after loading the view.
     
     [self.productTableView registerNib:[UINib nibWithNibName:@"UserListingTableViewCell" bundle:nil] forCellReuseIdentifier:@"ProductCell"];
-    self.productTableView.rowHeight = 140.0f;}
+    self.productTableView.rowHeight = 140.0f;
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
