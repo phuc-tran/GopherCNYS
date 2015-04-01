@@ -10,9 +10,13 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <Parse/Parse.h>
+#import "MBProgressHUD.h"
 
-@interface ProfileViewController : BaseViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-
+@interface ProfileViewController : BaseViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MBProgressHUDDelegate>
+{
+     MBProgressHUD *HUD;
+}
 
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLable;
