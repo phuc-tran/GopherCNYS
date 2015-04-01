@@ -10,6 +10,7 @@
 #import "ProductTableViewCell.h"
 #import "ProductHeaderView.h"
 #import "ProductDetailViewController.h"
+#import "HomeViewController.h"
 
 
 @interface ProductListViewController () <ProductTableViewCellDelegate>
@@ -71,6 +72,11 @@ NSUInteger selectedIndex;
         [vc setSelectedIndex:selectedIndex];
         [vc setCurrentLocaltion:currentLocaltion];
     }
+    else if ([segue.identifier isEqualToString:@"product_list_form_login"]) {
+        HomeViewController *destViewController = (HomeViewController *)[segue destinationViewController];
+        destViewController.shouldGoBack = YES;
+    }
+
 }
 
 #pragma mark - TableView delegate

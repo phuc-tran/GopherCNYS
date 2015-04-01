@@ -24,13 +24,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnSignIn;
 @property (weak, nonatomic) IBOutlet UIView *viewLogin;
 @property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;
-
 @property (weak, nonatomic) UITextField *activeField;
+@property (nonatomic, assign) BOOL shouldGoBack;
 
 -(IBAction) signIn:(id)sender;
 -(IBAction) cancelClick:(id)sender;
 
 @property UIActivityIndicatorView *activityIndicator;
+
 
 @end
 

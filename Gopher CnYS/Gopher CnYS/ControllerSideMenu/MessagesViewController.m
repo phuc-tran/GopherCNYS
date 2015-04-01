@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 #import <Parse/Parse.h>
 #import "PrivateMessageViewController.h"
+#import "HomeViewController.h"
 
 @interface MessagesViewController ()
 
@@ -223,7 +224,7 @@
     
 }
 
- #pragma mark - Navigation
+#pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -234,7 +235,10 @@
          destViewController.incomingImage = self.selectedProfileImage;
          destViewController.chatRoom = self.selectedChatRoom;
      }
-
+     else if ([segue.identifier isEqualToString:@"message_from_login"]) {
+         HomeViewController *destViewController = (HomeViewController *)[segue destinationViewController];
+         destViewController.shouldGoBack = YES;
+     }
  }
 
 

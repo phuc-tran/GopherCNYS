@@ -8,6 +8,7 @@
 
 #import "PrivateMessageViewController.h"
 #import "MBProgressHUD.h"
+#import "HomeViewController.h"
 
 
 @interface PrivateMessageViewController ()
@@ -43,43 +44,6 @@
     
     self.collectionView.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:244.0/255.0 blue:244.0/255.0 alpha:1.0];
     
-    /**
-     *  You MUST set your senderId and display name
-     */
-    self.senderId = [[PFUser currentUser] valueForKey:@"objectId"];
-    self.senderDisplayName = [[PFUser currentUser] valueForKey:@"username"];
-    
-    PFFile *profileAvatar = [[PFUser currentUser] valueForKey:@"profileImage"];
-    if (profileAvatar != nil) {
-        [profileAvatar getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-            if (!error) {
-                UIImage *image = [UIImage imageWithData:data];
-                self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:image
-                                                                                 diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
-                
-            }
-        }];
-    }
-    else {
-        self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
-        self.outgoingAvatar = nil;
-    }
-
-    
-    if (self.incomingImage) {
-        [self.incomingImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-            if (!error) {
-                UIImage *image = [UIImage imageWithData:data];
-                self.incomingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:image
-                                                                                 diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
-
-            }
-        }];
-    }
-    else {
-        self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
-        self.incomingAvatar = nil;
-    }
     
     self.showLoadEarlierMessagesHeader = NO;
     
@@ -96,8 +60,7 @@
     self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor colorWithRed:64.0/255.0 green:222.0/255.0 blue:172.0/255.0 alpha:1.0]];
     self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor colorWithRed:188.0/255.0 green:188.0/255.0 blue:188.0/255.0 alpha:1.0]];
  
-    [self loadProductInfo];
-    [self loadMessages];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -120,7 +83,51 @@
     button.frame = CGRectMake(0.0f, 0.0f, 25.0f, 25.0f);
     [button addTarget:self action:@selector(leftBackClick:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-
+    
+    if (![self checkIfUserLoggedIn]) {
+        [self performSegueWithIdentifier:@"privateMessage_to_login" sender:self];
+    } else {
+        // Get list of messages
+        /**
+         *  You MUST set your senderId and display name
+         */
+        self.senderId = [[PFUser currentUser] valueForKey:@"objectId"];
+        self.senderDisplayName = [[PFUser currentUser] valueForKey:@"username"];
+        
+        PFFile *profileAvatar = [[PFUser currentUser] valueForKey:@"profileImage"];
+        if (profileAvatar != nil) {
+            [profileAvatar getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                if (!error) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:image
+                                                                                     diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+                    
+                }
+            }];
+        }
+        else {
+            self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
+            self.outgoingAvatar = nil;
+        }
+        
+        
+        if (self.incomingImage) {
+            [self.incomingImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                if (!error) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    self.incomingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:image
+                                                                                     diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+                    
+                }
+            }];
+        }
+        else {
+            self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
+            self.incomingAvatar = nil;
+        }
+        [self loadProductInfo];
+        [self loadMessages];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -130,6 +137,15 @@
 
 - (IBAction)leftBackClick:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(BOOL) checkIfUserLoggedIn
+{
+    if ([[PFUser currentUser] isAuthenticated])
+    {
+        return YES;
+    }
+    return NO;
 }
 
 - (void)loadProductInfo {
@@ -574,5 +590,17 @@
 {
     NSLog(@"Tapped cell at %@!", NSStringFromCGPoint(touchLocation));
 }
+
+#pragma mark - Navigation
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"privateMessage_to_login"]) {
+        HomeViewController *destViewController = (HomeViewController *)[segue destinationViewController];
+        destViewController.shouldGoBack = YES;
+    }
+}
+
 
 @end

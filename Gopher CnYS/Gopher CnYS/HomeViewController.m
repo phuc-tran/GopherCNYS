@@ -83,7 +83,14 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
 
 -(void) openProductList
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (!self.shouldGoBack) {
+        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"productListViewController"]]
+                                                     animated:YES];
+    }
+    else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 
 -(void) loadUI
