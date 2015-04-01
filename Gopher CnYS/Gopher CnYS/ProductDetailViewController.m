@@ -8,6 +8,7 @@
 
 #import "ProductDetailViewController.h"
 #import "PrivateMessageViewController.h"
+#import "UserListingViewController.h"
 
 @interface ProductDetailViewController ()
 @property (nonatomic, weak) IBOutlet UIButton *messageButton;
@@ -41,11 +42,22 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            self.productSellerLbl.text = [[objects objectAtIndex:0] valueForKey:@"username"];
-            UIImage *profileAvatar = [[objects objectAtIndex:0] valueForKey:@"profileImage"];
-            if (profileAvatar != nil) {
-                self.profileAvatar.image = profileAvatar;
+            PFUser *user = [objects objectAtIndex:0];
+            NSString *name = [user valueForKey:@"name"];
+            if (name == nil) {
+                name = user.username;
             }
+            self.productSellerLbl.text = name;
+            PFFile *imageFile = [user objectForKey:@"profileImage"];
+            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                if (!error) {
+                    if (data != nil) {
+                        UIImage *image = [UIImage imageWithData:data];
+                        self.profileAvatar.image = image;
+                    }
+                }
+            }];
+            
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -95,7 +107,11 @@
     {
         PrivateMessageViewController *vc = (PrivateMessageViewController *)[segue destinationViewController];
         vc.product = [productData objectAtIndex:selectedIndex];
+    } else if ([[segue identifier] isEqualToString:@"productDetail_to_userListing"]) {
+        UserListingViewController *vc= (UserListingViewController *)[segue destinationViewController];
+        vc.curUser = [[productData objectAtIndex:selectedIndex] valueForKey:@"seller"];
     }
+        
 }
 
 - (IBAction)messageButtonDidTouch:(id)sender {

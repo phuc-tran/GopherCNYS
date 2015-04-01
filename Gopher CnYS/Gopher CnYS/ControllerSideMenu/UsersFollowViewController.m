@@ -7,6 +7,7 @@
 //
 
 #import "UsersFollowViewController.h"
+#import "MBProgressHUD.h"
 
 @interface UsersFollowViewController ()
 
@@ -17,17 +18,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadUserFollow];
+}
+
+- (void)loadUserFollow {
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFUser *user = [PFUser currentUser];
     PFRelation *relation = [user relationForKey:@"follow"];
     
     [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (error) {
             // There was an error
             
         } else {
             userFollows = objects;
-        
+            
             [self.userFollowTableView reloadData];
         }
     }];
@@ -72,13 +84,19 @@
 }
 
 - (IBAction)unFollowbtnClick:(UIButton *)sender {
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFUser *user = [PFUser currentUser];
     PFRelation *relation = [user relationForKey:@"follow"];
     PFUser *userFollow = [userFollows objectAtIndex:sender.tag];
     [relation removeObject:userFollow];
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        NSLog(@"error %@", error);
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (!error) {
+            [self loadUserFollow];
+            [self.userFollowTableView reloadData];
+        } else {
+            NSLog(@"error %@", error);
+        }
     }];
 }
 

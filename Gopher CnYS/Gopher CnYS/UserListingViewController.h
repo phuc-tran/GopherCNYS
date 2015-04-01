@@ -10,7 +10,7 @@
 
 @interface UserListingViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, retain) PFObject *curUser;
+@property (nonatomic, retain) PFUser *curUser;
 @property (nonatomic, copy) NSArray *products;
 
 @end

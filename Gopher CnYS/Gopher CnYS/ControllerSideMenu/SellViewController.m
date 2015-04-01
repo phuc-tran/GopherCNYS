@@ -327,15 +327,19 @@
 #pragma mark - UITextViewDelegate
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-    textView.text = @"";
+    if ([textView.text isEqualToString:@"Product Description"]) {
+        textView.text = @"";
+    }
+    [textView becomeFirstResponder];
+
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    if ([textView.text isEqualToString:@""] || [[textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0)
-    {
-        [textView setText:@""];
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"Product Description";
     }
+    [textView resignFirstResponder];
 }
 
 #pragma mark - UITextFieldDelegate

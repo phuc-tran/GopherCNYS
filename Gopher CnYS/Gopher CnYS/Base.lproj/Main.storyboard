@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -708,17 +708,12 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarDefault" translatesAutoresizingMaskIntoConstraints="NO" id="FoD-Ti-fLG">
                                         <rect key="frame" x="6" y="6" width="58" height="58"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rpp-fu-pTf">
-                                        <rect key="frame" x="72" y="10" width="117" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="IBx-a3-M5b"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.25098039220000001" green="0.87058823529999996" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBy-qr-B7q">
                                         <rect key="frame" x="72" y="37" width="108" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="108" id="gLB-QQ-etE"/>
+                                            <constraint firstAttribute="height" constant="30" id="xwB-9A-INY"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                                         <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="Feedback       " backgroundImage="userListing_feedback">
@@ -740,20 +735,28 @@
                                             <action selector="followButtonDidTouch:" destination="juJ-GF-yJr" eventType="touchUpInside" id="MM9-iZ-L03"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rpp-fu-pTf">
+                                        <rect key="frame" x="72" y="8" width="117" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="7jA-zM-RdS"/>
+                                            <constraint firstAttribute="width" constant="117" id="HZL-0m-Stw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.25098039220000001" green="0.87058823529999996" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="Rpp-fu-pTf" firstAttribute="top" secondItem="cOa-Rf-pJU" secondAttribute="top" constant="8" id="12g-Dm-cMb"/>
                                     <constraint firstItem="FoD-Ti-fLG" firstAttribute="top" secondItem="cOa-Rf-pJU" secondAttribute="top" constant="6" id="4AV-AW-fco"/>
+                                    <constraint firstItem="Rpp-fu-pTf" firstAttribute="leading" secondItem="FoD-Ti-fLG" secondAttribute="trailing" constant="8" id="57L-YI-OYv"/>
                                     <constraint firstItem="Ysc-eI-gpK" firstAttribute="centerY" secondItem="FoD-Ti-fLG" secondAttribute="centerY" id="80G-Fm-CN4"/>
                                     <constraint firstItem="FoD-Ti-fLG" firstAttribute="centerY" secondItem="cOa-Rf-pJU" secondAttribute="centerY" id="8Uo-gE-P0g"/>
-                                    <constraint firstItem="Ysc-eI-gpK" firstAttribute="leading" secondItem="Rpp-fu-pTf" secondAttribute="trailing" constant="53" id="Ax4-CK-7Zf"/>
                                     <constraint firstItem="Ysc-eI-gpK" firstAttribute="trailing" secondItem="cOa-Rf-pJU" secondAttribute="trailingMargin" id="E6z-hh-VPv"/>
-                                    <constraint firstItem="Rpp-fu-pTf" firstAttribute="leading" secondItem="FoD-Ti-fLG" secondAttribute="trailing" constant="8" symbolic="YES" id="EdW-pz-O4E"/>
                                     <constraint firstItem="FoD-Ti-fLG" firstAttribute="leading" secondItem="cOa-Rf-pJU" secondAttribute="leading" constant="6" id="LI2-Vc-NpA"/>
-                                    <constraint firstItem="Rpp-fu-pTf" firstAttribute="top" secondItem="cOa-Rf-pJU" secondAttribute="top" constant="10" id="Q1w-Ha-wWa"/>
-                                    <constraint firstItem="KBy-qr-B7q" firstAttribute="leading" secondItem="Rpp-fu-pTf" secondAttribute="leading" id="ZVk-h4-ad9"/>
-                                    <constraint firstItem="KBy-qr-B7q" firstAttribute="top" secondItem="Rpp-fu-pTf" secondAttribute="bottom" constant="2" id="byg-sl-mq3"/>
-                                    <constraint firstItem="Ysc-eI-gpK" firstAttribute="leading" secondItem="KBy-qr-B7q" secondAttribute="trailing" constant="62" id="vr9-j3-dBt"/>
+                                    <constraint firstItem="KBy-qr-B7q" firstAttribute="top" secondItem="Rpp-fu-pTf" secondAttribute="bottom" constant="4" id="gKt-9u-jDu"/>
+                                    <constraint firstItem="KBy-qr-B7q" firstAttribute="leading" secondItem="FoD-Ti-fLG" secondAttribute="trailing" constant="8" id="tcN-Fh-UuJ"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HsF-Xo-rLm">
@@ -787,6 +790,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="productTableView" destination="HsF-Xo-rLm" id="iqx-Aj-4RL"/>
+                        <outlet property="userImageView" destination="FoD-Ti-fLG" id="XpP-pN-tMs"/>
                         <outlet property="usernameLabel" destination="Rpp-fu-pTf" id="UsU-AM-fG7"/>
                         <segue destination="JBh-Af-mpd" kind="push" identifier="userListing_to_userFeedback" id="5hR-1Q-ZQk"/>
                     </connections>
@@ -1449,6 +1453,7 @@
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Product Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Oe-db-0s1">
                                                         <rect key="frame" x="10" y="20" width="300" height="30"/>
+                                                        <color key="textColor" red="0.74509803919999995" green="0.74509803919999995" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
@@ -1675,7 +1680,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="G1w-cs-YeN"/>
         <segue reference="ExP-uq-3s7"/>
+        <segue reference="vu3-Jp-7Xk"/>
     </inferredMetricsTieBreakers>
 </document>
