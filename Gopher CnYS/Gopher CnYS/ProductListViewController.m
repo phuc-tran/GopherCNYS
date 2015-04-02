@@ -152,10 +152,21 @@ NSUInteger selectedIndex;
     NSInteger price  = [[[productData objectAtIndex:indexPath.row] valueForKey:@"price"] integerValue];
     cell.lblProductPrice.text = [NSString stringWithFormat:@"$%ld", (long)price];
     
-    PFGeoPoint *positionItem  = [[productData objectAtIndex:indexPath.row] objectForKey:@"position"];
+    //PFGeoPoint *positionItem  = [[productData objectAtIndex:indexPath.row] objectForKey:@"position"];
     //cell.lblProductMiles.text = [NSString stringWithFormat:@"%.f miles", [currentLocaltion distanceInMilesTo:positionItem]];
     
     PFFile *imageFile = [[productData objectAtIndex:indexPath.row] objectForKey:@"photo1"];
+    if (imageFile == nil) {
+        imageFile = [[productData objectAtIndex:indexPath.row] objectForKey:@"photo2"];
+    }
+    
+    if (imageFile == nil) {
+        imageFile = [[productData objectAtIndex:indexPath.row] objectForKey:@"photo3"];
+    }
+    
+    if (imageFile == nil) {
+        imageFile = [[productData objectAtIndex:indexPath.row] objectForKey:@"photo4"];
+    }
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
         if (!error) {
             UIImage *image = [UIImage imageWithData:data];

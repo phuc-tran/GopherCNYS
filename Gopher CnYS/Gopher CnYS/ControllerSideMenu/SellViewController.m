@@ -159,29 +159,20 @@
 - (void)addProduct {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFObject *product = [PFObject objectWithClassName:@"Products"];
-    
-    if (self.productImageView1.image != nil) {
-        NSData *imageData = UIImagePNGRepresentation(self.productImageView1.image);
-        PFFile *imageFile = [PFFile fileWithName:@"productImage1.png" data:imageData];
-        product[@"photo1"] = imageFile;
+    if (imageFile1 != nil) {
+        product[@"photo1"] = imageFile1;
     }
     
-    if (self.productImageView2.image != nil) {
-        NSData *imageData = UIImagePNGRepresentation(self.productImageView2.image);
-        PFFile *imageFile = [PFFile fileWithName:@"productImage2.png" data:imageData];
-        product[@"photo2"] = imageFile;
+    if (imageFile2 != nil) {
+        product[@"photo2"] = imageFile2;
     }
     
-    if (self.productImageView3.image != nil) {
-        NSData *imageData = UIImagePNGRepresentation(self.productImageView3.image);
-        PFFile *imageFile = [PFFile fileWithName:@"productImage3.png" data:imageData];
-        product[@"photo3"] = imageFile;
+    if (imageFile3 != nil) {
+        product[@"photo3"] = imageFile3;
     }
     
-    if (self.productImageView4.image != nil) {
-        NSData *imageData = UIImagePNGRepresentation(self.productImageView4.image);
-        PFFile *imageFile = [PFFile fileWithName:@"productImage4.png" data:imageData];
-        product[@"photo4"] = imageFile;
+    if (imageFile4 != nil) {
+        product[@"photo4"] = imageFile4;
     }
     
     product[@"title"] = self.productTitleField.text;
@@ -213,7 +204,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (succeeded) {
             // The object has been saved.
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Add product successful" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Add product successful" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alert show];
         } else {
             NSLog(@"Error %@", error);
@@ -240,22 +231,73 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
     UIImage *gotImage = info[UIImagePickerControllerOriginalImage];
+    
+    // Resize image
+    UIGraphicsBeginImageContext(CGSizeMake(640, 960));
+    [gotImage drawInRect: CGRectMake(0, 0, 640, 960)];
+    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
     switch (picker.view.tag) {
         case 1:
+        {
             self.productImageView1.image = gotImage;
             self.btnCapture1.hidden = TRUE;
+            NSData *imageData = UIImagePNGRepresentation(smallImage);
+            imageFile1 = [PFFile fileWithName:@"productImage1.png" data:imageData];
+            [imageFile1 saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    NSLog(@"product 1 upload success");
+                } else {
+                    NSLog(@"Error %@", [error userInfo]);
+                }
+            }];
+        }
             break;
         case 2:
+        {
             self.productImageView2.image = gotImage;
             self.btnCapture2.hidden = TRUE;
+            NSData *imageData = UIImagePNGRepresentation(smallImage);
+            imageFile2 = [PFFile fileWithName:@"productImage2.png" data:imageData];
+            [imageFile2 saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    NSLog(@"product 2 upload success");
+                } else {
+                    NSLog(@"Error %@", [error userInfo]);
+                }
+            }];
+        }
             break;
         case 3:
+        {
             self.productImageView3.image = gotImage;
             self.btnCapture3.hidden = TRUE;
+            NSData *imageData = UIImagePNGRepresentation(smallImage);
+            imageFile3 = [PFFile fileWithName:@"productImage3.png" data:imageData];
+            [imageFile3 saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    NSLog(@"product 3 upload success");
+                } else {
+                    NSLog(@"Error %@", [error userInfo]);
+                }
+            }];
+        }
             break;
         case 4:
+        {
             self.productImageView4.image = gotImage;
             self.btnCapture4.hidden = TRUE;
+            NSData *imageData = UIImagePNGRepresentation(smallImage);
+            imageFile4 = [PFFile fileWithName:@"productImage4.png" data:imageData];
+            [imageFile4 saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    NSLog(@"product 4 upload success");
+                } else {
+                    NSLog(@"Error %@", [error userInfo]);
+                }
+            }];
+        }
             break;
         default:
             break;
@@ -396,7 +438,18 @@
     self.contentScrollView.scrollIndicatorInsets = contentInsets;
 }
 
-#pragma mark - UzysAssetsPickerControllerDelegate methods
+#pragma mark UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // the user clicked one of the OK/Cancel buttons
+    if (buttonIndex == 0)
+    {
+        [self leftBackClick:nil];
+    }
+    else
+    {
+        NSLog(@"cancel");
+    }
+}
 
 #pragma mark - UICollectionViewDelegate
 

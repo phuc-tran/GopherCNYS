@@ -64,12 +64,29 @@
         }
     }];
     
+    self.profileAvatar.layer.cornerRadius = 5.0f;
+    self.profileAvatar.layer.borderWidth = 2.0f;
+    self.profileAvatar.layer.borderColor = [UIColor colorWithRed:226/255.0f green:226/255.0f blue:226/255.0f alpha:1.0f].CGColor;
+    self.profileAvatar.clipsToBounds = YES;
+    
     self.productImgaeView.layer.cornerRadius = 5.0f;
     self.productImgaeView.layer.borderWidth = 2.0f;
     self.productImgaeView.layer.borderColor = [UIColor colorWithRed:226/255.0f green:226/255.0f blue:226/255.0f alpha:1.0f].CGColor;
     self.productImgaeView.clipsToBounds = YES;
     
     PFFile *imageFile = [[productData objectAtIndex:selectedIndex] objectForKey:@"photo1"];
+    if (imageFile == nil) {
+        imageFile = [[productData objectAtIndex:selectedIndex] objectForKey:@"photo2"];
+    }
+    
+    if (imageFile == nil) {
+        imageFile = [[productData objectAtIndex:selectedIndex] objectForKey:@"photo3"];
+    }
+    
+    if (imageFile == nil) {
+        imageFile = [[productData objectAtIndex:selectedIndex] objectForKey:@"photo4"];
+    }
+    
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
         if (!error) {
             UIImage *image = [UIImage imageWithData:data];

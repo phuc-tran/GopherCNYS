@@ -25,6 +25,11 @@
     NSString *postalCodeStr;
     NSString *subLocalityStr;
     NSString *subAdminAreaStr;
+    
+    PFFile *imageFile1;
+    PFFile *imageFile2;
+    PFFile *imageFile3;
+    PFFile *imageFile4;
 }
 
 - (IBAction)pushViewController:(id)sender;
