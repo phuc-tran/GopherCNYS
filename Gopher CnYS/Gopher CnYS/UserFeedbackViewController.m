@@ -135,15 +135,32 @@
 
 - (void)loadFeedbacks {
     
-    for (int i = 0; i < 3; i++) {
-        JSQMessage *message = [[JSQMessage alloc] initWithSenderId:@"abcxyz"
-                                                 senderDisplayName:@"loi nhu don"
-                                                              date:[NSDate date]
-                                                              text:[NSString stringWithFormat:@"this is feedback number %d\n\nJan 1, 2015. username", i]];
-        NSLog(@"message %@", message);
-        [self.feedbacks addObject:message];
-    }
-    [self.collectionView reloadData];
+    PFQuery *query = [PFQuery queryWithClassName:@"Comments"];
+    [query whereKey:@"forUserId" equalTo:[self.curUser objectId]];
+    [query includeKey:@"writer"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            for (int i = 0; i < objects.count; i++) {
+                PFUser *iUser = [[objects objectAtIndex:i] valueForKey:@"writer"];
+                NSString *iName = [iUser valueForKey:@"name"];
+                if (iName == nil) {
+                    iName = iUser.username;
+                }
+                JSQMessage *message = [[JSQMessage alloc] initWithSenderId:iUser.objectId
+                                                         senderDisplayName:iName
+                                                                      date:[objects[i] valueForKey:@"createdAt"]
+                                                                      text:[objects[i] valueForKey:@"comment"]];
+                NSLog(@"message %@", message);
+                [self.feedbacks addObject:message];
+                
+            }
+            [self.collectionView reloadData];
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 #pragma mark - JSQMessagesViewController method overrides
@@ -173,17 +190,12 @@
     
     [self.feedbacks addObject:message];
     
-//    // Save to Parse: ChatHistory
-//    PFObject *chatHistory = [PFObject objectWithClassName:@"ChatHistory"];
-//    chatHistory[@"message"] = message.text;
-//    chatHistory[@"writer"] = [PFUser currentUser];
-//    chatHistory[@"roomId"] = self.chatRoom;
-//    [chatHistory saveInBackground];
-//    
-//    // Mark chat room as new
-//    PFObject *chatroom = [PFObject objectWithoutDataWithClassName:@"Chatroom" objectId:[self.chatRoom valueForKey:@"objectId"]];
-//    chatroom[@"new"] = @"new";
-//    [chatroom saveInBackground];
+    // Save to Parse: Comments
+    PFObject *newComment = [PFObject objectWithClassName:@"Comments"];
+    newComment[@"comment"] = message.text;
+    newComment[@"writer"] = [PFUser currentUser];
+    newComment[@"forUserId"] = [self.curUser objectId];
+    [newComment saveInBackground];
     
     [self finishSendingMessageAnimated:YES];
 }
