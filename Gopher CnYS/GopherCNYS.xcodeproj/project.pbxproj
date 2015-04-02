@@ -73,6 +73,8 @@
 		B904A0991ACAFCB900DCE491 /* UserListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B904A0971ACAFCB900DCE491 /* UserListingViewController.m */; };
 		B904A09D1ACAFF1300DCE491 /* UserListingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B904A09B1ACAFF1300DCE491 /* UserListingTableViewCell.m */; };
 		B904A09E1ACAFF1300DCE491 /* UserListingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B904A09C1ACAFF1300DCE491 /* UserListingTableViewCell.xib */; };
+		B93D20CB1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B93D20CA1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m */; };
+		B93D20CF1ACD3A4A0021ED49 /* UserFeedbackCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B93D20CE1ACD3A4A0021ED49 /* UserFeedbackCollectionView.xib */; };
 		B9B1EC261AC6A4F400377E36 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC251AC6A4F400377E36 /* libstdc++.dylib */; };
 		B9B1EC281AC6A7CE00377E36 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC271AC6A7CE00377E36 /* libz.dylib */; };
 		B9B1EC2A1AC6A7E700377E36 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC291AC6A7E700377E36 /* CFNetwork.framework */; };
@@ -193,6 +195,9 @@
 		B904A09A1ACAFF1200DCE491 /* UserListingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListingTableViewCell.h; sourceTree = "<group>"; };
 		B904A09B1ACAFF1300DCE491 /* UserListingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListingTableViewCell.m; sourceTree = "<group>"; };
 		B904A09C1ACAFF1300DCE491 /* UserListingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserListingTableViewCell.xib; sourceTree = "<group>"; };
+		B93D20C91ACD39690021ED49 /* UserFeedbackCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFeedbackCollectionViewCell.h; sourceTree = "<group>"; };
+		B93D20CA1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFeedbackCollectionViewCell.m; sourceTree = "<group>"; };
+		B93D20CE1ACD3A4A0021ED49 /* UserFeedbackCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserFeedbackCollectionView.xib; sourceTree = "<group>"; };
 		B9B1EC251AC6A4F400377E36 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		B9B1EC271AC6A7CE00377E36 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B9B1EC291AC6A7E700377E36 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -288,6 +293,9 @@
 				AB72F3381AB734D6003900E9 /* ProductDetailViewController.m */,
 				ABEC4DBD1ABD6A12000CF27C /* BaseViewController.h */,
 				ABEC4DBE1ABD6A12000CF27C /* BaseViewController.m */,
+				B93D20C91ACD39690021ED49 /* UserFeedbackCollectionViewCell.h */,
+				B93D20CA1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m */,
+				B93D20CE1ACD3A4A0021ED49 /* UserFeedbackCollectionView.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -614,6 +622,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1864BF141A4B1EA300EF5DD7 /* Main.storyboard in Resources */,
+				B93D20CF1ACD3A4A0021ED49 /* UserFeedbackCollectionView.xib in Resources */,
 				1864BF191A4B1EA300EF5DD7 /* LaunchScreen.xib in Resources */,
 				18BA5C581A736180002EBF83 /* ProductTableViewCell.xib in Resources */,
 				ABA4F0CF1AC46F9E008915F7 /* SBPickerSelector.xib in Resources */,
@@ -694,6 +703,7 @@
 				B904A09D1ACAFF1300DCE491 /* UserListingTableViewCell.m in Sources */,
 				ABEC4DBF1ABD6A12000CF27C /* BaseViewController.m in Sources */,
 				AB6E34BE1ABC6A9A00867CA3 /* RightMenuViewController.m in Sources */,
+				B93D20CB1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m in Sources */,
 				AB6E34BD1ABC6A9A00867CA3 /* LeftMenuViewController.m in Sources */,
 				AB4632061AC9B41500438D7B /* UsersFollowViewController.m in Sources */,
 				182E36001A73A7AB00FA4378 /* ProductTableViewCell.m in Sources */,

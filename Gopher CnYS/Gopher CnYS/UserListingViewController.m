@@ -64,7 +64,7 @@
                 if (!error) {
                     if (data != nil) {
                         UIImage *image = [UIImage imageWithData:data];
-                        self.userImageView.image = image;
+                        self.userImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:image withDiameter:70];
                     }
                 }
             }];
