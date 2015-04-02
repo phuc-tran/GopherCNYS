@@ -7,6 +7,7 @@
 //
 
 #import "UserFeedbackViewController.h"
+#import "HomeViewController.h"
 #import <Parse/Parse.h>
 
 @interface UserFeedbackViewController ()
@@ -19,13 +20,21 @@
 
 @end
 
+//@property (weak, nonatomic, readonly) UIImageView *conversationImageView;
+//@property (weak, nonatomic, readonly) UILabel *conversationTitleLabel;
+//@property (weak, nonatomic, readonly) UILabel *conversationDescLabel;
+//@property (weak, nonatomic, readonly) UILabel *conversationPriceLabel;
+//@property (weak, nonatomic, readonly) UIImageView *priceSign;
+
+
 @implementation UserFeedbackViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.collectionView.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:244.0/255.0 blue:244.0/255.0 alpha:1.0];
+    self.conversationTitleLabel.textColor = [UIColor colorWithRed:64.0f/255.0f green:222.0f/255.0f blue:172.0f/255.0f alpha:1.0f];
     
     /**
      *  You MUST set your senderId and display name
@@ -50,10 +59,9 @@
      */
     JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     
-    self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor colorWithRed:64.0/255.0 green:222.0/255.0 blue:172.0/255.0 alpha:1.0]];
-    self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor colorWithRed:188.0/255.0 green:188.0/255.0 blue:188.0/255.0 alpha:1.0]];
+    self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor whiteColor]];
+    self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor whiteColor]];
     
-    [self loadFeedbacks];
     
     
 }
@@ -72,11 +80,57 @@
     [button addTarget:self action:@selector(leftBackClick:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     
+    
+    if (![self checkIfUserLoggedIn]) {
+        [self performSegueWithIdentifier:@"userFeedback_to_login" sender:self];
+    } else {
+        [self loadUserProfile];
+        [self loadFeedbacks];
+    }
 }
 
 
 - (IBAction)leftBackClick:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (BOOL)checkIfUserLoggedIn
+{
+    if ([[PFUser currentUser] isAuthenticated])
+    {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)loadUserProfile {
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"objectId" equalTo:[self.curUser objectId]];
+    [query selectKeys:@[@"username", @"name", @"profileImage"]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            PFUser *user = [objects objectAtIndex:0];
+            NSString *name = [user valueForKey:@"name"];
+            if (name == nil) {
+                name = user.username;
+            }
+            self.conversationTitleLabel.text = name;
+            PFFile *imageFile = [user objectForKey:@"profileImage"];
+            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                if (!error) {
+                    if (data != nil) {
+                        UIImage *image = [UIImage imageWithData:data];
+                        self.conversationImageView.image = image;
+                    }
+                }
+            }];
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 - (void)loadFeedbacks {
@@ -244,10 +298,10 @@
     if (!msg.isMediaMessage) {
         
         if ([msg.senderId isEqualToString:self.senderId]) {
-            cell.textView.textColor = [UIColor blackColor];
+            cell.textView.textColor = [UIColor colorWithRed:130.0f/255.0f green:130.0f/255.0f blue:130.0f/255.0f alpha:1.0f];
         }
         else {
-            cell.textView.textColor = [UIColor whiteColor];
+            cell.textView.textColor = [UIColor colorWithRed:130.0f/255.0f green:130.0f/255.0f blue:130.0f/255.0f alpha:1.0f];
         }
         
         cell.textView.linkTextAttributes = @{ NSForegroundColorAttributeName : cell.textView.textColor,
@@ -314,14 +368,16 @@
     NSLog(@"Tapped cell at %@!", NSStringFromCGPoint(touchLocation));
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"userFeedback_to_login"]) {
+        HomeViewController *destViewController = (HomeViewController *)[segue destinationViewController];
+        destViewController.shouldGoBack = YES;
+    }
 }
-*/
 
 @end

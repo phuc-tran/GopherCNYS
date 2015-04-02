@@ -139,7 +139,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(BOOL) checkIfUserLoggedIn
+- (BOOL)checkIfUserLoggedIn
 {
     if ([[PFUser currentUser] isAuthenticated])
     {

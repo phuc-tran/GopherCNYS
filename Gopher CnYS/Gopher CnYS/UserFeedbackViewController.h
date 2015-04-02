@@ -8,8 +8,10 @@
 
 
 #import "JSQMessages.h"
-
+#import <Parse/Parse.h>
 
 @interface UserFeedbackViewController : JSQMessagesViewController
+
+@property (nonatomic, strong) PFUser *curUser;
 
 @end
