@@ -57,6 +57,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (weak, nonatomic) UITextField *activeField;
+@property (weak, nonatomic) IBOutlet UIButton *addproductBtn;
 
 - (void) keyboardWillShow:(NSNotification *)notification;
 - (void) keyboardDidHide:(NSNotification *)note;

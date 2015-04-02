@@ -30,6 +30,7 @@
         NSLog(@"get location %@", currentLocaltion);
     }];
     
+    categoryId = 0;
     
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
@@ -157,6 +158,10 @@
      
 #pragma mark - Helper
 - (void)addProduct {
+    
+    if (![self validationInput]) {
+        return;
+    }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFObject *product = [PFObject objectWithClassName:@"Products"];
     if (imageFile1 != nil) {
@@ -205,13 +210,54 @@
         if (succeeded) {
             // The object has been saved.
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Add product successful" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            alert.tag = 1;
             [alert show];
         } else {
             NSLog(@"Error %@", error);
             // There was a problem, check error.description
         }
     }];
+}
+
+- (BOOL) validationInput {
+    if (self.productImageView1.image == nil && self.productImageView2.image == nil && self.productImageView3.image == nil && self.productImageView3.image == nil)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please select at least one product picture" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    }
     
+    if (self.productTitleField.text.length <= 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please input product title" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    }
+    
+    if (self.productDescriptionField.text.length <= 0 || [self.productDescriptionField.text isEqualToString:@"Product Description"]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please input product description" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    }
+    
+    if (categoryId <= 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please choose category for product" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    }
+    
+    if (self.productPriceField.text.length <= 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please input price product" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    }
+    
+    if (self.productQuatityField.text.length <= 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please input quantily product" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    }
+    
+    return YES;
 }
 #pragma mark - Seft action
 
@@ -231,10 +277,11 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
     UIImage *gotImage = info[UIImagePickerControllerOriginalImage];
+    UIImage *editImage = info[UIImagePickerControllerEditedImage];
     
     // Resize image
     UIGraphicsBeginImageContext(CGSizeMake(640, 960));
-    [gotImage drawInRect: CGRectMake(0, 0, 640, 960)];
+    [editImage drawInRect: CGRectMake(0, 0, 640, 960)];
     UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
@@ -354,10 +401,11 @@
             break;
         case 1: //Choose Existing
             {
-                UIImagePickerController *pickerC = [[UIImagePickerController alloc] init];
-                pickerC.delegate = self;
-                pickerC.view.tag = actionSheet.tag;
-                [self presentViewController:pickerC animated:YES completion:nil];
+                UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+                imagePicker.delegate = self;
+                imagePicker.allowsEditing = true;
+                imagePicker.view.tag = actionSheet.tag;
+                [self presentViewController:imagePicker animated:YES completion:nil];
             }
             break;
         default:
@@ -392,7 +440,7 @@
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    if ([textView.text isEqualToString:@""]) {
+    if ([textView.text isEqualToString:@""] || [[textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] <=0) {
         textView.text = @"Product Description";
     }
     [textView resignFirstResponder];
@@ -441,13 +489,9 @@
 #pragma mark UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     // the user clicked one of the OK/Cancel buttons
-    if (buttonIndex == 0)
+    if (alertView.tag == 1 && buttonIndex == 0)
     {
         [self leftBackClick:nil];
-    }
-    else
-    {
-        NSLog(@"cancel");
     }
 }
 

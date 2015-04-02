@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -169,7 +169,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HUS-dt-baG">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUS-dt-baG">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pc5-lq-HOU" userLabel="Content View">
@@ -284,7 +284,7 @@
                                     <constraint firstItem="pc5-lq-HOU" firstAttribute="leading" secondItem="HUS-dt-baG" secondAttribute="leading" id="qJb-to-h47"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sn5-ZG-50K" userLabel="BottomView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sn5-ZG-50K" userLabel="BottomView">
                                 <rect key="frame" x="0.0" y="521" width="320" height="47"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfx-Xs-Awi">
@@ -339,6 +339,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="oS5-Ch-7jX"/>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="btnSignIn" destination="4cM-Nj-dFw" id="Ywu-ar-FAU"/>
                         <outlet property="contentScrollView" destination="HUS-dt-baG" id="I7i-Hg-nei"/>
@@ -1600,6 +1601,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Product" id="tAm-Yr-nCX"/>
                     <connections>
+                        <outlet property="addproductBtn" destination="ANV-p1-TfU" id="i51-zz-1hn"/>
                         <outlet property="btnCapture1" destination="ptI-kg-ulU" id="tKV-up-Kz7"/>
                         <outlet property="btnCapture2" destination="7rS-fg-cFC" id="Kj3-u4-lpB"/>
                         <outlet property="btnCapture3" destination="hhj-J2-2c5" id="FjP-7G-D35"/>
@@ -1690,7 +1692,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="P9u-bd-GBQ"/>
-        <segue reference="axo-AF-vkz"/>
+        <segue reference="ExP-uq-3s7"/>
+        <segue reference="vu3-Jp-7Xk"/>
     </inferredMetricsTieBreakers>
 </document>
