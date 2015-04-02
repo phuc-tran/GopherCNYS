@@ -29,6 +29,7 @@
     self.messagesListTable.allowsMultipleSelectionDuringEditing = NO;
     [self.messagesListTable registerNib:[UINib nibWithNibName:@"MessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"MessageListCell"];
     self.messagesListTable.rowHeight = 83.0f;
+    self.messagesListTable.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -62,15 +63,10 @@
 //    [sellerQuery includeKey:@"buyer"];
     
     PFQuery *messagesListQuery = [PFQuery orQueryWithSubqueries:@[buyerQuery, sellerQuery]];
+    [messagesListQuery orderByDescending:@"createdAt"];
+    [messagesListQuery includeKey:@"listingId"];
     
-    PFQuery *messageQuery = [PFQuery queryWithClassName:@"ChatHistory"];
-    [messageQuery whereKey:@"roomId" matchesQuery:messagesListQuery];
-    [messageQuery orderByDescending:@"updatedAt"];
-    [messageQuery includeKey:@"writer"];
-    [messageQuery includeKey:@"roomId"];
-    [messageQuery setLimit:1];
-    
-    [messageQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [messagesListQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (!error) {
             // The find succeeded.
@@ -83,6 +79,27 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+    
+//    PFQuery *messageQuery = [PFQuery queryWithClassName:@"ChatHistory"];
+//    [messageQuery whereKey:@"roomId" matchesQuery:messagesListQuery];
+//    [messageQuery orderByDescending:@"updatedAt"];
+//    [messageQuery includeKey:@"writer"];
+//    [messageQuery includeKey:@"roomId"];
+//    [messageQuery setLimit:1];
+//    
+//    [messageQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+//        if (!error) {
+//            // The find succeeded.
+//            NSLog(@"Successfully retrieved %lu chatrooms.", (unsigned long)objects.count);
+//            NSLog(@"%@", objects);
+//            self.messagesList = [NSMutableArray arrayWithArray:objects];
+//            [self.messagesListTable reloadData];
+//        } else {
+//            // Log details of the failure
+//            NSLog(@"Error: %@ %@", error, [error userInfo]);
+//        }
+//    }];
 }
 
 
@@ -105,7 +122,7 @@
     // Calculate the days / mins / hours of the latest message
     // The maximum days is 7
     NSString *updatedStr = @"";
-    NSDate *updated = [self.messagesList[indexPath.row] updatedAt];
+    NSDate *updated = [self.messagesList[indexPath.row] createdAt];
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [gregorianCalendar components:NSCalendarUnitDay
                                                         fromDate:updated
@@ -134,12 +151,12 @@
         }
     }
     cell.timeLabel.text = updatedStr;
-    cell.messageLabel.text = [self.messagesList[indexPath.row] valueForKey:@"message"];
+    cell.messageLabel.text = [[self.messagesList[indexPath.row] valueForKey:@"listingId"] valueForKey:@"title"];
     cell.avatarImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:[UIImage imageNamed:@"avatarDefault"] withDiameter:70];
 
-    PFUser *messenger = [[self.messagesList[indexPath.row] valueForKey:@"roomId"] valueForKey:@"seller"];
+    PFUser *messenger = [self.messagesList[indexPath.row] valueForKey:@"seller"];
     if ([[messenger valueForKey:@"objectId"] isEqualToString:[[PFUser currentUser] valueForKey:@"objectId"]]) {
-        messenger = [[self.messagesList[indexPath.row] valueForKey:@"roomId"] valueForKey:@"buyer"];
+        messenger = [self.messagesList[indexPath.row] valueForKey:@"buyer"];
     }
 
     [messenger fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error){
@@ -158,7 +175,8 @@
     }];
     
     
-    NSString *statusStr = [[self.messagesList [indexPath.row] valueForKey:@"roomId"] valueForKey:@"new"];
+//    NSString *statusStr = [[self.messagesList [indexPath.row] valueForKey:@"roomId"] valueForKey:@"new"];
+    NSString *statusStr = [self.messagesList [indexPath.row] valueForKey:@"new"];
     if ([statusStr caseInsensitiveCompare:@"read"] == NSOrderedSame) {
         cell.isRead = YES;
     }
@@ -185,7 +203,8 @@
         
         // Delete messages on Parse
         PFQuery *chatHistoryQuery = [PFQuery queryWithClassName:@"ChatHistory"];
-        [chatHistoryQuery whereKey:@"roomId" equalTo:[self.messagesList[indexPath.row] valueForKey:@"roomId"]];
+//        [chatHistoryQuery whereKey:@"roomId" equalTo:[self.messagesList[indexPath.row] valueForKey:@"roomId"]];
+        [chatHistoryQuery whereKey:@"roomId" equalTo:self.messagesList[indexPath.row]];
         [chatHistoryQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
             if (!error) {
                 for (PFObject *object in objects) {
@@ -194,7 +213,7 @@
                 }
             }
         }];
-        PFObject *chatroom = [PFObject objectWithoutDataWithClassName:@"Chatroom" objectId:[[self.messagesList[indexPath.row] valueForKey:@"roomId"] valueForKey:@"objectId"]];
+        PFObject *chatroom = [PFObject objectWithoutDataWithClassName:@"Chatroom" objectId:[self.messagesList[indexPath.row] valueForKey:@"objectId"]];
         NSLog(@"chatroom to delete %@", [chatroom valueForKey:@"objectId"]);
         [chatroom deleteInBackground];
         
@@ -208,16 +227,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    PFUser *messenger = [[self.messagesList[indexPath.row] valueForKey:@"roomId"] valueForKey:@"seller"];
+    PFUser *messenger = [self.messagesList[indexPath.row] valueForKey:@"seller"];
     if ([[messenger valueForKey:@"objectId"] isEqualToString:[[PFUser currentUser] valueForKey:@"objectId"]]) {
-        messenger = [[self.messagesList[indexPath.row] valueForKey:@"roomId"] valueForKey:@"buyer"];
+        messenger = [self.messagesList[indexPath.row] valueForKey:@"buyer"];
     }
     
     [messenger fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error){
         PFFile *profileAvatar = [messenger valueForKey:@"profileImage"];
         self.selectedProfileImage = profileAvatar;
         
-        self.selectedChatRoom = [self.messagesList[indexPath.row] valueForKey:@"roomId"];
+        self.selectedChatRoom = self.messagesList[indexPath.row];
         
         [self performSegueWithIdentifier:@"message_to_coversation" sender:self];
     }];
