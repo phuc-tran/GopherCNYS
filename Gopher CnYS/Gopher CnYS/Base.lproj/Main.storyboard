@@ -356,7 +356,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1146" y="1029"/>
+            <point key="canvasLocation" x="958" y="1029"/>
         </scene>
         <!--Product Detail View Controller-->
         <scene sceneID="MlV-gF-cLB">
@@ -843,6 +843,9 @@
                                             <tabBarItem title="Camera" image="camera_icon" id="v2Z-0Q-hHJ"/>
                                             <tabBarItem title="Setting" image="setting_icon" id="Df1-I7-JkI"/>
                                         </items>
+                                        <connections>
+                                            <outlet property="delegate" destination="KUb-wv-JfL" id="P0V-Kt-bud"/>
+                                        </connections>
                                     </tabBar>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -873,14 +876,16 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="bottomView" destination="zJo-1g-VxG" id="1zY-Tp-RiH"/>
+                        <outlet property="cameraTabBarItem" destination="v2Z-0Q-hHJ" id="ZeF-d3-dyU"/>
                         <outlet property="productTableView" destination="7Hq-iF-pDA" id="Jpm-L5-DxK"/>
+                        <outlet property="settingTabBarItem" destination="Df1-I7-JkI" id="tYg-69-pw9"/>
                         <segue destination="yMM-1Y-rcA" kind="push" identifier="ProductDetaiFormProduct" id="Hcj-1n-Msb"/>
                         <segue destination="KBN-7p-nVk" kind="push" identifier="product_list_form_login" id="G1w-cs-YeN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gVE-G0-K9Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1606" y="292"/>
+            <point key="canvasLocation" x="1557" y="292"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="soy-75-C68">
@@ -989,7 +994,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8M-an-cfy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1783" y="1029"/>
+            <point key="canvasLocation" x="1379" y="1029"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="uT1-cl-o0N">
+            <objects>
+                <viewController storyboardIdentifier="mainPageFilter" id="tzO-Lr-hr1" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9zy-VX-gSQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="ysH-fc-Fxb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="o2X-f5-ryL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search" id="btf-8M-cK7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4t4-8o-Hvi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2579" y="1117"/>
         </scene>
         <!--Users I follow-->
         <scene sceneID="Jis-P9-0a6">
@@ -1601,7 +1625,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Product" id="tAm-Yr-nCX"/>
                     <connections>
-                        <outlet property="addproductBtn" destination="ANV-p1-TfU" id="i51-zz-1hn"/>
                         <outlet property="btnCapture1" destination="ptI-kg-ulU" id="tKV-up-Kz7"/>
                         <outlet property="btnCapture2" destination="7rS-fg-cFC" id="Kj3-u4-lpB"/>
                         <outlet property="btnCapture3" destination="hhj-J2-2c5" id="FjP-7G-D35"/>
@@ -1646,6 +1669,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yEi-Xz-8Ap" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="425" y="-559"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VAk-fs-8Zh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8KG-qs-Ild" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FYI-bJ-PCW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tzO-Lr-hr1" kind="relationship" relationship="rootViewController" id="Lf5-LM-xeM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Ih-XL-aHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2053" y="1117"/>
         </scene>
     </scenes>
     <resources>
@@ -1692,7 +1733,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="G1w-cs-YeN"/>
         <segue reference="ExP-uq-3s7"/>
-        <segue reference="vu3-Jp-7Xk"/>
     </inferredMetricsTieBreakers>
 </document>

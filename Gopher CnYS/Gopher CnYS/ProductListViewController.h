@@ -12,7 +12,7 @@
 #import "BaseViewController.h"
 #import "SBPickerSelector.h"
 
-@interface ProductListViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource, SBPickerSelectorDelegate>
+@interface ProductListViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource, SBPickerSelectorDelegate, UITabBarDelegate>
 {
     NSArray *categoryData;
     BOOL isFavoriteTopSelected;
@@ -26,7 +26,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnNew;
 @property (weak, nonatomic) IBOutlet UIButton *btnSelectCategory;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (weak, nonatomic) IBOutlet UITabBarItem *cameraTabBarItem;
 
+@property (weak, nonatomic) IBOutlet UITabBarItem *settingTabBarItem;
 - (int)compare:(PFObject*)product1 withProduct:(PFObject*)product2;
 
 @end

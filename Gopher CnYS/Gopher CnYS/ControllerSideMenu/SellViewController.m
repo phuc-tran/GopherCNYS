@@ -64,7 +64,9 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self setupLeftBackBarButtonItem];
+    if (!self.isFromTabBar) {
+        [self setupLeftBackBarButtonItem];
+    }
     if (![self checkIfUserLoggedIn]) {
         [self performSegueWithIdentifier:@"add_product_from_login" sender:self];
     }
