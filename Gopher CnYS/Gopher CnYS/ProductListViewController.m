@@ -11,7 +11,7 @@
 #import "ProductHeaderView.h"
 #import "ProductDetailViewController.h"
 #import "HomeViewController.h"
-
+#import "SellViewController.h"
 
 @interface ProductListViewController () <ProductTableViewCellDelegate>
 
@@ -410,7 +410,16 @@ NSUInteger selectedIndex;
 -(void) pickerSelector:(SBPickerSelector *)selector cancelPicker:(BOOL)cancel {
     
 }
-
+#pragma mark - UITabBarDelegate
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    if (item == self.cameraTabBarItem) {
+        SellViewController *sellVC = (SellViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"sellViewController"];
+        sellVC.isFromTabBar = YES;
+        [[self navigationController] pushViewController:sellVC animated:YES];
+    } else if (item == self.settingTabBarItem) {
+        [[self navigationController] pushViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"mainPageFilter"] animated:YES];
+    }
+}
 #pragma mark - ProductTableViewCellDelegate
 
 - (void)onFavoriteCheck:(NSInteger)index isFavorite:(BOOL)isFv
