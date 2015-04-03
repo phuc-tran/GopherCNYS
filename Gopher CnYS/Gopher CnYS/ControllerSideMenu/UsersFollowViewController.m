@@ -7,9 +7,12 @@
 //
 
 #import "UsersFollowViewController.h"
+#import "UserListingViewController.h"
 #import "MBProgressHUD.h"
 
 @interface UsersFollowViewController ()
+
+@property (nonatomic, strong) PFUser *selectedUser;
 
 @end
 
@@ -83,6 +86,12 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.selectedUser = [userFollows objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"userFollow_to_userListing" sender:self];
+}
+
 - (IBAction)unFollowbtnClick:(UIButton *)sender {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFUser *user = [PFUser currentUser];
@@ -99,5 +108,18 @@
         }
     }];
 }
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"userFollow_to_userListing"]) {
+        UserListingViewController *destViewController = (UserListingViewController *)[segue destinationViewController];
+        destViewController.curUser = self.selectedUser;
+    }
+}
+
 
 @end

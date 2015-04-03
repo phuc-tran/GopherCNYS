@@ -17,7 +17,8 @@
 
 @property (nonatomic, weak) IBOutlet UITableView *productTableView;
 @property (nonatomic, weak) IBOutlet UILabel *usernameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *userImageView;
+@property (nonatomic, weak) IBOutlet UIButton *followButton;
 
 @end
 
@@ -45,6 +46,12 @@
 {
     [self setupLeftBackBarButtonItem];
 }
+
+-(void)leftBackClick:(UIBarButtonItem*)btn
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 - (void)loadUserProfile {
     PFQuery *query = [PFUser query];
