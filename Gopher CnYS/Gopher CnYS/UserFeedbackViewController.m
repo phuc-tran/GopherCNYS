@@ -8,6 +8,7 @@
 
 #import "UserFeedbackViewController.h"
 #import "HomeViewController.h"
+#import "UserFeedbackCollectionViewCell.h"
 #import <Parse/Parse.h>
 
 @interface UserFeedbackViewController ()
@@ -32,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.collectionView registerNib:[UINib nibWithNibName:@"UserFeedbackCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UserFeedbackCollectionViewCellIdentifier"];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.collectionView.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:244.0/255.0 blue:244.0/255.0 alpha:1.0];
     self.conversationTitleLabel.textColor = [UIColor colorWithRed:64.0f/255.0f green:222.0f/255.0f blue:172.0f/255.0f alpha:1.0f];
@@ -289,89 +291,93 @@
     /**
      *  Override point for customizing cells
      */
-    JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
+//    JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
     
-//    id<JSQMessageData> messageItem = [collectionView.dataSource collectionView:collectionView messageDataForItemAtIndexPath:indexPath];
-//    NSParameterAssert(messageItem != nil);
-//    
-//    NSString *messageSenderId = [messageItem senderId];
-//    NSParameterAssert(messageSenderId != nil);
-//    
-//    BOOL isOutgoingMessage = [messageSenderId isEqualToString:self.senderId];
-//    BOOL isMediaMessage = [messageItem isMediaMessage];
-//    
-//    NSString *cellIdentifier = @"UserFeedbackCollectionViewCellIdentifier";
-//    
-//    JSQMessagesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-//    cell.delegate = collectionView;
-//    
-//    if (!isMediaMessage) {
-//        cell.textView.text = [messageItem text];
-//        
-//        if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
-//            //  workaround for iOS 7 textView data detectors bug
-//            cell.textView.text = nil;
-//            cell.textView.attributedText = [[NSAttributedString alloc] initWithString:[messageItem text]
-//                                                                           attributes:@{ NSFontAttributeName : collectionView.collectionViewLayout.messageBubbleFont }];
-//        }
-//        
-//        NSParameterAssert(cell.textView.text != nil);
-//        
-//        id<JSQMessageBubbleImageDataSource> bubbleImageDataSource = [collectionView.dataSource collectionView:collectionView messageBubbleImageDataForItemAtIndexPath:indexPath];
-//        if (bubbleImageDataSource != nil) {
-//            cell.messageBubbleImageView.image = [bubbleImageDataSource messageBubbleImage];
-//            cell.messageBubbleImageView.highlightedImage = [bubbleImageDataSource messageBubbleHighlightedImage];
-//        }
-//    }
-//    else {
-//        id<JSQMessageMediaData> messageMedia = [messageItem media];
-//        cell.mediaView = [messageMedia mediaView] ?: [messageMedia mediaPlaceholderView];
-//        NSParameterAssert(cell.mediaView != nil);
-//    }
-//    
-//    BOOL needsAvatar = YES;
-//    if (isOutgoingMessage && CGSizeEqualToSize(collectionView.collectionViewLayout.outgoingAvatarViewSize, CGSizeZero)) {
-//        needsAvatar = NO;
-//    }
-//    else if (!isOutgoingMessage && CGSizeEqualToSize(collectionView.collectionViewLayout.incomingAvatarViewSize, CGSizeZero)) {
-//        needsAvatar = NO;
-//    }
-//    
-//    id<JSQMessageAvatarImageDataSource> avatarImageDataSource = nil;
-//    if (needsAvatar) {
-//        avatarImageDataSource = [collectionView.dataSource collectionView:collectionView avatarImageDataForItemAtIndexPath:indexPath];
-//        if (avatarImageDataSource != nil) {
-//            
-//            UIImage *avatarImage = [avatarImageDataSource avatarImage];
-//            if (avatarImage == nil) {
-//                cell.avatarImageView.image = [avatarImageDataSource avatarPlaceholderImage];
-//                cell.avatarImageView.highlightedImage = nil;
-//            }
-//            else {
-//                cell.avatarImageView.image = avatarImage;
-//                cell.avatarImageView.highlightedImage = [avatarImageDataSource avatarHighlightedImage];
-//            }
-//        }
-//    }
-//    
-//    cell.cellTopLabel.attributedText = [collectionView.dataSource collectionView:collectionView attributedTextForCellTopLabelAtIndexPath:indexPath];
-//    cell.messageBubbleTopLabel.attributedText = [collectionView.dataSource collectionView:collectionView attributedTextForMessageBubbleTopLabelAtIndexPath:indexPath];
-//    cell.cellBottomLabel.attributedText = [collectionView.dataSource collectionView:collectionView attributedTextForCellBottomLabelAtIndexPath:indexPath];
-//    
-//    CGFloat bubbleTopLabelInset = (avatarImageDataSource != nil) ? 60.0f : 15.0f;
-//    
-//    if (isOutgoingMessage) {
-//        cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, bubbleTopLabelInset);
-//    }
-//    else {
-//        cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0f, bubbleTopLabelInset, 0.0f, 0.0f);
-//    }
-//    
-//    cell.textView.dataDetectorTypes = UIDataDetectorTypeAll;
-//    
-//    cell.backgroundColor = [UIColor clearColor];
-//    cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
-//    cell.layer.shouldRasterize = YES;
+    id<JSQMessageData> messageItem = [collectionView.dataSource collectionView:collectionView messageDataForItemAtIndexPath:indexPath];
+    NSParameterAssert(messageItem != nil);
+    
+    NSString *messageSenderId = [messageItem senderId];
+    NSParameterAssert(messageSenderId != nil);
+    
+    BOOL isOutgoingMessage = [messageSenderId isEqualToString:self.senderId];
+    BOOL isMediaMessage = [messageItem isMediaMessage];
+    
+    NSString *cellIdentifier = @"UserFeedbackCollectionViewCellIdentifier";
+    
+    UserFeedbackCollectionViewCell *cell = (UserFeedbackCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell.delegate = collectionView;
+    
+    if (!isMediaMessage) {
+        cell.textView.text = [messageItem text];
+        NSDateFormatter *dateformater = [[NSDateFormatter alloc] init];
+        [dateformater setDateFormat:@"MMM dd, yyyy"];
+        cell.dateLabel.text = [dateformater stringFromDate:[messageItem date]];
+        cell.writerLabel.text = [messageItem senderDisplayName];
+                
+        if ([[UIDevice currentDevice].systemVersion compare:@"8.0.0" options:NSNumericSearch] == NSOrderedAscending) {
+            //  workaround for iOS 7 textView data detectors bug
+            cell.textView.text = nil;
+            cell.textView.attributedText = [[NSAttributedString alloc] initWithString:[messageItem text]
+                                                                           attributes:@{ NSFontAttributeName : collectionView.collectionViewLayout.messageBubbleFont }];
+        }
+        
+        NSParameterAssert(cell.textView.text != nil);
+        
+        id<JSQMessageBubbleImageDataSource> bubbleImageDataSource = [collectionView.dataSource collectionView:collectionView messageBubbleImageDataForItemAtIndexPath:indexPath];
+        if (bubbleImageDataSource != nil) {
+            cell.messageBubbleImageView.image = [bubbleImageDataSource messageBubbleImage];
+            cell.messageBubbleImageView.highlightedImage = [bubbleImageDataSource messageBubbleHighlightedImage];
+        }
+    }
+    else {
+        id<JSQMessageMediaData> messageMedia = [messageItem media];
+        cell.mediaView = [messageMedia mediaView] ?: [messageMedia mediaPlaceholderView];
+        NSParameterAssert(cell.mediaView != nil);
+    }
+    
+    BOOL needsAvatar = YES;
+    if (isOutgoingMessage && CGSizeEqualToSize(collectionView.collectionViewLayout.outgoingAvatarViewSize, CGSizeZero)) {
+        needsAvatar = NO;
+    }
+    else if (!isOutgoingMessage && CGSizeEqualToSize(collectionView.collectionViewLayout.incomingAvatarViewSize, CGSizeZero)) {
+        needsAvatar = NO;
+    }
+    
+    id<JSQMessageAvatarImageDataSource> avatarImageDataSource = nil;
+    if (needsAvatar) {
+        avatarImageDataSource = [collectionView.dataSource collectionView:collectionView avatarImageDataForItemAtIndexPath:indexPath];
+        if (avatarImageDataSource != nil) {
+            
+            UIImage *avatarImage = [avatarImageDataSource avatarImage];
+            if (avatarImage == nil) {
+                cell.avatarImageView.image = [avatarImageDataSource avatarPlaceholderImage];
+                cell.avatarImageView.highlightedImage = nil;
+            }
+            else {
+                cell.avatarImageView.image = avatarImage;
+                cell.avatarImageView.highlightedImage = [avatarImageDataSource avatarHighlightedImage];
+            }
+        }
+    }
+    
+    cell.cellTopLabel.attributedText = [collectionView.dataSource collectionView:collectionView attributedTextForCellTopLabelAtIndexPath:indexPath];
+    cell.messageBubbleTopLabel.attributedText = [collectionView.dataSource collectionView:collectionView attributedTextForMessageBubbleTopLabelAtIndexPath:indexPath];
+    cell.cellBottomLabel.attributedText = [collectionView.dataSource collectionView:collectionView attributedTextForCellBottomLabelAtIndexPath:indexPath];
+    
+    CGFloat bubbleTopLabelInset = (avatarImageDataSource != nil) ? 60.0f : 15.0f;
+    
+    if (isOutgoingMessage) {
+        cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, bubbleTopLabelInset);
+    }
+    else {
+        cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0f, bubbleTopLabelInset, 0.0f, 0.0f);
+    }
+    
+    cell.textView.dataDetectorTypes = UIDataDetectorTypeAll;
+    
+    cell.backgroundColor = [UIColor clearColor];
+    cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    cell.layer.shouldRasterize = YES;
     
     
     /**
@@ -410,6 +416,15 @@
 
 
 #pragma mark - JSQMessages collection view flow layout delegate
+
+- (CGSize)collectionView:(JSQMessagesCollectionView *)collectionView
+                  layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGSize itemSize = [collectionViewLayout sizeForItemAtIndexPath:indexPath];
+    itemSize.height += 30;
+    return itemSize;
+}
+
 
 #pragma mark - Adjusting cell label heights
 

@@ -10,4 +10,7 @@
 
 @interface UserFeedbackCollectionViewCell : JSQMessagesCollectionViewCell
 
+@property (nonatomic, weak) IBOutlet UILabel *dateLabel;
+@property (nonatomic, weak) IBOutlet UILabel *writerLabel;
+
 @end
