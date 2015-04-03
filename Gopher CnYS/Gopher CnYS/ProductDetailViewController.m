@@ -110,9 +110,6 @@
     [dateformater setDateFormat:@"MMMM dd, yyyy"];
     NSDate *date = [[productData objectAtIndex:selectedIndex] valueForKey:@"createdAt"];
     self.productPostedLbl.text = [dateformater stringFromDate:date];
-    
-    NSLog(@"view size %f", self.productDescription.frame.size.height);
-    NSLog(@"content size %f", [self getContentSize:self.productDescription].height);
 }
 
 -(CGSize) getContentSize:(UITextView*) myTextView{
