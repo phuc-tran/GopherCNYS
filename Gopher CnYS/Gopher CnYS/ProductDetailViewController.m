@@ -9,6 +9,7 @@
 #import "ProductDetailViewController.h"
 #import "PrivateMessageViewController.h"
 #import "UserListingViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface ProductDetailViewController ()
 @property (nonatomic, weak) IBOutlet UIButton *messageButton;
@@ -38,7 +39,7 @@
     PFUser *seller = [[productData objectAtIndex:selectedIndex] valueForKey:@"seller"];
     PFQuery *query = [PFUser query];
     [query whereKey:@"objectId" equalTo:[seller objectId]];
-    [query selectKeys:@[@"username", @"name", @"profileImage"]];
+    [query selectKeys:@[@"username", @"name", @"profileImage", @"profileImageURL"]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
@@ -49,14 +50,20 @@
             }
             self.productSellerLbl.text = name;
             PFFile *imageFile = [user objectForKey:@"profileImage"];
-            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-                if (!error) {
-                    if (data != nil) {
-                        UIImage *image = [UIImage imageWithData:data];
-                        self.profileAvatar.image = image;
+            if (imageFile != nil) {
+                [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                    if (!error) {
+                        if (data != nil) {
+                            UIImage *image = [UIImage imageWithData:data];
+                            self.profileAvatar.image = image;
+                        }
                     }
-                }
-            }];
+                }];
+            } else {
+                NSString *url = [user objectForKey:@"profileImageURL"];
+                [self loadAvatar:url];
+            }
+            
             
         } else {
             // Log details of the failure
@@ -94,6 +101,30 @@
         }
     }];
 }
+
+- (void)loadAvatar:(NSString*)strUrl
+{
+    NSURL *imageURL = [NSURL URLWithString:strUrl];
+    if (imageURL) {
+        __block UIActivityIndicatorView *activityIndicator;
+        __weak UIImageView *weakImageView = self.profileAvatar;
+        [self.profileAvatar sd_setImageWithURL:imageURL
+                          placeholderImage:nil
+                                   options:SDWebImageProgressiveDownload
+                                  progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                      if (!activityIndicator) {
+                                          [weakImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
+                                          activityIndicator.center = weakImageView.center;
+                                          [activityIndicator startAnimating];
+                                      }
+                                  }
+                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                     [activityIndicator removeFromSuperview];
+                                     activityIndicator = nil;
+                                 }];
+    }
+}
+
 
 -(void)viewWillAppear:(BOOL)animated {
     

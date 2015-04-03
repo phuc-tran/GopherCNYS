@@ -209,6 +209,8 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
 
 -(IBAction)signIn:(id)sender
 {
+    [self.view endEditing:TRUE];
+    
     NSString *userName = _txtUserName.text;
     NSString *password = _txtPassword.text;
     
