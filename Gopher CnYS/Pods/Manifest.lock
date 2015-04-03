@@ -2,15 +2,20 @@ PODS:
   - JSQMessagesViewController (7.0.0):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
+  - SDWebImage (3.7.2):
+    - SDWebImage/Core (= 3.7.2)
+  - SDWebImage/Core (3.7.2)
   - UzysAssetsPickerController (0.9.7)
 
 DEPENDENCIES:
   - JSQMessagesViewController
+  - SDWebImage
   - UzysAssetsPickerController
 
 SPEC CHECKSUMS:
   JSQMessagesViewController: 9fd7e9ac96e9fc91f2deca86928e2cc916aeebaa
-  JSQSystemSoundPlayer: 55528c699a283aae2220d3ae7b8b527d2ecef4b4
-  UzysAssetsPickerController: eed407c2ddf5a40c48bd492914c1ff9e1cc479ed
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
+  UzysAssetsPickerController: eae7c24955501a80df34286b1797a2ec6f6b1ab9
 
 COCOAPODS: 0.36.1
