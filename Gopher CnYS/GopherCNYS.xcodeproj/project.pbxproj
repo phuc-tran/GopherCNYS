@@ -66,6 +66,10 @@
 		ABA8F6B41AC7BB9500198A4A /* UserFollowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA8F6B31AC7BB9500198A4A /* UserFollowTableViewCell.m */; };
 		ABBF94531ACFBE5600E308F5 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF94521ACFBE5600E308F5 /* SearchViewController.m */; };
 		ABBF94591ACFC07800E308F5 /* CategoryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF94581ACFC07800E308F5 /* CategoryCollectionViewCell.m */; };
+		ABBF945F1ACFCB1700E308F5 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF945C1ACFCB1700E308F5 /* MJPopupBackgroundView.m */; };
+		ABBF94601ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF945E1ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m */; };
+		ABBF94641ACFCB5600E308F5 /* AddNewSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF94621ACFCB5600E308F5 /* AddNewSearchViewController.m */; };
+		ABBF94651ACFCB5600E308F5 /* AddNewSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */; };
 		ABEC4DB91ABD6719000CF27C /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DB81ABD6719000CF27C /* AboutViewController.m */; };
 		ABEC4DBC1ABD6898000CF27C /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DBB1ABD6898000CF27C /* ProfileViewController.m */; };
 		ABEC4DBF1ABD6A12000CF27C /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DBE1ABD6A12000CF27C /* BaseViewController.m */; };
@@ -184,6 +188,13 @@
 		ABBF94521ACFBE5600E308F5 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		ABBF94571ACFC07800E308F5 /* CategoryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCollectionViewCell.h; sourceTree = "<group>"; };
 		ABBF94581ACFC07800E308F5 /* CategoryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCollectionViewCell.m; sourceTree = "<group>"; };
+		ABBF945B1ACFCB1700E308F5 /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPopupBackgroundView.h; sourceTree = "<group>"; };
+		ABBF945C1ACFCB1700E308F5 /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
+		ABBF945D1ACFCB1700E308F5 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
+		ABBF945E1ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
+		ABBF94611ACFCB5600E308F5 /* AddNewSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewSearchViewController.h; sourceTree = "<group>"; };
+		ABBF94621ACFCB5600E308F5 /* AddNewSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewSearchViewController.m; sourceTree = "<group>"; };
+		ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewSearchViewController.xib; sourceTree = "<group>"; };
 		ABEC4DB71ABD6719000CF27C /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		ABEC4DB81ABD6719000CF27C /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		ABEC4DBA1ABD6898000CF27C /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -306,6 +317,9 @@
 				ABBF94521ACFBE5600E308F5 /* SearchViewController.m */,
 				ABBF94571ACFC07800E308F5 /* CategoryCollectionViewCell.h */,
 				ABBF94581ACFC07800E308F5 /* CategoryCollectionViewCell.m */,
+				ABBF94611ACFCB5600E308F5 /* AddNewSearchViewController.h */,
+				ABBF94621ACFCB5600E308F5 /* AddNewSearchViewController.m */,
+				ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -449,6 +463,7 @@
 		AB8B709A1ABB388B0028DC47 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				ABBF945A1ACFCB1700E308F5 /* MJPopupView */,
 				ABA4F0D11AC4711E008915F7 /* CountryPicker */,
 				ABA4F0C91AC46F9E008915F7 /* SBPickerSelector */,
 				AB519E351AC316ED008543B1 /* iCarousel */,
@@ -502,6 +517,17 @@
 				ABA4F0D41AC4711E008915F7 /* CountryPicker.m */,
 			);
 			path = CountryPicker;
+			sourceTree = "<group>";
+		};
+		ABBF945A1ACFCB1700E308F5 /* MJPopupView */ = {
+			isa = PBXGroup;
+			children = (
+				ABBF945B1ACFCB1700E308F5 /* MJPopupBackgroundView.h */,
+				ABBF945C1ACFCB1700E308F5 /* MJPopupBackgroundView.m */,
+				ABBF945D1ACFCB1700E308F5 /* UIViewController+MJPopupViewController.h */,
+				ABBF945E1ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m */,
+			);
+			path = MJPopupView;
 			sourceTree = "<group>";
 		};
 		ABEC4DC01ABD6E0E000CF27C /* General */ = {
@@ -638,6 +664,7 @@
 				ABA4F0CF1AC46F9E008915F7 /* SBPickerSelector.xib in Resources */,
 				B9B1EC341AC6C50300377E36 /* MessageTableViewCell.xib in Resources */,
 				18801F2B1A6A57CE006D956B /* GooglePlus.bundle in Resources */,
+				ABBF94651ACFCB5600E308F5 /* AddNewSearchViewController.xib in Resources */,
 				1864BF161A4B1EA300EF5DD7 /* Images.xcassets in Resources */,
 				ABA4F0D51AC4711E008915F7 /* CountryPicker.bundle in Resources */,
 				AB7CB4CC1AB1F0A20017E183 /* ProductHeaderView.xib in Resources */,
@@ -694,6 +721,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABA4F0D61AC4711E008915F7 /* CountryPicker.m in Sources */,
+				ABBF94641ACFCB5600E308F5 /* AddNewSearchViewController.m in Sources */,
 				1864BF111A4B1EA300EF5DD7 /* HomeViewController.m in Sources */,
 				AB72F3391AB734D6003900E9 /* ProductDetailViewController.m in Sources */,
 				18A6B7CC1A657F420043E08A /* CreateAccountViewController.m in Sources */,
@@ -707,6 +735,7 @@
 				ABEC4DC41ABD801B000CF27C /* SellViewController.m in Sources */,
 				B904A0981ACAFCB900DCE491 /* UserFeedbackViewController.m in Sources */,
 				AB6E34AF1ABC69D900867CA3 /* RESideMenu.m in Sources */,
+				ABBF94601ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m in Sources */,
 				AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */,
 				AB8B70A11ABB388B0028DC47 /* MBProgressHUD.m in Sources */,
 				AB6E34AE1ABC69D900867CA3 /* RECommonFunctions.m in Sources */,
@@ -725,6 +754,7 @@
 				B9E2EF051AC6FE7F0085BCDC /* PrivateMessageViewController.m in Sources */,
 				AB6E34C01ABC6A9A00867CA3 /* MessagesViewController.m in Sources */,
 				B9B1EC331AC6C50300377E36 /* MessageTableViewCell.m in Sources */,
+				ABBF945F1ACFCB1700E308F5 /* MJPopupBackgroundView.m in Sources */,
 				1864BF0B1A4B1EA300EF5DD7 /* main.m in Sources */,
 				AB6E34BF1ABC6A9A00867CA3 /* RootViewController.m in Sources */,
 				B904A0991ACAFCB900DCE491 /* UserListingViewController.m in Sources */,
