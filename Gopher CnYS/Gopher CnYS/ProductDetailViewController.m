@@ -9,6 +9,7 @@
 #import "ProductDetailViewController.h"
 #import "PrivateMessageViewController.h"
 #import "UserListingViewController.h"
+#import "ProductReportViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <Social/Social.h>
 
@@ -173,6 +174,11 @@
     } else if ([[segue identifier] isEqualToString:@"productDetail_to_userListing"]) {
         UserListingViewController *vc= (UserListingViewController *)[segue destinationViewController];
         vc.curUser = [[productData objectAtIndex:selectedIndex] valueForKey:@"seller"];
+    } else if ([[segue identifier] isEqualToString:@"productDetail_to_productReport"]) {
+        ProductReportViewController *vc = (ProductReportViewController *)[segue destinationViewController];
+        vc.product = [productData objectAtIndex:selectedIndex];
+        vc.productImage = self.productImgaeView.image;
+        vc.sellerName = self.productSellerLbl.text;
     }
         
 }
@@ -209,7 +215,8 @@
 }
 
 - (IBAction)reportButtonDidTouch:(id)sender {
-    // Open email composer
+    // go to product report screen
+    [self performSegueWithIdentifier:@"productDetail_to_productReport" sender:self];
      
 }
 

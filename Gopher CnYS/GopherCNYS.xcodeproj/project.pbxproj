@@ -75,6 +75,7 @@
 		B904A0991ACAFCB900DCE491 /* UserListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B904A0971ACAFCB900DCE491 /* UserListingViewController.m */; };
 		B904A09D1ACAFF1300DCE491 /* UserListingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B904A09B1ACAFF1300DCE491 /* UserListingTableViewCell.m */; };
 		B904A09E1ACAFF1300DCE491 /* UserListingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B904A09C1ACAFF1300DCE491 /* UserListingTableViewCell.xib */; };
+		B93923571ACFEC2700A947A0 /* ProductReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93923561ACFEC2700A947A0 /* ProductReportViewController.m */; };
 		B93D20CB1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B93D20CA1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m */; };
 		B93D20CF1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B93D20CE1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib */; };
 		B9B1EC261AC6A4F400377E36 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC251AC6A4F400377E36 /* libstdc++.dylib */; };
@@ -201,6 +202,8 @@
 		B904A09A1ACAFF1200DCE491 /* UserListingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListingTableViewCell.h; sourceTree = "<group>"; };
 		B904A09B1ACAFF1300DCE491 /* UserListingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListingTableViewCell.m; sourceTree = "<group>"; };
 		B904A09C1ACAFF1300DCE491 /* UserListingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserListingTableViewCell.xib; sourceTree = "<group>"; };
+		B93923551ACFEC2700A947A0 /* ProductReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductReportViewController.h; sourceTree = "<group>"; };
+		B93923561ACFEC2700A947A0 /* ProductReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductReportViewController.m; sourceTree = "<group>"; };
 		B93D20C91ACD39690021ED49 /* UserFeedbackCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFeedbackCollectionViewCell.h; sourceTree = "<group>"; };
 		B93D20CA1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFeedbackCollectionViewCell.m; sourceTree = "<group>"; };
 		B93D20CE1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserFeedbackCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -306,6 +309,8 @@
 				ABBF94521ACFBE5600E308F5 /* SearchViewController.m */,
 				ABBF94571ACFC07800E308F5 /* CategoryCollectionViewCell.h */,
 				ABBF94581ACFC07800E308F5 /* CategoryCollectionViewCell.m */,
+				B93923551ACFEC2700A947A0 /* ProductReportViewController.h */,
+				B93923561ACFEC2700A947A0 /* ProductReportViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -701,6 +706,7 @@
 				185FDE091A73F7AD00A452CE /* Product.m in Sources */,
 				1864BF0E1A4B1EA300EF5DD7 /* AppDelegate.m in Sources */,
 				ABEC4DB91ABD6719000CF27C /* AboutViewController.m in Sources */,
+				B93923571ACFEC2700A947A0 /* ProductReportViewController.m in Sources */,
 				AB519E3B1AC31E70008543B1 /* FPCarouselNonXIBViewController.m in Sources */,
 				AB6E34B01ABC69D900867CA3 /* UIViewController+RESideMenu.m in Sources */,
 				ABA4F0D01AC46F9E008915F7 /* SBPickerSelector.m in Sources */,
