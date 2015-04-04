@@ -166,6 +166,10 @@
     }
     else {
         // Get Product if there is no product set
+        // only get existing product
+        if (![[self.chatRoom valueForKey:@"listingId"] valueForKey:@"objectId"]) {
+            return;
+        }
         PFQuery *query = [PFQuery queryWithClassName:@"Products"];
         [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
         [query whereKey:@"objectId" equalTo:[[self.chatRoom valueForKey:@"listingId"] valueForKey:@"objectId"]];
