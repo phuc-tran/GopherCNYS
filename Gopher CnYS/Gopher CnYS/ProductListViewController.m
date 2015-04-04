@@ -46,7 +46,7 @@ NSUInteger selectedIndex;
                forCellReuseIdentifier:@"ProductTableViewCell"];
     
     [self loadProductList];
-    categoryData = [NSArray arrayWithObjects:@"All Categories", @"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];    
+    categoryData = [NSArray arrayWithObjects:@"All Categories", @"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -59,7 +59,6 @@ NSUInteger selectedIndex;
     isPriceTopSelected = NO;
     
     [productTableView reloadData];
-    NSLog(@"reload table");
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
