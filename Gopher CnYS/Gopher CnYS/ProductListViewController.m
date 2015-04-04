@@ -47,6 +47,10 @@ NSUInteger selectedIndex;
     
     [self loadProductList];
     categoryData = [NSArray arrayWithObjects:@"All Categories", @"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];
+    
+//    if (self.menuSelectedIndex == 5) {
+//        NSLog(@"add search menu");
+//    }
 }
 
 -(void)viewWillAppear:(BOOL)animated

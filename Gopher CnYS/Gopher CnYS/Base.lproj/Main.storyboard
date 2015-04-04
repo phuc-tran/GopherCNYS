@@ -1036,10 +1036,12 @@
                                                 <subviews>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="P8P-LT-aqh">
                                                         <rect key="frame" x="176" y="11" width="85" height="29"/>
+                                                        <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <segments>
                                                             <segment title="New"/>
                                                             <segment title="Old"/>
                                                         </segments>
+                                                        <color key="tintColor" red="0.25098039215686274" green="0.87058823529411766" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </segmentedControl>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50v-R1-LgF">
                                                         <rect key="frame" x="278" y="9" width="32" height="32"/>
@@ -1106,19 +1108,7 @@
                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5SU-7c-Dc9">
-                                                        <rect key="frame" x="80" y="114" width="235" height="36"/>
-                                                        <subviews>
-                                                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4XF-kj-zll">
-                                                                <rect key="frame" x="0.0" y="4" width="235" height="29"/>
-                                                                <segments>
-                                                                    <segment title="Town"/>
-                                                                    <segment title="City"/>
-                                                                    <segment title="State"/>
-                                                                    <segment title="Country"/>
-                                                                    <segment title="World"/>
-                                                                </segments>
-                                                            </segmentedControl>
-                                                        </subviews>
+                                                        <rect key="frame" x="81" y="114" width="239" height="36"/>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1277,6 +1267,9 @@
                     <navigationItem key="navigationItem" title="Search" id="btf-8M-cK7"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="700"/>
+                    <connections>
+                        <outlet property="rangeSegmentControl" destination="5SU-7c-Dc9" id="tRz-dE-RaV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4t4-8o-Hvi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2094,6 +2087,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ih-XL-aHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2053" y="1117"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="pUO-Cl-gji">
+            <objects>
+                <viewController id="YYL-cS-34U" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pWS-2a-M8f"/>
+                        <viewControllerLayoutGuide type="bottom" id="o18-b1-B2y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9oW-eD-iaq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="glZ-aD-cOI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

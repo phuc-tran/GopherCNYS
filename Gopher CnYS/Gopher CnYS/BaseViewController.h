@@ -12,6 +12,12 @@
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 
 @interface BaseViewController : UIViewController
+{
+    
+}
+
+@property (nonatomic, assign) NSInteger menuSelectedIndex;
+
 
 - (void)setupMenuBarButtonItems;
 - (void)setupLeftMenuBarButtonItem;

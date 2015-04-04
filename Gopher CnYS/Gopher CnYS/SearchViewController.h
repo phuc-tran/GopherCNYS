@@ -11,4 +11,6 @@
 
 @interface SearchViewController : BaseViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *rangeSegmentControl;
+
 @end

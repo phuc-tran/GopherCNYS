@@ -9,8 +9,11 @@
 #import "LeftMenuViewController.h"
 #import "MessagesViewController.h"
 #import "UIViewController+RESideMenu.h"
+#import "AddNewSearchViewController.h"
+#import "UIViewController+MJPopupViewController.h"
+#import "ProductListViewController.h"
 
-@interface LeftMenuViewController ()
+@interface LeftMenuViewController () <AddNewSearchViewControllerDelegate>
 
 @property (strong, readwrite, nonatomic) UITableView *tableView;
 
@@ -43,6 +46,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.menuSelectedIndex = indexPath.row;
     switch (indexPath.row) {
         case 0:
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"sellViewController"]]
@@ -74,6 +78,17 @@
                 [alert show];
             }
             break;
+        case 5:
+        {
+//            ProductListViewController *productVC = (ProductListViewController*)[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"productListViewController"]];
+//            [self.sideMenuViewController setContentViewController:productVC animated:YES];
+//            [self.sideMenuViewController hideMenuViewController];
+            
+            AddNewSearchViewController *addSearchlViewController = [[AddNewSearchViewController alloc] initWithNibName:@"AddNewSearchViewController" bundle:nil];
+            addSearchlViewController.delegate = self;
+            [self presentPopupViewController:addSearchlViewController animationType:0];
+
+        }
         default:
             break;
     }
@@ -137,6 +152,12 @@
     {
         NSLog(@"cancel");
     }
+}
+
+#pragma mark AddNewSearchViewControllerDelegate
+- (void)cancelButtonClicked:(AddNewSearchViewController *)aSecondDetailViewController
+{
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
 
 @end
