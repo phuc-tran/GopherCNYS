@@ -10,9 +10,11 @@
 #import "PrivateMessageViewController.h"
 #import "UserListingViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <Social/Social.h>
 
 @interface ProductDetailViewController ()
 @property (nonatomic, weak) IBOutlet UIButton *messageButton;
+@property (nonatomic, strong) NSString *fbProfileURL;
 @end
 
 @implementation ProductDetailViewController
@@ -39,7 +41,7 @@
     PFUser *seller = [[productData objectAtIndex:selectedIndex] valueForKey:@"seller"];
     PFQuery *query = [PFUser query];
     [query whereKey:@"objectId" equalTo:[seller objectId]];
-    [query selectKeys:@[@"username", @"name", @"profileImage", @"profileImageURL"]];
+    [query selectKeys:@[@"username", @"name", @"profileImage", @"profileImageURL", @"fbId"]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
@@ -64,6 +66,15 @@
                 [self loadAvatar:url];
             }
             
+//            if ([objects[0] valueForKey:@"fbId"]) {
+//                self.fbProfileURL = [NSString stringWithFormat:@"fb://profile/%@", [objects[0] valueForKey:@"fbId"]];
+//            }
+//            
+//            else {
+//                // there is no fb id of seller, open fb with news feed
+//                self.fbProfileURL = @"fb://feed";
+//            }
+
             
         } else {
             // Log details of the failure
@@ -166,6 +177,8 @@
         
 }
 
+#pragma mark - Event Handlers
+
 - (IBAction)messageButtonDidTouch:(id)sender {
     // Go to Private Message screen
     [self performSegueWithIdentifier:@"productDetail_to_privateMessage" sender:self];
@@ -173,6 +186,35 @@
 
 - (IBAction)userListingButtonDidTouch:(id)sender {
     [self performSegueWithIdentifier:@"productDetail_to_userListing" sender:self];
+}
+
+- (IBAction)facebookButtonDidTouch:(id)sender {
+//    NSURL *url = [NSURL URLWithString:self.fbProfileURL];
+//    [[UIApplication sharedApplication] openURL:url];
+    
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        // Initialize Compose View Controller
+        SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        // Configure Compose View Controller
+        NSString *shareText = [NSString stringWithFormat:@"%@\n%@\n$%@\nGopherCNYS", [[productData objectAtIndex:selectedIndex] valueForKey:@"title"], [[[productData objectAtIndex:selectedIndex] objectForKey:@"description"] description], [[productData objectAtIndex:selectedIndex] valueForKey:@"price"]];
+        [vc setInitialText:shareText];
+        [vc addImage:self.productImgaeView.image];
+        // Present Compose View Controller
+        [self presentViewController:vc animated:YES completion:nil];
+    } else {
+        NSString *message = @"It seems that we cannot talk to Facebook at the moment or you have not yet added your Facebook account to this device. Go to the Settings application to add your Facebook account to this device.";
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    }
+}
+
+- (IBAction)reportButtonDidTouch:(id)sender {
+    // Open email composer
+     
+}
+
+- (IBAction)commentButtonDidTouch:(id)sender {
+
 }
 
 

@@ -383,6 +383,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="priceBtnClick:" destination="KUb-wv-JfL" eventType="touchUpInside" id="kMW-gJ-NxS"/>
+                                                    <action selector="reportButtonDidTouch:" destination="yMM-1Y-rcA" eventType="touchUpInside" id="GCt-bh-lDx"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="puW-SA-n6S">
@@ -391,6 +392,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
+                                                    <action selector="facebookButtonDidTouch:" destination="yMM-1Y-rcA" eventType="touchUpInside" id="zBM-ir-cl1"/>
                                                     <action selector="newBtnClick:" destination="KUb-wv-JfL" eventType="touchUpInside" id="JyC-H3-SRb"/>
                                                 </connections>
                                             </button>
@@ -462,6 +464,9 @@
                                             <color key="titleColor" red="0.72941176470000002" green="0.72941176470000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="commentButtonDidTouch:" destination="yMM-1Y-rcA" eventType="touchUpInside" id="UnD-Iu-TjF"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1744,8 +1749,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hLk-k6-OEY"/>
         <segue reference="G1w-cs-YeN"/>
+        <segue reference="e0P-cp-GQQ"/>
         <segue reference="ExP-uq-3s7"/>
     </inferredMetricsTieBreakers>
 </document>

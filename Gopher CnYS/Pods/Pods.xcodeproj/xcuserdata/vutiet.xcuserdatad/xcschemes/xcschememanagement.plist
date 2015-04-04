@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-UzysAssetsPickerController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>9DE9D6665E8BDB6E78E9D4CB</key>
+		<key>23E5DE507A0DC0FAA376FFD9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D4A1252E60369A3B0C32C2F5</key>
+		<key>4EDA06E4343D50F722B94144</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D6C12E3FA57C8A9FD7D29495</key>
+		<key>4F6DEECA7D89453966DBDC8A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E285D694E6B18CF480282E28</key>
+		<key>BC51DE30EB88A0A9A51BA5E6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C8666C3C62B0825B4F0A11B1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
