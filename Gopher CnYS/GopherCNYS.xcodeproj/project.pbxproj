@@ -64,6 +64,7 @@
 		ABA4F0D51AC4711E008915F7 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ABA4F0D21AC4711E008915F7 /* CountryPicker.bundle */; };
 		ABA4F0D61AC4711E008915F7 /* CountryPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA4F0D41AC4711E008915F7 /* CountryPicker.m */; };
 		ABA8F6B41AC7BB9500198A4A /* UserFollowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA8F6B31AC7BB9500198A4A /* UserFollowTableViewCell.m */; };
+		ABBB13021AD032C1001D31EC /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBB13011AD032C1001D31EC /* HMSegmentedControl.m */; };
 		ABBF94531ACFBE5600E308F5 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF94521ACFBE5600E308F5 /* SearchViewController.m */; };
 		ABBF94591ACFC07800E308F5 /* CategoryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF94581ACFC07800E308F5 /* CategoryCollectionViewCell.m */; };
 		ABBF945F1ACFCB1700E308F5 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF945C1ACFCB1700E308F5 /* MJPopupBackgroundView.m */; };
@@ -184,6 +185,8 @@
 		ABA4F0D41AC4711E008915F7 /* CountryPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryPicker.m; sourceTree = "<group>"; };
 		ABA8F6B21AC7BB9500198A4A /* UserFollowTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFollowTableViewCell.h; sourceTree = "<group>"; };
 		ABA8F6B31AC7BB9500198A4A /* UserFollowTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFollowTableViewCell.m; sourceTree = "<group>"; };
+		ABBB13001AD032C1001D31EC /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
+		ABBB13011AD032C1001D31EC /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
 		ABBF94511ACFBE5600E308F5 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		ABBF94521ACFBE5600E308F5 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		ABBF94571ACFC07800E308F5 /* CategoryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCollectionViewCell.h; sourceTree = "<group>"; };
@@ -463,6 +466,7 @@
 		AB8B709A1ABB388B0028DC47 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				ABBB12FF1AD032C1001D31EC /* HMSegmentedControl */,
 				ABBF945A1ACFCB1700E308F5 /* MJPopupView */,
 				ABA4F0D11AC4711E008915F7 /* CountryPicker */,
 				ABA4F0C91AC46F9E008915F7 /* SBPickerSelector */,
@@ -517,6 +521,15 @@
 				ABA4F0D41AC4711E008915F7 /* CountryPicker.m */,
 			);
 			path = CountryPicker;
+			sourceTree = "<group>";
+		};
+		ABBB12FF1AD032C1001D31EC /* HMSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				ABBB13001AD032C1001D31EC /* HMSegmentedControl.h */,
+				ABBB13011AD032C1001D31EC /* HMSegmentedControl.m */,
+			);
+			path = HMSegmentedControl;
 			sourceTree = "<group>";
 		};
 		ABBF945A1ACFCB1700E308F5 /* MJPopupView */ = {
@@ -738,6 +751,7 @@
 				ABBF94601ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m in Sources */,
 				AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */,
 				AB8B70A11ABB388B0028DC47 /* MBProgressHUD.m in Sources */,
+				ABBB13021AD032C1001D31EC /* HMSegmentedControl.m in Sources */,
 				AB6E34AE1ABC69D900867CA3 /* RECommonFunctions.m in Sources */,
 				B904A09D1ACAFF1300DCE491 /* UserListingTableViewCell.m in Sources */,
 				ABEC4DBF1ABD6A12000CF27C /* BaseViewController.m in Sources */,

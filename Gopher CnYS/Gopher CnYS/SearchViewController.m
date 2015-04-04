@@ -8,6 +8,7 @@
 
 #import "SearchViewController.h"
 #import "CategoryCollectionViewCell.h"
+#import "HMSegmentedControl.h"
 
 @interface SearchViewController ()
 {
@@ -23,6 +24,14 @@
     
     categoryData = [NSArray arrayWithObjects:@"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];
     
+    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Town", @"City", @"State", @"Country", @"World"]];
+    segmentedControl.frame = CGRectMake(0, 0, self.rangeSegmentControl.frame.size.width, self.rangeSegmentControl.frame.size.height);
+    segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
+    segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    segmentedControl.backgroundColor = [UIColor clearColor];
+    [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+    [self.rangeSegmentControl addSubview:segmentedControl];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,6 +39,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UICollectionViewDataSource
+- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+    NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
+}
+
+#pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return categoryData.count;
