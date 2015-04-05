@@ -83,6 +83,7 @@
 		B93D20CB1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B93D20CA1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m */; };
 		B93D20CF1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B93D20CE1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib */; };
 		B941E0E81AD062A7008C82A3 /* ProductReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B941E0E71AD062A7008C82A3 /* ProductReportViewController.m */; };
+		B941E0EB1AD063BE008C82A3 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B941E0EA1AD063BE008C82A3 /* CommentViewController.m */; };
 		B9B1EC261AC6A4F400377E36 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC251AC6A4F400377E36 /* libstdc++.dylib */; };
 		B9B1EC281AC6A7CE00377E36 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC271AC6A7CE00377E36 /* libz.dylib */; };
 		B9B1EC2A1AC6A7E700377E36 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC291AC6A7E700377E36 /* CFNetwork.framework */; };
@@ -221,6 +222,8 @@
 		B93D20CE1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserFeedbackCollectionViewCell.xib; sourceTree = "<group>"; };
 		B941E0E61AD062A7008C82A3 /* ProductReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductReportViewController.h; sourceTree = "<group>"; };
 		B941E0E71AD062A7008C82A3 /* ProductReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductReportViewController.m; sourceTree = "<group>"; };
+		B941E0E91AD063BE008C82A3 /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
+		B941E0EA1AD063BE008C82A3 /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
 		B9B1EC251AC6A4F400377E36 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		B9B1EC271AC6A7CE00377E36 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B9B1EC291AC6A7E700377E36 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -328,6 +331,8 @@
 				ABBF94611ACFCB5600E308F5 /* AddNewSearchViewController.h */,
 				ABBF94621ACFCB5600E308F5 /* AddNewSearchViewController.m */,
 				ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */,
+				B941E0E91AD063BE008C82A3 /* CommentViewController.h */,
+				B941E0EA1AD063BE008C82A3 /* CommentViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -757,6 +762,7 @@
 				AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */,
 				AB8B70A11ABB388B0028DC47 /* MBProgressHUD.m in Sources */,
 				ABBB13021AD032C1001D31EC /* HMSegmentedControl.m in Sources */,
+				B941E0EB1AD063BE008C82A3 /* CommentViewController.m in Sources */,
 				AB6E34AE1ABC69D900867CA3 /* RECommonFunctions.m in Sources */,
 				B941E0E81AD062A7008C82A3 /* ProductReportViewController.m in Sources */,
 				B904A09D1ACAFF1300DCE491 /* UserListingTableViewCell.m in Sources */,

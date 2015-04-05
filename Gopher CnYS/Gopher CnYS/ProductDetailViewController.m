@@ -10,6 +10,7 @@
 #import "PrivateMessageViewController.h"
 #import "UserListingViewController.h"
 #import "ProductReportViewController.h"
+#import "CommentViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <Social/Social.h>
 
@@ -179,8 +180,35 @@
         vc.product = [productData objectAtIndex:selectedIndex];
         vc.productImage = self.productImgaeView.image;
         vc.sellerName = self.productSellerLbl.text;
+    } else if ([[segue identifier] isEqualToString:@"productDetail_to_comment"]) {
+        CommentViewController *vc = (CommentViewController *)[segue destinationViewController];
+        vc.userInfoImage = [self takeSnapshotOfUserInfo];
     }
         
+}
+
+- (UIImage *)takeSnapshotOfUserInfo {
+//    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO, [UIScreen mainScreen].scale);
+//    
+//    [self.view drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:YES];
+//    
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    
+//    // Crop image
+//    CGRect cropRect=CGRectMake(0, 20, self.view.bounds.size.width, 104);
+//    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], cropRect);
+//    UIImage *cropedImage=[UIImage imageWithCGImage:imageRef];
+//    CGImageRelease(imageRef);
+//    
+//    return image;
+    
+    CALayer *layer = [[UIApplication sharedApplication] keyWindow].layer;
+    CGFloat scale = [UIScreen mainScreen].scale;
+    UIGraphicsBeginImageContextWithOptions(layer.frame.size, NO, scale);
+    [layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();
+    return screenshot;
 }
 
 #pragma mark - Event Handlers
@@ -221,7 +249,7 @@
 }
 
 - (IBAction)commentButtonDidTouch:(id)sender {
-
+    [self performSegueWithIdentifier:@"productDetail_to_comment" sender:self];
 }
 
 

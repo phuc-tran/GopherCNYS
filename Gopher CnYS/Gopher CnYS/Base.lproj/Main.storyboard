@@ -678,6 +678,7 @@
                         <segue destination="AjW-24-ZQ0" kind="push" identifier="productDetail_to_privateMessage" id="ExP-uq-3s7"/>
                         <segue destination="juJ-GF-yJr" kind="push" identifier="productDetail_to_userListing" id="e0P-cp-GQQ"/>
                         <segue destination="dQo-zh-P5m" kind="push" identifier="productDetail_to_productReport" id="FyU-MQ-bSi"/>
+                        <segue destination="ZZD-DT-n90" kind="modal" identifier="productDetail_to_comment" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="Mze-kf-6Dn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UgI-q2-fAo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2052,6 +2053,28 @@
             </objects>
             <point key="canvasLocation" x="2493" y="-376"/>
         </scene>
+        <!--Comment View Controller-->
+        <scene sceneID="JQp-ZH-R56">
+            <objects>
+                <viewController id="ZZD-DT-n90" customClass="CommentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyA-fQ-naB"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vvb-zV-00o"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VG3-Rp-Lp4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="QWb-1b-1pt"/>
+                    <connections>
+                        <segue destination="KBN-7p-nVk" kind="push" identifier="comment_to_login" id="tQa-0y-OOY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VJK-kr-SBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2932" y="-376"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="FRZ-6t-klV">
             <objects>
@@ -2155,8 +2178,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="G1w-cs-YeN"/>
         <segue reference="e0P-cp-GQQ"/>
         <segue reference="ExP-uq-3s7"/>
+        <segue reference="tQa-0y-OOY"/>
     </inferredMetricsTieBreakers>
 </document>

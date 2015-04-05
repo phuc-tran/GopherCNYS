@@ -269,5 +269,5 @@
 @property (weak, nonatomic, readonly) UILabel *conversationDescLabel;
 @property (weak, nonatomic, readonly) UILabel *conversationPriceLabel;
 @property (weak, nonatomic, readonly) UIImageView *priceSign;
-
+@property (weak, nonatomic, readonly) UIView *conversationInfoView;
 @end
