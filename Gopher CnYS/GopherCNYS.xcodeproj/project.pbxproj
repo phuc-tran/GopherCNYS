@@ -80,6 +80,8 @@
 		B904A0991ACAFCB900DCE491 /* UserListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B904A0971ACAFCB900DCE491 /* UserListingViewController.m */; };
 		B904A09D1ACAFF1300DCE491 /* UserListingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B904A09B1ACAFF1300DCE491 /* UserListingTableViewCell.m */; };
 		B904A09E1ACAFF1300DCE491 /* UserListingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B904A09C1ACAFF1300DCE491 /* UserListingTableViewCell.xib */; };
+		B93A1EB41AD13021000AD865 /* CommentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A1EB31AD13021000AD865 /* CommentCollectionViewCell.m */; };
+		B93A1EB61AD13049000AD865 /* CommentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B93A1EB51AD13049000AD865 /* CommentCollectionViewCell.xib */; };
 		B93D20CB1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B93D20CA1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m */; };
 		B93D20CF1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B93D20CE1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib */; };
 		B941E0E81AD062A7008C82A3 /* ProductReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B941E0E71AD062A7008C82A3 /* ProductReportViewController.m */; };
@@ -217,6 +219,9 @@
 		B904A09A1ACAFF1200DCE491 /* UserListingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListingTableViewCell.h; sourceTree = "<group>"; };
 		B904A09B1ACAFF1300DCE491 /* UserListingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListingTableViewCell.m; sourceTree = "<group>"; };
 		B904A09C1ACAFF1300DCE491 /* UserListingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserListingTableViewCell.xib; sourceTree = "<group>"; };
+		B93A1EB21AD13021000AD865 /* CommentCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCollectionViewCell.h; sourceTree = "<group>"; };
+		B93A1EB31AD13021000AD865 /* CommentCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCollectionViewCell.m; sourceTree = "<group>"; };
+		B93A1EB51AD13049000AD865 /* CommentCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCollectionViewCell.xib; sourceTree = "<group>"; };
 		B93D20C91ACD39690021ED49 /* UserFeedbackCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFeedbackCollectionViewCell.h; sourceTree = "<group>"; };
 		B93D20CA1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFeedbackCollectionViewCell.m; sourceTree = "<group>"; };
 		B93D20CE1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserFeedbackCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -333,6 +338,9 @@
 				ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */,
 				B941E0E91AD063BE008C82A3 /* CommentViewController.h */,
 				B941E0EA1AD063BE008C82A3 /* CommentViewController.m */,
+				B93A1EB21AD13021000AD865 /* CommentCollectionViewCell.h */,
+				B93A1EB31AD13021000AD865 /* CommentCollectionViewCell.m */,
+				B93A1EB51AD13049000AD865 /* CommentCollectionViewCell.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -683,6 +691,7 @@
 				1864BF141A4B1EA300EF5DD7 /* Main.storyboard in Resources */,
 				B93D20CF1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib in Resources */,
 				1864BF191A4B1EA300EF5DD7 /* LaunchScreen.xib in Resources */,
+				B93A1EB61AD13049000AD865 /* CommentCollectionViewCell.xib in Resources */,
 				18BA5C581A736180002EBF83 /* ProductTableViewCell.xib in Resources */,
 				ABA4F0CF1AC46F9E008915F7 /* SBPickerSelector.xib in Resources */,
 				B9B1EC341AC6C50300377E36 /* MessageTableViewCell.xib in Resources */,
@@ -749,6 +758,7 @@
 				AB72F3391AB734D6003900E9 /* ProductDetailViewController.m in Sources */,
 				18A6B7CC1A657F420043E08A /* CreateAccountViewController.m in Sources */,
 				ABEC4DBC1ABD6898000CF27C /* ProfileViewController.m in Sources */,
+				B93A1EB41AD13021000AD865 /* CommentCollectionViewCell.m in Sources */,
 				185FDE091A73F7AD00A452CE /* Product.m in Sources */,
 				1864BF0E1A4B1EA300EF5DD7 /* AppDelegate.m in Sources */,
 				ABEC4DB91ABD6719000CF27C /* AboutViewController.m in Sources */,

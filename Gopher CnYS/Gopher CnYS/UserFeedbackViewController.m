@@ -421,7 +421,7 @@
                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGSize itemSize = [collectionViewLayout sizeForItemAtIndexPath:indexPath];
-    itemSize.height += 30;
+    itemSize.height += 40;
     return itemSize;
 }
 

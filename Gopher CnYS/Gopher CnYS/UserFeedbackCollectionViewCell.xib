@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -60,7 +60,6 @@
                                 <rect key="frame" x="124" y="84" width="120" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="VbD-qa-oly"/>
-                                    <constraint firstAttribute="width" constant="120" id="npn-Ex-Din"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.25098039215686274" green="0.87058823529411766" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -78,7 +77,6 @@
                                 <color key="backgroundColor" red="0.85882352941176465" green="0.85882352941176465" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="4dd-NH-kUf"/>
-                                    <constraint firstAttribute="width" constant="210" id="duC-hF-s9c"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -86,22 +84,21 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="KYU-B8-cUW" secondAttribute="trailing" id="4qS-03-PFO"/>
                             <constraint firstAttribute="trailing" secondItem="sev-sX-sMf" secondAttribute="trailing" id="84B-Vo-yTm"/>
-                            <constraint firstAttribute="bottom" secondItem="KYU-B8-cUW" secondAttribute="bottom" constant="39" id="B2v-Gq-Y1L"/>
-                            <constraint firstItem="hY1-kR-jJp" firstAttribute="leading" secondItem="btS-p8-B7Z" secondAttribute="leading" constant="18" id="Drf-cf-v4G"/>
                             <constraint firstAttribute="bottom" secondItem="tNu-WD-Qkc" secondAttribute="bottom" constant="18" id="EO9-1e-hey"/>
                             <constraint firstAttribute="bottom" secondItem="sev-sX-sMf" secondAttribute="bottom" constant="9" id="FMI-Tf-U8z"/>
                             <constraint firstItem="sev-sX-sMf" firstAttribute="leading" secondItem="tNu-WD-Qkc" secondAttribute="trailing" constant="8" id="KIY-hL-dYC"/>
                             <constraint firstItem="b2R-tK-4EG" firstAttribute="leading" secondItem="btS-p8-B7Z" secondAttribute="leading" constant="18" id="NG7-29-Pb5"/>
                             <constraint firstAttribute="trailing" secondItem="OCS-Fu-acq" secondAttribute="trailing" id="TdB-8V-aUc"/>
+                            <constraint firstItem="hY1-kR-jJp" firstAttribute="leading" secondItem="b2R-tK-4EG" secondAttribute="trailing" constant="-90" id="Tfp-YR-Qk0"/>
                             <constraint firstItem="KYU-B8-cUW" firstAttribute="leading" secondItem="btS-p8-B7Z" secondAttribute="leading" constant="6" id="Tg9-9l-vr8"/>
+                            <constraint firstItem="b2R-tK-4EG" firstAttribute="top" secondItem="hY1-kR-jJp" secondAttribute="bottom" constant="3" id="Vp9-md-4Mm"/>
                             <constraint firstItem="KYU-B8-cUW" firstAttribute="top" secondItem="btS-p8-B7Z" secondAttribute="top" id="aEL-yH-N1p"/>
                             <constraint firstAttribute="bottom" secondItem="OCS-Fu-acq" secondAttribute="bottom" id="aJ4-ZD-tk9"/>
                             <constraint firstItem="hY1-kR-jJp" firstAttribute="top" secondItem="KYU-B8-cUW" secondAttribute="bottom" constant="5" id="dEO-7S-Lml"/>
-                            <constraint firstItem="hY1-kR-jJp" firstAttribute="top" secondItem="OCS-Fu-acq" secondAttribute="bottom" constant="-34" id="dRw-1o-yGa"/>
                             <constraint firstAttribute="bottom" secondItem="b2R-tK-4EG" secondAttribute="bottom" constant="9" id="ibd-xh-KhE"/>
+                            <constraint firstItem="tNu-WD-Qkc" firstAttribute="leading" secondItem="b2R-tK-4EG" secondAttribute="trailing" constant="5" id="jiF-qk-N2M"/>
                             <constraint firstItem="OCS-Fu-acq" firstAttribute="leading" secondItem="btS-p8-B7Z" secondAttribute="leading" id="qpQ-dc-2V5"/>
                             <constraint firstAttribute="width" constant="244" id="stE-iz-VHo"/>
-                            <constraint firstItem="tNu-WD-Qkc" firstAttribute="leading" secondItem="b2R-tK-4EG" secondAttribute="trailing" constant="5" id="vWo-nM-uIb"/>
                             <constraint firstAttribute="trailing" secondItem="hY1-kR-jJp" secondAttribute="trailing" constant="16" id="zBE-uG-45o"/>
                             <constraint firstItem="OCS-Fu-acq" firstAttribute="top" secondItem="btS-p8-B7Z" secondAttribute="top" id="zTa-8g-VY4"/>
                         </constraints>
@@ -150,7 +147,6 @@
                 <constraint firstItem="btS-p8-B7Z" firstAttribute="top" secondItem="Ufa-bF-l1Y" secondAttribute="bottom" id="jAu-Dn-7rN"/>
                 <constraint firstItem="Da1-09-wR4" firstAttribute="leading" secondItem="4lh-CK-yVn" secondAttribute="leading" id="jiu-B4-TSD"/>
                 <constraint firstAttribute="bottom" secondItem="UPz-5x-c1T" secondAttribute="bottom" id="nsK-Gh-M3Z"/>
-                <constraint firstAttribute="trailing" secondItem="btS-p8-B7Z" secondAttribute="trailing" constant="34" id="p6d-cw-skU"/>
                 <constraint firstItem="UPz-5x-c1T" firstAttribute="top" secondItem="btS-p8-B7Z" secondAttribute="bottom" id="s8G-Je-7GA"/>
             </constraints>
             <size key="customSize" width="330" height="316"/>
@@ -171,7 +167,6 @@
                 <outlet property="messageBubbleTopLabelHeightConstraint" destination="fal-sy-hrK" id="kgv-NO-Gud"/>
                 <outlet property="textView" destination="KYU-B8-cUW" id="1Yv-ln-EUZ"/>
                 <outlet property="textViewAvatarHorizontalSpaceConstraint" destination="Tg9-9l-vr8" id="HWn-aO-NbR"/>
-                <outlet property="textViewBottomVerticalSpaceConstraint" destination="B2v-Gq-Y1L" id="oKV-Ti-Oci"/>
                 <outlet property="textViewMarginHorizontalSpaceConstraint" destination="4qS-03-PFO" id="1Qe-Ee-fUO"/>
                 <outlet property="textViewTopVerticalSpaceConstraint" destination="aEL-yH-N1p" id="WPl-0b-tf1"/>
                 <outlet property="writerLabel" destination="sev-sX-sMf" id="a6H-eS-um7"/>

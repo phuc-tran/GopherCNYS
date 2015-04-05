@@ -183,6 +183,7 @@
     } else if ([[segue identifier] isEqualToString:@"productDetail_to_comment"]) {
         CommentViewController *vc = (CommentViewController *)[segue destinationViewController];
         vc.userInfoImage = [self takeSnapshotOfUserInfo];
+        vc.productId = [[productData objectAtIndex:selectedIndex] objectId];
     }
         
 }
