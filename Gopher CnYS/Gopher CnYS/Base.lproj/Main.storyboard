@@ -1608,6 +1608,9 @@
                                         <state key="normal" image="about_support">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="contactSupportClick:" destination="JQf-He-czP" eventType="touchUpInside" id="rO4-ao-pGJ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wlc-Sg-iAh">
                                         <rect key="frame" x="200" y="222" width="50" height="50"/>
@@ -1615,6 +1618,9 @@
                                         <state key="normal" image="about_info">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="generalInfoClick:" destination="JQf-He-czP" eventType="touchUpInside" id="dN5-gn-YZK"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2YQ-gd-sHZ">
                                         <rect key="frame" x="175" y="68" width="50" height="50"/>

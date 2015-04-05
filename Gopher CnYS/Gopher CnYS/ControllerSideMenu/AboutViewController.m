@@ -59,4 +59,25 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.gopherclassifieds.com"]];
 }
 
+- (IBAction)contactSupportClick:(id)sender {
+    // Open email composer
+    MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] init];
+    if ([MFMailComposeViewController canSendMail]) {
+        [composeViewController setMailComposeDelegate:self];
+        [composeViewController setToRecipients:@[@"support@gopherclassifieds.com"]];
+        [composeViewController setSubject:@"Gopher support"];
+        [composeViewController setMessageBody:@"" isHTML:NO];
+        [self presentViewController:composeViewController animated:YES completion:nil];
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    //Add an alert in case of failure
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)generalInfoClick:(id)sender {
+
+}
 @end
