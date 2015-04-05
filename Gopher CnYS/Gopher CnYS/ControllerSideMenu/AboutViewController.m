@@ -43,5 +43,20 @@
     }
 }
 
+- (IBAction)facebookClick:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@" https://www.facebook.com/groups/GopherCnYs/"]];
+}
+
+- (IBAction)twiterClick:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/GopherCnYS"]];
+}
+
+- (IBAction)googlePlusClick:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://plus.google.com/communities/108134363430080385476?cfem=1"]];
+}
+
+- (IBAction)websiteClick:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.gopherclassifieds.com"]];
+}
 
 @end

@@ -87,9 +87,19 @@
 }
 
 - (IBAction)categorySelectAllClick:(id)sender {
+    for (int i = 0; i < categorySelectedList.count; i++) {
+        BOOL isSelected = YES;
+        [categorySelectedList replaceObjectAtIndex:i withObject:[NSNumber numberWithBool:isSelected]];
+    }
+    [self.categoryCollectionView reloadData];
 }
 
 - (IBAction)categoryResetClick:(id)sender {
+    for (int i = 0; i < categorySelectedList.count; i++) {
+        BOOL isSelected = NO;
+        [categorySelectedList replaceObjectAtIndex:i withObject:[NSNumber numberWithBool:isSelected]];
+    }
+    [self.categoryCollectionView reloadData];
 }
 
 #pragma mark - CategoryCollectionViewCellDelegate
