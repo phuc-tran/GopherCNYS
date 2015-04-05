@@ -106,10 +106,11 @@
             }];
         }
         else {
-            self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
-            self.outgoingAvatar = nil;
+//            self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
+//            self.outgoingAvatar = nil;
+            self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"avatarDefault"]
+                                                                             diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
         }
-        
         
         if (self.incomingImage) {
             [self.incomingImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
@@ -122,8 +123,11 @@
             }];
         }
         else {
-            self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
-            self.incomingAvatar = nil;
+            self.incomingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"avatarDefault"]
+                                                                             diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+
+//            self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
+//            self.incomingAvatar = nil;
         }
         [self loadProductInfo];
         [self loadMessages];

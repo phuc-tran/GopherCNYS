@@ -456,12 +456,12 @@
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19Z-ug-So2">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="DQl-UM-pFY"/>
+                                            <constraint firstAttribute="height" constant="50" id="DQl-UM-pFY"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                        <state key="normal" title="View comments">
+                                        <state key="normal">
                                             <color key="titleColor" red="0.72941176470000002" green="0.72941176470000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -469,14 +469,34 @@
                                             <action selector="commentButtonDidTouch:" destination="yMM-1Y-rcA" eventType="touchUpInside" id="UnD-Iu-TjF"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View comments" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wng-cM-UVe">
+                                        <rect key="frame" x="8" y="0.0" width="304" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.58823529411764708" green="0.58823529411764708" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Everyone can view these comments. Use for the private message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhK-ig-HhV">
+                                        <rect key="frame" x="8" y="16" width="304" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.58823529409999997" green="0.58823529409999997" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="fhK-ig-HhV" firstAttribute="top" secondItem="Qcp-Fe-wP3" secondAttribute="top" constant="16" id="48v-P9-4PU"/>
+                                    <constraint firstItem="fhK-ig-HhV" firstAttribute="leading" secondItem="Qcp-Fe-wP3" secondAttribute="leading" constant="8" id="5JC-db-fbC"/>
                                     <constraint firstItem="19Z-ug-So2" firstAttribute="top" secondItem="Qcp-Fe-wP3" secondAttribute="top" id="6cg-HP-5Tg"/>
+                                    <constraint firstAttribute="trailing" secondItem="fhK-ig-HhV" secondAttribute="trailing" constant="8" id="8GP-WN-Xt1"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wng-cM-UVe" secondAttribute="trailing" constant="8" id="C6B-ob-FiX"/>
                                     <constraint firstItem="19Z-ug-So2" firstAttribute="leading" secondItem="Qcp-Fe-wP3" secondAttribute="leading" id="IH5-5f-zHU"/>
-                                    <constraint firstAttribute="bottom" secondItem="19Z-ug-So2" secondAttribute="bottom" constant="20" id="d2f-Eh-drO"/>
+                                    <constraint firstAttribute="bottom" secondItem="Wng-cM-UVe" secondAttribute="bottom" constant="29" id="a4n-7r-ZTC"/>
+                                    <constraint firstItem="Wng-cM-UVe" firstAttribute="leading" secondItem="Qcp-Fe-wP3" secondAttribute="leading" constant="8" id="cuK-cy-Hh2"/>
+                                    <constraint firstAttribute="bottom" secondItem="19Z-ug-So2" secondAttribute="bottom" id="d2f-Eh-drO"/>
                                     <constraint firstAttribute="height" constant="50" id="dzR-m3-OhY"/>
                                     <constraint firstAttribute="trailing" secondItem="19Z-ug-So2" secondAttribute="trailing" id="hfv-mh-0VG"/>
+                                    <constraint firstItem="Wng-cM-UVe" firstAttribute="top" secondItem="Qcp-Fe-wP3" secondAttribute="top" id="i40-AT-KU3"/>
+                                    <constraint firstAttribute="bottom" secondItem="fhK-ig-HhV" secondAttribute="bottom" id="xQc-jY-pRj"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xud-ug-0bV">
@@ -675,10 +695,13 @@
                         <outlet property="productSellerLbl" destination="CQH-yD-79N" id="QMi-gB-1mI"/>
                         <outlet property="productlocationLbl" destination="HUV-Tp-PoS" id="4pe-L2-gbf"/>
                         <outlet property="profileAvatar" destination="9Ns-w9-hG7" id="Mox-ef-emw"/>
+                        <outlet property="viewCommentDescLabel" destination="fhK-ig-HhV" id="lR6-Ew-EE4"/>
+                        <outlet property="viewCommentLabel" destination="Wng-cM-UVe" id="ina-BB-nTY"/>
                         <segue destination="AjW-24-ZQ0" kind="push" identifier="productDetail_to_privateMessage" id="ExP-uq-3s7"/>
                         <segue destination="juJ-GF-yJr" kind="push" identifier="productDetail_to_userListing" id="e0P-cp-GQQ"/>
                         <segue destination="dQo-zh-P5m" kind="push" identifier="productDetail_to_productReport" id="FyU-MQ-bSi"/>
-                        <segue destination="uE5-6k-XiM" kind="push" identifier="productDetail_to_comment" id="cUt-cU-EsW"/>
+                        <segue destination="uE5-6k-XiM" kind="modal" identifier="productDetail_to_comment" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="cUt-cU-EsW"/>
+                        <segue destination="KBN-7p-nVk" kind="push" identifier="productDetail_to_login" id="PRy-In-HQn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UgI-q2-fAo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2214,7 +2237,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="ExP-uq-3s7"/>
+        <segue reference="PRy-In-HQn"/>
         <segue reference="e0P-cp-GQQ"/>
-        <segue reference="ubd-Oq-QtJ"/>
     </inferredMetricsTieBreakers>
 </document>

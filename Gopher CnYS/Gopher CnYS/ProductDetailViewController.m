@@ -113,6 +113,14 @@
             self.productImgaeView.image = image;
         }
     }];
+    
+    NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
+    attachment.image = [UIImage imageNamed:@"chat_icon.png"];
+    NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
+    NSMutableAttributedString *myString= [[NSMutableAttributedString alloc] initWithString:@"Everyone can view these comments. Use "];
+    [myString appendAttributedString:attachmentString];
+    [myString appendAttributedString:[[NSAttributedString alloc] initWithString:@" for the personal information."]];
+    self.viewCommentDescLabel.attributedText = myString;
 }
 
 - (void)loadAvatar:(NSString*)strUrl
@@ -250,7 +258,12 @@
 }
 
 - (IBAction)commentButtonDidTouch:(id)sender {
-    [self performSegueWithIdentifier:@"productDetail_to_comment" sender:self];
+    if (![self checkIfUserLoggedIn]) {
+        [self performSegueWithIdentifier:@"productDetail_to_login" sender:self];
+    } else {
+        [self performSegueWithIdentifier:@"productDetail_to_comment" sender:self];
+    }
+    
 }
 
 

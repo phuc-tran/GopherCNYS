@@ -28,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *productlocationLbl;
 @property (weak, nonatomic) IBOutlet UILabel *productSellerLbl;
 @property (weak, nonatomic) IBOutlet UIImageView *profileAvatar;
+@property (weak, nonatomic) IBOutlet UILabel *viewCommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *viewCommentDescLabel;
 
 @property (nonatomic, retain) NSArray *productData;
 @property (nonatomic, assign) NSUInteger selectedIndex;

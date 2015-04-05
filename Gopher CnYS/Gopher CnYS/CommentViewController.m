@@ -13,8 +13,8 @@
 
 @interface CommentViewController ()
 
-//@property (nonatomic, strong) NSMutableArray *feedbacks;
 @property (nonatomic, strong) NSMutableArray *comments;
+@property (nonatomic, strong) NSMutableArray *avatars;
 @property (strong, nonatomic) JSQMessagesBubbleImage *outgoingBubbleImageData;
 @property (strong, nonatomic) JSQMessagesBubbleImage *incomingBubbleImageData;
 @property (strong, nonatomic) JSQMessagesAvatarImage *outgoingAvatar;
@@ -35,9 +35,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.collectionView registerNib:[UINib nibWithNibName:@"CommentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"CommentCollectionViewCellIdentifier"];
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.collectionView.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:244.0/255.0 blue:244.0/255.0 alpha:1.0];
-    self.conversationTitleLabel.textColor = [UIColor colorWithRed:64.0f/255.0f green:222.0f/255.0f blue:172.0f/255.0f alpha:1.0f];
     
     /**
      *  You MUST set your senderId and display name
@@ -45,14 +45,21 @@
     self.senderId = @"it-should-not-be-current-id";
     self.senderDisplayName = @"anonymous";
     
-    // NO avatars
-    self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
-    self.incomingAvatar = nil;
-    self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
-    self.outgoingAvatar = nil;
+    // NO avatars for outgoing message
+//    self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
+//    self.outgoingAvatar = nil;
+    
+    
+    self.incomingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"avatarDefault"]
+                                                                     diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+    self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"avatarDefault"]
+                                                                     diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+
+
     self.showLoadEarlierMessagesHeader = NO;
     
     self.comments = [[NSMutableArray alloc] init];
+    self.avatars = [[NSMutableArray alloc] init];
     
     /**
      *  Create message bubble images objects.
@@ -77,27 +84,46 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [self setupHeader];
-
     [self loadComments];
     
-//    NSLog(@"self.view frame %@", NSStringFromCGRect(self.view.frame));
+//    NSLog(@"self.view frame %@ - %@", NSStringFromCGRect(self.view.frame), NSStringFromCGRect([[UIScreen mainScreen] bounds]));
 }
 
 
 - (void)setupHeader {
+    CGRect mainScreenRect = [[UIScreen mainScreen] bounds];
     if (![self.view viewWithTag:2512]) {
         //        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, CGRectGetWidth(self.view.frame), 104)];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(mainScreenRect), CGRectGetHeight(mainScreenRect))];
         imageView.image = self.userInfoImage;
         [self.view insertSubview:imageView belowSubview:self.collectionView];
         imageView.tag = 2512;
         
         // hide the redundant view
         self.conversationInfoView.hidden = YES;
+        
+        // Effect
+        
+        if ([[UIDevice currentDevice].systemVersion compare:@"8.0.0" options:NSNumericSearch] == NSOrderedAscending) {
+            // iOS7, using image category
+            
+        }
+        else {
+            // iOS8, using built-in effect
+//            UIVisualEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+//            UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
+//            effectView.frame = imageView.bounds;
+//            [imageView addSubview:effectView];
+        }
+        
+        UIView *effectView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(imageView.frame), CGRectGetHeight(imageView.frame))];
+        effectView.alpha = 0.7;
+        effectView.backgroundColor = [UIColor colorWithRed:150.0f/255.0f green:150.0f/255.0f blue:150.0f/255.0f alpha:1.0f];
+        [imageView addSubview:effectView];
     }
     
     if (![self.view viewWithTag:2712]) {
-        UIView *commentButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 124, CGRectGetWidth(self.view.bounds), 51)];
+        UIView *commentButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 100, CGRectGetWidth(mainScreenRect), 51)];
         [self.view addSubview:commentButtonView];
         
         // Background
@@ -168,8 +194,10 @@
                                                                       text:[objects[i] valueForKey:@"comment"]];
                 NSLog(@"message %@", message);
                 [self.comments addObject:message];
-                
+//                [self.avatars addObject:[JSQMessagesAvatarImageFactory circularAvatarImage:[UIImage imageNamed:@"avatarDefault"] withDiameter:70]];
+
             }
+//            [self loadAvatars];
             [self.collectionView reloadData];
         } else {
             // Log details of the failure
@@ -178,6 +206,21 @@
     }];
 }
 
+- (void)loadAvatars {
+    for (int i = 0; i < self.comments.count; i++) {
+        PFUser *writer;
+        PFFile *profileAvatar = [writer valueForKey:@"profileImage"];
+        if (profileAvatar != nil) {
+            [profileAvatar getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                if (!error) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    JSQMessagesAvatarImage *avatarImage = [JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+//                    [self.avatars setObject:avatarImage atIndexedSubscript:i];
+                }
+            }];
+        }
+    }
+}
 
 #pragma mark - JSQMessagesViewController method overrides
 
@@ -201,17 +244,14 @@
                                              senderDisplayName:[[PFUser currentUser] valueForKey:@"username"]
                                                           date:date
                                                           text:text];
-    
-    //    [self.demoData.messages addObject:message];
-    
     [self.comments addObject:message];
     
     // Save to Parse: Comments
-//    PFObject *newComment = [PFObject objectWithClassName:@"Comments"];
-//    newComment[@"comment"] = message.text;
-//    newComment[@"writer"] = [PFUser currentUser];
-//    newComment[@"forProductId"] = self.productId;
-//    [newComment saveInBackground];
+    PFObject *newComment = [PFObject objectWithClassName:@"Comments"];
+    newComment[@"comment"] = message.text;
+    newComment[@"writer"] = [PFUser currentUser];
+    newComment[@"forProductId"] = self.productId;
+    [newComment saveInBackground];
     
     [self finishSendingMessageAnimated:YES];
 }
@@ -241,6 +281,7 @@
     return self.incomingBubbleImageData;
 }
 
+
 - (id<JSQMessageAvatarImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView avatarImageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     /**
@@ -263,7 +304,11 @@
      *
      *  Override the defaults in `viewDidLoad`
      */
-    return nil;
+  
+    return self.incomingAvatar;
+//    return [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"avatarDefault"]
+//                                               diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+//    return self.avatars[indexPath.item];
 }
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath
@@ -297,7 +342,6 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.comments.count;
-    //    return [self.demoData.messages count];
 }
 
 - (UICollectionViewCell *)collectionView:(JSQMessagesCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -317,9 +361,13 @@
     BOOL isMediaMessage = [messageItem isMediaMessage];
     
     NSString *cellIdentifier = @"CommentCollectionViewCellIdentifier";
-    
     CommentCollectionViewCell *cell = (CommentCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.delegate = collectionView;
+    
+
+//    NSString *cellIdentifier = [JSQMessagesCollectionViewCellIncoming cellReuseIdentifier];
+//    JSQMessagesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+//    cell.delegate = collectionView;
     
     if (!isMediaMessage) {
         
@@ -362,7 +410,7 @@
         
         // writer
         cell.writerLabel.text = [messageItem senderDisplayName];
-                
+        
         if ([[UIDevice currentDevice].systemVersion compare:@"8.0.0" options:NSNumericSearch] == NSOrderedAscending) {
             //  workaround for iOS 7 textView data detectors bug
             cell.textView.text = nil;
@@ -458,6 +506,8 @@
                                               NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
         
     }
+    
+    NSLog(@"cell.avatar frame %@", NSStringFromCGRect(cell.avatarContainerView.frame));
     
     return cell;
 }
