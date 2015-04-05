@@ -27,6 +27,8 @@
     self.view.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.view.layer.shadowOpacity = 0.6f;
     
+    self.milesLabel.text = [NSString stringWithFormat:@"%.0f miles", self.milesSlider.value];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,6 +43,10 @@
     }
 }
 
+- (IBAction)sliderMilesChangeValue:(UISlider*)sender {
+    NSLog(@"%.0f", sender.value);
+    self.milesLabel.text = [NSString stringWithFormat:@"%.0f miles", sender.value];
+}
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
