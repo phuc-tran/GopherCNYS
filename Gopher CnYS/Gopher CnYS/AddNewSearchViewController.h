@@ -14,6 +14,9 @@
 
 @property (assign, nonatomic) id <AddNewSearchViewControllerDelegate>delegate;
 
+@property (weak, nonatomic) IBOutlet UISlider *milesSlider;
+@property (weak, nonatomic) IBOutlet UILabel *milesLabel;
+
 @end
 
 

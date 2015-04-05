@@ -9,8 +9,9 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import <MessageUI/MessageUI.h>
 
-@interface AboutViewController : BaseViewController
+@interface AboutViewController : BaseViewController <MFMailComposeViewControllerDelegate>
 
 - (IBAction)pushViewController:(id)sender;
 

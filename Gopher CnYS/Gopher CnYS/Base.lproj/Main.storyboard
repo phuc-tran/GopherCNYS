@@ -866,6 +866,14 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Hq-iF-pDA">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="DiY-fn-9FK">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="KUb-wv-JfL" id="Gaf-f7-glT"/>
+                                    </connections>
+                                </searchBar>
                                 <connections>
                                     <outlet property="dataSource" destination="KUb-wv-JfL" id="mua-lg-2Ek"/>
                                     <outlet property="delegate" destination="KUb-wv-JfL" id="PS5-rj-9Yu"/>
@@ -913,20 +921,37 @@
                     </view>
                     <navigationItem key="navigationItem" id="eB2-tM-6cZ">
                         <nil key="title"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="itD-zc-6Al">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="gotoSearcg:" destination="KUb-wv-JfL" id="yRe-So-JLt"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="bottomView" destination="zJo-1g-VxG" id="1zY-Tp-RiH"/>
                         <outlet property="cameraTabBarItem" destination="v2Z-0Q-hHJ" id="ZeF-d3-dyU"/>
+                        <outlet property="productSearchBar" destination="DiY-fn-9FK" id="vO9-rs-BkK"/>
                         <outlet property="productTableView" destination="7Hq-iF-pDA" id="Jpm-L5-DxK"/>
+                        <outlet property="searchDisplayController" destination="Uoh-WK-MSi" id="2bG-L3-EzN"/>
                         <outlet property="settingTabBarItem" destination="Df1-I7-JkI" id="tYg-69-pw9"/>
                         <segue destination="yMM-1Y-rcA" kind="push" identifier="ProductDetaiFormProduct" id="Hcj-1n-Msb"/>
                         <segue destination="KBN-7p-nVk" kind="push" identifier="product_list_form_login" id="G1w-cs-YeN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gVE-G0-K9Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Uoh-WK-MSi">
+                    <connections>
+                        <outlet property="delegate" destination="KUb-wv-JfL" id="9H4-0R-lQv"/>
+                        <outlet property="searchBar" destination="DiY-fn-9FK" id="Tln-Cq-3Lm"/>
+                        <outlet property="searchContentsController" destination="KUb-wv-JfL" id="hLg-f7-ZCS"/>
+                        <outlet property="searchResultsDataSource" destination="KUb-wv-JfL" id="X2O-zQ-qRB"/>
+                        <outlet property="searchResultsDelegate" destination="KUb-wv-JfL" id="n3g-GV-J0p"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1557" y="292"/>
+            <point key="canvasLocation" x="1515" y="292"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="soy-75-C68">
@@ -1271,7 +1296,7 @@
                                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="register:" destination="Mir-iW-Hbc" eventType="touchUpInside" id="hDh-8K-z91"/>
+                                                    <action selector="submitButtonClick:" destination="tzO-Lr-hr1" eventType="touchUpInside" id="C3z-ed-FGB"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1318,6 +1343,7 @@
                         <outlet property="categoryResetBtn" destination="jyf-wg-zCd" id="vcd-GD-jT5"/>
                         <outlet property="categorySelectAllBtn" destination="1f3-3f-X9G" id="qec-uB-ar0"/>
                         <outlet property="favButton" destination="50v-R1-LgF" id="odx-g1-5QY"/>
+                        <outlet property="priceField" destination="pec-N0-FID" id="aUL-yQ-oHc"/>
                         <outlet property="rangeSegmentControl" destination="5SU-7c-Dc9" id="tRz-dE-RaV"/>
                     </connections>
                 </viewController>
@@ -1631,6 +1657,9 @@
                                         <state key="normal" image="about_support">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="contactSupportClick:" destination="JQf-He-czP" eventType="touchUpInside" id="rO4-ao-pGJ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wlc-Sg-iAh">
                                         <rect key="frame" x="200" y="222" width="50" height="50"/>
@@ -1638,6 +1667,9 @@
                                         <state key="normal" image="about_info">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="generalInfoClick:" destination="JQf-He-czP" eventType="touchUpInside" id="dN5-gn-YZK"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2YQ-gd-sHZ">
                                         <rect key="frame" x="175" y="68" width="50" height="50"/>
@@ -2169,23 +2201,6 @@
             </objects>
             <point key="canvasLocation" x="2053" y="1117"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="pUO-Cl-gji">
-            <objects>
-                <viewController id="YYL-cS-34U" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pWS-2a-M8f"/>
-                        <viewControllerLayoutGuide type="bottom" id="o18-b1-B2y"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="9oW-eD-iaq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="glZ-aD-cOI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
         <image name="about_fb" width="50" height="50"/>
@@ -2237,7 +2252,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="ExP-uq-3s7"/>
-        <segue reference="PRy-In-HQn"/>
+        <segue reference="G1w-cs-YeN"/>
         <segue reference="e0P-cp-GQQ"/>
     </inferredMetricsTieBreakers>
 </document>

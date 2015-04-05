@@ -12,16 +12,25 @@
 #import "HMSegmentedControl.h"
 
 
+@protocol SearchViewControllerDelegate <NSObject>
+@optional
+- (void)onFilterContentForSearch:(NSMutableArray*)favoriteList withPrice:(NSInteger)price;
+@end
+
 @interface SearchViewController : BaseViewController <UICollectionViewDataSource, UICollectionViewDelegate, CategoryCollectionViewCellDelegate>
 {
     BOOL isFavoriteSelected;
 
 }
+
+@property (assign, nonatomic) id<SearchViewControllerDelegate> delegate;
+
 @property (weak, nonatomic) IBOutlet UICollectionView *categoryCollectionView;
 
 @property (weak, nonatomic) IBOutlet UIView *rangeSegmentControl;
 @property (weak, nonatomic) IBOutlet UIButton *favButton;
 @property (weak, nonatomic) IBOutlet UIButton *categorySelectAllBtn;
 @property (weak, nonatomic) IBOutlet UIButton *categoryResetBtn;
+@property (weak, nonatomic) IBOutlet UITextField *priceField;
 
 @end
