@@ -31,7 +31,7 @@
 
 - (void)setupMenuBarButtonItems {
     [self setupLeftMenuBarButtonItem];
-    [self setupRightMenuBarButtonItem];
+    //[self setupRightMenuBarButtonItem];
 }
 
 - (void)setupLeftMenuBarButtonItem {
