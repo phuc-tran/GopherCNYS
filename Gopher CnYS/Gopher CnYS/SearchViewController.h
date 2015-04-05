@@ -8,9 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "CategoryCollectionViewCell.h"
+#import "HMSegmentedControl.h"
 
-@interface SearchViewController : BaseViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+
+@interface SearchViewController : BaseViewController <UICollectionViewDataSource, UICollectionViewDelegate, CategoryCollectionViewCellDelegate>
+{
+    BOOL isFavoriteSelected;
+
+}
+@property (weak, nonatomic) IBOutlet UICollectionView *categoryCollectionView;
 
 @property (weak, nonatomic) IBOutlet UIView *rangeSegmentControl;
+@property (weak, nonatomic) IBOutlet UIButton *favButton;
+@property (weak, nonatomic) IBOutlet UIButton *categorySelectAllBtn;
+@property (weak, nonatomic) IBOutlet UIButton *categoryResetBtn;
 
 @end

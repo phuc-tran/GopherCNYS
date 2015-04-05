@@ -7,16 +7,18 @@
 //
 
 #import "SearchViewController.h"
-#import "CategoryCollectionViewCell.h"
-#import "HMSegmentedControl.h"
 
 @interface SearchViewController ()
 {
     NSArray *categoryData;
+    NSMutableArray *categorySelectedList;
 }
 @end
 
 @implementation SearchViewController
+
+@synthesize favButton;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,6 +34,11 @@
     [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
     [self.rangeSegmentControl addSubview:segmentedControl];
     
+    categorySelectedList = [[NSMutableArray alloc] init];
+    BOOL b = FALSE;
+    for (int i = 0; i < categoryData.count; i++) {
+        [categorySelectedList addObject:[NSNumber numberWithBool:b]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,8 +60,44 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CategoryCollectionViewCell *cell = (CategoryCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"CategoriesSearchCell" forIndexPath:indexPath];
     cell.categoryLable.text = categoryData[indexPath.row];
+    cell.cellIndex = indexPath.row;
+    cell.delegate = self;
+    [cell update:[[categorySelectedList objectAtIndex:indexPath.row] boolValue]];
     return cell;
 }
 
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (IBAction)favButtonClick:(id)sender {
+    isFavoriteSelected = !isFavoriteSelected;
+    if(isFavoriteSelected) {
+        [favButton setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateNormal];
+        [favButton setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateHighlighted];
+        [favButton setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateSelected];
+    } else {
+        [favButton setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateNormal];
+        [favButton setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateHighlighted];
+        [favButton setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateSelected];
+    }
+}
+
+- (IBAction)categorySelectAllClick:(id)sender {
+}
+
+- (IBAction)categoryResetClick:(id)sender {
+}
+
+#pragma mark - CategoryCollectionViewCellDelegate
+- (void)onCellSelect:(NSInteger)index {
+    BOOL isSelected = [[categorySelectedList objectAtIndex:index] boolValue];
+    isSelected = !isSelected;
+    [categorySelectedList replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:isSelected]];
+    [self.categoryCollectionView reloadData];
+}
 
 @end
