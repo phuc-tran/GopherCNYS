@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -1044,11 +1044,14 @@
                                                         </segments>
                                                         <color key="tintColor" red="0.25098039215686274" green="0.87058823529411766" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </segmentedControl>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50v-R1-LgF">
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50v-R1-LgF">
                                                         <rect key="frame" x="278" y="9" width="32" height="32"/>
-                                                        <state key="normal" backgroundImage="ic_favorite_filter1">
+                                                        <state key="normal" image="ic_favorite_filter1">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="favButtonClick:" destination="tzO-Lr-hr1" eventType="touchUpInside" id="1Rx-aS-S3E"/>
+                                                        </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ja-wq-3CQ">
                                                         <rect key="frame" x="5" y="6" width="151" height="37"/>
@@ -1057,10 +1060,13 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="151" height="37"/>
                                                             </imageView>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pec-N0-FID">
-                                                                <rect key="frame" x="10" y="0.0" width="141" height="37"/>
+                                                                <rect key="frame" x="10" y="0.0" width="115" height="37"/>
                                                                 <color key="textColor" red="0.74509803919999995" green="0.74509803919999995" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="tzO-Lr-hr1" id="LCc-7f-rYk"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1076,6 +1082,9 @@
                                                                 <color key="textColor" red="0.74509803919999995" green="0.74509803919999995" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="tzO-Lr-hr1" id="udM-s1-WmO"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1091,6 +1100,9 @@
                                                                 <color key="textColor" red="0.74509803919999995" green="0.74509803919999995" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="tzO-Lr-hr1" id="OeQ-0X-iPm"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1149,6 +1161,9 @@
                                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="categorySelectAllClick:" destination="tzO-Lr-hr1" eventType="touchUpInside" id="rK7-lC-72b"/>
+                                                        </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bft-dL-qyu">
                                                         <rect key="frame" x="274" y="10" width="1" height="15"/>
@@ -1161,6 +1176,9 @@
                                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="categoryResetClick:" destination="tzO-Lr-hr1" eventType="touchUpInside" id="PT3-0K-8cO"/>
+                                                        </connections>
                                                     </button>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="B1f-jH-4ck">
                                                         <rect key="frame" x="0.0" y="33" width="320" height="389"/>
@@ -1194,6 +1212,9 @@
                                                                             <state key="normal">
                                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </state>
+                                                                            <connections>
+                                                                                <action selector="selected:" destination="Syk-Sd-J8K" eventType="touchUpInside" id="E5u-Ic-g7h"/>
+                                                                            </connections>
                                                                         </button>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1258,6 +1279,7 @@
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="D7A-0E-fXa" firstAttribute="leading" secondItem="o2X-f5-ryL" secondAttribute="leading" id="BBf-UX-l1F"/>
                             <constraint firstItem="ysH-fc-Fxb" firstAttribute="top" secondItem="D7A-0E-fXa" secondAttribute="bottom" id="EJP-9W-vhQ"/>
@@ -1269,6 +1291,10 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="700"/>
                     <connections>
+                        <outlet property="categoryCollectionView" destination="B1f-jH-4ck" id="cu7-zr-uvO"/>
+                        <outlet property="categoryResetBtn" destination="jyf-wg-zCd" id="vcd-GD-jT5"/>
+                        <outlet property="categorySelectAllBtn" destination="1f3-3f-X9G" id="qec-uB-ar0"/>
+                        <outlet property="favButton" destination="50v-R1-LgF" id="odx-g1-5QY"/>
                         <outlet property="rangeSegmentControl" destination="5SU-7c-Dc9" id="tRz-dE-RaV"/>
                     </connections>
                 </viewController>
@@ -1562,6 +1588,9 @@
                                         <state key="normal" image="about_fb">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="facebookClick:" destination="JQf-He-czP" eventType="touchUpInside" id="sQs-Fp-fXU"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3f-1M-gl8">
                                         <rect key="frame" x="95" y="68" width="50" height="50"/>
@@ -1569,6 +1598,9 @@
                                         <state key="normal" image="about_tw">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="twiterClick:" destination="JQf-He-czP" eventType="touchUpInside" id="7CW-SJ-rUa"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZk-jm-DT0">
                                         <rect key="frame" x="70" y="222" width="50" height="50"/>
@@ -1590,6 +1622,9 @@
                                         <state key="normal" image="about_gplus">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="googlePlusClick:" destination="JQf-He-czP" eventType="touchUpInside" id="84n-hM-5hm"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckP-M9-W3L">
                                         <rect key="frame" x="255" y="68" width="50" height="50"/>
@@ -1597,6 +1632,9 @@
                                         <state key="normal" image="about_ws">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="websiteClick:" destination="JQf-He-czP" eventType="touchUpInside" id="MN1-Hu-8e6"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Facebook" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ba-q9-ZZZ">
                                         <rect key="frame" x="9" y="120" width="62" height="21"/>
@@ -2181,5 +2219,8 @@
         <segue reference="e0P-cp-GQQ"/>
         <segue reference="ExP-uq-3s7"/>
         <segue reference="tQa-0y-OOY"/>
+        <segue reference="ExP-uq-3s7"/>
+        <segue reference="kQN-Gd-hej"/>
+        <segue reference="e0P-cp-GQQ"/>
     </inferredMetricsTieBreakers>
 </document>

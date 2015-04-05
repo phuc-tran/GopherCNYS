@@ -8,13 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CategoryCollectionViewCellDelegate <NSObject>
+@optional
+- (void)onCellSelect:(NSInteger)index;
+@end
+
 @interface CategoryCollectionViewCell : UICollectionViewCell
 {
-        
+    
 }
+
+@property (nonatomic, assign) BOOL isSelected;
 
 @property (weak, nonatomic) IBOutlet UILabel *categoryLable;
 @property (weak, nonatomic) IBOutlet UIImageView *selectedImageView;
 @property (weak, nonatomic) IBOutlet UIButton *selectedButton;
+@property (assign, nonatomic) id<CategoryCollectionViewCellDelegate> delegate;
+@property (unsafe_unretained, nonatomic) NSUInteger cellIndex;
+
+- (void)update:(BOOL)selected;
+- (IBAction)selected:(id)sender;
 
 @end
