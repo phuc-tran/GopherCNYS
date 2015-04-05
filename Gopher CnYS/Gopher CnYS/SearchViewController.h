@@ -14,7 +14,7 @@
 
 @protocol SearchViewControllerDelegate <NSObject>
 @optional
-- (void)onFavoriteSelected:(NSMutableArray*)indexs;
+- (void)onFilterContentForSearch:(NSMutableArray*)favoriteList withPrice:(NSInteger)price;
 @end
 
 @interface SearchViewController : BaseViewController <UICollectionViewDataSource, UICollectionViewDelegate, CategoryCollectionViewCellDelegate>
@@ -31,5 +31,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *favButton;
 @property (weak, nonatomic) IBOutlet UIButton *categorySelectAllBtn;
 @property (weak, nonatomic) IBOutlet UIButton *categoryResetBtn;
+@property (weak, nonatomic) IBOutlet UITextField *priceField;
 
 @end

@@ -103,9 +103,30 @@
     [self.categoryCollectionView reloadData];
 }
 
+-(BOOL)isNumeric:(NSString*)inputString{
+    BOOL isValid = NO;
+    NSCharacterSet *alphaNumbersSet = [NSCharacterSet decimalDigitCharacterSet];
+    NSCharacterSet *stringSet = [NSCharacterSet characterSetWithCharactersInString:inputString];
+    isValid = [alphaNumbersSet isSupersetOfSet:stringSet];
+    return isValid;
+}
+
 - (IBAction)submitButtonClick:(id)sender {
+    if (![self isNumeric:self.priceField.text]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Price input must be number format" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+    NSMutableArray *favoriteList = [[NSMutableArray alloc] init];
+    for (int i = 0; i < categorySelectedList.count; i++) {
+        BOOL isSelected = [[categorySelectedList objectAtIndex:i] boolValue];
+        if (isSelected) {
+            [favoriteList addObject:[NSNumber numberWithInt:(i+1)]];
+        }
+
+    }
     if(delegate != nil)
-        [delegate onFavoriteSelected:categorySelectedList];
+        [delegate onFilterContentForSearch:favoriteList withPrice:[self.priceField.text integerValue]];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

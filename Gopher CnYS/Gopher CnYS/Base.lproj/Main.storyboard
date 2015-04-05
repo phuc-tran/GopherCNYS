@@ -1320,6 +1320,7 @@
                         <outlet property="categoryResetBtn" destination="jyf-wg-zCd" id="vcd-GD-jT5"/>
                         <outlet property="categorySelectAllBtn" destination="1f3-3f-X9G" id="qec-uB-ar0"/>
                         <outlet property="favButton" destination="50v-R1-LgF" id="odx-g1-5QY"/>
+                        <outlet property="priceField" destination="pec-N0-FID" id="aUL-yQ-oHc"/>
                         <outlet property="rangeSegmentControl" destination="5SU-7c-Dc9" id="tRz-dE-RaV"/>
                     </connections>
                 </viewController>
