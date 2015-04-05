@@ -18,6 +18,7 @@
 @implementation SearchViewController
 
 @synthesize favButton;
+@synthesize delegate;
 
 
 - (void)viewDidLoad {
@@ -100,6 +101,13 @@
         [categorySelectedList replaceObjectAtIndex:i withObject:[NSNumber numberWithBool:isSelected]];
     }
     [self.categoryCollectionView reloadData];
+}
+
+- (IBAction)submitButtonClick:(id)sender {
+    if(delegate != nil)
+        [delegate onFavoriteSelected:categorySelectedList];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - CategoryCollectionViewCellDelegate

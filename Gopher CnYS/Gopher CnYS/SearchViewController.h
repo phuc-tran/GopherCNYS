@@ -12,11 +12,19 @@
 #import "HMSegmentedControl.h"
 
 
+@protocol SearchViewControllerDelegate <NSObject>
+@optional
+- (void)onFavoriteSelected:(NSMutableArray*)indexs;
+@end
+
 @interface SearchViewController : BaseViewController <UICollectionViewDataSource, UICollectionViewDelegate, CategoryCollectionViewCellDelegate>
 {
     BOOL isFavoriteSelected;
 
 }
+
+@property (assign, nonatomic) id<SearchViewControllerDelegate> delegate;
+
 @property (weak, nonatomic) IBOutlet UICollectionView *categoryCollectionView;
 
 @property (weak, nonatomic) IBOutlet UIView *rangeSegmentControl;

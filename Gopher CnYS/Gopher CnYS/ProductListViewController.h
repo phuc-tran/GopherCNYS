@@ -11,8 +11,9 @@
 #import "MBProgressHUD.h"
 #import "BaseViewController.h"
 #import "SBPickerSelector.h"
+#import "SearchViewController.h"
 
-@interface ProductListViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource, SBPickerSelectorDelegate, UITabBarDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+@interface ProductListViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource, SBPickerSelectorDelegate, UITabBarDelegate, UISearchBarDelegate, UISearchDisplayDelegate, SearchViewControllerDelegate>
 {
     NSArray *categoryData;
     BOOL isFavoriteTopSelected;
