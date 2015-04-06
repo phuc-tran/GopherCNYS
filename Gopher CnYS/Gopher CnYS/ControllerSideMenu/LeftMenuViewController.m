@@ -80,14 +80,9 @@
             break;
         case 5:
         {
-//            ProductListViewController *productVC = (ProductListViewController*)[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"productListViewController"]];
-//            [self.sideMenuViewController setContentViewController:productVC animated:YES];
-//            [self.sideMenuViewController hideMenuViewController];
-            
-            AddNewSearchViewController *addSearchlViewController = [[AddNewSearchViewController alloc] initWithNibName:@"AddNewSearchViewController" bundle:nil];
-            addSearchlViewController.delegate = self;
-            [self presentPopupViewController:addSearchlViewController animationType:0];
-
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"searchTabListViewController"]]
+                                                          animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
         }
         default:
             break;

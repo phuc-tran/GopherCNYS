@@ -228,6 +228,38 @@ NSUInteger selectedIndex;
     }];
 }
 
+- (void)filterResults:(NSString *)searchTerm
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    PFQuery *query = [PFQuery queryWithClassName:@"Products"];
+    [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
+    [query whereKey:@"title" containsString:searchTerm];
+    
+    [query selectKeys:@[@"description", @"title", @"photo1", @"photo2", @"photo3", @"photo4", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors", @"category", @"condition", @"quantity", @"seller", @"country", @"adminArea", @"locality"]];
+    [query orderByDescending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (!error) {
+            // The find succeeded.
+            productData = objects;
+            distanceProducts = [[NSMutableArray alloc] init];
+            NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
+            NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                PFObject *first = (PFObject*)a;
+                PFObject *second = (PFObject*)b;
+                return [self compare:first withProduct:second];
+            }];
+            productData = tmpArr;
+            productMasterData = productData;
+            
+            [productTableView reloadData];
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
 
 - (int)compare:(PFObject*)product1 withProduct:(PFObject*)product2
 {
@@ -420,6 +452,7 @@ NSUInteger selectedIndex;
 -(void) pickerSelector:(SBPickerSelector *)selector cancelPicker:(BOOL)cancel {
     
 }
+
 #pragma mark - UITabBarDelegate
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
     if (item == self.cameraTabBarItem) {
@@ -427,9 +460,40 @@ NSUInteger selectedIndex;
         sellVC.isFromTabBar = YES;
         [[self navigationController] pushViewController:sellVC animated:YES];
     } else if (item == self.settingTabBarItem) {
-        [[self navigationController] pushViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"mainPageFilter"] animated:YES];
+        SearchViewController *searchVC = (SearchViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"mainPageFilter"];
+        searchVC.delegate = self;
+        [[self navigationController] pushViewController:searchVC animated:YES];
     }
 }
+
+#pragma mark - SearchViewControllerDelegate
+- (void)onFilterContentForSearch:(NSMutableArray*)favoriteList withPrice:(NSInteger)price; {
+    NSLog(@"productMasterData %ld", (unsigned long)productMasterData.count);
+    NSMutableArray *finalArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < productMasterData.count; i++) {
+        NSInteger ctg = [[[productMasterData objectAtIndex:i] valueForKey:@"category"] integerValue];
+        NSInteger p  = [[[productMasterData objectAtIndex:i] valueForKey:@"price"] integerValue];
+        NSLog(@"root %ld price %ld", (long)ctg, (long)p);
+        if (favoriteList.count <= 0) {
+            if (p <= price) {
+                NSLog(@"ADD");
+                [finalArray addObject:[productMasterData objectAtIndex:i]];
+            }
+        } else {
+            for (int j = 0; j < favoriteList.count; j++) {
+                NSInteger index = [[favoriteList objectAtIndex:j] integerValue];
+                if (ctg == index && p <= price) {
+                    NSLog(@"ADD");
+                    [finalArray addObject:[productMasterData objectAtIndex:i]];
+                }
+            }
+        }
+    }
+    productData = finalArray;
+    NSLog(@"productData %ld", (unsigned long)productData.count);
+    [productTableView reloadData];
+}
+
 #pragma mark - ProductTableViewCellDelegate
 
 - (void)onFavoriteCheck:(NSInteger)index isFavorite:(BOOL)isFv
@@ -496,6 +560,7 @@ NSUInteger selectedIndex;
 // called when keyboard search button pressed
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [self.productSearchBar resignFirstResponder];
+    //[self filterResults:@"Cali"];
 }
 
 // called when bookmark button pressed

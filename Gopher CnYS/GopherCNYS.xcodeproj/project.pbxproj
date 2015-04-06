@@ -71,6 +71,9 @@
 		ABBF94601ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF945E1ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m */; };
 		ABBF94641ACFCB5600E308F5 /* AddNewSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF94621ACFCB5600E308F5 /* AddNewSearchViewController.m */; };
 		ABBF94651ACFCB5600E308F5 /* AddNewSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */; };
+		ABCAFF1B1AD2D85400BD7C31 /* SearchTabListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCAFF1A1AD2D85400BD7C31 /* SearchTabListViewController.m */; };
+		ABCAFF1D1AD2DF3100BD7C31 /* searchtab.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABCAFF1C1AD2DF3100BD7C31 /* searchtab.plist */; };
+		ABCAFF201AD2EAAA00BD7C31 /* SearchTabTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCAFF1F1AD2EAAA00BD7C31 /* SearchTabTableViewCell.m */; };
 		ABEC4DB91ABD6719000CF27C /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DB81ABD6719000CF27C /* AboutViewController.m */; };
 		ABEC4DBC1ABD6898000CF27C /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DBB1ABD6898000CF27C /* ProfileViewController.m */; };
 		ABEC4DBF1ABD6A12000CF27C /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DBE1ABD6A12000CF27C /* BaseViewController.m */; };
@@ -202,6 +205,11 @@
 		ABBF94611ACFCB5600E308F5 /* AddNewSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewSearchViewController.h; sourceTree = "<group>"; };
 		ABBF94621ACFCB5600E308F5 /* AddNewSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewSearchViewController.m; sourceTree = "<group>"; };
 		ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewSearchViewController.xib; sourceTree = "<group>"; };
+		ABCAFF191AD2D85400BD7C31 /* SearchTabListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTabListViewController.h; sourceTree = "<group>"; };
+		ABCAFF1A1AD2D85400BD7C31 /* SearchTabListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTabListViewController.m; sourceTree = "<group>"; };
+		ABCAFF1C1AD2DF3100BD7C31 /* searchtab.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = searchtab.plist; sourceTree = "<group>"; };
+		ABCAFF1E1AD2EAAA00BD7C31 /* SearchTabTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTabTableViewCell.h; sourceTree = "<group>"; };
+		ABCAFF1F1AD2EAAA00BD7C31 /* SearchTabTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTabTableViewCell.m; sourceTree = "<group>"; };
 		ABEC4DB71ABD6719000CF27C /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		ABEC4DB81ABD6719000CF27C /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		ABEC4DBA1ABD6898000CF27C /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -404,6 +412,7 @@
 		1864BF081A4B1EA200EF5DD7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ABCAFF1C1AD2DF3100BD7C31 /* searchtab.plist */,
 				1864BF091A4B1EA300EF5DD7 /* Info.plist */,
 				1864BF0A1A4B1EA300EF5DD7 /* main.m */,
 			);
@@ -592,6 +601,10 @@
 				B9E2EF041AC6FE7F0085BCDC /* PrivateMessageViewController.m */,
 				AB4632041AC9B41500438D7B /* UsersFollowViewController.h */,
 				AB4632051AC9B41500438D7B /* UsersFollowViewController.m */,
+				ABCAFF191AD2D85400BD7C31 /* SearchTabListViewController.h */,
+				ABCAFF1A1AD2D85400BD7C31 /* SearchTabListViewController.m */,
+				ABCAFF1E1AD2EAAA00BD7C31 /* SearchTabTableViewCell.h */,
+				ABCAFF1F1AD2EAAA00BD7C31 /* SearchTabTableViewCell.m */,
 			);
 			name = Content;
 			sourceTree = "<group>";
@@ -692,6 +705,7 @@
 				B93D20CF1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib in Resources */,
 				1864BF191A4B1EA300EF5DD7 /* LaunchScreen.xib in Resources */,
 				B93A1EB61AD13049000AD865 /* CommentCollectionViewCell.xib in Resources */,
+				ABCAFF1D1AD2DF3100BD7C31 /* searchtab.plist in Resources */,
 				18BA5C581A736180002EBF83 /* ProductTableViewCell.xib in Resources */,
 				ABA4F0CF1AC46F9E008915F7 /* SBPickerSelector.xib in Resources */,
 				B9B1EC341AC6C50300377E36 /* MessageTableViewCell.xib in Resources */,
@@ -762,6 +776,8 @@
 				185FDE091A73F7AD00A452CE /* Product.m in Sources */,
 				1864BF0E1A4B1EA300EF5DD7 /* AppDelegate.m in Sources */,
 				ABEC4DB91ABD6719000CF27C /* AboutViewController.m in Sources */,
+				ABCAFF1B1AD2D85400BD7C31 /* SearchTabListViewController.m in Sources */,
+				ABCAFF201AD2EAAA00BD7C31 /* SearchTabTableViewCell.m in Sources */,
 				AB519E3B1AC31E70008543B1 /* FPCarouselNonXIBViewController.m in Sources */,
 				AB6E34B01ABC69D900867CA3 /* UIViewController+RESideMenu.m in Sources */,
 				ABA4F0D01AC46F9E008915F7 /* SBPickerSelector.m in Sources */,
