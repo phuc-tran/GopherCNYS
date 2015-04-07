@@ -29,6 +29,25 @@
     
     self.milesLabel.text = [NSString stringWithFormat:@"%.0f miles", self.milesSlider.value];
     
+    isNotify = NO;
+    if(isNotify) {
+        [self.notifyButton1 setImage:[UIImage imageNamed:@"search_notify.png"] forState:UIControlStateNormal];
+        [self.notifyButton1 setImage:[UIImage imageNamed:@"search_notify.png"] forState:UIControlStateHighlighted];
+        [self.notifyButton1 setImage:[UIImage imageNamed:@"search_notify.png"] forState:UIControlStateSelected];
+        
+        [self.notifyButton2 setImage:[UIImage imageNamed:@"search_unnotify.png"] forState:UIControlStateNormal];
+        [self.notifyButton2 setImage:[UIImage imageNamed:@"search_unnotify.png"] forState:UIControlStateHighlighted];
+        [self.notifyButton2 setImage:[UIImage imageNamed:@"search_unnotify.png"] forState:UIControlStateSelected];
+        
+    } else {
+        [self.notifyButton1 setImage:[UIImage imageNamed:@"search_unnotify.png"] forState:UIControlStateNormal];
+        [self.notifyButton1 setImage:[UIImage imageNamed:@"search_unnotify.png"] forState:UIControlStateHighlighted];
+        [self.notifyButton1 setImage:[UIImage imageNamed:@"search_unnotify.png"] forState:UIControlStateSelected];
+        
+        [self.notifyButton2 setImage:[UIImage imageNamed:@"search_notify.png"] forState:UIControlStateNormal];
+        [self.notifyButton2 setImage:[UIImage imageNamed:@"search_notify.png"] forState:UIControlStateHighlighted];
+        [self.notifyButton2 setImage:[UIImage imageNamed:@"search_notify.png"] forState:UIControlStateSelected];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,10 +55,81 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)saveSearchTabList{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"searchtab.plist"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if (![fileManager fileExistsAtPath: path])
+    {
+        NSString *bundle = [[NSBundle mainBundle] pathForResource:@"searchtab" ofType:@"plist"];
+        [fileManager copyItemAtPath:bundle toPath: path error:nil];
+        NSLog(@"File did not exist! Default copied...");
+    }
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
+    
+    NSArray *searchTabList = [dict objectForKey:@"search_tab"];
+    
+    NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:searchTabList];
+    
+    //Create a new Dictionary
+    NSMutableDictionary *newTab = [[NSMutableDictionary alloc] init];
+    
+    [newTab setObject:self.tabNameField.text forKey:@"name"];
+    [newTab setObject:self.keywordsField.text forKey:@"keywords"];
+    [newTab setObject:[NSNumber numberWithInt:self.milesSlider.value] forKey:@"distance"];
+    [newTab setValue:@(isNotify) forKey:@"notify"];
+    
+    //add dictionary to array
+    [tempArray addObject:newTab];
+    
+    //set the new array for location key
+    [dict setObject:tempArray forKey:@"search_tab"];
+    
+    //update the plist
+    [dict writeToFile:path atomically:true];
+}
+
+- (IBAction)notifyClick:(id)sender
+{
+    isNotify = !isNotify;
+    if(isNotify) {
+        [self.notifyButton1 setImage:[UIImage imageNamed:@"search_notify.png"] forState:UIControlStateNormal];
+        [self.notifyButton1 setImage:[UIImage imageNamed:@"search_notify.png"] forState:UIControlStateHighlighted];
+        [self.notifyButton1 setImage:[UIImage imageNamed:@"search_notify.png"] forState:UIControlStateSelected];
+        
+        [self.notifyButton2 setImage:[UIImage imageNamed:@"search_unnotify.png"] forState:UIControlStateNormal];
+        [self.notifyButton2 setImage:[UIImage imageNamed:@"search_unnotify.png"] forState:UIControlStateHighlighted];
+        [self.notifyButton2 setImage:[UIImage imageNamed:@"search_unnotify.png"] forState:UIControlStateSelected];
+        
+    } else {
+        [self.notifyButton1 setImage:[UIImage imageNamed:@"search_unnotify.png"] forState:UIControlStateNormal];
+        [self.notifyButton1 setImage:[UIImage imageNamed:@"search_unnotify.png"] forState:UIControlStateHighlighted];
+        [self.notifyButton1 setImage:[UIImage imageNamed:@"search_unnotify.png"] forState:UIControlStateSelected];
+        
+        [self.notifyButton2 setImage:[UIImage imageNamed:@"search_notify.png"] forState:UIControlStateNormal];
+        [self.notifyButton2 setImage:[UIImage imageNamed:@"search_notify.png"] forState:UIControlStateHighlighted];
+        [self.notifyButton2 setImage:[UIImage imageNamed:@"search_notify.png"] forState:UIControlStateSelected];
+    }
+    
+}
+
 - (IBAction)closePopup:(id)sender
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(cancelButtonClicked:)]) {
         [self.delegate cancelButtonClicked:self];
+    }
+}
+
+- (IBAction)addTabClick:(id)sender
+{
+    [self saveSearchTabList];
+    [self closePopup:nil];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(addTabButtonClicked:)]) {
+        [self.delegate addTabButtonClicked:self];
     }
 }
 

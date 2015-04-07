@@ -22,12 +22,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [self setupLeftBackBarButtonItem];
-    
     [self loadSearchTabList];
 }
 
@@ -48,6 +48,11 @@
 {
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
+
+- (void)addTabButtonClicked:(AddNewSearchViewController*)viewController {
+    [self loadSearchTabList];
+}
+
 
 #pragma mark - Helper
 
@@ -71,25 +76,6 @@
     [self.tableView reloadData];
 }
 
-- (void)saveSearchTabList{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"searchtab.plist"];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    if (![fileManager fileExistsAtPath: path])
-    {
-        NSString *bundle = [[NSBundle mainBundle] pathForResource:@"searchtab" ofType:@"plist"];
-        [fileManager copyItemAtPath:bundle toPath: path error:nil];
-        NSLog(@"File did not exist! Default copied...");
-    }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
-    
-    searchTabList = [dict objectForKey:@"search_tab"];
-    [self.tableView reloadData];
-}
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
