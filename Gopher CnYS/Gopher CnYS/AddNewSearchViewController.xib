@@ -7,8 +7,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddNewSearchViewController">
             <connections>
+                <outlet property="keywordsField" destination="7AY-4X-kR8" id="isq-P5-eUT"/>
                 <outlet property="milesLabel" destination="Cxa-Oa-5GL" id="32T-ob-gc7"/>
                 <outlet property="milesSlider" destination="0DA-PX-Ygd" id="ZIO-KG-1xr"/>
+                <outlet property="notifyButton1" destination="nJR-4m-fwT" id="xif-FD-ol9"/>
+                <outlet property="notifyButton2" destination="0K5-Cv-BJk" id="rq8-9A-cYI"/>
+                <outlet property="tabNameField" destination="gxZ-qW-ImJ" id="dbY-ym-1yi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,6 +29,9 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="addTabClick:" destination="-1" eventType="touchUpInside" id="7aP-RT-lSe"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yhg-7U-6z8">
                     <rect key="frame" x="0.0" y="373" width="300" height="1"/>
@@ -111,12 +118,24 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="search_notify" translatesAutoresizingMaskIntoConstraints="NO" id="cSQ-dO-63I">
-                    <rect key="frame" x="19" y="312" width="22" height="22"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="search_unnotify" translatesAutoresizingMaskIntoConstraints="NO" id="deF-g7-wPP">
+                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0K5-Cv-BJk">
                     <rect key="frame" x="100" y="312" width="22" height="22"/>
-                </imageView>
+                    <state key="normal" title="Button" image="search_unnotify">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="notifyClick:" destination="-1" eventType="touchUpInside" id="AMF-28-Jdy"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nJR-4m-fwT">
+                    <rect key="frame" x="17" y="312" width="22" height="22"/>
+                    <state key="normal" title="Button" image="search_notify">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="notifyClick:" destination="-1" eventType="touchUpInside" id="80P-Eq-rki"/>
+                    </connections>
+                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rte-Ox-LEX">
                     <rect key="frame" x="47" y="312" width="31" height="21"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
