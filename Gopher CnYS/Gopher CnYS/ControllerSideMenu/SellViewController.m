@@ -211,7 +211,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (succeeded) {
             // The object has been saved.
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Add product successful" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Product has been listed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             alert.tag = 1;
             [alert show];
         } else {
@@ -248,13 +248,13 @@
     }
     
     if (self.productPriceField.text.length <= 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please input price product" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please input product price" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return NO;
     }
     
     if (self.productQuatityField.text.length <= 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please input quantily product" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please input product quantity" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return NO;
     }
