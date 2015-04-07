@@ -11,7 +11,6 @@
 #import "UserListingViewController.h"
 #import "ProductReportViewController.h"
 #import "CommentViewController.h"
-#import <SDWebImage/UIImageView+WebCache.h>
 #import <Social/Social.h>
 
 @interface ProductDetailViewController ()
@@ -64,7 +63,7 @@
                 }];
             } else {
                 NSString *url = [user objectForKey:@"profileImageURL"];
-                [self loadAvatar:url];
+                [self loadAvatar:url withImage:self.profileAvatar];
             }
             
 //            if ([objects[0] valueForKey:@"fbId"]) {
@@ -121,30 +120,6 @@
     [myString appendAttributedString:[[NSAttributedString alloc] initWithString:@" for the personal information."]];
     self.viewCommentDescLabel.attributedText = myString;
 }
-
-- (void)loadAvatar:(NSString*)strUrl
-{
-    NSURL *imageURL = [NSURL URLWithString:strUrl];
-    if (imageURL) {
-        __block UIActivityIndicatorView *activityIndicator;
-        __weak UIImageView *weakImageView = self.profileAvatar;
-        [self.profileAvatar sd_setImageWithURL:imageURL
-                          placeholderImage:nil
-                                   options:SDWebImageProgressiveDownload
-                                  progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                                      if (!activityIndicator) {
-                                          [weakImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
-                                          activityIndicator.center = weakImageView.center;
-                                          [activityIndicator startAnimating];
-                                      }
-                                  }
-                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                                     [activityIndicator removeFromSuperview];
-                                     activityIndicator = nil;
-                                 }];
-    }
-}
-
 
 -(void)viewWillAppear:(BOOL)animated {
     

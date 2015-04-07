@@ -10,6 +10,7 @@
 #import "UIViewController+RESideMenu.h"
 #import "RESideMenu.h"
 #import <ParseFacebookUtils/PFFacebookUtils.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface BaseViewController : UIViewController
 {
@@ -28,5 +29,6 @@
 -(void)leftBackClick:(UIBarButtonItem*)btn;
 
 -(BOOL) checkIfUserLoggedIn;
+- (void)loadAvatar:(NSString*)strUrl withImage:(UIImageView*)avatarImage;
 
 @end

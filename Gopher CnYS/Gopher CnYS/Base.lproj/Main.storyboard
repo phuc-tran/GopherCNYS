@@ -2337,8 +2337,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="e0P-cp-GQQ"/>
-        <segue reference="PRy-In-HQn"/>
         <segue reference="ExP-uq-3s7"/>
+        <segue reference="e0P-cp-GQQ"/>
+        <segue reference="axo-AF-vkz"/>
     </inferredMetricsTieBreakers>
 </document>

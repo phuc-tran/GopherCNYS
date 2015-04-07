@@ -97,4 +97,27 @@
     return NO;
 }
 
+- (void)loadAvatar:(NSString*)strUrl withImage:(UIImageView*)avatarImage
+{
+    NSURL *imageURL = [NSURL URLWithString:strUrl];
+    if (imageURL) {
+        __block UIActivityIndicatorView *activityIndicator;
+        __weak UIImageView *weakImageView = avatarImage;
+        [avatarImage sd_setImageWithURL:imageURL
+                       placeholderImage:nil
+                                options:SDWebImageProgressiveDownload
+                               progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                   if (!activityIndicator) {
+                                       [weakImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
+                                       activityIndicator.center = weakImageView.center;
+                                       [activityIndicator startAnimating];
+                                   }
+                               }
+                              completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                  [activityIndicator removeFromSuperview];
+                                  activityIndicator = nil;
+                              }];
+    }
+}
+
 @end

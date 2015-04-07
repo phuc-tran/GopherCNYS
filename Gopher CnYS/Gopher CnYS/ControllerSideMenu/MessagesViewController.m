@@ -162,13 +162,18 @@
     [messenger fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error){
         NSLog(@"messenger %@", [messenger valueForKey:@"username"]);
         PFFile *profileAvatar = [messenger valueForKey:@"profileImage"];
-        [profileAvatar getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-            if (!error) {
-                UIImage *image = [UIImage imageWithData:data];
-                cell.avatarImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:image withDiameter:70];
+        if (profileAvatar != nil) {
+            [profileAvatar getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                if (!error) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    cell.avatarImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:image withDiameter:70];
                 
-            }
-        }];
+                }
+            }];
+        } else {
+            NSString *url = [messenger objectForKey:@"profileImageURL"];
+            [self loadAvatar:url withImage:cell.avatarImageView];
+        }
         if (profileAvatar != nil) {
             
         }

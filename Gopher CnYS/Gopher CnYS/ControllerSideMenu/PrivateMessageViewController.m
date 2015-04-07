@@ -108,7 +108,8 @@
         else {
 //            self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
 //            self.outgoingAvatar = nil;
-            self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"avatarDefault"]
+            
+                self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"avatarDefault"]
                                                                              diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
         }
         

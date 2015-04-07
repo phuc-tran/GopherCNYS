@@ -33,6 +33,11 @@
     self.productTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.products = [[NSArray alloc] init];
     
+    self.userImageView.layer.cornerRadius = 5.0f;
+    self.userImageView.layer.borderWidth = 2.0f;
+    self.userImageView.layer.borderColor = [UIColor colorWithRed:226/255.0f green:226/255.0f blue:226/255.0f alpha:1.0f].CGColor;
+    self.userImageView.clipsToBounds = YES;
+    
     [self loadUserProfile];
     [self loadProducts];
 }
@@ -56,7 +61,7 @@
 - (void)loadUserProfile {
     PFQuery *query = [PFUser query];
     [query whereKey:@"objectId" equalTo:[self.curUser objectId]];
-    [query selectKeys:@[@"username", @"name", @"profileImage"]];
+    [query selectKeys:@[@"username", @"name", @"profileImage", @"profileImageURL"]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
@@ -67,14 +72,19 @@
             }
             self.usernameLabel.text = name;
             PFFile *imageFile = [user objectForKey:@"profileImage"];
-            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-                if (!error) {
-                    if (data != nil) {
-                        UIImage *image = [UIImage imageWithData:data];
-                        self.userImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:image withDiameter:70];
+            if (imageFile != nil) {
+                [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                    if (!error) {
+                        if (data != nil) {
+                            UIImage *image = [UIImage imageWithData:data];
+                            self.userImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:image withDiameter:70];
+                        }
                     }
-                }
-            }];
+                }];
+            } else {
+                NSString *url = [user objectForKey:@"profileImageURL"];
+                [self loadAvatar:url withImage:self.userImageView];
+            }
             
         } else {
             // Log details of the failure

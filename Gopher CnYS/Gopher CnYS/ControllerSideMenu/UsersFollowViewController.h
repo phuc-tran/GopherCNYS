@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "UserFollowTableViewCell.h"
+#import "BaseViewController.h"
 
-@interface UsersFollowViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface UsersFollowViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 {
     NSArray *userFollows;
 }

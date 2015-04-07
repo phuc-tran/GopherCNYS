@@ -76,14 +76,19 @@
     cell.nameLabel.text = name;
     cell.btnUnFollow.tag = indexPath.row;
     PFFile *imageFile = [user objectForKey:@"profileImage"];
-    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-        if (!error) {
-            if (data != nil) {
-                UIImage *image = [UIImage imageWithData:data];
-                cell.avatarImageView.image = image;
+    if (imageFile != nil) {
+        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+            if (!error) {
+                if (data != nil) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    cell.avatarImageView.image = image;
+                }
             }
-        }
-    }];
+        }];
+    } else {
+        NSString *url = [user objectForKey:@"profileImageURL"];
+        [self loadAvatar:url withImage:cell.avatarImageView];
+    }
     
     return cell;
 }

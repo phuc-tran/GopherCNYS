@@ -108,7 +108,7 @@
 - (void)loadUserProfile {
     PFQuery *query = [PFUser query];
     [query whereKey:@"objectId" equalTo:[self.curUser objectId]];
-    [query selectKeys:@[@"username", @"name", @"profileImage"]];
+    [query selectKeys:@[@"username", @"name", @"profileImage", @"profileImageURL"]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
@@ -119,14 +119,19 @@
             }
             self.conversationTitleLabel.text = name;
             PFFile *imageFile = [user objectForKey:@"profileImage"];
-            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-                if (!error) {
-                    if (data != nil) {
-                        UIImage *image = [UIImage imageWithData:data];
-                        self.conversationImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:image withDiameter:70];
+            if (imageFile != nil) {
+                [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                    if (!error) {
+                        if (data != nil) {
+                            UIImage *image = [UIImage imageWithData:data];
+                            self.conversationImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:image withDiameter:70];
+                        }
                     }
-                }
-            }];
+                }];
+            } else {
+                NSString *url = [user objectForKey:@"profileImageURL"];
+                [self loadAvatar:url withImage:self.conversationImageView];
+            }
             
         } else {
             // Log details of the failure
@@ -163,6 +168,29 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+}
+
+- (void)loadAvatar:(NSString*)strUrl withImage:(UIImageView*)avatarImage
+{
+    NSURL *imageURL = [NSURL URLWithString:strUrl];
+    if (imageURL) {
+        __block UIActivityIndicatorView *activityIndicator;
+        __weak UIImageView *weakImageView = avatarImage;
+        [avatarImage sd_setImageWithURL:imageURL
+                       placeholderImage:nil
+                                options:SDWebImageProgressiveDownload
+                               progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                   if (!activityIndicator) {
+                                       [weakImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
+                                       activityIndicator.center = weakImageView.center;
+                                       [activityIndicator startAnimating];
+                                   }
+                               }
+                              completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                  [activityIndicator removeFromSuperview];
+                                  activityIndicator = nil;
+                              }];
+    }
 }
 
 #pragma mark - JSQMessagesViewController method overrides

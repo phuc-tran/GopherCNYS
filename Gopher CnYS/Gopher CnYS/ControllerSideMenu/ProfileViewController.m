@@ -26,14 +26,19 @@
     self.profileImageView.clipsToBounds = YES;
     
     PFFile *imageFile = [[PFUser currentUser] objectForKey:@"profileImage"];
-    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-        if (!error) {
-            if (data != nil) {
-                UIImage *image = [UIImage imageWithData:data];
-                self.profileImageView.image = image;
+    if (imageFile != nil) {
+        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+            if (!error) {
+                if (data != nil) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    self.profileImageView.image = image;
+                }
             }
-        }
-    }];
+        }];
+    } else {
+        NSString *url = [[PFUser currentUser] objectForKey:@"profileImageURL"];
+        [self loadAvatar:url withImage:self.profileImageView];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
