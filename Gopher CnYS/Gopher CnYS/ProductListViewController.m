@@ -58,7 +58,6 @@ NSUInteger selectedIndex;
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationItem setTitle:@"Products"];
     [self setupMenuBarButtonItems];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
     

@@ -42,6 +42,10 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super setupLeftBackBarButtonItem];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -128,6 +132,10 @@
     if(delegate != nil)
         [delegate onFilterContentForSearch:favoriteList withPrice:[self.priceField.text integerValue]];
     
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)leftBackClick:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 

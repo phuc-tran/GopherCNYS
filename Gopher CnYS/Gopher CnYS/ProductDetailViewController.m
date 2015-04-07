@@ -148,6 +148,8 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     
+   [super setupLeftBackBarButtonItem];
+    
     self.productNameLbl.text = [[productData objectAtIndex:selectedIndex] valueForKey:@"title"];
     self.productDescription.textColor = [UIColor colorWithRed:148/255.0f green:148/255.0f blue:148/255.0f alpha:1.0f];
     self.productDescription.text = [[[productData objectAtIndex:selectedIndex] objectForKey:@"description"] description];
@@ -161,6 +163,10 @@
     [dateformater setDateFormat:@"MMMM dd, yyyy"];
     NSDate *date = [[productData objectAtIndex:selectedIndex] valueForKey:@"createdAt"];
     self.productPostedLbl.text = [dateformater stringFromDate:date];
+}
+
+- (IBAction)leftBackClick:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(CGSize) getContentSize:(UITextView*) myTextView{

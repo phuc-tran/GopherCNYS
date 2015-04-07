@@ -64,11 +64,18 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    if (!self.isFromTabBar) {
-        [self setupLeftBackBarButtonItem];
-    }
+    [self setupLeftBackBarButtonItem];
+    
     if (![self checkIfUserLoggedIn]) {
         [self performSegueWithIdentifier:@"add_product_from_login" sender:self];
+    }
+}
+
+- (IBAction)leftBackClick:(id)sender {
+    if (self.isFromTabBar) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [super leftBackClick:nil];
     }
 }
 

@@ -24,7 +24,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationItem setTitle:@"Sign up"];
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -938,7 +938,7 @@
             </objects>
             <point key="canvasLocation" x="2493" y="292"/>
         </scene>
-        <!--Product List View Controller-->
+        <!--Products-->
         <scene sceneID="6n8-01-IEE">
             <objects>
                 <viewController storyboardIdentifier="productListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KUb-wv-JfL" customClass="ProductListViewController" sceneMemberID="viewController">
@@ -1006,8 +1006,7 @@
                             <constraint firstItem="7Hq-iF-pDA" firstAttribute="top" secondItem="uc3-gh-lbp" secondAttribute="top" id="k65-hj-aum"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="eB2-tM-6cZ">
-                        <nil key="title"/>
+                    <navigationItem key="navigationItem" title="Products" id="eB2-tM-6cZ">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="itD-zc-6Al">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -1040,7 +1039,7 @@
             </objects>
             <point key="canvasLocation" x="1515" y="292"/>
         </scene>
-        <!--Create Account View Controller-->
+        <!--Sign up-->
         <scene sceneID="soy-75-C68">
             <objects>
                 <viewController id="Mir-iW-Hbc" customClass="CreateAccountViewController" sceneMemberID="viewController">
@@ -1137,7 +1136,7 @@
                             <constraint firstAttribute="centerY" secondItem="Qg6-3s-xUP" secondAttribute="centerY" id="mSm-ir-cJ8"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="kn7-s6-LrD"/>
+                    <navigationItem key="navigationItem" title="Sign up" id="kn7-s6-LrD"/>
                     <connections>
                         <outlet property="btnSubmit" destination="h2K-rq-Kg1" id="Edk-5h-8SC"/>
                         <outlet property="txtEmail" destination="VVd-WF-5kd" id="dI0-Z2-Qp9"/>
