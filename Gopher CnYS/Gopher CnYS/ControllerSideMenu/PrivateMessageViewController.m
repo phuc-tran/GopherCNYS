@@ -106,11 +106,25 @@
             }];
         }
         else {
-//            self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
-//            self.outgoingAvatar = nil;
-            
-                self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"avatarDefault"]
-                                                                             diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+            // load avatar with profileImageURL
+            NSString *profileImageUrlStr = [[PFUser currentUser] objectForKey:@"profileImageURL"];
+            NSURL *imageURL = [NSURL URLWithString:profileImageUrlStr];
+            if (imageURL) {
+                SDWebImageManager *manager = [SDWebImageManager sharedManager];
+                [manager downloadImageWithURL:imageURL
+                                      options:0
+                                     progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                        }
+                                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                        if (image) {
+                                            self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:image
+                                                                                         diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+                                        }
+                                    }];
+            }
+            else { // No avatar, load default one
+                self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"avatarDefault"] diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+            }
         }
         
         if (self.incomingImage) {
@@ -123,12 +137,28 @@
                 }
             }];
         }
-        else {
+        else if (self.incomingImageURLStr) {
+
+            // load avatar with profileImageURL
+            NSURL *imageURL = [NSURL URLWithString:self.incomingImageURLStr];
+            if (imageURL) {
+                SDWebImageManager *manager = [SDWebImageManager sharedManager];
+                [manager downloadImageWithURL:imageURL
+                                      options:0
+                                     progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                     }
+                                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                        if (image) {
+                                            self.incomingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:image
+                                                                                                             diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+                                        }
+                                    }];
+            }
+
+            
+        } else {
             self.incomingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"avatarDefault"]
                                                                              diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
-
-//            self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
-//            self.incomingAvatar = nil;
         }
         [self loadProductInfo];
         [self loadMessages];
@@ -317,6 +347,29 @@
         }
     }
     
+}
+
+- (void)loadAvatar:(NSString*)strUrl withImage:(UIImageView*)avatarImage
+{
+    NSURL *imageURL = [NSURL URLWithString:strUrl];
+    if (imageURL) {
+        __block UIActivityIndicatorView *activityIndicator;
+        __weak UIImageView *weakImageView = avatarImage;
+        [avatarImage sd_setImageWithURL:imageURL
+                       placeholderImage:nil
+                                options:SDWebImageProgressiveDownload
+                               progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                   if (!activityIndicator) {
+                                       [weakImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
+                                       activityIndicator.center = weakImageView.center;
+                                       [activityIndicator startAnimating];
+                                   }
+                               }
+                              completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                  [activityIndicator removeFromSuperview];
+                                  activityIndicator = nil;
+                              }];
+    }
 }
 
 /*

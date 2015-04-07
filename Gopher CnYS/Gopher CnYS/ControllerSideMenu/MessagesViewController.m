@@ -18,6 +18,7 @@
 @property (nonatomic, weak) IBOutlet UITableView *messagesListTable;
 @property (nonatomic, strong) NSMutableArray *messagesList;
 @property (nonatomic, strong) PFFile *selectedProfileImage;
+@property (nonatomic, strong) NSString *selectedProfileImageURL;
 @property (nonatomic, strong) PFObject *selectedChatRoom;
 
 @end
@@ -240,6 +241,8 @@
     [messenger fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error){
         PFFile *profileAvatar = [messenger valueForKey:@"profileImage"];
         self.selectedProfileImage = profileAvatar;
+
+        self.selectedProfileImageURL = [messenger objectForKey:@"profileImageURL"];
         
         self.selectedChatRoom = self.messagesList[indexPath.row];
         
@@ -258,6 +261,7 @@
          PrivateMessageViewController *destViewController = (PrivateMessageViewController *)[segue destinationViewController];
          destViewController.incomingImage = self.selectedProfileImage;
          destViewController.chatRoom = self.selectedChatRoom;
+         destViewController.incomingImageURLStr = self.selectedProfileImageURL;
      }
      else if ([segue.identifier isEqualToString:@"message_from_login"]) {
          HomeViewController *destViewController = (HomeViewController *)[segue destinationViewController];

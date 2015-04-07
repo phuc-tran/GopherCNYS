@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Gopher CnYS/ControllerSideMenu/PrivateMessageViewController.m"
-            timestampString = "449936044.445138"
+            timestampString = "450118961.483589"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "-loadProductInfo"
             landmarkType = "5">
          </BreakpointContent>
