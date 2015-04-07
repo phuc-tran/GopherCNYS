@@ -952,7 +952,7 @@
 				OTHER_CODE_SIGN_FLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = GopherCNYS;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "462a7b0f-6f6d-4274-8fa3-72e415e8da13";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -977,7 +977,7 @@
 				OTHER_CODE_SIGN_FLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = GopherCNYS;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "462a7b0f-6f6d-4274-8fa3-72e415e8da13";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};

@@ -10,6 +10,7 @@
 #import "UserListingTableViewCell.h"
 #import "MBProgressHUD.h"
 #import "UserFeedbackViewController.h"
+#import "ProductDetailViewController.h"
 #import <Parse/Parse.h>
 #import "JSQMessages.h"
 
@@ -19,6 +20,8 @@
 @property (nonatomic, weak) IBOutlet UILabel *usernameLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *userImageView;
 @property (nonatomic, weak) IBOutlet UIButton *followButton;
+@property (nonatomic, assign) NSInteger seletectedIndex;
+@property (nonatomic, strong) PFGeoPoint *currentLocaltion;
 
 @end
 
@@ -27,6 +30,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+        if (!error) {
+            // do something with the new geoPoint
+            self.currentLocaltion = geoPoint;
+        }
+//        NSLog(@"get location %@", currentLocaltion);
+    }];
     
     [self.productTableView registerNib:[UINib nibWithNibName:@"UserListingTableViewCell" bundle:nil] forCellReuseIdentifier:@"ProductCell"];
     self.productTableView.rowHeight = 140.0f;
@@ -98,7 +109,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
     [query whereKey:@"seller" equalTo:self.curUser];
-    [query selectKeys:@[@"description", @"title", @"photo1", @"price", @"createdAt", @"updatedAt", @"seller"]];
+    [query selectKeys:@[@"description", @"title", @"photo1", @"photo2", @"photo3", @"photo4", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors", @"category", @"condition", @"quantity", @"seller", @"country", @"adminArea", @"locality"]];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -124,6 +135,12 @@
     if ([segue.identifier isEqualToString:@"userListing_to_userFeedback"]) {
         UserFeedbackViewController *destViewController = (UserFeedbackViewController *)[segue destinationViewController];
         destViewController.curUser = self.curUser;
+    } else if ([[segue identifier] isEqualToString:@"userListing_to_productDetail"])
+    {
+        ProductDetailViewController *vc = [segue destinationViewController];
+        [vc setProductData:self.products];
+        [vc setSelectedIndex:self.seletectedIndex];
+        [vc setCurrentLocaltion:self.currentLocaltion];
     }
 }
 
@@ -165,6 +182,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    // Go to Product Detail
+    self.seletectedIndex = indexPath.row;
+    [self performSegueWithIdentifier:@"userListing_to_productDetail" sender:self];
 }
 
 #pragma mark - Event Handling
