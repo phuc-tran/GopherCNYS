@@ -125,12 +125,16 @@
     // Open email composer
     MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] init];
     if ([MFMailComposeViewController canSendMail]) {
+        NSString *curUserObjectId = [[PFUser currentUser]objectId] ? [[PFUser currentUser]objectId] : @"user did not log in";
+        NSString *curUsername = [[PFUser currentUser] username] ? [[PFUser currentUser] username] : @"user did not log in";
+
         [composeViewController setMailComposeDelegate:self];
         [composeViewController setToRecipients:@[@"report@gopherclassifieds.com"]];
         [composeViewController setSubject:@"Customer report"];
-        NSString *bodyText = [NSString stringWithFormat:@"%@\nlistingId:%@\nuserId:%@\nusername:%@\nsender userId:%@\nsender username:%@", self.productFeedback.text, [self.product valueForKey:@"objectId"], [[self.product valueForKey:@"seller"] valueForKey:@"objectId"], self.sellerName, [[PFUser currentUser]objectId], [[PFUser currentUser] username]];
-        NSLog(@"bodyText %@", bodyText);
+        NSString *bodyText = [NSString stringWithFormat:@"%@\nlistingId:%@\nuserId:%@\nusername:%@\nsender userId:%@\nsender username:%@", self.productFeedback.text, [self.product valueForKey:@"objectId"], [[self.product valueForKey:@"seller"] valueForKey:@"objectId"], self.sellerName, curUserObjectId, curUsername];
+//        NSLog(@"bodyText %@", bodyText);
         [composeViewController setMessageBody:bodyText isHTML:NO];
+        [[composeViewController navigationBar] setTintColor: [UIColor blackColor]];
         [self presentViewController:composeViewController animated:YES completion:nil];
     }
 }

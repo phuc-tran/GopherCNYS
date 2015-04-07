@@ -26,7 +26,7 @@
                   clientKey:@"JI5AkADSTQmssXVE4Y1o6T5lLDkZumXWUgH2MV2J"];
      
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:64/255.0f green:222/255.0f blue:172/255.0f alpha:1.0f]];
-    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:64/255.0f green:222/255.0f blue:172/255.0f alpha:1.0f]];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
     
     
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:20.0], NSFontAttributeName,

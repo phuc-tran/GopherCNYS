@@ -11,6 +11,7 @@
 #import "UserListingViewController.h"
 #import "ProductReportViewController.h"
 #import "CommentViewController.h"
+#import "HomeViewController.h"
 #import <Social/Social.h>
 
 @interface ProductDetailViewController ()
@@ -172,6 +173,9 @@
         CommentViewController *vc = (CommentViewController *)[segue destinationViewController];
         vc.userInfoImage = [self takeSnapshotOfUserInfo];
         vc.productId = [[productData objectAtIndex:selectedIndex] objectId];
+    } else if ([[segue identifier] isEqualToString:@"productDetail_to_login"]) {
+        HomeViewController *vc = (HomeViewController *)[segue destinationViewController];
+        vc.shouldGoBack = YES;
     }
         
 }
@@ -232,9 +236,14 @@
 }
 
 - (IBAction)reportButtonDidTouch:(id)sender {
-    // go to product report screen
-    [self performSegueWithIdentifier:@"productDetail_to_productReport" sender:self];
-     
+  
+    if (![self checkIfUserLoggedIn]) {
+        [self performSegueWithIdentifier:@"productDetail_to_login" sender:self];
+    } else {
+        // go to product report screen
+        [self performSegueWithIdentifier:@"productDetail_to_productReport" sender:self];
+    }
+    
 }
 
 - (IBAction)commentButtonDidTouch:(id)sender {
