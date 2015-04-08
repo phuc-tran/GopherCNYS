@@ -203,11 +203,12 @@
 		ABBF945C1ACFCB1700E308F5 /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
 		ABBF945D1ACFCB1700E308F5 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
 		ABBF945E1ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
-		ABBF94611ACFCB5600E308F5 /* AddNewSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewSearchViewController.h; sourceTree = "<group>"; };
-		ABBF94621ACFCB5600E308F5 /* AddNewSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewSearchViewController.m; sourceTree = "<group>"; };
-		ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewSearchViewController.xib; sourceTree = "<group>"; };
+		ABBF94611ACFCB5600E308F5 /* AddNewSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddNewSearchViewController.h; path = ../AddNewSearchViewController.h; sourceTree = "<group>"; };
+		ABBF94621ACFCB5600E308F5 /* AddNewSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddNewSearchViewController.m; path = ../AddNewSearchViewController.m; sourceTree = "<group>"; };
+		ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddNewSearchViewController.xib; path = ../AddNewSearchViewController.xib; sourceTree = "<group>"; };
 		ABC069931AD5816500893187 /* MyListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyListingViewController.h; sourceTree = "<group>"; };
 		ABC069941AD5816500893187 /* MyListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyListingViewController.m; sourceTree = "<group>"; };
+		ABC069961AD5956F00893187 /* GlobalHeard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalHeard.h; sourceTree = "<group>"; };
 		ABCAFF191AD2D85400BD7C31 /* SearchTabListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTabListViewController.h; sourceTree = "<group>"; };
 		ABCAFF1A1AD2D85400BD7C31 /* SearchTabListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTabListViewController.m; sourceTree = "<group>"; };
 		ABCAFF1C1AD2DF3100BD7C31 /* searchtab.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = searchtab.plist; sourceTree = "<group>"; };
@@ -344,9 +345,6 @@
 				ABBF94521ACFBE5600E308F5 /* SearchViewController.m */,
 				ABBF94571ACFC07800E308F5 /* CategoryCollectionViewCell.h */,
 				ABBF94581ACFC07800E308F5 /* CategoryCollectionViewCell.m */,
-				ABBF94611ACFCB5600E308F5 /* AddNewSearchViewController.h */,
-				ABBF94621ACFCB5600E308F5 /* AddNewSearchViewController.m */,
-				ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */,
 				B941E0E91AD063BE008C82A3 /* CommentViewController.h */,
 				B941E0EA1AD063BE008C82A3 /* CommentViewController.m */,
 				B93A1EB21AD13021000AD865 /* CommentCollectionViewCell.h */,
@@ -582,6 +580,7 @@
 				AB6E34B71ABC6A9A00867CA3 /* RightMenuViewController.m */,
 				AB6E34B81ABC6A9A00867CA3 /* RootViewController.h */,
 				AB6E34B91ABC6A9A00867CA3 /* RootViewController.m */,
+				ABC069961AD5956F00893187 /* GlobalHeard.h */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -610,6 +609,9 @@
 				ABCAFF1A1AD2D85400BD7C31 /* SearchTabListViewController.m */,
 				ABCAFF1E1AD2EAAA00BD7C31 /* SearchTabTableViewCell.h */,
 				ABCAFF1F1AD2EAAA00BD7C31 /* SearchTabTableViewCell.m */,
+				ABBF94611ACFCB5600E308F5 /* AddNewSearchViewController.h */,
+				ABBF94621ACFCB5600E308F5 /* AddNewSearchViewController.m */,
+				ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */,
 			);
 			name = Content;
 			sourceTree = "<group>";
