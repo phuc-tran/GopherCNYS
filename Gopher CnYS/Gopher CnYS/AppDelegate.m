@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import <GooglePlus/GooglePlus.h>
+#import "ProductListViewController.h"
 
 
 @interface AppDelegate ()
@@ -24,7 +25,9 @@
     // Override point for customization after application launch.
     [Parse setApplicationId:@"5ipBuTmdEryP29CFELzxMx2qXGzgndRPhG4ltAnc"
                   clientKey:@"JI5AkADSTQmssXVE4Y1o6T5lLDkZumXWUgH2MV2J"];
-     
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchTabSelected:) name:@"NotificationSearchTabSelected" object:nil];
+    
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:64/255.0f green:222/255.0f blue:172/255.0f alpha:1.0f]];
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
     
@@ -94,6 +97,17 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [[PFFacebookUtils session] close];
+}
+
+
+- (void) searchTabSelected:(NSNotification *)notification {
+    NSDictionary* info = [notification object];
+    NSString *name = info[@"name"];
+    NSString *keywords = info[@"keywords"];
+    NSInteger distance = [info[@"distance"] integerValue];
+    BOOL notify = [info[@"notify"] boolValue];
+    NSString *notifystr = ((notify == YES) ? @"YES" : @"NO");
+    NSLog(@"name %@ - %@ - %ld miles - Notify me when new post match my search key criteria: %@", name, keywords, (long)distance, notifystr);
 }
 
 @end

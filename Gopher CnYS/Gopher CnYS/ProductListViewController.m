@@ -54,6 +54,8 @@ NSUInteger selectedIndex;
     CGRect newBounds = [[self productTableView] bounds];
     newBounds.origin.y = newBounds.origin.y + self.productSearchBar.bounds.size.height;
     [[self productTableView] setBounds:newBounds];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchTabSelected:) name:@"NotificationSearchTabSelected" object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -66,6 +68,12 @@ NSUInteger selectedIndex;
     isPriceTopSelected = NO;
     
     [productTableView reloadData];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.navigationBar.hidden = NO;
+    //[[NSNotificationCenter defaultCenter] removeObserver:@"NotificationSearchTabSelected"];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

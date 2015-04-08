@@ -3,17 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>search_tab</key>
-	<array>
-		<dict>
-			<key>name</key>
-			<string>search tab 1</string>
-			<key>keywords</key>
-			<string>abc</string>
-			<key>distance</key>
-			<integer>7</integer>
-			<key>notify</key>
-			<true/>
-		</dict>
-	</array>
+	<array/>
 </dict>
 </plist>

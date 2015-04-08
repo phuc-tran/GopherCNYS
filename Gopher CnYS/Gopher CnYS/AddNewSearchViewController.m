@@ -80,7 +80,7 @@
     
     [newTab setObject:self.tabNameField.text forKey:@"name"];
     [newTab setObject:self.keywordsField.text forKey:@"keywords"];
-    [newTab setObject:[NSNumber numberWithInt:self.milesSlider.value] forKey:@"distance"];
+    [newTab setObject:[NSNumber numberWithFloat:self.milesSlider.value] forKey:@"distance"];
     [newTab setValue:@(isNotify) forKey:@"notify"];
     
     //add dictionary to array
@@ -126,6 +126,11 @@
 
 - (IBAction)addTabClick:(id)sender
 {
+    if (self.tabNameField.text.length <= 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please input tab search name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
     [self saveSearchTabList];
     [self closePopup:nil];
     if (self.delegate && [self.delegate respondsToSelector:@selector(addTabButtonClicked:)]) {
