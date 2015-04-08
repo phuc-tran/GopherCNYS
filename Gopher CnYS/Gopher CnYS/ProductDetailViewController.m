@@ -40,9 +40,6 @@
     self.productlocationLbl.text = [NSString stringWithFormat:@"%.f miles", [currentLocaltion distanceInMilesTo:positionItem]];
     
     PFUser *seller = [[productData objectAtIndex:selectedIndex] valueForKey:@"seller"];
-    if (seller == nil) {
-        seller = [PFUser currentUser];
-    }
     PFQuery *query = [PFUser query];
     [query whereKey:@"objectId" equalTo:[seller objectId]];
     [query selectKeys:@[@"username", @"name", @"profileImage", @"profileImageURL", @"fbId"]];
