@@ -132,6 +132,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self leftBackClick:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationSearchTabSelected" object:searchTabList[indexPath.row]];
+    _searchTab = searchTabList[indexPath.row];
+    _isNewSearch = YES;
 }
 @end

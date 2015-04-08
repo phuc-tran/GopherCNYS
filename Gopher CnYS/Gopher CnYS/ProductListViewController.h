@@ -20,7 +20,7 @@
     BOOL isPriceTopSelected;
     BOOL isNewTopSelected;
 }
-@property (nonatomic, retain) NSDictionary* searchTab;
+
 @property (strong,nonatomic) NSMutableArray *filteredProductArray;
 
 @property (weak, nonatomic) IBOutlet UITableView *productTableView;

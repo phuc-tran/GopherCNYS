@@ -11,6 +11,7 @@
 #import "RESideMenu.h"
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "GlobalHeard.h"
 
 @interface BaseViewController : UIViewController
 {

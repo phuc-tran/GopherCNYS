@@ -56,7 +56,15 @@ NSUInteger selectedIndex;
     newBounds.origin.y = newBounds.origin.y + self.productSearchBar.bounds.size.height;
     [[self productTableView] setBounds:newBounds];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchTabSelected:) name:@"NotificationSearchTabSelected" object:nil];
+    if (_isNewSearch) {
+        NSString *name = _searchTab[@"name"];
+        NSString *keywords = _searchTab[@"keywords"];
+        NSInteger distance = [_searchTab[@"distance"] integerValue];
+        BOOL notify = [_searchTab[@"notify"] boolValue];
+        NSString *notifystr = ((notify == YES) ? @"YES" : @"NO");
+        NSLog(@"name %@ - %@ - %ld miles - Notify me when new post match my search key criteria: %@", name, keywords, (long)distance, notifystr);
+        _isNewSearch = NO;
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -74,7 +82,6 @@ NSUInteger selectedIndex;
 -(void)viewWillDisappear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = NO;
-    //[[NSNotificationCenter defaultCenter] removeObserver:@"NotificationSearchTabSelected"];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
