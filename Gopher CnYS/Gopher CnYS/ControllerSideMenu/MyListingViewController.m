@@ -43,9 +43,9 @@
     
     if (![self checkIfUserLoggedIn]) {
         [self performSegueWithIdentifier:@"add_product_from_login" sender:self];
+    } else {
+        [self loadProducts];
     }
-    
-    [self loadProducts];
 }
 
 - (IBAction)leftBackClick:(id)sender {
