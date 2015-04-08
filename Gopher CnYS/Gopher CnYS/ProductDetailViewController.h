@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *viewCommentDescLabel;
 
 @property (nonatomic, retain) NSArray *productData;
+@property (nonatomic, retain) NSArray *product;
 @property (nonatomic, assign) NSUInteger selectedIndex;
 @property (nonatomic, retain) PFGeoPoint *currentLocaltion;
 

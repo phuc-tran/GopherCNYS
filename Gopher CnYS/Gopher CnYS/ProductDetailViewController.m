@@ -40,6 +40,9 @@
     self.productlocationLbl.text = [NSString stringWithFormat:@"%.f miles", [currentLocaltion distanceInMilesTo:positionItem]];
     
     PFUser *seller = [[productData objectAtIndex:selectedIndex] valueForKey:@"seller"];
+    if (seller == nil) {
+        seller = [PFUser currentUser];
+    }
     PFQuery *query = [PFUser query];
     [query whereKey:@"objectId" equalTo:[seller objectId]];
     [query selectKeys:@[@"username", @"name", @"profileImage", @"profileImageURL", @"fbId"]];
@@ -66,17 +69,6 @@
                 NSString *url = [user objectForKey:@"profileImageURL"];
                 [self loadAvatar:url withImage:self.profileAvatar];
             }
-            
-//            if ([objects[0] valueForKey:@"fbId"]) {
-//                self.fbProfileURL = [NSString stringWithFormat:@"fb://profile/%@", [objects[0] valueForKey:@"fbId"]];
-//            }
-//            
-//            else {
-//                // there is no fb id of seller, open fb with news feed
-//                self.fbProfileURL = @"fb://feed";
-//            }
-
-            
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);

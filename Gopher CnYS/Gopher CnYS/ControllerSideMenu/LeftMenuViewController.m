@@ -49,7 +49,7 @@
     self.menuSelectedIndex = indexPath.row;
     switch (indexPath.row) {
         case 0:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"sellViewController"]]
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"MyListingViewController"]]
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;

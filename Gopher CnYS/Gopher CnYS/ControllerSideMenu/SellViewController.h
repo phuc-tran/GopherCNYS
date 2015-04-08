@@ -34,8 +34,6 @@
 
 - (IBAction)pushViewController:(id)sender;
 
-@property (nonatomic, assign) BOOL isFromTabBar;
-
 @property (weak, nonatomic) IBOutlet UIButton *btnCapture1;
 @property (weak, nonatomic) IBOutlet UIImageView *productImageView1;
 

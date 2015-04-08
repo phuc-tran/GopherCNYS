@@ -71,6 +71,7 @@
 		ABBF94601ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF945E1ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m */; };
 		ABBF94641ACFCB5600E308F5 /* AddNewSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF94621ACFCB5600E308F5 /* AddNewSearchViewController.m */; };
 		ABBF94651ACFCB5600E308F5 /* AddNewSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */; };
+		ABC069951AD5816500893187 /* MyListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC069941AD5816500893187 /* MyListingViewController.m */; };
 		ABCAFF1B1AD2D85400BD7C31 /* SearchTabListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCAFF1A1AD2D85400BD7C31 /* SearchTabListViewController.m */; };
 		ABCAFF1D1AD2DF3100BD7C31 /* searchtab.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABCAFF1C1AD2DF3100BD7C31 /* searchtab.plist */; };
 		ABCAFF201AD2EAAA00BD7C31 /* SearchTabTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCAFF1F1AD2EAAA00BD7C31 /* SearchTabTableViewCell.m */; };
@@ -205,6 +206,8 @@
 		ABBF94611ACFCB5600E308F5 /* AddNewSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewSearchViewController.h; sourceTree = "<group>"; };
 		ABBF94621ACFCB5600E308F5 /* AddNewSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewSearchViewController.m; sourceTree = "<group>"; };
 		ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewSearchViewController.xib; sourceTree = "<group>"; };
+		ABC069931AD5816500893187 /* MyListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyListingViewController.h; sourceTree = "<group>"; };
+		ABC069941AD5816500893187 /* MyListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyListingViewController.m; sourceTree = "<group>"; };
 		ABCAFF191AD2D85400BD7C31 /* SearchTabListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTabListViewController.h; sourceTree = "<group>"; };
 		ABCAFF1A1AD2D85400BD7C31 /* SearchTabListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTabListViewController.m; sourceTree = "<group>"; };
 		ABCAFF1C1AD2DF3100BD7C31 /* searchtab.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = searchtab.plist; sourceTree = "<group>"; };
@@ -586,6 +589,8 @@
 		ABEC4DC11ABD6E2A000CF27C /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				ABC069931AD5816500893187 /* MyListingViewController.h */,
+				ABC069941AD5816500893187 /* MyListingViewController.m */,
 				ABEC4DC21ABD801B000CF27C /* SellViewController.h */,
 				ABEC4DC31ABD801B000CF27C /* SellViewController.m */,
 				ABEC4DBA1ABD6898000CF27C /* ProfileViewController.h */,
@@ -807,6 +812,7 @@
 				AB6E34C01ABC6A9A00867CA3 /* MessagesViewController.m in Sources */,
 				B9B1EC331AC6C50300377E36 /* MessageTableViewCell.m in Sources */,
 				ABBF945F1ACFCB1700E308F5 /* MJPopupBackgroundView.m in Sources */,
+				ABC069951AD5816500893187 /* MyListingViewController.m in Sources */,
 				1864BF0B1A4B1EA300EF5DD7 /* main.m in Sources */,
 				AB6E34BF1ABC6A9A00867CA3 /* RootViewController.m in Sources */,
 				B904A0991ACAFCB900DCE491 /* UserListingViewController.m in Sources */,

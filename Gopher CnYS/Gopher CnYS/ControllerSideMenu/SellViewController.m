@@ -65,18 +65,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self setupLeftBackBarButtonItem];
-    
-    if (![self checkIfUserLoggedIn]) {
-        [self performSegueWithIdentifier:@"add_product_from_login" sender:self];
-    }
 }
 
 - (IBAction)leftBackClick:(id)sender {
-    if (self.isFromTabBar) {
-        [self.navigationController popViewControllerAnimated:YES];
-    } else {
-        [super leftBackClick:nil];
-    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -99,10 +91,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"add_product_from_login"]) {
-        HomeViewController *destViewController = (HomeViewController *)[segue destinationViewController];
-        destViewController.shouldGoBack = YES;
-    }
+//    if ([segue.identifier isEqualToString:@"add_product_from_login"]) {
+//        HomeViewController *destViewController = (HomeViewController *)[segue destinationViewController];
+//        destViewController.shouldGoBack = YES;
+//    }
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -500,7 +492,7 @@
     // the user clicked one of the OK/Cancel buttons
     if (alertView.tag == 1 && buttonIndex == 0)
     {
-        [self leftBackClick:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

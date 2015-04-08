@@ -12,6 +12,7 @@
 #import "ProductDetailViewController.h"
 #import "HomeViewController.h"
 #import "SellViewController.h"
+#import "MyListingViewController.h"
 
 @interface ProductListViewController () <ProductTableViewCellDelegate>
 
@@ -463,9 +464,9 @@ NSUInteger selectedIndex;
 #pragma mark - UITabBarDelegate
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
     if (item == self.cameraTabBarItem) {
-        SellViewController *sellVC = (SellViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"sellViewController"];
-        sellVC.isFromTabBar = YES;
-        [[self navigationController] pushViewController:sellVC animated:YES];
+        MyListingViewController *myListing = (MyListingViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"MyListingViewController"];
+        myListing.isFromTabBar = YES;
+        [[self navigationController] pushViewController:myListing animated:YES];
     } else if (item == self.settingTabBarItem) {
         SearchViewController *searchVC = (SearchViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"mainPageFilter"];
         searchVC.delegate = self;
