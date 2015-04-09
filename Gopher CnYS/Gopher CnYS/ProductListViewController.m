@@ -45,6 +45,7 @@ NSUInteger selectedIndex;
     
     [self.productTableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil]
                forCellReuseIdentifier:@"ProductTableViewCell"];
+    self.productTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self loadProductList];
     categoryData = [NSArray arrayWithObjects:@"All Categories", @"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];
@@ -55,16 +56,6 @@ NSUInteger selectedIndex;
     CGRect newBounds = [[self productTableView] bounds];
     newBounds.origin.y = newBounds.origin.y + self.productSearchBar.bounds.size.height;
     [[self productTableView] setBounds:newBounds];
-    
-    if (_isNewSearch) {
-        NSString *name = _searchTab[@"name"];
-        NSString *keywords = _searchTab[@"keywords"];
-        NSInteger distance = [_searchTab[@"distance"] integerValue];
-        BOOL notify = [_searchTab[@"notify"] boolValue];
-        NSString *notifystr = ((notify == YES) ? @"YES" : @"NO");
-        NSLog(@"name %@ - %@ - %ld miles - Notify me when new post match my search key criteria: %@", name, keywords, (long)distance, notifystr);
-        _isNewSearch = NO;
-    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -90,7 +81,7 @@ NSUInteger selectedIndex;
     if ([[segue identifier] isEqualToString:@"ProductDetaiFormProduct"])
     {
         ProductDetailViewController *vc = [segue destinationViewController];
-        [vc setProductData:productMasterData];
+        [vc setProductData:productData];
         [vc setSelectedIndex:selectedIndex];
         [vc setCurrentLocaltion:currentLocaltion];
     }
@@ -216,9 +207,10 @@ NSUInteger selectedIndex;
 
 - (void) loadProductList {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
     PFQuery *query = [PFQuery queryWithClassName:@"Products"];
     [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    [query selectKeys:@[@"description", @"title", @"photo1", @"photo2", @"photo3", @"photo4", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors", @"category", @"condition", @"quantity", @"seller", @"country", @"adminArea", @"locality"]];
+    [query selectKeys:@[@"description", @"title", @"photo1", @"photo2", @"photo3", @"photo4", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors", @"category", @"condition", @"quantity", @"seller", @"country", @"adminArea", @"locality", @"postalCode"]];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -234,6 +226,10 @@ NSUInteger selectedIndex;
             }];
             productData = tmpArr;
             productMasterData = productData;
+            
+            if (_isNewSearch) {
+                [self filterResultsWithSearch];
+            }
             
             [productTableView reloadData];
         } else {
@@ -296,6 +292,36 @@ NSUInteger selectedIndex;
     }
 }
 
+- (void)filterResultsWithSearch
+{
+    NSString *name = _searchTab[@"name"];
+    NSString *keywords = _searchTab[@"keywords"];
+    NSInteger distance = [_searchTab[@"distance"] integerValue];
+    BOOL notify = [_searchTab[@"notify"] boolValue];
+    NSString *notifystr = ((notify == YES) ? @"YES" : @"NO");
+    NSLog(@"name %@ - %@ - %ld miles - Notify me when new post match my search key criteria: %@", name, keywords, (long)distance, notifystr);
+    _isNewSearch = NO;
+    NSMutableArray *finalArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < productMasterData.count; i++) {
+        NSString *title = [[productMasterData objectAtIndex:i] valueForKey:@"title"];
+        NSString *desc = [[[productMasterData objectAtIndex:i] objectForKey:@"description"] description];
+        PFGeoPoint *positionItem  = [[productMasterData objectAtIndex:i] objectForKey:@"position"];
+        double miles = [currentLocaltion distanceInMilesTo:positionItem];
+        if ([keywords isEqualToString:@""]) {
+            if (miles <= distance) {
+                [finalArray addObject:[productMasterData objectAtIndex:i]];
+            }
+        } else {
+            if ([title rangeOfString:keywords options:NSCaseInsensitiveSearch].location != NSNotFound ||
+                [desc rangeOfString:keywords options:NSCaseInsensitiveSearch].location != NSNotFound ||
+                miles <= distance)
+            {
+                [finalArray addObject:[productMasterData objectAtIndex:i]];
+            }
+        }
+    }
+    productData = finalArray;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -482,12 +508,14 @@ NSUInteger selectedIndex;
 }
 
 #pragma mark - SearchViewControllerDelegate
-- (void)onFilterContentForSearch:(NSMutableArray*)favoriteList withPrice:(NSInteger)price; {
+- (void)onFilterContentForSearch:(NSMutableArray*)favoriteList withPrice:(NSInteger)price withZipCode:(NSString *)zipcode withKeyword:(NSString *)keywords {
     NSLog(@"productMasterData %ld", (unsigned long)productMasterData.count);
     NSMutableArray *finalArray = [[NSMutableArray alloc] init];
     for (int i = 0; i < productMasterData.count; i++) {
         NSInteger ctg = [[[productMasterData objectAtIndex:i] valueForKey:@"category"] integerValue];
         NSInteger p  = [[[productMasterData objectAtIndex:i] valueForKey:@"price"] integerValue];
+        NSString *postalCode  = [[productMasterData objectAtIndex:i] valueForKey:@"postalCode"];
+        
         NSLog(@"root %ld price %ld", (long)ctg, (long)p);
         if (favoriteList.count <= 0) {
             if (p <= price) {
