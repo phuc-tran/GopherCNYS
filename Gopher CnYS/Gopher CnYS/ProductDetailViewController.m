@@ -12,6 +12,7 @@
 #import "ProductReportViewController.h"
 #import "CommentViewController.h"
 #import "HomeViewController.h"
+#import "ILTranslucentView.h"
 #import <Social/Social.h>
 
 @interface ProductDetailViewController ()
@@ -200,7 +201,11 @@
         _commentViewController = [[CommentViewController alloc] initWithNibName:@"CommentViewController" bundle:nil];
         _commentViewController.view.frame = CGRectMake(0, 100, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-100);
         _commentViewController.delegate = self;
+        
+//        _commentViewController.userInfoImage = [self takeSnapshotOfUserInfo];
+        _commentViewController.productId = [[productData objectAtIndex:selectedIndex] objectId];
     }
+    
     return _commentViewController;
 }
 
@@ -251,7 +256,28 @@
         [self performSegueWithIdentifier:@"productDetail_to_login" sender:self];
     } else {
 //        [self performSegueWithIdentifier:@"productDetail_to_comment" sender:self];
+
+        ILTranslucentView *translucentView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 150)];
+        translucentView.backgroundColor = [UIColor clearColor];
+        translucentView.translucentTintColor = [UIColor clearColor];
+        translucentView.alpha = 0.0f;
+        translucentView.translucentStyle = UIBarStyleDefault;
+        translucentView.tag = 2512;
+        [self.view addSubview:translucentView];
+
+        CGRect frame = self.commentViewController.view.frame;
+        frame.origin.y = CGRectGetHeight(self.view.frame);
+        self.commentViewController.view.frame = frame;
         [self.view addSubview:self.commentViewController.view];
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            CGRect showFrame = self.commentViewController.view.frame;
+            showFrame.origin.y = 100;
+            self.commentViewController.view.frame = showFrame;
+            translucentView.alpha = 0.8f;
+        } completion:^(BOOL finished){
+        }];
+        
     }
     
 }
@@ -259,7 +285,17 @@
 #pragma mark - CommentViewControllerDelegate
 
 - (void)hideComment {
-    [self.commentViewController.view removeFromSuperview];
+    UIView *translucentView = [self.view viewWithTag:2512];
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect frame = self.commentViewController.view.frame;
+        frame.origin.y = self.view.frame.size.height;
+        self.commentViewController.view.frame = frame;
+        translucentView.alpha = 0;
+    } completion:^(BOOL finished){
+        [self.commentViewController.view removeFromSuperview];
+        [translucentView removeFromSuperview];
+    }];
+
 }
 
 @end
