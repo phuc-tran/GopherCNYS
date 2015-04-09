@@ -130,7 +130,8 @@
 
     }
     if(delegate != nil)
-        [delegate onFilterContentForSearch:favoriteList withPrice:[self.priceField.text integerValue]];
+        [delegate onFilterContentForSearch:favoriteList withPrice:[self.priceField.text integerValue] withZipCode:self.zipCodeField.text withKeyword:self.keywordField.text];
+    
     
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -27,6 +27,8 @@
     self.view.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.view.layer.shadowOpacity = 0.6f;
     
+    self.milesSlider.value = self.milesSlider.maximumValue/2.0f;
+    
     self.milesLabel.text = [NSString stringWithFormat:@"%.0f miles", self.milesSlider.value];
     
     isNotify = NO;
