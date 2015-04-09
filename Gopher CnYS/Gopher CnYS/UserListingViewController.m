@@ -72,7 +72,7 @@
 - (void)loadUserProfile {
     PFQuery *query = [PFUser query];
     [query whereKey:@"objectId" equalTo:[self.curUser objectId]];
-    [query selectKeys:@[@"username", @"name", @"profileImage", @"profileImageURL"]];
+    [query selectKeys:@[@"username", @"name", @"profileImage", @"profileImageURL", @"follow"]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
@@ -100,6 +100,20 @@
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+
+    // Following
+    PFRelation *followRelation = [[PFUser currentUser] relationForKey:@"follow"];
+    PFQuery *followQuery = [followRelation query];
+    [followQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
+        for (PFUser *user in objects) {
+            if ([user.objectId isEqualToString:self.curUser.objectId]) {
+                // has followed this user
+                // hide follow button
+                self.followButton.hidden = YES;
+                break;
+            }
         }
     }];
 }
@@ -204,7 +218,8 @@
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (!error) {
-        
+            // already followed, hide the button
+            self.followButton.hidden = YES;
         } else {
             NSLog(@"error %@", error);
         }

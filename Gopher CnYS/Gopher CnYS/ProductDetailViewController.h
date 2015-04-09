@@ -10,8 +10,9 @@
 #import "BaseViewController.h"
 #import <Parse/Parse.h>
 #import "FPCarouselNonXIBViewController.h"
+#import "CommentViewController.h"
 
-@interface ProductDetailViewController : BaseViewController
+@interface ProductDetailViewController : BaseViewController <CommentViewControllerDelegate>
 {
     NSArray *productData;
     NSUInteger selectedIndex;

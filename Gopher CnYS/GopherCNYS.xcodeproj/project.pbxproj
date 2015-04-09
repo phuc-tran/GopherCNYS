@@ -89,7 +89,6 @@
 		B93D20CB1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B93D20CA1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m */; };
 		B93D20CF1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B93D20CE1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib */; };
 		B941E0E81AD062A7008C82A3 /* ProductReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B941E0E71AD062A7008C82A3 /* ProductReportViewController.m */; };
-		B941E0EB1AD063BE008C82A3 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B941E0EA1AD063BE008C82A3 /* CommentViewController.m */; };
 		B9B1EC261AC6A4F400377E36 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC251AC6A4F400377E36 /* libstdc++.dylib */; };
 		B9B1EC281AC6A7CE00377E36 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC271AC6A7CE00377E36 /* libz.dylib */; };
 		B9B1EC2A1AC6A7E700377E36 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC291AC6A7E700377E36 /* CFNetwork.framework */; };
@@ -97,6 +96,8 @@
 		B9B1EC331AC6C50300377E36 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B1EC311AC6C50300377E36 /* MessageTableViewCell.m */; };
 		B9B1EC341AC6C50300377E36 /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B1EC321AC6C50300377E36 /* MessageTableViewCell.xib */; };
 		B9E2EF051AC6FE7F0085BCDC /* PrivateMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E2EF041AC6FE7F0085BCDC /* PrivateMessageViewController.m */; };
+		B9F7C0F91AD5E16E009F425F /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F7C0F81AD5E16E009F425F /* CommentViewController.m */; };
+		B9F7C0FB1AD5F3F7009F425F /* CommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9F7C0FA1AD5F3F7009F425F /* CommentViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,8 +240,6 @@
 		B93D20CE1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserFeedbackCollectionViewCell.xib; sourceTree = "<group>"; };
 		B941E0E61AD062A7008C82A3 /* ProductReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductReportViewController.h; sourceTree = "<group>"; };
 		B941E0E71AD062A7008C82A3 /* ProductReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductReportViewController.m; sourceTree = "<group>"; };
-		B941E0E91AD063BE008C82A3 /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
-		B941E0EA1AD063BE008C82A3 /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
 		B9B1EC251AC6A4F400377E36 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		B9B1EC271AC6A7CE00377E36 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B9B1EC291AC6A7E700377E36 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -250,6 +249,9 @@
 		B9B1EC321AC6C50300377E36 /* MessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		B9E2EF031AC6FE7F0085BCDC /* PrivateMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageViewController.h; sourceTree = "<group>"; };
 		B9E2EF041AC6FE7F0085BCDC /* PrivateMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageViewController.m; sourceTree = "<group>"; };
+		B9F7C0F71AD5E16E009F425F /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
+		B9F7C0F81AD5E16E009F425F /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
+		B9F7C0FA1AD5F3F7009F425F /* CommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentViewController.xib; sourceTree = "<group>"; };
 		C119F51C40B91BB5CDECEAC6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -345,11 +347,12 @@
 				ABBF94521ACFBE5600E308F5 /* SearchViewController.m */,
 				ABBF94571ACFC07800E308F5 /* CategoryCollectionViewCell.h */,
 				ABBF94581ACFC07800E308F5 /* CategoryCollectionViewCell.m */,
-				B941E0E91AD063BE008C82A3 /* CommentViewController.h */,
-				B941E0EA1AD063BE008C82A3 /* CommentViewController.m */,
 				B93A1EB21AD13021000AD865 /* CommentCollectionViewCell.h */,
 				B93A1EB31AD13021000AD865 /* CommentCollectionViewCell.m */,
 				B93A1EB51AD13049000AD865 /* CommentCollectionViewCell.xib */,
+				B9F7C0F71AD5E16E009F425F /* CommentViewController.h */,
+				B9F7C0F81AD5E16E009F425F /* CommentViewController.m */,
+				B9F7C0FA1AD5F3F7009F425F /* CommentViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -720,6 +723,7 @@
 				ABBF94651ACFCB5600E308F5 /* AddNewSearchViewController.xib in Resources */,
 				1864BF161A4B1EA300EF5DD7 /* Images.xcassets in Resources */,
 				ABA4F0D51AC4711E008915F7 /* CountryPicker.bundle in Resources */,
+				B9F7C0FB1AD5F3F7009F425F /* CommentViewController.xib in Resources */,
 				AB7CB4CC1AB1F0A20017E183 /* ProductHeaderView.xib in Resources */,
 				B904A09E1ACAFF1300DCE491 /* UserListingTableViewCell.xib in Resources */,
 			);
@@ -795,9 +799,9 @@
 				AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */,
 				AB8B70A11ABB388B0028DC47 /* MBProgressHUD.m in Sources */,
 				ABBB13021AD032C1001D31EC /* HMSegmentedControl.m in Sources */,
-				B941E0EB1AD063BE008C82A3 /* CommentViewController.m in Sources */,
 				AB6E34AE1ABC69D900867CA3 /* RECommonFunctions.m in Sources */,
 				B941E0E81AD062A7008C82A3 /* ProductReportViewController.m in Sources */,
+				B9F7C0F91AD5E16E009F425F /* CommentViewController.m in Sources */,
 				B904A09D1ACAFF1300DCE491 /* UserListingTableViewCell.m in Sources */,
 				ABEC4DBF1ABD6A12000CF27C /* BaseViewController.m in Sources */,
 				AB6E34BE1ABC6A9A00867CA3 /* RightMenuViewController.m in Sources */,

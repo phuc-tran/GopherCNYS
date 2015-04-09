@@ -1,18 +1,23 @@
 //
-//  UserFeedbackViewController.h
+//  CommentViewController.h
 //  GopherCNYS
 //
-//  Created by Vu Tiet on 3/31/15.
+//  Created by Vu Tiet on 4/9/15.
 //  Copyright (c) 2015 cnys. All rights reserved.
 //
 
+#import "BaseViewController.h"
 
-#import "JSQMessages.h"
-#import <Parse/Parse.h>
+@protocol CommentViewControllerDelegate <NSObject>
 
-@interface CommentViewController : JSQMessagesViewController
+-(void)hideComment;
+
+@end
+
+@interface CommentViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UIImage *userInfoImage;
 @property (nonatomic, strong) NSString *productId;
+@property (nonatomic, assign) id <CommentViewControllerDelegate> delegate;
 
 @end

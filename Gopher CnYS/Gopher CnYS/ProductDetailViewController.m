@@ -17,6 +17,8 @@
 @interface ProductDetailViewController ()
 @property (nonatomic, weak) IBOutlet UIButton *messageButton;
 @property (nonatomic, strong) NSString *fbProfileURL;
+@property (nonatomic, strong) CommentViewController *commentViewController;
+
 @end
 
 @implementation ProductDetailViewController
@@ -193,6 +195,15 @@
     return screenshot;
 }
 
+- (CommentViewController *)commentViewController {
+    if (!_commentViewController) {
+        _commentViewController = [[CommentViewController alloc] initWithNibName:@"CommentViewController" bundle:nil];
+        _commentViewController.view.frame = CGRectMake(0, 100, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-100);
+        _commentViewController.delegate = self;
+    }
+    return _commentViewController;
+}
+
 #pragma mark - Event Handlers
 
 - (IBAction)messageButtonDidTouch:(id)sender {
@@ -239,10 +250,16 @@
     if (![self checkIfUserLoggedIn]) {
         [self performSegueWithIdentifier:@"productDetail_to_login" sender:self];
     } else {
-        [self performSegueWithIdentifier:@"productDetail_to_comment" sender:self];
+//        [self performSegueWithIdentifier:@"productDetail_to_comment" sender:self];
+        [self.view addSubview:self.commentViewController.view];
     }
     
 }
 
+#pragma mark - CommentViewControllerDelegate
+
+- (void)hideComment {
+    [self.commentViewController.view removeFromSuperview];
+}
 
 @end
