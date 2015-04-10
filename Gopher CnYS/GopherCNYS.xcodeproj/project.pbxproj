@@ -77,6 +77,8 @@
 		ABBF94641ACFCB5600E308F5 /* AddNewSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF94621ACFCB5600E308F5 /* AddNewSearchViewController.m */; };
 		ABBF94651ACFCB5600E308F5 /* AddNewSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */; };
 		ABC069951AD5816500893187 /* MyListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC069941AD5816500893187 /* MyListingViewController.m */; };
+		ABC813FC1AD8281D0040FE31 /* THChatInput.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC813F81AD8281D0040FE31 /* THChatInput.m */; };
+		ABC813FD1AD8281D0040FE31 /* ILTranslucentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC813FB1AD8281D0040FE31 /* ILTranslucentView.m */; };
 		ABCAFF1B1AD2D85400BD7C31 /* SearchTabListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCAFF1A1AD2D85400BD7C31 /* SearchTabListViewController.m */; };
 		ABCAFF1D1AD2DF3100BD7C31 /* searchtab.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABCAFF1C1AD2DF3100BD7C31 /* searchtab.plist */; };
 		ABCAFF201AD2EAAA00BD7C31 /* SearchTabTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCAFF1F1AD2EAAA00BD7C31 /* SearchTabTableViewCell.m */; };
@@ -223,6 +225,10 @@
 		ABC069931AD5816500893187 /* MyListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyListingViewController.h; sourceTree = "<group>"; };
 		ABC069941AD5816500893187 /* MyListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyListingViewController.m; sourceTree = "<group>"; };
 		ABC069961AD5956F00893187 /* GlobalHeard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalHeard.h; sourceTree = "<group>"; };
+		ABC813F71AD8281D0040FE31 /* THChatInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THChatInput.h; sourceTree = "<group>"; };
+		ABC813F81AD8281D0040FE31 /* THChatInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THChatInput.m; sourceTree = "<group>"; };
+		ABC813FA1AD8281D0040FE31 /* ILTranslucentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILTranslucentView.h; sourceTree = "<group>"; };
+		ABC813FB1AD8281D0040FE31 /* ILTranslucentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILTranslucentView.m; sourceTree = "<group>"; };
 		ABCAFF191AD2D85400BD7C31 /* SearchTabListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTabListViewController.h; sourceTree = "<group>"; };
 		ABCAFF1A1AD2D85400BD7C31 /* SearchTabListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTabListViewController.m; sourceTree = "<group>"; };
 		ABCAFF1C1AD2DF3100BD7C31 /* searchtab.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = searchtab.plist; sourceTree = "<group>"; };
@@ -509,6 +515,8 @@
 		AB8B709A1ABB388B0028DC47 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				ABC813F61AD8281D0040FE31 /* ChatInput */,
+				ABC813F91AD8281D0040FE31 /* TranslucentView */,
 				ABBF714F1AD6DB9A00A446C4 /* STableViewController */,
 				ABBB12FF1AD032C1001D31EC /* HMSegmentedControl */,
 				ABBF945A1ACFCB1700E308F5 /* MJPopupView */,
@@ -609,6 +617,24 @@
 				ABBF945E1ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m */,
 			);
 			path = MJPopupView;
+			sourceTree = "<group>";
+		};
+		ABC813F61AD8281D0040FE31 /* ChatInput */ = {
+			isa = PBXGroup;
+			children = (
+				ABC813F71AD8281D0040FE31 /* THChatInput.h */,
+				ABC813F81AD8281D0040FE31 /* THChatInput.m */,
+			);
+			path = ChatInput;
+			sourceTree = "<group>";
+		};
+		ABC813F91AD8281D0040FE31 /* TranslucentView */ = {
+			isa = PBXGroup;
+			children = (
+				ABC813FA1AD8281D0040FE31 /* ILTranslucentView.h */,
+				ABC813FB1AD8281D0040FE31 /* ILTranslucentView.m */,
+			);
+			path = TranslucentView;
 			sourceTree = "<group>";
 		};
 		ABEC4DC01ABD6E0E000CF27C /* General */ = {
@@ -833,6 +859,7 @@
 				AB6E34B01ABC69D900867CA3 /* UIViewController+RESideMenu.m in Sources */,
 				ABA4F0D01AC46F9E008915F7 /* SBPickerSelector.m in Sources */,
 				ABEC4DC41ABD801B000CF27C /* SellViewController.m in Sources */,
+				ABC813FD1AD8281D0040FE31 /* ILTranslucentView.m in Sources */,
 				ABBF715C1AD6DD2600A446C4 /* ProductListTableHeaderView.m in Sources */,
 				B904A0981ACAFCB900DCE491 /* UserFeedbackViewController.m in Sources */,
 				ABBF71521AD6DB9A00A446C4 /* STableViewController.m in Sources */,
@@ -863,6 +890,7 @@
 				ABC069951AD5816500893187 /* MyListingViewController.m in Sources */,
 				1864BF0B1A4B1EA300EF5DD7 /* main.m in Sources */,
 				AB6E34BF1ABC6A9A00867CA3 /* RootViewController.m in Sources */,
+				ABC813FC1AD8281D0040FE31 /* THChatInput.m in Sources */,
 				B904A0991ACAFCB900DCE491 /* UserListingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
