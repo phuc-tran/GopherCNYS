@@ -79,8 +79,6 @@
 		ABC069951AD5816500893187 /* MyListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC069941AD5816500893187 /* MyListingViewController.m */; };
 		ABC813FC1AD8281D0040FE31 /* THChatInput.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC813F81AD8281D0040FE31 /* THChatInput.m */; };
 		ABC813FD1AD8281D0040FE31 /* ILTranslucentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC813FB1AD8281D0040FE31 /* ILTranslucentView.m */; };
-		ABC814011AD832980040FE31 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC813FF1AD832980040FE31 /* CommentTableViewCell.m */; };
-		ABC814021AD832980040FE31 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC814001AD832980040FE31 /* CommentTableViewCell.xib */; };
 		ABCAFF1B1AD2D85400BD7C31 /* SearchTabListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCAFF1A1AD2D85400BD7C31 /* SearchTabListViewController.m */; };
 		ABCAFF1D1AD2DF3100BD7C31 /* searchtab.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABCAFF1C1AD2DF3100BD7C31 /* searchtab.plist */; };
 		ABCAFF201AD2EAAA00BD7C31 /* SearchTabTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCAFF1F1AD2EAAA00BD7C31 /* SearchTabTableViewCell.m */; };
@@ -93,11 +91,11 @@
 		B904A0991ACAFCB900DCE491 /* UserListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B904A0971ACAFCB900DCE491 /* UserListingViewController.m */; };
 		B904A09D1ACAFF1300DCE491 /* UserListingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B904A09B1ACAFF1300DCE491 /* UserListingTableViewCell.m */; };
 		B904A09E1ACAFF1300DCE491 /* UserListingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B904A09C1ACAFF1300DCE491 /* UserListingTableViewCell.xib */; };
-		B93A1EB41AD13021000AD865 /* CommentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A1EB31AD13021000AD865 /* CommentCollectionViewCell.m */; };
-		B93A1EB61AD13049000AD865 /* CommentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B93A1EB51AD13049000AD865 /* CommentCollectionViewCell.xib */; };
 		B93D20CB1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B93D20CA1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m */; };
 		B93D20CF1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B93D20CE1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib */; };
 		B941E0E81AD062A7008C82A3 /* ProductReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B941E0E71AD062A7008C82A3 /* ProductReportViewController.m */; };
+		B9634C351AD829B30023F699 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9634C331AD829B30023F699 /* CommentTableViewCell.m */; };
+		B9634C361AD829B30023F699 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9634C341AD829B30023F699 /* CommentTableViewCell.xib */; };
 		B9B1EC261AC6A4F400377E36 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC251AC6A4F400377E36 /* libstdc++.dylib */; };
 		B9B1EC281AC6A7CE00377E36 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC271AC6A7CE00377E36 /* libz.dylib */; };
 		B9B1EC2A1AC6A7E700377E36 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B1EC291AC6A7E700377E36 /* CFNetwork.framework */; };
@@ -231,9 +229,6 @@
 		ABC813F81AD8281D0040FE31 /* THChatInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THChatInput.m; sourceTree = "<group>"; };
 		ABC813FA1AD8281D0040FE31 /* ILTranslucentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILTranslucentView.h; sourceTree = "<group>"; };
 		ABC813FB1AD8281D0040FE31 /* ILTranslucentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILTranslucentView.m; sourceTree = "<group>"; };
-		ABC813FE1AD832980040FE31 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
-		ABC813FF1AD832980040FE31 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
-		ABC814001AD832980040FE31 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		ABCAFF191AD2D85400BD7C31 /* SearchTabListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTabListViewController.h; sourceTree = "<group>"; };
 		ABCAFF1A1AD2D85400BD7C31 /* SearchTabListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTabListViewController.m; sourceTree = "<group>"; };
 		ABCAFF1C1AD2DF3100BD7C31 /* searchtab.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = searchtab.plist; sourceTree = "<group>"; };
@@ -256,14 +251,14 @@
 		B904A09A1ACAFF1200DCE491 /* UserListingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListingTableViewCell.h; sourceTree = "<group>"; };
 		B904A09B1ACAFF1300DCE491 /* UserListingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListingTableViewCell.m; sourceTree = "<group>"; };
 		B904A09C1ACAFF1300DCE491 /* UserListingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserListingTableViewCell.xib; sourceTree = "<group>"; };
-		B93A1EB21AD13021000AD865 /* CommentCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCollectionViewCell.h; sourceTree = "<group>"; };
-		B93A1EB31AD13021000AD865 /* CommentCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCollectionViewCell.m; sourceTree = "<group>"; };
-		B93A1EB51AD13049000AD865 /* CommentCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCollectionViewCell.xib; sourceTree = "<group>"; };
 		B93D20C91ACD39690021ED49 /* UserFeedbackCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFeedbackCollectionViewCell.h; sourceTree = "<group>"; };
 		B93D20CA1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFeedbackCollectionViewCell.m; sourceTree = "<group>"; };
 		B93D20CE1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserFeedbackCollectionViewCell.xib; sourceTree = "<group>"; };
 		B941E0E61AD062A7008C82A3 /* ProductReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductReportViewController.h; sourceTree = "<group>"; };
 		B941E0E71AD062A7008C82A3 /* ProductReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductReportViewController.m; sourceTree = "<group>"; };
+		B9634C321AD829B30023F699 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
+		B9634C331AD829B30023F699 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
+		B9634C341AD829B30023F699 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		B9B1EC251AC6A4F400377E36 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		B9B1EC271AC6A7CE00377E36 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B9B1EC291AC6A7E700377E36 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -347,9 +342,6 @@
 		1837DB071A65230B00C48A51 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				ABC813FE1AD832980040FE31 /* CommentTableViewCell.h */,
-				ABC813FF1AD832980040FE31 /* CommentTableViewCell.m */,
-				ABC814001AD832980040FE31 /* CommentTableViewCell.xib */,
 				ABBF71531AD6DC3A00A446C4 /* ProductList */,
 				B941E0E61AD062A7008C82A3 /* ProductReportViewController.h */,
 				B941E0E71AD062A7008C82A3 /* ProductReportViewController.m */,
@@ -373,12 +365,12 @@
 				ABBF94521ACFBE5600E308F5 /* SearchViewController.m */,
 				ABBF94571ACFC07800E308F5 /* CategoryCollectionViewCell.h */,
 				ABBF94581ACFC07800E308F5 /* CategoryCollectionViewCell.m */,
-				B93A1EB21AD13021000AD865 /* CommentCollectionViewCell.h */,
-				B93A1EB31AD13021000AD865 /* CommentCollectionViewCell.m */,
-				B93A1EB51AD13049000AD865 /* CommentCollectionViewCell.xib */,
 				B9F7C0F71AD5E16E009F425F /* CommentViewController.h */,
 				B9F7C0F81AD5E16E009F425F /* CommentViewController.m */,
 				B9F7C0FA1AD5F3F7009F425F /* CommentViewController.xib */,
+				B9634C321AD829B30023F699 /* CommentTableViewCell.h */,
+				B9634C331AD829B30023F699 /* CommentTableViewCell.m */,
+				B9634C341AD829B30023F699 /* CommentTableViewCell.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -785,11 +777,10 @@
 				1864BF141A4B1EA300EF5DD7 /* Main.storyboard in Resources */,
 				B93D20CF1ACD3A4A0021ED49 /* UserFeedbackCollectionViewCell.xib in Resources */,
 				1864BF191A4B1EA300EF5DD7 /* LaunchScreen.xib in Resources */,
-				B93A1EB61AD13049000AD865 /* CommentCollectionViewCell.xib in Resources */,
 				ABCAFF1D1AD2DF3100BD7C31 /* searchtab.plist in Resources */,
 				18BA5C581A736180002EBF83 /* ProductTableViewCell.xib in Resources */,
 				ABA4F0CF1AC46F9E008915F7 /* SBPickerSelector.xib in Resources */,
-				ABC814021AD832980040FE31 /* CommentTableViewCell.xib in Resources */,
+				B9634C361AD829B30023F699 /* CommentTableViewCell.xib in Resources */,
 				B9B1EC341AC6C50300377E36 /* MessageTableViewCell.xib in Resources */,
 				18801F2B1A6A57CE006D956B /* GooglePlus.bundle in Resources */,
 				ABBF94651ACFCB5600E308F5 /* AddNewSearchViewController.xib in Resources */,
@@ -852,13 +843,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABA4F0D61AC4711E008915F7 /* CountryPicker.m in Sources */,
-				ABC814011AD832980040FE31 /* CommentTableViewCell.m in Sources */,
+				B9634C351AD829B30023F699 /* CommentTableViewCell.m in Sources */,
 				ABBF94641ACFCB5600E308F5 /* AddNewSearchViewController.m in Sources */,
 				1864BF111A4B1EA300EF5DD7 /* HomeViewController.m in Sources */,
 				AB72F3391AB734D6003900E9 /* ProductDetailViewController.m in Sources */,
 				18A6B7CC1A657F420043E08A /* CreateAccountViewController.m in Sources */,
 				ABEC4DBC1ABD6898000CF27C /* ProfileViewController.m in Sources */,
-				B93A1EB41AD13021000AD865 /* CommentCollectionViewCell.m in Sources */,
 				185FDE091A73F7AD00A452CE /* Product.m in Sources */,
 				1864BF0E1A4B1EA300EF5DD7 /* AppDelegate.m in Sources */,
 				ABEC4DB91ABD6719000CF27C /* AboutViewController.m in Sources */,
