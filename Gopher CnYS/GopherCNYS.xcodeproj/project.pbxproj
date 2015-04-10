@@ -79,6 +79,8 @@
 		ABC069951AD5816500893187 /* MyListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC069941AD5816500893187 /* MyListingViewController.m */; };
 		ABC813FC1AD8281D0040FE31 /* THChatInput.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC813F81AD8281D0040FE31 /* THChatInput.m */; };
 		ABC813FD1AD8281D0040FE31 /* ILTranslucentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC813FB1AD8281D0040FE31 /* ILTranslucentView.m */; };
+		ABC814011AD832980040FE31 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC813FF1AD832980040FE31 /* CommentTableViewCell.m */; };
+		ABC814021AD832980040FE31 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC814001AD832980040FE31 /* CommentTableViewCell.xib */; };
 		ABCAFF1B1AD2D85400BD7C31 /* SearchTabListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCAFF1A1AD2D85400BD7C31 /* SearchTabListViewController.m */; };
 		ABCAFF1D1AD2DF3100BD7C31 /* searchtab.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABCAFF1C1AD2DF3100BD7C31 /* searchtab.plist */; };
 		ABCAFF201AD2EAAA00BD7C31 /* SearchTabTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCAFF1F1AD2EAAA00BD7C31 /* SearchTabTableViewCell.m */; };
@@ -229,6 +231,9 @@
 		ABC813F81AD8281D0040FE31 /* THChatInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THChatInput.m; sourceTree = "<group>"; };
 		ABC813FA1AD8281D0040FE31 /* ILTranslucentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILTranslucentView.h; sourceTree = "<group>"; };
 		ABC813FB1AD8281D0040FE31 /* ILTranslucentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILTranslucentView.m; sourceTree = "<group>"; };
+		ABC813FE1AD832980040FE31 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
+		ABC813FF1AD832980040FE31 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
+		ABC814001AD832980040FE31 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		ABCAFF191AD2D85400BD7C31 /* SearchTabListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTabListViewController.h; sourceTree = "<group>"; };
 		ABCAFF1A1AD2D85400BD7C31 /* SearchTabListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTabListViewController.m; sourceTree = "<group>"; };
 		ABCAFF1C1AD2DF3100BD7C31 /* searchtab.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = searchtab.plist; sourceTree = "<group>"; };
@@ -342,6 +347,9 @@
 		1837DB071A65230B00C48A51 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				ABC813FE1AD832980040FE31 /* CommentTableViewCell.h */,
+				ABC813FF1AD832980040FE31 /* CommentTableViewCell.m */,
+				ABC814001AD832980040FE31 /* CommentTableViewCell.xib */,
 				ABBF71531AD6DC3A00A446C4 /* ProductList */,
 				B941E0E61AD062A7008C82A3 /* ProductReportViewController.h */,
 				B941E0E71AD062A7008C82A3 /* ProductReportViewController.m */,
@@ -781,6 +789,7 @@
 				ABCAFF1D1AD2DF3100BD7C31 /* searchtab.plist in Resources */,
 				18BA5C581A736180002EBF83 /* ProductTableViewCell.xib in Resources */,
 				ABA4F0CF1AC46F9E008915F7 /* SBPickerSelector.xib in Resources */,
+				ABC814021AD832980040FE31 /* CommentTableViewCell.xib in Resources */,
 				B9B1EC341AC6C50300377E36 /* MessageTableViewCell.xib in Resources */,
 				18801F2B1A6A57CE006D956B /* GooglePlus.bundle in Resources */,
 				ABBF94651ACFCB5600E308F5 /* AddNewSearchViewController.xib in Resources */,
@@ -843,6 +852,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABA4F0D61AC4711E008915F7 /* CountryPicker.m in Sources */,
+				ABC814011AD832980040FE31 /* CommentTableViewCell.m in Sources */,
 				ABBF94641ACFCB5600E308F5 /* AddNewSearchViewController.m in Sources */,
 				1864BF111A4B1EA300EF5DD7 /* HomeViewController.m in Sources */,
 				AB72F3391AB734D6003900E9 /* ProductDetailViewController.m in Sources */,

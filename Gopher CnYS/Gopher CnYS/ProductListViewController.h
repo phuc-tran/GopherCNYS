@@ -14,7 +14,7 @@
 #import "SearchViewController.h"
 #import "STableViewController.h"
 
-@interface ProductListViewController : STableViewController <UITableViewDelegate, UITableViewDataSource, UITabBarDelegate, UISearchBarDelegate, UISearchDisplayDelegate, SearchViewControllerDelegate>
+@interface ProductListViewController : STableViewController <UITabBarDelegate, UISearchBarDelegate, UISearchDisplayDelegate, SearchViewControllerDelegate>
 {
     NSArray *categoryData;
     BOOL isFavoriteTopSelected;

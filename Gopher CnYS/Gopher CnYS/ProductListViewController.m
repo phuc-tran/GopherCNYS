@@ -45,8 +45,7 @@ NSUInteger selectedIndex;
     productData = [[NSMutableArray alloc] init];
     productMasterData = [[NSMutableArray alloc] init];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil]
-               forCellReuseIdentifier:@"ProductTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil] forCellReuseIdentifier:@"ProductTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     self.pullToRefreshEnabled = NO;
@@ -139,8 +138,7 @@ NSUInteger selectedIndex;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ProductTableViewCell *cell = (ProductTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ProductTableViewCell"];
-    
+    ProductTableViewCell *cell = (ProductTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:@"ProductTableViewCell"];
     cell.delegate = self;
     cell.cellIndex = indexPath.row;
     
