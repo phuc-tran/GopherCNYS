@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "THChatInput.h"
 
 @protocol CommentViewControllerDelegate <NSObject>
 
@@ -14,7 +15,7 @@
 
 @end
 
-@interface CommentViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
+@interface CommentViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, THChatInputDelegate>
 
 @property (nonatomic, strong) UIImage *userInfoImage;
 @property (nonatomic, strong) NSString *productId;
