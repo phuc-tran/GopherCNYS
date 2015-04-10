@@ -458,7 +458,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NmB-5v-OEL" userLabel="TopView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NmB-5v-OEL" userLabel="TopView">
                                 <rect key="frame" x="0.0" y="44" width="320" height="70"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WyO-w8-d6d">
@@ -470,7 +470,6 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="priceBtnClick:" destination="KUb-wv-JfL" eventType="touchUpInside" id="kMW-gJ-NxS"/>
                                                     <action selector="reportButtonDidTouch:" destination="yMM-1Y-rcA" eventType="touchUpInside" id="GCt-bh-lDx"/>
                                                 </connections>
                                             </button>
@@ -481,7 +480,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="facebookButtonDidTouch:" destination="yMM-1Y-rcA" eventType="touchUpInside" id="zBM-ir-cl1"/>
-                                                    <action selector="newBtnClick:" destination="KUb-wv-JfL" eventType="touchUpInside" id="JyC-H3-SRb"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrI-OA-H58">
@@ -586,7 +584,7 @@
                                     <constraint firstAttribute="bottom" secondItem="fhK-ig-HhV" secondAttribute="bottom" id="xQc-jY-pRj"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xud-ug-0bV">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xud-ug-0bV">
                                 <rect key="frame" x="0.0" y="114" width="320" height="148"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EOa-kA-3Zv">
@@ -603,7 +601,7 @@
                                     <constraint firstItem="EOa-kA-3Zv" firstAttribute="top" secondItem="xud-ug-0bV" secondAttribute="top" constant="14" id="yFW-Nu-drO"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iJT-od-RjM">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iJT-od-RjM">
                                 <rect key="frame" x="0.0" y="255" width="320" height="263"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ixs-rb-8S4" userLabel="ContentView">
@@ -1021,9 +1019,9 @@
                         <outlet property="bottomView" destination="zJo-1g-VxG" id="1zY-Tp-RiH"/>
                         <outlet property="cameraTabBarItem" destination="v2Z-0Q-hHJ" id="ZeF-d3-dyU"/>
                         <outlet property="productSearchBar" destination="DiY-fn-9FK" id="vO9-rs-BkK"/>
-                        <outlet property="productTableView" destination="7Hq-iF-pDA" id="Jpm-L5-DxK"/>
                         <outlet property="searchDisplayController" destination="Uoh-WK-MSi" id="2bG-L3-EzN"/>
                         <outlet property="settingTabBarItem" destination="Df1-I7-JkI" id="tYg-69-pw9"/>
+                        <outlet property="tableView" destination="7Hq-iF-pDA" id="PEc-rH-fTv"/>
                         <segue destination="yMM-1Y-rcA" kind="push" identifier="ProductDetaiFormProduct" id="Hcj-1n-Msb"/>
                         <segue destination="KBN-7p-nVk" kind="push" identifier="product_list_form_login" id="G1w-cs-YeN"/>
                     </connections>
@@ -2508,9 +2506,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="bfk-BZ-XLj"/>
+        <segue reference="Hcj-1n-Msb"/>
         <segue reference="ExP-uq-3s7"/>
-        <segue reference="PRy-In-HQn"/>
         <segue reference="e0P-cp-GQQ"/>
+        <segue reference="PRy-In-HQn"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,8 +12,9 @@
 #import "BaseViewController.h"
 #import "SBPickerSelector.h"
 #import "SearchViewController.h"
+#import "STableViewController.h"
 
-@interface ProductListViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource, SBPickerSelectorDelegate, UITabBarDelegate, UISearchBarDelegate, UISearchDisplayDelegate, SearchViewControllerDelegate>
+@interface ProductListViewController : STableViewController <UITableViewDelegate, UITableViewDataSource, UITabBarDelegate, UISearchBarDelegate, UISearchDisplayDelegate, SearchViewControllerDelegate>
 {
     NSArray *categoryData;
     BOOL isFavoriteTopSelected;
@@ -23,11 +24,10 @@
 
 @property (strong,nonatomic) NSMutableArray *filteredProductArray;
 
-@property (weak, nonatomic) IBOutlet UITableView *productTableView;
-@property (weak, nonatomic) IBOutlet UIButton *btnFavorite;
-@property (weak, nonatomic) IBOutlet UIButton *btnPrice;
-@property (weak, nonatomic) IBOutlet UIButton *btnNew;
-@property (weak, nonatomic) IBOutlet UIButton *btnSelectCategory;
+//@property (weak, nonatomic) IBOutlet UIButton *btnFavorite;
+//@property (weak, nonatomic) IBOutlet UIButton *btnPrice;
+//@property (weak, nonatomic) IBOutlet UIButton *btnNew;
+//@property (weak, nonatomic) IBOutlet UIButton *btnSelectCategory;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UITabBarItem *cameraTabBarItem;
 @property (weak, nonatomic) IBOutlet UISearchBar *productSearchBar;
