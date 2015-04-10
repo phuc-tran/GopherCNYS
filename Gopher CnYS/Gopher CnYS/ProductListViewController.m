@@ -13,22 +13,22 @@
 #import "HomeViewController.h"
 #import "SellViewController.h"
 #import "MyListingViewController.h"
+#import "ProductListTableHeaderView.h"
+#import "ProductListTableFooterView.h"
 
 @interface ProductListViewController () <ProductTableViewCellDelegate>
 
 @end
 
-NSArray *productData;
-NSArray *productMasterData;
-NSArray *productFavoriteData;
-NSMutableArray *distanceProducts;
+NSMutableArray *productData;
+NSMutableArray *productMasterData;
+//NSArray *productFavoriteData;
 PFGeoPoint *currentLocaltion;
 NSUInteger selectedIndex;
 
 @implementation ProductListViewController
 
-@synthesize productTableView;
-@synthesize btnFavorite, btnNew, btnPrice, btnSelectCategory;
+//@synthesize btnFavorite, btnNew, btnPrice, btnSelectCategory;
 
 #pragma mark - Self View Life Cycle
 - (void)viewDidLoad {
@@ -42,32 +42,61 @@ NSUInteger selectedIndex;
         NSLog(@"get location %@", currentLocaltion);
     }];
 
+    productData = [[NSMutableArray alloc] init];
+    productMasterData = [[NSMutableArray alloc] init];
     
-    [self.productTableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil]
+    [self.tableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil]
                forCellReuseIdentifier:@"ProductTableViewCell"];
-    self.productTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    [self loadProductList];
-    categoryData = [NSArray arrayWithObjects:@"All Categories", @"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];
+    self.pullToRefreshEnabled = NO;
+    
+    // set the custom view for "pull to refresh". See ProductListTableHeaderView.xib.
+//    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ProductListTableHeaderView" owner:self options:nil];
+//    ProductListTableHeaderView *headerView = (ProductListTableHeaderView *)[nib objectAtIndex:0];
+//    self.headerView = headerView;
+    
+    // set the custom view for "load more". See ProductListTableFooterView.xib.
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ProductListTableFooterView" owner:self options:nil];
+    ProductListTableFooterView *footerView = (ProductListTableFooterView *)[nib objectAtIndex:0];
+    self.footerView = footerView;
+    
+    
+    //[self loadProductList];
+    
     
     [self.productSearchBar setShowsScopeBar:NO];
     [self.productSearchBar sizeToFit];
     // Hide the search bar until user scrolls up
-    CGRect newBounds = [[self productTableView] bounds];
+    CGRect newBounds = [[self tableView] bounds];
     newBounds.origin.y = newBounds.origin.y + self.productSearchBar.bounds.size.height;
-    [[self productTableView] setBounds:newBounds];
+    [[self tableView] setBounds:newBounds];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self setupMenuBarButtonItems];
+    self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
     
     isFavoriteTopSelected = NO;
     isNewTopSelected = NO;
     isPriceTopSelected = NO;
     
-    [productTableView reloadData];
+    [self.tableView reloadData];
+}
+
+- (UIBarButtonItem *)leftMenuBarButtonItem {
+    UIImage *buttonImage = [UIImage imageNamed:@"menu-icon.png"];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    button.frame = CGRectMake(0.0f, 0.0f, 25.0f, 25.0f);
+    [button addTarget:self action:@selector(leftMenuClick:) forControlEvents:UIControlEventTouchUpInside];
+    return [[UIBarButtonItem alloc] initWithCustomView:button];
+}
+
+-(void)leftMenuClick:(UIBarButtonItem*)btn
+{
+    [self.sideMenuViewController presentLeftMenuViewController];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -93,23 +122,6 @@ NSUInteger selectedIndex;
 }
 
 #pragma mark - TableView delegate
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    return 1;
-//}
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//
-//    ProductHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([ProductHeaderView class]) owner:self options:nil] firstObject];
-//    
-//    return headerView;
-//    
-//}
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 20.0;
-//}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 162;
@@ -127,7 +139,7 @@ NSUInteger selectedIndex;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ProductTableViewCell *cell = (ProductTableViewCell *)[productTableView dequeueReusableCellWithIdentifier:@"ProductTableViewCell"];
+    ProductTableViewCell *cell = (ProductTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ProductTableViewCell"];
     
     cell.delegate = self;
     cell.cellIndex = indexPath.row;
@@ -212,26 +224,31 @@ NSUInteger selectedIndex;
     [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
     [query selectKeys:@[@"description", @"title", @"photo1", @"photo2", @"photo3", @"photo4", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors", @"category", @"condition", @"quantity", @"seller", @"country", @"adminArea", @"locality", @"postalCode"]];
     [query orderByDescending:@"createdAt"];
+    query.limit = 100;
+    query.skip = [productData count];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (!error) {
             // The find succeeded.
-            productData = objects;
-            distanceProducts = [[NSMutableArray alloc] init];
-            NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
-            NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-                PFObject *first = (PFObject*)a;
-                PFObject *second = (PFObject*)b;
-                return [self compare:first withProduct:second];
-            }];
-            productData = tmpArr;
-            productMasterData = productData;
-            
-            if (_isNewSearch) {
-                [self filterResultsWithSearch];
+            self.canLoadMore = (objects.count > 0);
+            NSLog(@"can load more %d", self.canLoadMore);
+            if (self.canLoadMore) {
+                for (int i = 0; i < objects.count; i++) {
+                    [productData addObject:objects[i]];
+                }
+                NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
+                NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                    PFObject *first = (PFObject*)a;
+                    PFObject *second = (PFObject*)b;
+                    return [self compare:first withProduct:second];
+                }];
+                productData = [NSMutableArray arrayWithArray:tmpArr];
+                NSLog(@"product count %ld", (unsigned long)[productData count]);
+                if (_isNewSearch) {
+                    [self filterResultsWithSearch];
+                }
+                [self.tableView reloadData];
             }
-            
-            [productTableView reloadData];
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -241,34 +258,33 @@ NSUInteger selectedIndex;
 
 - (void)filterResults:(NSString *)searchTerm
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    PFQuery *query = [PFQuery queryWithClassName:@"Products"];
-    [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    [query whereKey:@"title" containsString:searchTerm];
-    
-    [query selectKeys:@[@"description", @"title", @"photo1", @"photo2", @"photo3", @"photo4", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors", @"category", @"condition", @"quantity", @"seller", @"country", @"adminArea", @"locality"]];
-    [query orderByDescending:@"createdAt"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        if (!error) {
-            // The find succeeded.
-            productData = objects;
-            distanceProducts = [[NSMutableArray alloc] init];
-            NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
-            NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-                PFObject *first = (PFObject*)a;
-                PFObject *second = (PFObject*)b;
-                return [self compare:first withProduct:second];
-            }];
-            productData = tmpArr;
-            productMasterData = productData;
-            
-            [productTableView reloadData];
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    PFQuery *query = [PFQuery queryWithClassName:@"Products"];
+//    [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
+//    [query whereKey:@"title" containsString:searchTerm];
+//    
+//    [query selectKeys:@[@"description", @"title", @"photo1", @"photo2", @"photo3", @"photo4", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors", @"category", @"condition", @"quantity", @"seller", @"country", @"adminArea", @"locality"]];
+//    [query orderByDescending:@"createdAt"];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+//        if (!error) {
+//            // The find succeeded.
+//            productData = objects;
+//            NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
+//            NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+//                PFObject *first = (PFObject*)a;
+//                PFObject *second = (PFObject*)b;
+//                return [self compare:first withProduct:second];
+//            }];
+//            productData = tmpArr;
+//            productMasterData = productData;
+//            
+//            [self.tableView reloadData];
+//        } else {
+//            // Log details of the failure
+//            NSLog(@"Error: %@ %@", error, [error userInfo]);
+//        }
+//    }];
 }
 
 
@@ -302,26 +318,37 @@ NSUInteger selectedIndex;
     NSLog(@"name %@ - %@ - %ld miles - Notify me when new post match my search key criteria: %@", name, keywords, (long)distance, notifystr);
     _isNewSearch = NO;
     NSMutableArray *finalArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < productMasterData.count; i++) {
-        NSString *title = [[productMasterData objectAtIndex:i] valueForKey:@"title"];
-        NSString *desc = [[[productMasterData objectAtIndex:i] objectForKey:@"description"] description];
-        PFGeoPoint *positionItem  = [[productMasterData objectAtIndex:i] objectForKey:@"position"];
+    for (int i = 0; i < productData.count; i++) {
+        NSString *title = [[productData objectAtIndex:i] valueForKey:@"title"];
+        NSString *desc = [[[productData objectAtIndex:i] objectForKey:@"description"] description];
+        PFGeoPoint *positionItem  = [[productData objectAtIndex:i] objectForKey:@"position"];
         double miles = [currentLocaltion distanceInMilesTo:positionItem];
         if ([keywords isEqualToString:@""]) {
             if (miles <= distance) {
-                [finalArray addObject:[productMasterData objectAtIndex:i]];
+                [finalArray addObject:[productData objectAtIndex:i]];
             }
         } else {
             if ([title rangeOfString:keywords options:NSCaseInsensitiveSearch].location != NSNotFound ||
-                [desc rangeOfString:keywords options:NSCaseInsensitiveSearch].location != NSNotFound ||
-                miles <= distance)
+                [desc rangeOfString:keywords options:NSCaseInsensitiveSearch].location != NSNotFound
+                || miles <= distance
+                )
             {
-                [finalArray addObject:[productMasterData objectAtIndex:i]];
+                [finalArray addObject:[productData objectAtIndex:i]];
             }
         }
     }
     productData = finalArray;
 }
+
+-(BOOL) checkIfUserLoggedIn
+{
+    if ([[PFUser currentUser] isAuthenticated])
+    {
+        return YES;
+    }
+    return NO;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -329,169 +356,118 @@ NSUInteger selectedIndex;
 
 
 #pragma mark - Action
--(void)updateSelected:(NSInteger)index {
-    switch (index) {
-        case 0:
-            isFavoriteTopSelected = !isFavoriteTopSelected;
-            isNewTopSelected = NO;
-            isPriceTopSelected = NO;
-            break;
-        case 1:
-            isFavoriteTopSelected = NO;
-            isNewTopSelected = !isNewTopSelected;
-            isPriceTopSelected = NO;
-            break;
-        case 2:
-            isFavoriteTopSelected = NO;
-            isNewTopSelected = NO;
-            isPriceTopSelected = !isPriceTopSelected;
-            break;
-        default:
-            break;
-    }
-    
-    if(isPriceTopSelected) {
-        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter.png"] forState:UIControlStateNormal];
-        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter.png"] forState:UIControlStateHighlighted];
-        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter.png"] forState:UIControlStateSelected];
-    } else {
-        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter1.png"] forState:UIControlStateNormal];
-        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter1.png"] forState:UIControlStateHighlighted];
-        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter1.png"] forState:UIControlStateSelected];
-    }
-    
-    if(isNewTopSelected) {
-        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter.png"] forState:UIControlStateNormal];
-        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter.png"] forState:UIControlStateHighlighted];
-        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter.png"] forState:UIControlStateSelected];
-    } else {
-        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter1.png"] forState:UIControlStateNormal];
-        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter1.png"] forState:UIControlStateHighlighted];
-        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter1.png"] forState:UIControlStateSelected];
-    }
-    
-    if(isFavoriteTopSelected) {
-        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateNormal];
-        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateHighlighted];
-        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateSelected];
-    } else {
-        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateNormal];
-        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateHighlighted];
-        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateSelected];
-    }
-}
-- (IBAction)priceBtnClick:(id)sender
-{
-    //isPriceTopSelected = !isPriceTopSelected;
-    UIButton *btn = (UIButton*)sender;
-    [self updateSelected:btn.tag];
-    
-    if(isPriceTopSelected) {
-        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"price" ascending:YES];
-        NSArray *finalArray = [productMasterData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
-        productData = finalArray;
-    } else {
-        productData = productMasterData;
-    }
-    [productTableView reloadData];
-}
+//-(void)updateSelected:(NSInteger)index {
+//    switch (index) {
+//        case 0:
+//            isFavoriteTopSelected = !isFavoriteTopSelected;
+//            isNewTopSelected = NO;
+//            isPriceTopSelected = NO;
+//            break;
+//        case 1:
+//            isFavoriteTopSelected = NO;
+//            isNewTopSelected = !isNewTopSelected;
+//            isPriceTopSelected = NO;
+//            break;
+//        case 2:
+//            isFavoriteTopSelected = NO;
+//            isNewTopSelected = NO;
+//            isPriceTopSelected = !isPriceTopSelected;
+//            break;
+//        default:
+//            break;
+//    }
+//    
+//    if(isPriceTopSelected) {
+//        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter.png"] forState:UIControlStateNormal];
+//        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter.png"] forState:UIControlStateHighlighted];
+//        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter.png"] forState:UIControlStateSelected];
+//    } else {
+//        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter1.png"] forState:UIControlStateNormal];
+//        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter1.png"] forState:UIControlStateHighlighted];
+//        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter1.png"] forState:UIControlStateSelected];
+//    }
+//    
+//    if(isNewTopSelected) {
+//        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter.png"] forState:UIControlStateNormal];
+//        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter.png"] forState:UIControlStateHighlighted];
+//        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter.png"] forState:UIControlStateSelected];
+//    } else {
+//        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter1.png"] forState:UIControlStateNormal];
+//        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter1.png"] forState:UIControlStateHighlighted];
+//        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter1.png"] forState:UIControlStateSelected];
+//    }
+//    
+//    if(isFavoriteTopSelected) {
+//        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateNormal];
+//        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateHighlighted];
+//        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateSelected];
+//    } else {
+//        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateNormal];
+//        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateHighlighted];
+//        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateSelected];
+//    }
+//}
 
-- (IBAction)newBtnClick:(id)sender
-{
-    //isNewTopSelected = !isNewTopSelected;
-    UIButton *btn = (UIButton*)sender;
-    [self updateSelected:btn.tag];
-    
-    if(isNewTopSelected) {
-        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
-        NSArray *finalArray = [productMasterData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
-        productData = finalArray;
-    } else {
-        productData = productMasterData;
-    }
-    [productTableView reloadData];
-}
+//- (IBAction)priceBtnClick:(id)sender
+//{
+//    //isPriceTopSelected = !isPriceTopSelected;
+//    UIButton *btn = (UIButton*)sender;
+//    [self updateSelected:btn.tag];
+//    
+//    if(isPriceTopSelected) {
+//        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"price" ascending:YES];
+//        NSArray *finalArray = [productMasterData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+//        productData = finalArray;
+//    } else {
+//        productData = productMasterData;
+//    }
+//    [self.tableView reloadData];
+//}
+//
+//- (IBAction)newBtnClick:(id)sender
+//{
+//    //isNewTopSelected = !isNewTopSelected;
+//    UIButton *btn = (UIButton*)sender;
+//    [self updateSelected:btn.tag];
+//    
+//    if(isNewTopSelected) {
+//        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
+//        NSArray *finalArray = [productMasterData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+//        productData = finalArray;
+//    } else {
+//        productData = productMasterData;
+//    }
+//    [self.tableView reloadData];
+//}
+//
+//- (IBAction)favoriteBtnClick:(id)sender
+//{
+//    if (![self checkIfUserLoggedIn]) {
+//        [self performSegueWithIdentifier:@"product_list_form_login" sender:self];
+//    } else {
+//        UIButton *btn = (UIButton*)sender;
+//        [self updateSelected:btn.tag];
+//    
+//        if(isFavoriteTopSelected) {
+//            NSMutableArray *finalArray = [[NSMutableArray alloc] init];
+//            for (int i = 0; i < productMasterData.count; i++) {
+//                NSArray *iFavorite = [[productMasterData objectAtIndex:i] objectForKey:@"favoritors"];
+//                if ([self checkItemisFavorited:iFavorite]) {
+//                    [finalArray addObject:[productMasterData objectAtIndex:i]];
+//                }
+//            }
+//            productData = finalArray;
+//            productFavoriteData = productData;
+//        } else {
+//            productData = productMasterData;
+//        }
+//    
+//        [self.tableView reloadData];
+//    }
+//}
 
-- (IBAction)favoriteBtnClick:(id)sender
-{
-    if (![self checkIfUserLoggedIn]) {
-        [self performSegueWithIdentifier:@"product_list_form_login" sender:self];
-    } else {
-        UIButton *btn = (UIButton*)sender;
-        [self updateSelected:btn.tag];
-    
-        if(isFavoriteTopSelected) {
-            NSMutableArray *finalArray = [[NSMutableArray alloc] init];
-            for (int i = 0; i < productMasterData.count; i++) {
-                NSArray *iFavorite = [[productMasterData objectAtIndex:i] objectForKey:@"favoritors"];
-                if ([self checkItemisFavorited:iFavorite]) {
-                    [finalArray addObject:[productMasterData objectAtIndex:i]];
-                }
-            }
-            productData = finalArray;
-            productFavoriteData = productData;
-        } else {
-            productData = productMasterData;
-        }
-    
-        [productTableView reloadData];
-    }
-}
-
-- (IBAction)selecetCategoryBtnClick:(id)sender
-{
-    //[self showPickerViewAnimation];
-    SBPickerSelector *picker = [SBPickerSelector picker];
-    picker.pickerData = [[NSMutableArray alloc] initWithArray:categoryData];
-    picker.delegate = self;
-    picker.pickerType = SBPickerSelectorTypeText;
-    picker.doneButtonTitle = @"Done";
-    picker.cancelButtonTitle = @"Cancel";
-    picker.tag = 100;
-    [picker showPickerIpadFromRect:self.view.frame inView:self.view];
-}
 - (IBAction)gotoSearcg:(UIBarButtonItem *)sender {
     [self.productSearchBar becomeFirstResponder];
-}
-
-#pragma mark - SBPickerSelectorDelegate
--(void) pickerSelector:(SBPickerSelector *)selector selectedValue:(NSString *)value index:(NSInteger)idx;
-{
-    if(isFavoriteTopSelected) {
-        if(idx == 0) {
-            productData = productFavoriteData;
-            [productTableView reloadData];
-            return;
-        } else {
-            NSMutableArray *finalArray = [[NSMutableArray alloc] init];
-            for (int i = 0; i < productFavoriteData.count; i++) {
-                NSInteger ctg = [[[productFavoriteData objectAtIndex:i] valueForKey:@"category"] integerValue];
-                if (ctg == idx) {
-                    [finalArray addObject:[productFavoriteData objectAtIndex:i]];
-                }
-            }
-            productData = finalArray;
-        }
-    } else {
-        if(idx == 0) {
-            productData = productMasterData;
-            [productTableView reloadData];
-            return;
-        }
-        NSMutableArray *finalArray = [[NSMutableArray alloc] init];
-        for (int i = 0; i < productMasterData.count; i++) {
-            NSInteger ctg = [[[productMasterData objectAtIndex:i] valueForKey:@"category"] integerValue];
-            if (ctg == idx) {
-                [finalArray addObject:[productMasterData objectAtIndex:i]];
-            }
-        }
-        productData = finalArray;
-    }
-    [self.btnSelectCategory setTitle:value forState:UIControlStateNormal];
-    [productTableView reloadData];
-}
--(void) pickerSelector:(SBPickerSelector *)selector cancelPicker:(BOOL)cancel {
-    
 }
 
 #pragma mark - UITabBarDelegate
@@ -534,7 +510,7 @@ NSUInteger selectedIndex;
     }
     productData = finalArray;
     NSLog(@"productData %ld", (unsigned long)productData.count);
-    [productTableView reloadData];
+    [self.tableView reloadData];
 }
 
 #pragma mark - ProductTableViewCellDelegate
@@ -614,6 +590,137 @@ NSUInteger selectedIndex;
 // called when cancel button pressed
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Pull to Refresh
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) pinHeaderView
+{
+    [super pinHeaderView];
+    
+    // do custom handling for the header view
+    ProductListTableHeaderView *hv = (ProductListTableHeaderView *)self.headerView;
+    [hv.activityIndicator startAnimating];
+    hv.title.text = @"Loading...";
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) unpinHeaderView
+{
+    [super unpinHeaderView];
+    
+    // do custom handling for the header view
+    [[(ProductListTableHeaderView *)self.headerView activityIndicator] stopAnimating];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Update the header text while the user is dragging
+//
+- (void) headerViewDidScroll:(BOOL)willRefreshOnRelease scrollView:(UIScrollView *)scrollView
+{
+    ProductListTableHeaderView *hv = (ProductListTableHeaderView *)self.headerView;
+    if (willRefreshOnRelease)
+        hv.title.text = @"Release to refresh...";
+    else
+        hv.title.text = @"Pull down to refresh...";
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// refresh the list. Do your async calls here.
+//
+- (BOOL) refresh
+{
+    if (![super refresh])
+        return NO;
+    
+    // Do your async call here
+    // This is just a dummy data loader:
+    [self performSelector:@selector(addItemsOnTop) withObject:nil afterDelay:2.0];
+    // See -addItemsOnTop for more info on how to finish loading
+    return YES;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Load More
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// The method -loadMore was called and will begin fetching data for the next page (more).
+// Do custom handling of -footerView if you need to.
+//
+- (void) willBeginLoadingMore
+{
+    ProductListTableFooterView *fv = (ProductListTableFooterView *)self.footerView;
+    [fv.activityIndicator startAnimating];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Do UI handling after the "load more" process was completed. In this example, -footerView will
+// show a "No more items to load" text.
+//
+- (void) loadMoreCompleted
+{
+    [super loadMoreCompleted];
+    
+    ProductListTableFooterView *fv = (ProductListTableFooterView *)self.footerView;
+    [fv.activityIndicator stopAnimating];
+    
+    if (!self.canLoadMore) {
+        // Do something if there are no more items to load
+        
+        // We can hide the footerView by: [self setFooterViewVisibility:NO];
+        
+        // Just show a textual info that there are no more items to load
+        fv.infoLabel.hidden = NO;
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL) loadMore
+{
+    if (![super loadMore])
+        return NO;
+    
+    // Do your async loading here
+    [self performSelector:@selector(addItemsOnBottom) withObject:nil afterDelay:2.0];
+    // See -addItemsOnBottom for more info on what to do after loading more items
+    
+    return YES;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Dummy data methods
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) addItemsOnTop
+{
+//    for (int i = 0; i < 3; i++)
+//        [items insertObject:[self createRandomValue] atIndex:0];
+    
+    [self.tableView reloadData];
+    
+    // Call this to indicate that we have finished "refreshing".
+    // This will then result in the headerView being unpinned (-unpinHeaderView will be called).
+    [self refreshCompleted];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) addItemsOnBottom
+{
+    [self loadProductList];
+    [self.tableView reloadData];
+    
+    // Inform STableViewController that we have finished loading more items
+    [self loadMoreCompleted];
 }
 
 @end
