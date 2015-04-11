@@ -47,7 +47,6 @@
 		18BA5C581A736180002EBF83 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BA5C571A736180002EBF83 /* ProductTableViewCell.xib */; };
 		A7B9F332FC78D0276CDD2C5A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 620EC0CA756B2526347C759D /* libPods.a */; };
 		AB4632061AC9B41500438D7B /* UsersFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4632051AC9B41500438D7B /* UsersFollowViewController.m */; };
-		AB519E3B1AC31E70008543B1 /* FPCarouselNonXIBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB519E3A1AC31E70008543B1 /* FPCarouselNonXIBViewController.m */; };
 		AB6E34AE1ABC69D900867CA3 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34A91ABC69D900867CA3 /* RECommonFunctions.m */; };
 		AB6E34AF1ABC69D900867CA3 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34AB1ABC69D900867CA3 /* RESideMenu.m */; };
 		AB6E34B01ABC69D900867CA3 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E34AD1ABC69D900867CA3 /* UIViewController+RESideMenu.m */; };
@@ -77,6 +76,7 @@
 		ABBF94641ACFCB5600E308F5 /* AddNewSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF94621ACFCB5600E308F5 /* AddNewSearchViewController.m */; };
 		ABBF94651ACFCB5600E308F5 /* AddNewSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */; };
 		ABC069951AD5816500893187 /* MyListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC069941AD5816500893187 /* MyListingViewController.m */; };
+		ABC0AED21AD8F609004ECC20 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC0AED11AD8F609004ECC20 /* iCarousel.m */; };
 		ABC813FC1AD8281D0040FE31 /* THChatInput.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC813F81AD8281D0040FE31 /* THChatInput.m */; };
 		ABC813FD1AD8281D0040FE31 /* ILTranslucentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC813FB1AD8281D0040FE31 /* ILTranslucentView.m */; };
 		ABCAFF1B1AD2D85400BD7C31 /* SearchTabListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCAFF1A1AD2D85400BD7C31 /* SearchTabListViewController.m */; };
@@ -170,8 +170,6 @@
 		9E1623EF4C607474E22E40C7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AB4632041AC9B41500438D7B /* UsersFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersFollowViewController.h; sourceTree = "<group>"; };
 		AB4632051AC9B41500438D7B /* UsersFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersFollowViewController.m; sourceTree = "<group>"; };
-		AB519E391AC31E70008543B1 /* FPCarouselNonXIBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPCarouselNonXIBViewController.h; sourceTree = "<group>"; };
-		AB519E3A1AC31E70008543B1 /* FPCarouselNonXIBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPCarouselNonXIBViewController.m; sourceTree = "<group>"; };
 		AB6E34A81ABC69D900867CA3 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		AB6E34A91ABC69D900867CA3 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		AB6E34AA1ABC69D900867CA3 /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
@@ -225,6 +223,8 @@
 		ABC069931AD5816500893187 /* MyListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyListingViewController.h; sourceTree = "<group>"; };
 		ABC069941AD5816500893187 /* MyListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyListingViewController.m; sourceTree = "<group>"; };
 		ABC069961AD5956F00893187 /* GlobalHeard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalHeard.h; sourceTree = "<group>"; };
+		ABC0AED01AD8F609004ECC20 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		ABC0AED11AD8F609004ECC20 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		ABC813F71AD8281D0040FE31 /* THChatInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THChatInput.h; sourceTree = "<group>"; };
 		ABC813F81AD8281D0040FE31 /* THChatInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THChatInput.m; sourceTree = "<group>"; };
 		ABC813FA1AD8281D0040FE31 /* ILTranslucentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILTranslucentView.h; sourceTree = "<group>"; };
@@ -481,15 +481,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		AB519E351AC316ED008543B1 /* iCarousel */ = {
-			isa = PBXGroup;
-			children = (
-				AB519E391AC31E70008543B1 /* FPCarouselNonXIBViewController.h */,
-				AB519E3A1AC31E70008543B1 /* FPCarouselNonXIBViewController.m */,
-			);
-			path = iCarousel;
-			sourceTree = "<group>";
-		};
 		AB6E34A71ABC69D900867CA3 /* RESideMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -515,6 +506,7 @@
 		AB8B709A1ABB388B0028DC47 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				ABC0AECF1AD8F609004ECC20 /* iCarousel */,
 				ABC813F61AD8281D0040FE31 /* ChatInput */,
 				ABC813F91AD8281D0040FE31 /* TranslucentView */,
 				ABBF714F1AD6DB9A00A446C4 /* STableViewController */,
@@ -522,7 +514,6 @@
 				ABBF945A1ACFCB1700E308F5 /* MJPopupView */,
 				ABA4F0D11AC4711E008915F7 /* CountryPicker */,
 				ABA4F0C91AC46F9E008915F7 /* SBPickerSelector */,
-				AB519E351AC316ED008543B1 /* iCarousel */,
 				ABEC4DC51ABD8152000CF27C /* CustomView */,
 				AB6E34A71ABC69D900867CA3 /* RESideMenu */,
 				AB8B709D1ABB388B0028DC47 /* MBProgressHUD */,
@@ -617,6 +608,15 @@
 				ABBF945E1ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m */,
 			);
 			path = MJPopupView;
+			sourceTree = "<group>";
+		};
+		ABC0AECF1AD8F609004ECC20 /* iCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				ABC0AED01AD8F609004ECC20 /* iCarousel.h */,
+				ABC0AED11AD8F609004ECC20 /* iCarousel.m */,
+			);
+			path = iCarousel;
 			sourceTree = "<group>";
 		};
 		ABC813F61AD8281D0040FE31 /* ChatInput */ = {
@@ -853,9 +853,9 @@
 				1864BF0E1A4B1EA300EF5DD7 /* AppDelegate.m in Sources */,
 				ABEC4DB91ABD6719000CF27C /* AboutViewController.m in Sources */,
 				ABCAFF1B1AD2D85400BD7C31 /* SearchTabListViewController.m in Sources */,
+				ABC0AED21AD8F609004ECC20 /* iCarousel.m in Sources */,
 				ABCAFF201AD2EAAA00BD7C31 /* SearchTabTableViewCell.m in Sources */,
 				ABBF715A1AD6DD2600A446C4 /* ProductListTableFooterView.m in Sources */,
-				AB519E3B1AC31E70008543B1 /* FPCarouselNonXIBViewController.m in Sources */,
 				AB6E34B01ABC69D900867CA3 /* UIViewController+RESideMenu.m in Sources */,
 				ABA4F0D01AC46F9E008915F7 /* SBPickerSelector.m in Sources */,
 				ABEC4DC41ABD801B000CF27C /* SellViewController.m in Sources */,
