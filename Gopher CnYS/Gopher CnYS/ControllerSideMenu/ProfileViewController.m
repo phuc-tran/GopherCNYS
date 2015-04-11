@@ -68,7 +68,7 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    NSLog(@"should remove KVO observer here?");
+    [self.profileImageView removeObserver:self forKeyPath:@"image" context:NULL];
 }
 
 - (void) observeValueForKeyPath:(NSString *)path ofObject:(id) object change:(NSDictionary *) change context:(void *)context
