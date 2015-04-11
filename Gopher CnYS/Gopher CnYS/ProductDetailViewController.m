@@ -25,24 +25,21 @@
 
 @implementation ProductDetailViewController
 
-@synthesize productData, selectedIndex, currentLocaltion, carousel;
+@synthesize productData, selectedIndex, currentLocaltion, carouselProduct, productPage;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    NSLog(@"current user objectId -- seller objectId: %@ || %@", [[PFUser currentUser] valueForKey:@"objectId"], [[[productData objectAtIndex:selectedIndex] valueForKey:@"seller"] valueForKey:@"objectId"]);
     if (![[[PFUser currentUser] valueForKey:@"objectId"] isEqualToString:[[[productData objectAtIndex:selectedIndex] valueForKey:@"seller"] valueForKey:@"objectId"]]) {
         // enable message button if seller and buyer are different people
         self.messageButton.enabled = YES;
     }
-    
-//    self.carouselController = [[FPCarouselNonXIBViewController alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, carousel.frame.size.height)];
-//    [self.carousel addSubview:self.carouselController.view];
+    carouselProduct.pagingEnabled = true;
     
     PFGeoPoint *positionItem  = [[productData objectAtIndex:selectedIndex] objectForKey:@"position"];
     self.productlocationLbl.text = [NSString stringWithFormat:@"%.f miles", [currentLocaltion distanceInMilesTo:positionItem]];
-    
+    productImageList = [[NSMutableArray alloc] init];
     PFUser *seller = [[productData objectAtIndex:selectedIndex] valueForKey:@"seller"];
     PFQuery *query = [PFUser query];
     [query whereKey:@"objectId" equalTo:[seller objectId]];
@@ -81,30 +78,25 @@
     self.profileAvatar.layer.borderColor = [UIColor colorWithRed:226/255.0f green:226/255.0f blue:226/255.0f alpha:1.0f].CGColor;
     self.profileAvatar.clipsToBounds = YES;
     
-    self.productImgaeView.layer.cornerRadius = 5.0f;
-    self.productImgaeView.layer.borderWidth = 2.0f;
-    self.productImgaeView.layer.borderColor = [UIColor colorWithRed:226/255.0f green:226/255.0f blue:226/255.0f alpha:1.0f].CGColor;
-    self.productImgaeView.clipsToBounds = YES;
-    
-    PFFile *imageFile = [[productData objectAtIndex:selectedIndex] objectForKey:@"photo1"];
-    if (imageFile == nil) {
-        imageFile = [[productData objectAtIndex:selectedIndex] objectForKey:@"photo2"];
-    }
-    
-    if (imageFile == nil) {
-        imageFile = [[productData objectAtIndex:selectedIndex] objectForKey:@"photo3"];
-    }
-    
-    if (imageFile == nil) {
-        imageFile = [[productData objectAtIndex:selectedIndex] objectForKey:@"photo4"];
-    }
-    
-    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-        if (!error) {
-            UIImage *image = [UIImage imageWithData:data];
-            self.productImgaeView.image = image;
+
+    NSArray *imageList = @[@"photo1", @"photo2", @"photo3", @"photo4"];
+    for (int i = 0; i < imageList.count; i++) {
+        PFFile *imageFile = [[productData objectAtIndex:selectedIndex] objectForKey:imageList[i]];
+        if (imageFile != nil) {
+            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                if (!error) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    [productImageList addObject:image];
+                    productPage.numberOfPages = productImageList.count;
+                    productPage.currentPage = 0;
+                    [carouselProduct reloadData];
+                }
+            }];
         }
-    }];
+    }
+   
+    
+    
     
     NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
     attachment.image = [UIImage imageNamed:@"chat_icon.png"];
@@ -160,7 +152,7 @@
     } else if ([[segue identifier] isEqualToString:@"productDetail_to_productReport"]) {
         ProductReportViewController *vc = (ProductReportViewController *)[segue destinationViewController];
         vc.product = [productData objectAtIndex:selectedIndex];
-        vc.productImage = self.productImgaeView.image;
+        vc.productImage = productImageList[0];
         vc.sellerName = self.productSellerLbl.text;
     } else if ([[segue identifier] isEqualToString:@"productDetail_to_comment"]) {
         CommentViewController *vc = (CommentViewController *)[segue destinationViewController];
@@ -243,7 +235,7 @@
         // Configure Compose View Controller
         NSString *shareText = [NSString stringWithFormat:@"%@\n%@\n$%@\nGopherCNYS", [[productData objectAtIndex:selectedIndex] valueForKey:@"title"], [[[productData objectAtIndex:selectedIndex] objectForKey:@"description"] description], [[productData objectAtIndex:selectedIndex] valueForKey:@"price"]];
         [vc setInitialText:shareText];
-        [vc addImage:self.productImgaeView.image];
+        [vc addImage:productImageList[0]];
         // Present Compose View Controller
         [self presentViewController:vc animated:YES completion:nil];
     } else {
@@ -306,7 +298,51 @@
         [self.commentViewController.view removeFromSuperview];
         [self.translucentView removeFromSuperview];
     }];
-
 }
 
+#pragma mark - iCarouselDataSource
+- (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
+{
+    return productImageList.count;
+}
+
+- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
+{
+    if (view == nil)
+    {
+        view = [[UIImageView alloc] initWithFrame:carousel.bounds];
+        view.contentMode = UIViewContentModeScaleAspectFit;
+        view.backgroundColor = [UIColor clearColor];
+    }
+    else
+    {
+        //get a reference to the label in the recycled view
+    }
+    
+    UIImageView *imageview = [[UIImageView alloc] initWithFrame:view.bounds];
+    imageview.image = productImageList[index];
+    imageview.contentMode = UIViewContentModeScaleAspectFit;
+    [imageview.layer setMasksToBounds:YES];
+    [imageview.layer setBorderColor: [[UIColor groupTableViewBackgroundColor] CGColor]];
+    [imageview.layer setBorderWidth: 1.0];
+    [imageview.layer setCornerRadius:8.0];
+    [view addSubview:imageview];
+    return view;
+}
+
+- (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value;
+{
+    if (option == iCarouselOptionSpacing)
+    {
+        return value * 1.0;
+    }else if (option == iCarouselOptionWrap) {
+        return 1.0;
+    }
+    return value;
+}
+
+- (void)carouselCurrentItemIndexDidChange:(iCarousel *)carousel {
+    productPage.currentPage = carousel.currentItemIndex;
+
+}
 @end

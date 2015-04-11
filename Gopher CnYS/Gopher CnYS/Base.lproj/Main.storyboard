@@ -584,23 +584,14 @@
                                     <constraint firstAttribute="bottom" secondItem="fhK-ig-HhV" secondAttribute="bottom" id="xQc-jY-pRj"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xud-ug-0bV">
-                                <rect key="frame" x="0.0" y="114" width="320" height="148"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EOa-kA-3Zv">
-                                        <rect key="frame" x="100" y="14" width="120" height="120"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="120" id="4Kt-kU-qbd"/>
-                                            <constraint firstAttribute="height" constant="120" id="ZgZ-4B-t7t"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1DH-Rb-hRP">
+                                <rect key="frame" x="141" y="230" width="39" height="37"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="EOa-kA-3Zv" secondAttribute="bottom" constant="14" id="0ON-jS-uD2"/>
-                                    <constraint firstAttribute="centerX" secondItem="EOa-kA-3Zv" secondAttribute="centerX" id="jFk-Ur-NJo"/>
-                                    <constraint firstItem="EOa-kA-3Zv" firstAttribute="top" secondItem="xud-ug-0bV" secondAttribute="top" constant="14" id="yFW-Nu-drO"/>
+                                    <constraint firstAttribute="height" constant="37" id="IWw-nt-PMb"/>
                                 </constraints>
-                            </view>
+                                <color key="pageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" red="0.25098039220000001" green="0.87058823529999996" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </pageControl>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iJT-od-RjM">
                                 <rect key="frame" x="0.0" y="255" width="320" height="263"/>
                                 <subviews>
@@ -747,33 +738,45 @@
                                     <constraint firstAttribute="trailing" secondItem="ixs-rb-8S4" secondAttribute="trailing" id="xKv-OG-jAX"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xud-ug-0bV" customClass="iCarousel">
+                                <rect key="frame" x="0.0" y="122" width="320" height="120"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="VTM-6R-0sD"/>
+                                    <constraint firstAttribute="width" constant="320" id="q9y-yQ-uQJ"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="yMM-1Y-rcA" id="wlw-9Z-vn2"/>
+                                    <outlet property="delegate" destination="yMM-1Y-rcA" id="amO-4W-QMo"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="iJT-od-RjM" firstAttribute="top" secondItem="NmB-5v-OEL" secondAttribute="bottom" constant="141" id="2XW-rP-59S"/>
                             <constraint firstItem="Qcp-Fe-wP3" firstAttribute="leading" secondItem="XiY-Js-Gj8" secondAttribute="leading" id="8ak-ST-QR0"/>
-                            <constraint firstAttribute="centerX" secondItem="xud-ug-0bV" secondAttribute="centerX" id="K79-Na-3UZ"/>
+                            <constraint firstItem="xud-ug-0bV" firstAttribute="top" secondItem="NmB-5v-OEL" secondAttribute="bottom" constant="8" id="DsR-KS-jpP"/>
                             <constraint firstItem="iJT-od-RjM" firstAttribute="leading" secondItem="XiY-Js-Gj8" secondAttribute="leading" id="NwE-GI-fkg"/>
-                            <constraint firstAttribute="trailing" secondItem="xud-ug-0bV" secondAttribute="trailing" id="Puu-B6-kBs"/>
-                            <constraint firstItem="xud-ug-0bV" firstAttribute="top" secondItem="NmB-5v-OEL" secondAttribute="bottom" id="TJ3-v3-Hnx"/>
+                            <constraint firstAttribute="centerX" secondItem="1DH-Rb-hRP" secondAttribute="centerX" id="QET-qw-M1t"/>
                             <constraint firstItem="NmB-5v-OEL" firstAttribute="top" secondItem="osG-1v-41Q" secondAttribute="bottom" id="URw-cB-a4j"/>
                             <constraint firstAttribute="trailing" secondItem="iJT-od-RjM" secondAttribute="trailing" id="VLK-Nh-Wfq"/>
-                            <constraint firstItem="xud-ug-0bV" firstAttribute="leading" secondItem="XiY-Js-Gj8" secondAttribute="leading" id="bc6-Al-DA4"/>
                             <constraint firstAttribute="trailing" secondItem="Qcp-Fe-wP3" secondAttribute="trailing" id="dHX-Oj-wg6"/>
+                            <constraint firstItem="1DH-Rb-hRP" firstAttribute="top" secondItem="NmB-5v-OEL" secondAttribute="bottom" constant="116" id="dzA-61-vwm"/>
                             <constraint firstItem="8w3-6j-fU2" firstAttribute="top" secondItem="Qcp-Fe-wP3" secondAttribute="bottom" id="jFf-r8-8mo"/>
                             <constraint firstItem="NmB-5v-OEL" firstAttribute="leading" secondItem="XiY-Js-Gj8" secondAttribute="leading" id="jdH-F5-pHz"/>
+                            <constraint firstAttribute="centerX" secondItem="xud-ug-0bV" secondAttribute="centerX" id="p2k-7D-qcA"/>
                             <constraint firstItem="Qcp-Fe-wP3" firstAttribute="top" secondItem="iJT-od-RjM" secondAttribute="bottom" id="rKs-tU-7es"/>
                             <constraint firstAttribute="trailing" secondItem="NmB-5v-OEL" secondAttribute="trailing" id="uGJ-IM-R4d"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Product Details" id="RKD-lP-4ee"/>
                     <connections>
-                        <outlet property="carousel" destination="xud-ug-0bV" id="Ynl-lv-3UN"/>
+                        <outlet property="carouselProduct" destination="xud-ug-0bV" id="vee-Jk-qLh"/>
                         <outlet property="messageButton" destination="vrI-OA-H58" id="UC5-Dl-24n"/>
                         <outlet property="productConditionLbl" destination="132-jK-1lQ" id="0pg-GN-zLV"/>
                         <outlet property="productDescription" destination="gHT-vu-Tvi" id="GP4-Yp-Mv2"/>
-                        <outlet property="productImgaeView" destination="EOa-kA-3Zv" id="EwL-hG-xEq"/>
                         <outlet property="productNameLbl" destination="1mc-dE-ewM" id="GBj-GS-dMc"/>
+                        <outlet property="productPage" destination="1DH-Rb-hRP" id="10L-1T-YIq"/>
                         <outlet property="productPostedLbl" destination="HgQ-St-R1v" id="Ej6-u1-JKk"/>
                         <outlet property="productPriceLbl" destination="XW2-pu-Kka" id="Ko6-M2-CYv"/>
                         <outlet property="productQuantityLbl" destination="6KJ-5R-DD0" id="PCh-Qc-nEg"/>

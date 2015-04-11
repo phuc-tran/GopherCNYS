@@ -9,14 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 #import <Parse/Parse.h>
-#import "FPCarouselNonXIBViewController.h"
 #import "CommentViewController.h"
+#import "iCarousel.h"
 
-@interface ProductDetailViewController : BaseViewController <CommentViewControllerDelegate>
+@interface ProductDetailViewController : BaseViewController <CommentViewControllerDelegate, iCarouselDataSource, iCarouselDelegate>
 {
     NSArray *productData;
     NSUInteger selectedIndex;
     PFGeoPoint *currentLocaltion;
+    NSMutableArray *productImageList;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *productImgaeView;
@@ -37,7 +38,7 @@
 @property (nonatomic, assign) NSUInteger selectedIndex;
 @property (nonatomic, retain) PFGeoPoint *currentLocaltion;
 
-@property (nonatomic, strong) IBOutlet UIView *carousel;
-@property (strong,nonatomic) FPCarouselNonXIBViewController *carouselController;
+@property (nonatomic, strong) IBOutlet iCarousel *carouselProduct;
+@property (weak, nonatomic) IBOutlet UIPageControl *productPage;
 
 @end
