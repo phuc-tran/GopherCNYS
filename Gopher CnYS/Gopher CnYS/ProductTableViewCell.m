@@ -53,7 +53,5 @@
         [btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateHighlighted];
         [btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateSelected];
     }
-    
-    [lblProductPrice setTextColor:[UIColor colorWithRed:9/255.0 green:107/255.0 blue:172/255.0 alpha:1.0]];
 }
 @end
