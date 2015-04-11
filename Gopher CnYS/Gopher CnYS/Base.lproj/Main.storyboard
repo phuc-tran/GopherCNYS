@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -1559,6 +1559,13 @@
                                             <constraint firstAttribute="height" constant="190" id="T3N-GC-ACt"/>
                                         </constraints>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w0Y-4W-z4v" customClass="ILTranslucentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="190" id="B7p-hU-5JT"/>
+                                        </constraints>
+                                    </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatarDefault" translatesAutoresizingMaskIntoConstraints="NO" id="Rhj-Dr-kKt">
                                         <rect key="frame" x="8" y="77" width="89" height="89"/>
                                     </imageView>
@@ -1607,11 +1614,14 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="nfw-3a-4jB" secondAttribute="trailing" constant="5" id="6bV-zT-5Yk"/>
                                     <constraint firstAttribute="trailing" secondItem="EJ4-gO-wQm" secondAttribute="trailing" id="BhR-8N-cSx"/>
+                                    <constraint firstItem="w0Y-4W-z4v" firstAttribute="leading" secondItem="d8N-Gj-myr" secondAttribute="leading" id="DBZ-5L-fyL"/>
                                     <constraint firstAttribute="centerX" secondItem="EJ4-gO-wQm" secondAttribute="centerX" id="Esr-l1-1Cq"/>
                                     <constraint firstItem="EJ4-gO-wQm" firstAttribute="top" secondItem="d8N-Gj-myr" secondAttribute="top" id="Ft4-6y-lPq"/>
                                     <constraint firstItem="EJ4-gO-wQm" firstAttribute="leading" secondItem="d8N-Gj-myr" secondAttribute="leading" id="MtG-WG-BFL"/>
+                                    <constraint firstItem="w0Y-4W-z4v" firstAttribute="top" secondItem="d8N-Gj-myr" secondAttribute="top" id="QJH-jI-Lqh"/>
                                     <constraint firstItem="nfw-3a-4jB" firstAttribute="top" secondItem="d8N-Gj-myr" secondAttribute="top" constant="103" id="hES-Sf-F5C"/>
                                     <constraint firstAttribute="height" constant="190" id="lw8-J2-ai8"/>
+                                    <constraint firstAttribute="trailing" secondItem="w0Y-4W-z4v" secondAttribute="trailing" id="oUf-G4-ft9"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqc-gh-h44">
@@ -1652,7 +1662,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="abc@gmail.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zP7-z1-U67">
                                 <rect key="frame" x="126" y="137" width="178" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.7686274509803922" green="0.71764705882352942" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -1671,7 +1681,9 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="emailLable" destination="zP7-z1-U67" id="Ba2-Q4-4Ix"/>
+                        <outlet property="profileBgImageView" destination="EJ4-gO-wQm" id="idh-1j-uLP"/>
                         <outlet property="profileImageView" destination="Rhj-Dr-kKt" id="IEd-YS-Trz"/>
+                        <outlet property="translucentView" destination="w0Y-4W-z4v" id="roh-DD-eVV"/>
                         <outlet property="usernameLable" destination="vnd-CM-FmP" id="LnK-fI-2Bq"/>
                         <segue destination="KBN-7p-nVk" kind="push" identifier="profile_from_login" id="vS2-dj-XjI"/>
                     </connections>
@@ -2506,9 +2518,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Hcj-1n-Msb"/>
-        <segue reference="ExP-uq-3s7"/>
         <segue reference="e0P-cp-GQQ"/>
-        <segue reference="PRy-In-HQn"/>
+        <segue reference="Hcj-1n-Msb"/>
+        <segue reference="vS2-dj-XjI"/>
+        <segue reference="ExP-uq-3s7"/>
     </inferredMetricsTieBreakers>
 </document>

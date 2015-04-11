@@ -19,6 +19,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *messageButton;
 @property (nonatomic, strong) NSString *fbProfileURL;
 @property (nonatomic, strong) CommentViewController *commentViewController;
+@property (nonatomic, strong) ILTranslucentView *translucentView;
 
 @end
 
@@ -209,6 +210,18 @@
     return _commentViewController;
 }
 
+- (ILTranslucentView *)translucentView {
+    if (!_translucentView) {
+         _translucentView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 100)];
+        _translucentView.backgroundColor = [UIColor clearColor];
+        _translucentView.translucentTintColor = [UIColor clearColor];
+        _translucentView.alpha = 0.0f;
+        _translucentView.translucentStyle = UIBarStyleDefault;
+        _translucentView.tag = 2512;
+    }
+    return _translucentView;
+}
+
 #pragma mark - Event Handlers
 
 - (IBAction)messageButtonDidTouch:(id)sender {
@@ -257,24 +270,20 @@
     } else {
 //        [self performSegueWithIdentifier:@"productDetail_to_comment" sender:self];
 
-        ILTranslucentView *translucentView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 150)];
-        translucentView.backgroundColor = [UIColor clearColor];
-        translucentView.translucentTintColor = [UIColor clearColor];
-        translucentView.alpha = 0.0f;
-        translucentView.translucentStyle = UIBarStyleDefault;
-        translucentView.tag = 2512;
-        [self.view addSubview:translucentView];
-
         CGRect frame = self.commentViewController.view.frame;
         frame.origin.y = CGRectGetHeight(self.view.frame);
         self.commentViewController.view.frame = frame;
         [self.view addSubview:self.commentViewController.view];
         
+        // Add translution view
+        UIWindow *curWindow = [[UIApplication sharedApplication] keyWindow];
+        [curWindow addSubview:self.translucentView];
+        
         [UIView animateWithDuration:0.3 animations:^{
             CGRect showFrame = self.commentViewController.view.frame;
             showFrame.origin.y = 100;
             self.commentViewController.view.frame = showFrame;
-            translucentView.alpha = 0.8f;
+            self.translucentView.alpha = 1.0f;
         } completion:^(BOOL finished){
         }];
         
@@ -285,15 +294,17 @@
 #pragma mark - CommentViewControllerDelegate
 
 - (void)hideComment {
-    UIView *translucentView = [self.view viewWithTag:2512];
+//    UIView *translucentView = [self.view viewWithTag:2512];
     [UIView animateWithDuration:0.3 animations:^{
         CGRect frame = self.commentViewController.view.frame;
         frame.origin.y = self.view.frame.size.height;
         self.commentViewController.view.frame = frame;
-        translucentView.alpha = 0;
+        self.translucentView.alpha = 0;
     } completion:^(BOOL finished){
+        
+        // Remove views belong to comments
         [self.commentViewController.view removeFromSuperview];
-        [translucentView removeFromSuperview];
+        [self.translucentView removeFromSuperview];
     }];
 
 }

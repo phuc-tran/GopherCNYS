@@ -20,6 +20,9 @@
 {
     [super viewDidLoad];
     
+    // KVO for profileImageView
+    [self.profileImageView addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:NULL];
+    
     self.profileImageView.layer.cornerRadius = 5.0f;
     self.profileImageView.layer.borderWidth = 2.0f;
     self.profileImageView.layer.borderColor = [UIColor colorWithRed:226/255.0f green:226/255.0f blue:226/255.0f alpha:1.0f].CGColor;
@@ -39,6 +42,12 @@
         NSString *url = [[PFUser currentUser] objectForKey:@"profileImageURL"];
         [self loadAvatar:url withImage:self.profileImageView];
     }
+    
+//    self.translucentView.hidden = YES;
+    self.translucentView.backgroundColor = [UIColor clearColor];
+    self.translucentView.translucentTintColor = [UIColor clearColor];
+    self.translucentView.alpha = 0.9f;
+    self.translucentView.translucentStyle = UIBarStyleBlack;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -56,6 +65,24 @@
     }
     self.usernameLable.text = name;
     self.emailLable.text = currentUser.email;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    NSLog(@"should remove KVO observer here?");
+}
+
+- (void) observeValueForKeyPath:(NSString *)path ofObject:(id) object change:(NSDictionary *) change context:(void *)context
+{
+    // this method is used for all observations, so you need to make sure
+    // you are responding to the right one.
+    if (object == self.profileImageView && [path isEqualToString:@"image"])
+    {
+        // newImage is the image *after* the property changed
+        UIImage *newImage = [change objectForKey:NSKeyValueChangeNewKey];
+        
+        // Set image of background
+        self.profileBgImageView.image = newImage;
+    }
 }
 
 - (void)uploadImage:(NSData *)imageData

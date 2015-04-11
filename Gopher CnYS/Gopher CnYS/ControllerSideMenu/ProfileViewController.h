@@ -12,6 +12,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
+#import "ILTranslucentView.h"
 
 @interface ProfileViewController : BaseViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MBProgressHUDDelegate>
 {
@@ -21,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLable;
 @property (weak, nonatomic) IBOutlet UILabel *emailLable;
+@property (weak, nonatomic) IBOutlet UIImageView *profileBgImageView;
+@property (weak, nonatomic) IBOutlet ILTranslucentView *translucentView;
 
 - (IBAction)pushViewController:(id)sender;
 
