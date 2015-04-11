@@ -14,6 +14,8 @@
 #import "HomeViewController.h"
 #import "ILTranslucentView.h"
 #import <Social/Social.h>
+#import "JTSImageInfo.h"
+#import "JTSImageViewController.h"
 
 @interface ProductDetailViewController ()
 @property (nonatomic, weak) IBOutlet UIButton *messageButton;
@@ -36,7 +38,7 @@
         self.messageButton.enabled = YES;
     }
     carouselProduct.pagingEnabled = true;
-    
+        
     PFGeoPoint *positionItem  = [[productData objectAtIndex:selectedIndex] objectForKey:@"position"];
     self.productlocationLbl.text = [NSString stringWithFormat:@"%.f miles", [currentLocaltion distanceInMilesTo:positionItem]];
     productImageList = [[NSMutableArray alloc] init];
@@ -343,6 +345,25 @@
 
 - (void)carouselCurrentItemIndexDidChange:(iCarousel *)carousel {
     productPage.currentPage = carousel.currentItemIndex;
+}
 
+- (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index {
+    // Create image info
+    JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+    UIImage *selectedImage = productImageList[index];
+    
+    imageInfo.image = selectedImage;
+    imageInfo.referenceRect = carouselProduct.frame;
+    imageInfo.referenceView = carouselProduct.superview;
+    imageInfo.referenceContentMode = carouselProduct.contentMode;
+    imageInfo.referenceCornerRadius = carouselProduct.layer.cornerRadius;
+    // Setup view controller
+    JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
+                                           initWithImageInfo:imageInfo
+                                           mode:JTSImageViewControllerMode_Image
+                                           backgroundStyle:JTSImageViewControllerBackgroundOption_Scaled];
+    
+    // Present the view controller.
+    [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
 }
 @end

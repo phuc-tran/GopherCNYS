@@ -77,6 +77,12 @@
 		ABBF94651ACFCB5600E308F5 /* AddNewSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */; };
 		ABC069951AD5816500893187 /* MyListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC069941AD5816500893187 /* MyListingViewController.m */; };
 		ABC0AED21AD8F609004ECC20 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC0AED11AD8F609004ECC20 /* iCarousel.m */; };
+		ABC0AEE01AD9105F004ECC20 /* JTSAnimatedGIFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC0AED51AD9105F004ECC20 /* JTSAnimatedGIFUtility.m */; };
+		ABC0AEE11AD9105F004ECC20 /* JTSImageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC0AED71AD9105F004ECC20 /* JTSImageInfo.m */; };
+		ABC0AEE21AD9105F004ECC20 /* JTSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC0AED91AD9105F004ECC20 /* JTSImageViewController.m */; };
+		ABC0AEE31AD9105F004ECC20 /* JTSSimpleImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC0AEDB1AD9105F004ECC20 /* JTSSimpleImageDownloader.m */; };
+		ABC0AEE41AD9105F004ECC20 /* UIApplication+JTSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC0AEDD1AD9105F004ECC20 /* UIApplication+JTSImageViewController.m */; };
+		ABC0AEE51AD9105F004ECC20 /* UIImage+JTSImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC0AEDF1AD9105F004ECC20 /* UIImage+JTSImageEffects.m */; };
 		ABC813FC1AD8281D0040FE31 /* THChatInput.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC813F81AD8281D0040FE31 /* THChatInput.m */; };
 		ABC813FD1AD8281D0040FE31 /* ILTranslucentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC813FB1AD8281D0040FE31 /* ILTranslucentView.m */; };
 		ABCAFF1B1AD2D85400BD7C31 /* SearchTabListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCAFF1A1AD2D85400BD7C31 /* SearchTabListViewController.m */; };
@@ -225,6 +231,18 @@
 		ABC069961AD5956F00893187 /* GlobalHeard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalHeard.h; sourceTree = "<group>"; };
 		ABC0AED01AD8F609004ECC20 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		ABC0AED11AD8F609004ECC20 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		ABC0AED41AD9105F004ECC20 /* JTSAnimatedGIFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSAnimatedGIFUtility.h; sourceTree = "<group>"; };
+		ABC0AED51AD9105F004ECC20 /* JTSAnimatedGIFUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSAnimatedGIFUtility.m; sourceTree = "<group>"; };
+		ABC0AED61AD9105F004ECC20 /* JTSImageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSImageInfo.h; sourceTree = "<group>"; };
+		ABC0AED71AD9105F004ECC20 /* JTSImageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSImageInfo.m; sourceTree = "<group>"; };
+		ABC0AED81AD9105F004ECC20 /* JTSImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSImageViewController.h; sourceTree = "<group>"; };
+		ABC0AED91AD9105F004ECC20 /* JTSImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSImageViewController.m; sourceTree = "<group>"; };
+		ABC0AEDA1AD9105F004ECC20 /* JTSSimpleImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSSimpleImageDownloader.h; sourceTree = "<group>"; };
+		ABC0AEDB1AD9105F004ECC20 /* JTSSimpleImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSSimpleImageDownloader.m; sourceTree = "<group>"; };
+		ABC0AEDC1AD9105F004ECC20 /* UIApplication+JTSImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+JTSImageViewController.h"; sourceTree = "<group>"; };
+		ABC0AEDD1AD9105F004ECC20 /* UIApplication+JTSImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+JTSImageViewController.m"; sourceTree = "<group>"; };
+		ABC0AEDE1AD9105F004ECC20 /* UIImage+JTSImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JTSImageEffects.h"; sourceTree = "<group>"; };
+		ABC0AEDF1AD9105F004ECC20 /* UIImage+JTSImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JTSImageEffects.m"; sourceTree = "<group>"; };
 		ABC813F71AD8281D0040FE31 /* THChatInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THChatInput.h; sourceTree = "<group>"; };
 		ABC813F81AD8281D0040FE31 /* THChatInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THChatInput.m; sourceTree = "<group>"; };
 		ABC813FA1AD8281D0040FE31 /* ILTranslucentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILTranslucentView.h; sourceTree = "<group>"; };
@@ -506,6 +524,7 @@
 		AB8B709A1ABB388B0028DC47 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				ABC0AED31AD9105F004ECC20 /* JTSSimpleImage */,
 				ABC0AECF1AD8F609004ECC20 /* iCarousel */,
 				ABC813F61AD8281D0040FE31 /* ChatInput */,
 				ABC813F91AD8281D0040FE31 /* TranslucentView */,
@@ -617,6 +636,25 @@
 				ABC0AED11AD8F609004ECC20 /* iCarousel.m */,
 			);
 			path = iCarousel;
+			sourceTree = "<group>";
+		};
+		ABC0AED31AD9105F004ECC20 /* JTSSimpleImage */ = {
+			isa = PBXGroup;
+			children = (
+				ABC0AED41AD9105F004ECC20 /* JTSAnimatedGIFUtility.h */,
+				ABC0AED51AD9105F004ECC20 /* JTSAnimatedGIFUtility.m */,
+				ABC0AED61AD9105F004ECC20 /* JTSImageInfo.h */,
+				ABC0AED71AD9105F004ECC20 /* JTSImageInfo.m */,
+				ABC0AED81AD9105F004ECC20 /* JTSImageViewController.h */,
+				ABC0AED91AD9105F004ECC20 /* JTSImageViewController.m */,
+				ABC0AEDA1AD9105F004ECC20 /* JTSSimpleImageDownloader.h */,
+				ABC0AEDB1AD9105F004ECC20 /* JTSSimpleImageDownloader.m */,
+				ABC0AEDC1AD9105F004ECC20 /* UIApplication+JTSImageViewController.h */,
+				ABC0AEDD1AD9105F004ECC20 /* UIApplication+JTSImageViewController.m */,
+				ABC0AEDE1AD9105F004ECC20 /* UIImage+JTSImageEffects.h */,
+				ABC0AEDF1AD9105F004ECC20 /* UIImage+JTSImageEffects.m */,
+			);
+			path = JTSSimpleImage;
 			sourceTree = "<group>";
 		};
 		ABC813F61AD8281D0040FE31 /* ChatInput */ = {
@@ -854,7 +892,9 @@
 				ABEC4DB91ABD6719000CF27C /* AboutViewController.m in Sources */,
 				ABCAFF1B1AD2D85400BD7C31 /* SearchTabListViewController.m in Sources */,
 				ABC0AED21AD8F609004ECC20 /* iCarousel.m in Sources */,
+				ABC0AEE21AD9105F004ECC20 /* JTSImageViewController.m in Sources */,
 				ABCAFF201AD2EAAA00BD7C31 /* SearchTabTableViewCell.m in Sources */,
+				ABC0AEE31AD9105F004ECC20 /* JTSSimpleImageDownloader.m in Sources */,
 				ABBF715A1AD6DD2600A446C4 /* ProductListTableFooterView.m in Sources */,
 				AB6E34B01ABC69D900867CA3 /* UIViewController+RESideMenu.m in Sources */,
 				ABA4F0D01AC46F9E008915F7 /* SBPickerSelector.m in Sources */,
@@ -867,6 +907,7 @@
 				ABBF94601ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m in Sources */,
 				AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */,
 				AB8B70A11ABB388B0028DC47 /* MBProgressHUD.m in Sources */,
+				ABC0AEE11AD9105F004ECC20 /* JTSImageInfo.m in Sources */,
 				ABBB13021AD032C1001D31EC /* HMSegmentedControl.m in Sources */,
 				AB6E34AE1ABC69D900867CA3 /* RECommonFunctions.m in Sources */,
 				B941E0E81AD062A7008C82A3 /* ProductReportViewController.m in Sources */,
@@ -875,12 +916,15 @@
 				ABEC4DBF1ABD6A12000CF27C /* BaseViewController.m in Sources */,
 				AB6E34BE1ABC6A9A00867CA3 /* RightMenuViewController.m in Sources */,
 				B93D20CB1ACD39690021ED49 /* UserFeedbackCollectionViewCell.m in Sources */,
+				ABC0AEE51AD9105F004ECC20 /* UIImage+JTSImageEffects.m in Sources */,
 				AB6E34BD1ABC6A9A00867CA3 /* LeftMenuViewController.m in Sources */,
 				ABBF94531ACFBE5600E308F5 /* SearchViewController.m in Sources */,
 				AB4632061AC9B41500438D7B /* UsersFollowViewController.m in Sources */,
 				182E36001A73A7AB00FA4378 /* ProductTableViewCell.m in Sources */,
 				ABBF94591ACFC07800E308F5 /* CategoryCollectionViewCell.m in Sources */,
+				ABC0AEE01AD9105F004ECC20 /* JTSAnimatedGIFUtility.m in Sources */,
 				ABA8F6B41AC7BB9500198A4A /* UserFollowTableViewCell.m in Sources */,
+				ABC0AEE41AD9105F004ECC20 /* UIApplication+JTSImageViewController.m in Sources */,
 				ABEC4DCA1ABD8188000CF27C /* BorderTextField.m in Sources */,
 				184962A61A6657B30054AFFE /* ProductListViewController.m in Sources */,
 				B9E2EF051AC6FE7F0085BCDC /* PrivateMessageViewController.m in Sources */,
