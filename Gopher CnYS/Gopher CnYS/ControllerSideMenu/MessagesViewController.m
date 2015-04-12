@@ -20,6 +20,7 @@
 @property (nonatomic, strong) PFFile *selectedProfileImage;
 @property (nonatomic, strong) NSString *selectedProfileImageURL;
 @property (nonatomic, strong) PFObject *selectedChatRoom;
+@property (nonatomic, strong) NSString *selectedUserId;
 
 @end
 
@@ -246,6 +247,8 @@
         
         self.selectedChatRoom = self.messagesList[indexPath.row];
         
+        self.selectedUserId = messenger.objectId;
+        
         [self performSegueWithIdentifier:@"message_to_coversation" sender:self];
     }];
     
@@ -262,6 +265,7 @@
          destViewController.incomingImage = self.selectedProfileImage;
          destViewController.chatRoom = self.selectedChatRoom;
          destViewController.incomingImageURLStr = self.selectedProfileImageURL;
+         destViewController.incomingSenderID = self.selectedUserId;
      }
      else if ([segue.identifier isEqualToString:@"message_from_login"]) {
          HomeViewController *destViewController = (HomeViewController *)[segue destinationViewController];

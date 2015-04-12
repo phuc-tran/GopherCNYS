@@ -220,6 +220,25 @@
         if (!error) {
             // already followed, hide the button
             self.followButton.hidden = YES;
+            
+            // Send push notification
+            PFQuery *recipientQuery = [PFUser query];
+            [recipientQuery whereKey:@"objectId" equalTo:[self.curUser objectId]];
+            
+            PFQuery *installationQuery = [PFInstallation query];
+            [installationQuery whereKey:@"user" matchesQuery:recipientQuery];
+            
+            
+            NSString *nameStr = [[PFUser currentUser] valueForKey:@"name"];
+            if (nameStr == nil) {
+                nameStr = [[PFUser currentUser] username];
+            }
+            PFPush *push = [[PFPush alloc] init];
+            [push setQuery:installationQuery];
+            [push setMessage:[NSString stringWithFormat:@"%@ followed you", nameStr]];
+            [push sendPushInBackground];
+
+            
         } else {
             NSLog(@"error %@", error);
         }

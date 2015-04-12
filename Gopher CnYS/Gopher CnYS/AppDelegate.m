@@ -109,7 +109,8 @@
     [[PFFacebookUtils session] close];
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {    
+    NSLog(@"didRegisterForRemoteNotificationsWithDeviceToken %@", [deviceToken description]);
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
     currentInstallation.channels = @[@"global"];
@@ -127,7 +128,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"get notification: %@", userInfo);
-    [PFPush handlePush:userInfo];
+//    [PFPush handlePush:userInfo];
     
     // Handle these case:
     // 1. user sends private message
@@ -135,6 +136,9 @@
     // 3. user comments on products
     // 4. user receives feedback on their sellers page
     // 5. user is being followed
+    
+    // Broadcasts receiving push notification event
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"GopherReceivePushNotificationFromParse" object:nil userInfo:userInfo];
     
 }
 

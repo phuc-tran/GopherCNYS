@@ -254,7 +254,27 @@ static void * kCommentsKeyValueObservingContext = &kCommentsKeyValueObservingCon
     newComment[@"writer"] = [PFUser currentUser];
     newComment[@"forProductId"] = self.productId;
 
-    [newComment saveInBackground];
+    [newComment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+    
+        if (succeeded) {
+            // Send push notification
+            PFQuery *recipientQuery = [PFUser query];
+            [recipientQuery whereKey:@"objectId" equalTo:self.sellerId];
+            
+            PFQuery *installationQuery = [PFInstallation query];
+            [installationQuery whereKey:@"user" matchesQuery:recipientQuery];
+            
+            
+            NSString *nameStr = [[PFUser currentUser] valueForKey:@"name"];
+            if (nameStr == nil) {
+                nameStr = [[PFUser currentUser] username];
+            }
+            PFPush *push = [[PFPush alloc] init];
+            [push setQuery:installationQuery];
+            [push setMessage:[NSString stringWithFormat:@"%@ commented on your product", nameStr]];
+            [push sendPushInBackground];
+        }
+    }];
     
     // Reload table view
     [self.comments addObject:newComment];

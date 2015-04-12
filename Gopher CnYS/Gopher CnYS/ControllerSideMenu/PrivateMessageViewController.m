@@ -163,11 +163,20 @@
         [self loadProductInfo];
         [self loadMessages];
     }
+    
+    // Push notification observe
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushNotificationDidReceive) name:@"GopherReceivePushNotificationFromParse" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+
+    // Remove observer
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"GopherReceivePushNotificationFromParse" object:nil];
 }
 
 - (IBAction)leftBackClick:(id)sender {
@@ -372,16 +381,10 @@
     }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)pushNotificationDidReceive {
+    // refresh screen
+    [self loadMessages];
 }
-*/
-
 
 #pragma mark - JSQMessagesViewController method overrides
 
@@ -414,7 +417,21 @@
     chatHistory[@"message"] = message.text;
     chatHistory[@"writer"] = [PFUser currentUser];
     chatHistory[@"roomId"] = self.chatRoom;
-    [chatHistory saveInBackground];
+    [chatHistory saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+        if (succeeded) {
+            // Send push notification
+            PFQuery *recipientQuery = [PFUser query];
+            [recipientQuery whereKey:@"objectId" equalTo:self.incomingSenderID];
+            
+            PFQuery *installationQuery = [PFInstallation query];
+            [installationQuery whereKey:@"user" matchesQuery:recipientQuery];
+            
+            PFPush *push = [[PFPush alloc] init];
+            [push setQuery:installationQuery];
+            [push setMessage:[NSString stringWithFormat:@"%@: %@", message.senderDisplayName, message.text]];
+            [push sendPushInBackground];
+        }
+    }];
     
     // Mark chat room as new
     PFObject *chatroom = [PFObject objectWithoutDataWithClassName:@"Chatroom" objectId:[self.chatRoom valueForKey:@"objectId"]];

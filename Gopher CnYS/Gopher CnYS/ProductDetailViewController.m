@@ -148,6 +148,7 @@
     {
         PrivateMessageViewController *vc = (PrivateMessageViewController *)[segue destinationViewController];
         vc.product = [productData objectAtIndex:selectedIndex];
+        vc.incomingSenderID = [[[productData objectAtIndex:selectedIndex] valueForKey:@"seller"] objectId];
     } else if ([[segue identifier] isEqualToString:@"productDetail_to_userListing"]) {
         UserListingViewController *vc= (UserListingViewController *)[segue destinationViewController];
         vc.curUser = [[productData objectAtIndex:selectedIndex] valueForKey:@"seller"];
@@ -158,8 +159,9 @@
         vc.sellerName = self.productSellerLbl.text;
     } else if ([[segue identifier] isEqualToString:@"productDetail_to_comment"]) {
         CommentViewController *vc = (CommentViewController *)[segue destinationViewController];
-        vc.userInfoImage = [self takeSnapshotOfUserInfo];
+//        vc.userInfoImage = [self takeSnapshotOfUserInfo];
         vc.productId = [[productData objectAtIndex:selectedIndex] objectId];
+        vc.sellerId = [[[productData objectAtIndex:selectedIndex] valueForKey:@"seller"] objectId];
     } else if ([[segue identifier] isEqualToString:@"productDetail_to_login"]) {
         HomeViewController *vc = (HomeViewController *)[segue destinationViewController];
         vc.shouldGoBack = YES;
@@ -199,6 +201,8 @@
         
 //        _commentViewController.userInfoImage = [self takeSnapshotOfUserInfo];
         _commentViewController.productId = [[productData objectAtIndex:selectedIndex] objectId];
+        _commentViewController.sellerId = [[[productData objectAtIndex:selectedIndex] valueForKey:@"seller"] objectId];
+
     }
     
     return _commentViewController;

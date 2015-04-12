@@ -16,5 +16,7 @@
 @property (nonatomic, strong) PFObject *product;
 @property (nonatomic, strong) PFFile *incomingImage;
 @property (nonatomic, strong) NSString *incomingImageURLStr;
+@property (strong, nonatomic) NSString *incomingSenderID;
+
 
 @end
