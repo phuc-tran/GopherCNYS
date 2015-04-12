@@ -25,21 +25,6 @@
     self.profileImageView.layer.borderColor = [UIColor colorWithRed:226/255.0f green:226/255.0f blue:226/255.0f alpha:1.0f].CGColor;
     self.profileImageView.clipsToBounds = YES;
     
-    PFFile *imageFile = [[PFUser currentUser] objectForKey:@"profileImage"];
-    if (imageFile != nil) {
-        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-            if (!error) {
-                if (data != nil) {
-                    UIImage *image = [UIImage imageWithData:data];
-                    self.profileImageView.image = image;
-                }
-            }
-        }];
-    } else {
-        NSString *url = [[PFUser currentUser] objectForKey:@"profileImageURL"];
-        [self loadAvatar:url withImage:self.profileImageView];
-    }
-    
 //    self.translucentView.hidden = YES;
     self.translucentView.backgroundColor = [UIColor clearColor];
     self.translucentView.translucentTintColor = [UIColor clearColor];
@@ -65,6 +50,22 @@
     }
     self.usernameLable.text = name;
     self.emailLable.text = currentUser.email;
+    
+    // Load profile image
+    PFFile *imageFile = [[PFUser currentUser] objectForKey:@"profileImage"];
+    if (imageFile != nil) {
+        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+            if (!error) {
+                if (data != nil) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    self.profileImageView.image = image;
+                }
+            }
+        }];
+    } else {
+        NSString *url = [[PFUser currentUser] objectForKey:@"profileImageURL"];
+        [self loadAvatar:url withImage:self.profileImageView];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
