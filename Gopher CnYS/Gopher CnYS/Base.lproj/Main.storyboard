@@ -254,11 +254,11 @@
                         <viewControllerLayoutGuide type="bottom" id="94A-CD-XrR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iIv-pm-kMW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUS-dt-baG">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pc5-lq-HOU" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -373,7 +373,7 @@
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sn5-ZG-50K" userLabel="BottomView">
-                                <rect key="frame" x="0.0" y="620" width="320" height="47"/>
+                                <rect key="frame" x="0.0" y="521" width="320" height="47"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfx-Xs-Awi">
                                         <rect key="frame" x="220" y="0.0" width="100" height="47"/>
@@ -955,7 +955,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Hq-iF-pDA">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="DiY-fn-9FK">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1004,8 +1004,8 @@
                             <constraint firstAttribute="trailing" secondItem="zJo-1g-VxG" secondAttribute="trailing" id="6Mu-MK-PZD"/>
                             <constraint firstAttribute="bottom" secondItem="zJo-1g-VxG" secondAttribute="bottom" id="6nd-3e-OYW"/>
                             <constraint firstItem="zJo-1g-VxG" firstAttribute="leading" secondItem="uc3-gh-lbp" secondAttribute="leading" id="N7Y-wQ-1Sv"/>
+                            <constraint firstAttribute="bottom" secondItem="7Hq-iF-pDA" secondAttribute="bottom" id="Opf-ve-lWm"/>
                             <constraint firstAttribute="centerX" secondItem="7Hq-iF-pDA" secondAttribute="centerX" id="Sfg-HB-wlD"/>
-                            <constraint firstItem="zJo-1g-VxG" firstAttribute="top" secondItem="7Hq-iF-pDA" secondAttribute="bottom" id="d8Q-Ck-RnS"/>
                             <constraint firstAttribute="trailing" secondItem="7Hq-iF-pDA" secondAttribute="trailing" id="dia-o9-p5W"/>
                             <constraint firstItem="7Hq-iF-pDA" firstAttribute="top" secondItem="uc3-gh-lbp" secondAttribute="top" id="k65-hj-aum"/>
                         </constraints>
@@ -1052,11 +1052,11 @@
                         <viewControllerLayoutGuide type="bottom" id="fDD-pN-nXU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="VgA-zB-huq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qg6-3s-xUP">
-                                <rect key="frame" x="0.0" y="192" width="320" height="282"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qg6-3s-xUP">
+                                <rect key="frame" x="0.0" y="142" width="320" height="282"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2K-rq-Kg1">
                                         <rect key="frame" x="10" y="197" width="300" height="44"/>
@@ -2529,6 +2529,6 @@
         <segue reference="e0P-cp-GQQ"/>
         <segue reference="Hcj-1n-Msb"/>
         <segue reference="P9u-bd-GBQ"/>
-        <segue reference="zpZ-Cr-DCh"/>
+        <segue reference="G1w-cs-YeN"/>
     </inferredMetricsTieBreakers>
 </document>
