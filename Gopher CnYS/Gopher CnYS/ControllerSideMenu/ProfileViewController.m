@@ -20,9 +20,6 @@
 {
     [super viewDidLoad];
     
-    // KVO for profileImageView
-    [self.profileImageView addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:NULL];
-    
     self.profileImageView.layer.cornerRadius = 5.0f;
     self.profileImageView.layer.borderWidth = 2.0f;
     self.profileImageView.layer.borderColor = [UIColor colorWithRed:226/255.0f green:226/255.0f blue:226/255.0f alpha:1.0f].CGColor;
@@ -52,6 +49,9 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    // KVO for profileImageView
+    [self.profileImageView addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:NULL];
+
     //[self setupLeftBackBarButtonItem];
     self.navigationController.navigationBar.hidden = YES;
     if (![self checkIfUserLoggedIn]) {
@@ -68,7 +68,10 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [self.profileImageView removeObserver:self forKeyPath:@"image" context:NULL];
+    @try {
+        [self.profileImageView removeObserver:self forKeyPath:@"image" context:NULL];
+    }
+    @catch (NSException *__unused exception) { }
 }
 
 - (void) observeValueForKeyPath:(NSString *)path ofObject:(id) object change:(NSDictionary *) change context:(void *)context
