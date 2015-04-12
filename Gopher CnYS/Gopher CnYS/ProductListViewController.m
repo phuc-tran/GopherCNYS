@@ -17,12 +17,14 @@
 #import "ProductListTableFooterView.h"
 
 @interface ProductListViewController () <ProductTableViewCellDelegate>
-
+{
+    CGPoint pointNow;
+    NSMutableArray *productData;
+    PFGeoPoint *currentLocaltion;
+    NSUInteger selectedIndex;
+}
 @end
 
-NSMutableArray *productData;
-PFGeoPoint *currentLocaltion;
-NSUInteger selectedIndex;
 
 @implementation ProductListViewController
 
@@ -118,6 +120,22 @@ NSUInteger selectedIndex;
 }
 
 #pragma mark - TableView delegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [super scrollViewWillBeginDragging:scrollView];
+    pointNow = scrollView.contentOffset;
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [super scrollViewDidScroll:scrollView];
+    if (scrollView.contentOffset.y< pointNow.y) {
+        self.bottomView.hidden = NO;
+    } else if (scrollView.contentOffset.y> pointNow.y) {
+        self.bottomView.hidden = YES;
+    }
+    
+}
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 162;
