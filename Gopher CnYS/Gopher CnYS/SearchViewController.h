@@ -14,7 +14,7 @@
 
 @protocol SearchViewControllerDelegate <NSObject>
 @optional
-- (void)onFilterContentForSearch:(NSMutableArray*)favoriteList withPrice:(NSInteger)price withZipCode:(NSString*)zipcode withKeyword:(NSString*)keywords;
+- (void)onFilterContentForSearch:(NSMutableArray*)categoryList withPrice:(NSInteger)price withZipCode:(NSString*)zipcode withKeyword:(NSString*)keywor favoriteSelected:(BOOL)isSelected;
 @end
 
 @interface SearchViewController : BaseViewController <UICollectionViewDataSource, UICollectionViewDelegate, CategoryCollectionViewCellDelegate>

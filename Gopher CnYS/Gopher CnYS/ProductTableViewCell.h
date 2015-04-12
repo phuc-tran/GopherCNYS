@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ProductInformation.h"
 @protocol ProductTableViewCellDelegate <NSObject>
 @optional
 - (void)onFavoriteCheck:(NSInteger)index isFavorite:(BOOL)isFv;
@@ -28,5 +28,5 @@
 
 @property (unsafe_unretained, nonatomic) NSUInteger cellIndex;
 @property (assign, nonatomic) id<ProductTableViewCellDelegate> delegate;
-- (void)loadData;
+- (void)loadData:(ProductInformation*)product;
 @end

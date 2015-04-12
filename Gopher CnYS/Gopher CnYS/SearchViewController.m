@@ -7,6 +7,7 @@
 //
 
 #import "SearchViewController.h"
+#import "HomeViewController.h"
 
 @interface SearchViewController ()
 {
@@ -24,7 +25,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    if (![self checkIfUserLoggedIn]) {
+        [self performSegueWithIdentifier:@"search_from_login" sender:self];
+        return;
+    }
     categoryData = [NSArray arrayWithObjects:@"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];
     
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Town", @"City", @"State", @"Country", @"World"]];
@@ -44,6 +48,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super setupLeftBackBarButtonItem];
+    [self.categoryCollectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,9 +56,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"search_from_login"]) {
+        HomeViewController *destViewController = (HomeViewController *)[segue destinationViewController];
+        destViewController.shouldGoBack = YES;
+    }
+}
+
 #pragma mark - UICollectionViewDataSource
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
     NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
+}
+
+- (IBAction)conditionControlChangedValue:(UISegmentedControl *)segmentedControl {
+    NSLog(@"Selected index %ld ", (long)segmentedControl.selectedSegmentIndex);
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -121,16 +140,16 @@
         [alert show];
         return;
     }
-    NSMutableArray *favoriteList = [[NSMutableArray alloc] init];
+    NSMutableArray *categoryList = [[NSMutableArray alloc] init];
     for (int i = 0; i < categorySelectedList.count; i++) {
         BOOL isSelected = [[categorySelectedList objectAtIndex:i] boolValue];
         if (isSelected) {
-            [favoriteList addObject:[NSNumber numberWithInt:(i+1)]];
+            [categoryList addObject:[NSNumber numberWithInt:(i+1)]];
         }
 
     }
     if(delegate != nil)
-        [delegate onFilterContentForSearch:favoriteList withPrice:[self.priceField.text integerValue] withZipCode:self.zipCodeField.text withKeyword:self.keywordField.text];
+        [delegate onFilterContentForSearch:categoryList withPrice:[self.priceField.text integerValue] withZipCode:self.zipCodeField.text withKeyword:self.keywordField.text favoriteSelected:isFavoriteSelected];
     
     
     [self.navigationController popViewControllerAnimated:YES];

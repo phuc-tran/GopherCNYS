@@ -21,8 +21,6 @@
 @end
 
 NSMutableArray *productData;
-NSMutableArray *productMasterData;
-//NSArray *productFavoriteData;
 PFGeoPoint *currentLocaltion;
 NSUInteger selectedIndex;
 
@@ -43,7 +41,6 @@ NSUInteger selectedIndex;
     }];
 
     productData = [[NSMutableArray alloc] init];
-    productMasterData = [[NSMutableArray alloc] init];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil] forCellReuseIdentifier:@"ProductTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -141,62 +138,8 @@ NSUInteger selectedIndex;
     ProductTableViewCell *cell = (ProductTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:@"ProductTableViewCell"];
     cell.delegate = self;
     cell.cellIndex = indexPath.row;
-    
-    cell.ivProductThumb.image = nil;
-    
-    cell.lblProductName.text = [[productData objectAtIndex:indexPath.row] valueForKey:@"title"];
-    cell.lblProductDescription.text = [[[productData objectAtIndex:indexPath.row] objectForKey:@"description"] description];
-    NSString *location = [[productData objectAtIndex:indexPath.row] valueForKey:@"locality"];
-    if (location == nil) {
-        location = [[productData objectAtIndex:indexPath.row] valueForKey:@"adminArea"];
-    }
-    cell.lblProductMiles.text = location;
-    [cell loadData];
-    
-    if ([self checkIfUserLoggedIn]) {
-        cell.btnFavorited.hidden = FALSE;
-        NSArray *favoriteArr = [[productData objectAtIndex:indexPath.row] objectForKey:@"favoritors"];
-    
-        if ([self checkItemisFavorited:favoriteArr]) { // is favorited
-            cell.isFavorited = YES;
-            [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateNormal];
-            [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateHighlighted];
-            [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_on.png"] forState:UIControlStateSelected];
-        } else {
-            cell.isFavorited = NO;
-            [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateNormal];
-            [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateHighlighted];
-            [cell.btnFavorited setImage:[UIImage imageNamed:@"btn_star_big_off.png"] forState:UIControlStateSelected];
-        }
-    } else {
-        cell.btnFavorited.hidden = TRUE;
-    }
-    
-    NSInteger price  = [[[productData objectAtIndex:indexPath.row] valueForKey:@"price"] integerValue];
-    cell.lblProductPrice.text = [NSString stringWithFormat:@"%ld", (long)price];
-    
-    //PFGeoPoint *positionItem  = [[productData objectAtIndex:indexPath.row] objectForKey:@"position"];
-    //cell.lblProductMiles.text = [NSString stringWithFormat:@"%.f miles", [currentLocaltion distanceInMilesTo:positionItem]];
-    
-    PFFile *imageFile = [[productData objectAtIndex:indexPath.row] objectForKey:@"photo1"];
-    if (imageFile == nil) {
-        imageFile = [[productData objectAtIndex:indexPath.row] objectForKey:@"photo2"];
-    }
-    
-    if (imageFile == nil) {
-        imageFile = [[productData objectAtIndex:indexPath.row] objectForKey:@"photo3"];
-    }
-    
-    if (imageFile == nil) {
-        imageFile = [[productData objectAtIndex:indexPath.row] objectForKey:@"photo4"];
-    }
-    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-        if (!error) {
-            UIImage *image = [UIImage imageWithData:data];
-            cell.ivProductThumb.image = image;
-        }
-    }];
-    
+    ProductInformation *product = [productData objectAtIndex:indexPath.row];
+    [cell loadData:product];
     return cell;
 }
 
@@ -217,10 +160,8 @@ NSUInteger selectedIndex;
 
 - (void) loadProductList {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
-    PFQuery *query = [PFQuery queryWithClassName:@"Products"];
+    PFQuery *query = [ProductInformation query];
     [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    [query selectKeys:@[@"description", @"title", @"photo1", @"photo2", @"photo3", @"photo4", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors", @"category", @"condition", @"quantity", @"seller", @"country", @"adminArea", @"locality", @"postalCode"]];
     [query orderByDescending:@"createdAt"];
     query.limit = 100;
     query.skip = [productData count];
@@ -231,13 +172,14 @@ NSUInteger selectedIndex;
             self.canLoadMore = (objects.count > 0);
             NSLog(@"can load more %d", self.canLoadMore);
             if (self.canLoadMore) {
-                for (int i = 0; i < objects.count; i++) {
-                    [productData addObject:objects[i]];
+                for (ProductInformation *object in objects) {
+                    [productData addObject:object];
                 }
+                
                 NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
                 NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-                    PFObject *first = (PFObject*)a;
-                    PFObject *second = (PFObject*)b;
+                    ProductInformation *first = (ProductInformation*)a;
+                    ProductInformation *second = (ProductInformation*)b;
                     return [self compare:first withProduct:second];
                 }];
                 productData = [NSMutableArray arrayWithArray:tmpArr];
@@ -482,26 +424,34 @@ NSUInteger selectedIndex;
 }
 
 #pragma mark - SearchViewControllerDelegate
-- (void)onFilterContentForSearch:(NSMutableArray*)favoriteList withPrice:(NSInteger)price withZipCode:(NSString *)zipcode withKeyword:(NSString *)keywords {
-    NSLog(@"productMasterData %ld", (unsigned long)productMasterData.count);
+- (void)onFilterContentForSearch:(NSMutableArray*)categoryList withPrice:(NSInteger)price withZipCode:(NSString *)zipcode withKeyword:(NSString *)keywords favoriteSelected:(BOOL)isSelected {
     NSMutableArray *finalArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < productMasterData.count; i++) {
-        NSInteger ctg = [[[productMasterData objectAtIndex:i] valueForKey:@"category"] integerValue];
-        NSInteger p  = [[[productMasterData objectAtIndex:i] valueForKey:@"price"] integerValue];
-        NSString *postalCode  = [[productMasterData objectAtIndex:i] valueForKey:@"postalCode"];
-        
+    for (int i = 0; i < productData.count; i++) {
+        ProductInformation *product = [productData objectAtIndex:i];
+        NSInteger ctg = [product.category integerValue];
+        NSInteger p  = [product.price integerValue];
+        //NSString *postalCode  = [[productData objectAtIndex:i] valueForKey:@"postalCode"];
+        NSArray *iFavorite = product.favoritors;
         NSLog(@"root %ld price %ld", (long)ctg, (long)p);
-        if (favoriteList.count <= 0) {
-            if (p <= price) {
-                NSLog(@"ADD");
-                [finalArray addObject:[productMasterData objectAtIndex:i]];
+        if (categoryList.count <= 0) {
+            if (isSelected) {
+                if ([self checkItemisFavorited:iFavorite]) {
+                    [finalArray addObject:[productData objectAtIndex:i]];
+                }
+            } else {
+                if (p <= price) {
+                    NSLog(@"ADD");
+                    [finalArray addObject:[productData objectAtIndex:i]];
+                }
             }
+            
+
         } else {
-            for (int j = 0; j < favoriteList.count; j++) {
-                NSInteger index = [[favoriteList objectAtIndex:j] integerValue];
+            for (int j = 0; j < categoryList.count; j++) {
+                NSInteger index = [[categoryList objectAtIndex:j] integerValue];
                 if (ctg == index && p <= price) {
                     NSLog(@"ADD");
-                    [finalArray addObject:[productMasterData objectAtIndex:i]];
+                    [finalArray addObject:[productData objectAtIndex:i]];
                 }
             }
         }

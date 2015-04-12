@@ -254,11 +254,11 @@
                         <viewControllerLayoutGuide type="bottom" id="94A-CD-XrR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iIv-pm-kMW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUS-dt-baG">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pc5-lq-HOU" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -373,7 +373,7 @@
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sn5-ZG-50K" userLabel="BottomView">
-                                <rect key="frame" x="0.0" y="521" width="320" height="47"/>
+                                <rect key="frame" x="0.0" y="620" width="320" height="47"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfx-Xs-Awi">
                                         <rect key="frame" x="220" y="0.0" width="100" height="47"/>
@@ -1052,11 +1052,11 @@
                         <viewControllerLayoutGuide type="bottom" id="fDD-pN-nXU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="VgA-zB-huq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qg6-3s-xUP">
-                                <rect key="frame" x="0.0" y="143" width="320" height="282"/>
+                                <rect key="frame" x="0.0" y="192" width="320" height="282"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2K-rq-Kg1">
                                         <rect key="frame" x="10" y="197" width="300" height="44"/>
@@ -1161,14 +1161,14 @@
                         <viewControllerLayoutGuide type="bottom" id="ysH-fc-Fxb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="o2X-f5-ryL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="700"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7A-0E-fXa">
-                                <rect key="frame" x="0.0" y="64" width="320" height="636"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLR-Wg-yY2" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="636"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="603"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="op3-A2-k86">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
@@ -1181,6 +1181,9 @@
                                                             <segment title="Old"/>
                                                         </segments>
                                                         <color key="tintColor" red="0.25098039215686274" green="0.87058823529411766" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <connections>
+                                                            <action selector="conditionControlChangedValue:" destination="tzO-Lr-hr1" eventType="valueChanged" id="54H-oD-r4b"/>
+                                                        </connections>
                                                     </segmentedControl>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50v-R1-LgF">
                                                         <rect key="frame" x="278" y="9" width="32" height="32"/>
@@ -1284,7 +1287,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7AK-vO-NSf">
-                                                <rect key="frame" x="0.0" y="159" width="320" height="427"/>
+                                                <rect key="frame" x="0.0" y="159" width="320" height="387"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Categories" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aja-TA-Atc">
                                                         <rect key="frame" x="5" y="0.0" width="98" height="35"/>
@@ -1319,7 +1322,7 @@
                                                         </connections>
                                                     </button>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="B1f-jH-4ck">
-                                                        <rect key="frame" x="0.0" y="33" width="320" height="389"/>
+                                                        <rect key="frame" x="0.0" y="33" width="320" height="354"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PG5-dh-V4e">
                                                             <size key="itemSize" width="96" height="96"/>
@@ -1373,11 +1376,11 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="320" id="ekQ-no-7CT"/>
-                                                    <constraint firstAttribute="height" constant="427" id="nXY-KH-YS8"/>
+                                                    <constraint firstAttribute="height" constant="387" id="nXY-KH-YS8"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M5d-o0-6ax">
-                                                <rect key="frame" x="10" y="588" width="300" height="44"/>
+                                                <rect key="frame" x="10" y="550" width="300" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="6fR-Ya-DGe"/>
                                                     <constraint firstAttribute="width" constant="300" id="heK-E3-uf6"/>
@@ -1394,7 +1397,7 @@
                                         <constraints>
                                             <constraint firstAttribute="centerX" secondItem="M5d-o0-6ax" secondAttribute="centerX" id="7Rn-HE-s6Y"/>
                                             <constraint firstAttribute="centerX" secondItem="op3-A2-k86" secondAttribute="centerX" id="8Xz-Lr-Vum"/>
-                                            <constraint firstAttribute="height" constant="636" id="C62-AC-UDO"/>
+                                            <constraint firstAttribute="height" constant="603" id="C62-AC-UDO"/>
                                             <constraint firstAttribute="trailing" secondItem="sQw-7p-WrQ" secondAttribute="trailing" id="CzL-WL-uEL"/>
                                             <constraint firstItem="op3-A2-k86" firstAttribute="top" secondItem="YLR-Wg-yY2" secondAttribute="top" id="HXH-hz-G9f"/>
                                             <constraint firstAttribute="centerX" secondItem="7AK-vO-NSf" secondAttribute="centerX" id="Wbi-i8-YwB"/>
@@ -1402,7 +1405,7 @@
                                             <constraint firstItem="sQw-7p-WrQ" firstAttribute="leading" secondItem="YLR-Wg-yY2" secondAttribute="leading" id="h7s-Nn-VJC"/>
                                             <constraint firstAttribute="centerX" secondItem="j5g-wZ-1oW" secondAttribute="centerX" id="kPy-Zm-JRf"/>
                                             <constraint firstItem="j5g-wZ-1oW" firstAttribute="top" secondItem="YLR-Wg-yY2" secondAttribute="top" constant="149" id="ms1-FG-xL9"/>
-                                            <constraint firstAttribute="bottom" secondItem="M5d-o0-6ax" secondAttribute="bottom" constant="4" id="oLw-f7-iRm"/>
+                                            <constraint firstAttribute="bottom" secondItem="M5d-o0-6ax" secondAttribute="bottom" constant="9" id="oLw-f7-iRm"/>
                                             <constraint firstItem="sQw-7p-WrQ" firstAttribute="top" secondItem="j5g-wZ-1oW" secondAttribute="bottom" constant="8" id="vj7-70-Ty2"/>
                                         </constraints>
                                     </view>
@@ -1427,7 +1430,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="btf-8M-cK7"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="700"/>
+                    <size key="freeformSize" width="320" height="667"/>
                     <connections>
                         <outlet property="categoryCollectionView" destination="B1f-jH-4ck" id="cu7-zr-uvO"/>
                         <outlet property="categoryResetBtn" destination="jyf-wg-zCd" id="vcd-GD-jT5"/>
@@ -1437,11 +1440,12 @@
                         <outlet property="priceField" destination="pec-N0-FID" id="aUL-yQ-oHc"/>
                         <outlet property="rangeSegmentControl" destination="5SU-7c-Dc9" id="tRz-dE-RaV"/>
                         <outlet property="zipCodeField" destination="bZL-jy-owz" id="oJm-Sf-5er"/>
+                        <segue destination="KBN-7p-nVk" kind="push" identifier="search_from_login" id="zpZ-Cr-DCh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4t4-8o-Hvi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2579" y="1117"/>
+            <point key="canvasLocation" x="2528" y="1116.5"/>
         </scene>
         <!--Users I follow-->
         <scene sceneID="Jis-P9-0a6">
@@ -2522,9 +2526,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Hcj-1n-Msb"/>
         <segue reference="e0P-cp-GQQ"/>
+        <segue reference="Hcj-1n-Msb"/>
         <segue reference="P9u-bd-GBQ"/>
-        <segue reference="ubd-Oq-QtJ"/>
+        <segue reference="zpZ-Cr-DCh"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -13,6 +13,7 @@
 #import "SBPickerSelector.h"
 #import "SearchViewController.h"
 #import "STableViewController.h"
+#import "ProductInformation.h"
 
 @interface ProductListViewController : STableViewController <UITabBarDelegate, UISearchBarDelegate, UISearchDisplayDelegate, SearchViewControllerDelegate>
 {

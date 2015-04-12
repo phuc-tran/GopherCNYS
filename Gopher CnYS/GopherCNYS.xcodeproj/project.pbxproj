@@ -64,6 +64,7 @@
 		ABA4F0D61AC4711E008915F7 /* CountryPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA4F0D41AC4711E008915F7 /* CountryPicker.m */; };
 		ABA8F6B41AC7BB9500198A4A /* UserFollowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA8F6B31AC7BB9500198A4A /* UserFollowTableViewCell.m */; };
 		ABBB13021AD032C1001D31EC /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBB13011AD032C1001D31EC /* HMSegmentedControl.m */; };
+		ABBEEF761ADA4A750051D60B /* ProductInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBEEF751ADA4A750051D60B /* ProductInformation.m */; };
 		ABBF71521AD6DB9A00A446C4 /* STableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF71511AD6DB9A00A446C4 /* STableViewController.m */; };
 		ABBF715A1AD6DD2600A446C4 /* ProductListTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF71551AD6DD2600A446C4 /* ProductListTableFooterView.m */; };
 		ABBF715B1AD6DD2600A446C4 /* ProductListTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABBF71561AD6DD2600A446C4 /* ProductListTableFooterView.xib */; };
@@ -207,6 +208,8 @@
 		ABA8F6B31AC7BB9500198A4A /* UserFollowTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFollowTableViewCell.m; sourceTree = "<group>"; };
 		ABBB13001AD032C1001D31EC /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
 		ABBB13011AD032C1001D31EC /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
+		ABBEEF741ADA4A750051D60B /* ProductInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductInformation.h; sourceTree = "<group>"; };
+		ABBEEF751ADA4A750051D60B /* ProductInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductInformation.m; sourceTree = "<group>"; };
 		ABBF71501AD6DB9A00A446C4 /* STableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STableViewController.h; sourceTree = "<group>"; };
 		ABBF71511AD6DB9A00A446C4 /* STableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STableViewController.m; sourceTree = "<group>"; };
 		ABBF71541AD6DD2600A446C4 /* ProductListTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListTableFooterView.h; sourceTree = "<group>"; };
@@ -228,7 +231,7 @@
 		ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddNewSearchViewController.xib; path = ../AddNewSearchViewController.xib; sourceTree = "<group>"; };
 		ABC069931AD5816500893187 /* MyListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyListingViewController.h; sourceTree = "<group>"; };
 		ABC069941AD5816500893187 /* MyListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyListingViewController.m; sourceTree = "<group>"; };
-		ABC069961AD5956F00893187 /* GlobalHeard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalHeard.h; sourceTree = "<group>"; };
+		ABC069961AD5956F00893187 /* GlobalHeard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GlobalHeard.h; path = ControllerSideMenu/GlobalHeard.h; sourceTree = "<group>"; };
 		ABC0AED01AD8F609004ECC20 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		ABC0AED11AD8F609004ECC20 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		ABC0AED41AD9105F004ECC20 /* JTSAnimatedGIFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSAnimatedGIFUtility.h; sourceTree = "<group>"; };
@@ -432,12 +435,11 @@
 		1864BF071A4B1EA200EF5DD7 /* GopherCNYS */ = {
 			isa = PBXGroup;
 			children = (
+				ABBEEF731ADA4A2C0051D60B /* General */,
 				AB8B709A1ABB388B0028DC47 /* ThirdParty */,
 				182E35F71A73A70300FA4378 /* CustomCells */,
 				AB6E34B11ABC6A9A00867CA3 /* ControllerSideMenu */,
 				1837DB071A65230B00C48A51 /* ViewControllers */,
-				1864BF0C1A4B1EA300EF5DD7 /* AppDelegate.h */,
-				1864BF0D1A4B1EA300EF5DD7 /* AppDelegate.m */,
 				1864BF0F1A4B1EA300EF5DD7 /* HomeViewController.h */,
 				1864BF101A4B1EA300EF5DD7 /* HomeViewController.m */,
 				1864BF121A4B1EA300EF5DD7 /* Main.storyboard */,
@@ -594,6 +596,18 @@
 			path = HMSegmentedControl;
 			sourceTree = "<group>";
 		};
+		ABBEEF731ADA4A2C0051D60B /* General */ = {
+			isa = PBXGroup;
+			children = (
+				ABC069961AD5956F00893187 /* GlobalHeard.h */,
+				1864BF0C1A4B1EA300EF5DD7 /* AppDelegate.h */,
+				1864BF0D1A4B1EA300EF5DD7 /* AppDelegate.m */,
+				ABBEEF741ADA4A750051D60B /* ProductInformation.h */,
+				ABBEEF751ADA4A750051D60B /* ProductInformation.m */,
+			);
+			name = General;
+			sourceTree = "<group>";
+		};
 		ABBF714F1AD6DB9A00A446C4 /* STableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -684,7 +698,6 @@
 				AB6E34B71ABC6A9A00867CA3 /* RightMenuViewController.m */,
 				AB6E34B81ABC6A9A00867CA3 /* RootViewController.h */,
 				AB6E34B91ABC6A9A00867CA3 /* RootViewController.m */,
-				ABC069961AD5956F00893187 /* GlobalHeard.h */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -929,6 +942,7 @@
 				184962A61A6657B30054AFFE /* ProductListViewController.m in Sources */,
 				B9E2EF051AC6FE7F0085BCDC /* PrivateMessageViewController.m in Sources */,
 				AB6E34C01ABC6A9A00867CA3 /* MessagesViewController.m in Sources */,
+				ABBEEF761ADA4A750051D60B /* ProductInformation.m in Sources */,
 				B9B1EC331AC6C50300377E36 /* MessageTableViewCell.m in Sources */,
 				ABBF945F1ACFCB1700E308F5 /* MJPopupBackgroundView.m in Sources */,
 				ABC069951AD5816500893187 /* MyListingViewController.m in Sources */,
