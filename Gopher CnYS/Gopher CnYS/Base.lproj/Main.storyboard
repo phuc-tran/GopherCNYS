@@ -2522,9 +2522,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="e0P-cp-GQQ"/>
         <segue reference="Hcj-1n-Msb"/>
-        <segue reference="ExP-uq-3s7"/>
-        <segue reference="PRy-In-HQn"/>
+        <segue reference="e0P-cp-GQQ"/>
+        <segue reference="P9u-bd-GBQ"/>
+        <segue reference="ubd-Oq-QtJ"/>
     </inferredMetricsTieBreakers>
 </document>

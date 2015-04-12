@@ -173,7 +173,7 @@ NSUInteger selectedIndex;
     }
     
     NSInteger price  = [[[productData objectAtIndex:indexPath.row] valueForKey:@"price"] integerValue];
-    cell.lblProductPrice.text = [NSString stringWithFormat:@"$%ld", (long)price];
+    cell.lblProductPrice.text = [NSString stringWithFormat:@"%ld", (long)price];
     
     //PFGeoPoint *positionItem  = [[productData objectAtIndex:indexPath.row] objectForKey:@"position"];
     //cell.lblProductMiles.text = [NSString stringWithFormat:@"%.f miles", [currentLocaltion distanceInMilesTo:positionItem]];

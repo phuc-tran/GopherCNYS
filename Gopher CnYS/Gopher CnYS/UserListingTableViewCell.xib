@@ -40,7 +40,7 @@
                                     <constraint firstAttribute="width" constant="42" id="wXM-0l-bdK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.30588235294117649" green="0.30588235294117649" blue="0.30588235294117649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.25098039220000001" green="0.87058823529999996" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89W-rC-vk8">
@@ -49,7 +49,7 @@
                                 <color key="textColor" red="0.51372549019607838" green="0.51372549019607838" blue="0.51372549019607838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dollar_icon" translatesAutoresizingMaskIntoConstraints="NO" id="aQC-Za-baK">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="price_icon" translatesAutoresizingMaskIntoConstraints="NO" id="aQC-Za-baK">
                                 <rect key="frame" x="249" y="11" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="EPZ-2e-M45"/>
@@ -96,6 +96,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="dollar_icon" width="16" height="16"/>
+        <image name="price_icon" width="20" height="20"/>
     </resources>
 </document>
