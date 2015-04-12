@@ -56,18 +56,12 @@
                                 <state key="normal" image="price_icon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="favoriteItemBtnClick:" destination="qvg-hr-woj" eventType="touchUpInside" id="Ur9-V8-kTB"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axX-6c-WJt">
                                 <rect key="frame" x="64" y="128" width="20" height="20"/>
                                 <state key="normal" image="location_icon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="favoriteItemBtnClick:" destination="qvg-hr-woj" eventType="touchUpInside" id="5M5-Eb-lwW"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New York" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1H7-mL-EH0">
                                 <rect key="frame" x="89" y="128" width="216" height="20"/>
