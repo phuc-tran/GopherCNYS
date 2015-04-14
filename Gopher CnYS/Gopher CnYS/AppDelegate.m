@@ -86,6 +86,7 @@
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
+    
     if ([FBAppCall handleOpenURL:url
                sourceApplication:sourceApplication
                      withSession:[PFFacebookUtils session]]) {
@@ -97,6 +98,7 @@
                       annotation:annotation]) {
         return YES;
     }
+    
     
     return NO;
 }
