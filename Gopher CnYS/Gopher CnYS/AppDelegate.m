@@ -64,6 +64,12 @@
     if (IS_OS_8_OR_LATER) {
        [self requestAlwaysAuthorization];
     }
+    
+    UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (notification) {
+        // Receive notification from remote
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"GopherBackgroundReceivePushNotificationFromParse" object:nil userInfo:notification.userInfo];
+    }
     return YES;
 }
 
@@ -129,7 +135,7 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    NSLog(@"get notification: %@", userInfo);
+//    NSLog(@"get notification: %@", userInfo);
 //    [PFPush handlePush:userInfo];
     
     // Handle these case:
@@ -140,7 +146,15 @@
     // 5. user is being followed
     
     // Broadcasts receiving push notification event
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"GopherReceivePushNotificationFromParse" object:nil userInfo:userInfo];
+    if (application.applicationState == UIApplicationStateInactive || application.applicationState == UIApplicationStateBackground) {
+        // Open app from background
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"GopherBackgroundReceivePushNotificationFromParse" object:nil userInfo:userInfo];
+    }
+    else {
+        // App is in foreground
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"GopherForegroundReceivePushNotificationFromParse" object:nil userInfo:userInfo];
+
+    }
     
 }
 
