@@ -38,6 +38,9 @@
         tableView;
     });
     [self.view addSubview:self.tableView];
+    
+    // listen push notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushNotificationDidReceive:) name:@"GopherBackgroundReceivePushNotificationFromParse" object:nil];
 }
 
 #pragma mark -
@@ -154,5 +157,19 @@
 {
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 }
+
+#pragma mark - NSNotification handler
+
+- (void)pushNotificationDidReceive:(NSNotification *)notification {
+    NSLog(@"LeftMenuViewController pushNotificationDidReceive %@", notification.userInfo);
+    NSDictionary *userInfo = notification.userInfo;
+    if ([userInfo valueForKey:@"type"] && [[userInfo valueForKey:@"type"] isEqualToString:@"PrivateMessage"]) {
+        // Should load message page
+        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"messageViewController"]]
+                                                     animated:YES];
+        [self.sideMenuViewController hideMenuViewController];
+    }
+}
+
 
 @end

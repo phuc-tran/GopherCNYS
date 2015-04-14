@@ -165,7 +165,7 @@
     }
     
     // Push notification observe
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushNotificationDidReceive) name:@"GopherReceivePushNotificationFromParse" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushNotificationDidReceive) name:@"GopherForegroundReceivePushNotificationFromParse" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -176,7 +176,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
 
     // Remove observer
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"GopherReceivePushNotificationFromParse" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"GopherForegroundReceivePushNotificationFromParse" object:nil];
 }
 
 - (IBAction)leftBackClick:(id)sender {
@@ -270,20 +270,30 @@
                                                              senderDisplayName:[[iMessage valueForKey:@"writer"] valueForKey:@"username"]
                                                                           date:[iMessage valueForKey:@"updatedAt"]
                                                                           text:[iMessage valueForKey:@"message"]];
-                    NSLog(@"message %@", message);
+//                    NSLog(@"message %@", message);
                     [self.messages addObject:message];
                 }
                 [self.collectionView reloadData];
                 
-                // Mark chat room as read
-                PFObject *readChatroom = [PFObject objectWithoutDataWithClassName:@"Chatroom" objectId:[self.chatRoom valueForKey:@"objectId"]];
-                readChatroom[@"new"] = @"read";
-                [readChatroom saveInBackground];
             } else {
                 // Log details of the failure
                 NSLog(@"Error: %@ %@", error, [error userInfo]);
             }
         }];
+        
+        // Mark chat room as read
+        PFQuery *chatroomQuery = [PFQuery queryWithClassName:@"Chatroom"];
+        [chatroomQuery whereKey:@"objectId" equalTo:[self.chatRoom valueForKey:@"objectId"]];
+        [chatroomQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
+            if (objects.count > 0) {
+                PFObject *readChatroom = [objects objectAtIndex:0];
+                if ([readChatroom[@"new"] isEqualToString:@"new"]) {
+                    readChatroom[@"new"] = @"read";
+                    [readChatroom saveInBackground];
+                }
+            }
+        }];
+        
     }
     else { // This case happen when open private message screen from product detail screen
         // Load chat room from product
@@ -319,7 +329,7 @@
                                                                              senderDisplayName:[[iMessage valueForKey:@"writer"] valueForKey:@"username"]
                                                                                           date:[iMessage valueForKey:@"updatedAt"]
                                                                                           text:[iMessage valueForKey:@"message"]];
-                                    NSLog(@"message %@", message);
+//                                    NSLog(@"message %@", message);
                                     [self.messages addObject:message];
                                 }
                                 if (objects.count > 0) {
@@ -428,7 +438,8 @@
             
             PFPush *push = [[PFPush alloc] init];
             [push setQuery:installationQuery];
-            [push setMessage:[NSString stringWithFormat:@"%@: %@", message.senderDisplayName, message.text]];
+            NSDictionary *payload = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@: %@", message.senderDisplayName, message.text], @"alert", @"PrivateMessage", @"type", nil];
+            [push setData:payload];
             [push sendPushInBackground];
         }
     }];

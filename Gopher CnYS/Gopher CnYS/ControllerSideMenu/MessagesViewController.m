@@ -65,7 +65,7 @@
 //    [sellerQuery includeKey:@"buyer"];
     
     PFQuery *messagesListQuery = [PFQuery orQueryWithSubqueries:@[buyerQuery, sellerQuery]];
-    [messagesListQuery orderByDescending:@"createdAt"];
+    [messagesListQuery orderByDescending:@"updatedAt"];
     [messagesListQuery includeKey:@"listingId"];
     
     [messagesListQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -124,7 +124,7 @@
     // Calculate the days / mins / hours of the latest message
     // The maximum days is 7
     NSString *updatedStr = @"";
-    NSDate *updated = [self.messagesList[indexPath.row] createdAt];
+    NSDate *updated = [self.messagesList[indexPath.row] updatedAt];
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [gregorianCalendar components:NSCalendarUnitDay
                                                         fromDate:updated
@@ -162,7 +162,7 @@
     }
 
     [messenger fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error){
-        NSLog(@"messenger %@", [messenger valueForKey:@"username"]);
+//        NSLog(@"messenger %@", [messenger valueForKey:@"username"]);
         PFFile *profileAvatar = [messenger valueForKey:@"profileImage"];
         if (profileAvatar != nil) {
             [profileAvatar getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
