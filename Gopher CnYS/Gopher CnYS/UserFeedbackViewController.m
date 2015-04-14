@@ -225,7 +225,28 @@
     newComment[@"comment"] = message.text;
     newComment[@"writer"] = [PFUser currentUser];
     newComment[@"forUserId"] = [self.curUser objectId];
-    [newComment saveInBackground];
+    
+    [newComment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+        
+        if (succeeded) {
+            // Send push notification
+            PFQuery *recipientQuery = [PFUser query];
+            [recipientQuery whereKey:@"objectId" equalTo:[self.curUser objectId]];
+            
+            PFQuery *installationQuery = [PFInstallation query];
+            [installationQuery whereKey:@"user" matchesQuery:recipientQuery];
+            
+            
+            NSString *nameStr = [[PFUser currentUser] valueForKey:@"name"];
+            if (nameStr == nil) {
+                nameStr = [[PFUser currentUser] username];
+            }
+            PFPush *push = [[PFPush alloc] init];
+            [push setQuery:installationQuery];
+            [push setMessage:[NSString stringWithFormat:@"%@ sent feedback on your listing page", nameStr]];
+            [push sendPushInBackground];
+        }
+    }];
     
     [self finishSendingMessageAnimated:YES];
 }

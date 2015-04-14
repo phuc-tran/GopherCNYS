@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) UIImage *userInfoImage;
 @property (nonatomic, strong) NSString *productId;
+@property (nonatomic, strong) NSString *sellerId;
 @property (nonatomic, assign) id <CommentViewControllerDelegate> delegate;
 
 @end

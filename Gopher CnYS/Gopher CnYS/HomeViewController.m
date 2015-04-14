@@ -203,6 +203,10 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
             }
             
         }];
+        
+        // Add user to PFInstallation
+        [[PFInstallation currentInstallation] setObject:user forKey:@"user"];
+        [[PFInstallation currentInstallation] saveEventually];
     }
 }
 
@@ -229,6 +233,10 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
                                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                                         if (user) {
                                             NSLog(@"Login OK");
+                                            
+                                            // Add user to PFInstallation
+                                            [[PFInstallation currentInstallation] setObject:user forKey:@"user"];
+                                            [[PFInstallation currentInstallation] saveEventually];
                                             
                                             [self openProductList];
                                         } else {
