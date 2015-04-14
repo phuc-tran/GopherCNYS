@@ -186,9 +186,11 @@
     product[@"category"] = @(categoryId);
     BOOL condition = (conditionId == 0);
     product[@"condition"] = @(condition);
+    product[@"deleted"] = @NO;
     product[@"price"] = @([self.productPriceField.text integerValue]);
     product[@"quantity"] = @([self.productQuatityField.text integerValue]);
     product[@"seller"] = [PFUser currentUser];
+    
     if (currentLocaltion != nil) {
         product[@"position"] = currentLocaltion;
     }
