@@ -23,7 +23,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="292"/>
+            <point key="canvasLocation" x="9" y="298"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jO9-85-nrD">
@@ -1025,7 +1025,7 @@
                         <outlet property="productSearchBar" destination="DiY-fn-9FK" id="vO9-rs-BkK"/>
                         <outlet property="searchDisplayController" destination="Uoh-WK-MSi" id="2bG-L3-EzN"/>
                         <outlet property="settingTabBarItem" destination="Df1-I7-JkI" id="tYg-69-pw9"/>
-                        <outlet property="tableView" destination="7Hq-iF-pDA" id="PEc-rH-fTv"/>
+                        <outlet property="tableView" destination="7Hq-iF-pDA" id="kCu-F4-v0l"/>
                         <segue destination="yMM-1Y-rcA" kind="push" identifier="ProductDetaiFormProduct" id="Hcj-1n-Msb"/>
                         <segue destination="KBN-7p-nVk" kind="push" identifier="product_list_form_login" id="G1w-cs-YeN"/>
                     </connections>
@@ -1033,7 +1033,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gVE-G0-K9Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="Uoh-WK-MSi">
                     <connections>
-                        <outlet property="delegate" destination="KUb-wv-JfL" id="9H4-0R-lQv"/>
+                        <outlet property="delegate" destination="KUb-wv-JfL" id="QNQ-zY-U6s"/>
                         <outlet property="searchBar" destination="DiY-fn-9FK" id="Tln-Cq-3Lm"/>
                         <outlet property="searchContentsController" destination="KUb-wv-JfL" id="hLg-f7-ZCS"/>
                         <outlet property="searchResultsDataSource" destination="KUb-wv-JfL" id="X2O-zQ-qRB"/>

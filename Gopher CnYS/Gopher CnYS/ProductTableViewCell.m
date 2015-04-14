@@ -35,7 +35,6 @@
 - (void)loadData:(ProductInformation*)product
 {
     self.ivProductThumb.image = nil;
-    
     self.lblProductName.text = product.title ;
     self.lblProductDescription.text = [[product objectForKey:@"description"] description];
 

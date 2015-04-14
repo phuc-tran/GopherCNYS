@@ -14,7 +14,6 @@
 @dynamic title;
 @dynamic locality;
 @dynamic price;
-@dynamic description;
 @dynamic adminArea;
 @dynamic favoritors;
 @dynamic category;

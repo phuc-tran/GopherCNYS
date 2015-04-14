@@ -24,11 +24,6 @@
 }
 
 @property (strong,nonatomic) NSMutableArray *filteredProductArray;
-
-//@property (weak, nonatomic) IBOutlet UIButton *btnFavorite;
-//@property (weak, nonatomic) IBOutlet UIButton *btnPrice;
-//@property (weak, nonatomic) IBOutlet UIButton *btnNew;
-//@property (weak, nonatomic) IBOutlet UIButton *btnSelectCategory;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UITabBarItem *cameraTabBarItem;
 @property (weak, nonatomic) IBOutlet UISearchBar *productSearchBar;

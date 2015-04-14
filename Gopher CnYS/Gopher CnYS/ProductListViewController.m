@@ -45,6 +45,8 @@
     productData = [[NSMutableArray alloc] init];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil] forCellReuseIdentifier:@"ProductTableViewCell"];
+    
+    [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil] forCellReuseIdentifier:@"ProductTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     self.pullToRefreshEnabled = NO;
@@ -61,7 +63,6 @@
     
     
     //[self loadProductList];
-    
     
     [self.productSearchBar setShowsScopeBar:NO];
     [self.productSearchBar sizeToFit];
@@ -143,6 +144,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"count %lu", (unsigned long)productData.count);
     return productData.count;
 }
 
@@ -153,7 +155,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ProductTableViewCell *cell = (ProductTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:@"ProductTableViewCell"];
+    ProductTableViewCell *cell = (ProductTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ProductTableViewCell"];
     cell.delegate = self;
     cell.cellIndex = indexPath.row;
     ProductInformation *product = [productData objectAtIndex:indexPath.row];
@@ -216,33 +218,49 @@
 
 - (void)filterResults:(NSString *)searchTerm
 {
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    PFQuery *query = [PFQuery queryWithClassName:@"Products"];
-//    [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-//    [query whereKey:@"title" containsString:searchTerm];
-//    
-//    [query selectKeys:@[@"description", @"title", @"photo1", @"photo2", @"photo3", @"photo4", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors", @"category", @"condition", @"quantity", @"seller", @"country", @"adminArea", @"locality"]];
-//    [query orderByDescending:@"createdAt"];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        if (!error) {
-//            // The find succeeded.
-//            productData = objects;
-//            NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
-//            NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-//                PFObject *first = (PFObject*)a;
-//                PFObject *second = (PFObject*)b;
-//                return [self compare:first withProduct:second];
-//            }];
-//            productData = tmpArr;
-//            productMasterData = productData;
-//            
-//            [self.tableView reloadData];
-//        } else {
-//            // Log details of the failure
-//            NSLog(@"Error: %@ %@", error, [error userInfo]);
-//        }
-//    }];
+    [productData removeAllObjects];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    PFQuery *queryTitle = [ProductInformation query];
+    [queryTitle whereKey:@"title" matchesRegex:searchTerm modifiers:@"i"];
+    [queryTitle whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
+    
+    PFQuery *queryDes = [ProductInformation query];
+    [queryDes whereKey:@"description" matchesRegex:searchTerm modifiers:@"i"];
+    [queryDes whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
+    
+    PFQuery *queryTotal = [PFQuery orQueryWithSubqueries:@[queryTitle, queryDes]];
+    [queryTotal orderByDescending:@"createdAt"];
+    queryTotal.limit = 100;
+    queryTotal.skip = [productData count];
+    
+    [queryTotal findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (!error) {
+            // The find succeeded.
+//            self.canLoadMore = (objects.count > 0);
+//            NSLog(@"can load more %d", self.canLoadMore);
+//            if (self.canLoadMore) {
+                for (ProductInformation *object in objects) {
+                    [productData addObject:object];
+                }
+                
+                NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
+                NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                    ProductInformation *first = (ProductInformation*)a;
+                    ProductInformation *second = (ProductInformation*)b;
+                    return [self compare:first withProduct:second];
+                }];
+                productData = [NSMutableArray arrayWithArray:tmpArr];
+                NSLog(@"product count %ld", (unsigned long)[productData count]);
+            //}
+            [self.tableView reloadData];
+            [self.searchDisplayController.searchResultsTableView reloadData];
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 
@@ -314,116 +332,6 @@
 
 
 #pragma mark - Action
-//-(void)updateSelected:(NSInteger)index {
-//    switch (index) {
-//        case 0:
-//            isFavoriteTopSelected = !isFavoriteTopSelected;
-//            isNewTopSelected = NO;
-//            isPriceTopSelected = NO;
-//            break;
-//        case 1:
-//            isFavoriteTopSelected = NO;
-//            isNewTopSelected = !isNewTopSelected;
-//            isPriceTopSelected = NO;
-//            break;
-//        case 2:
-//            isFavoriteTopSelected = NO;
-//            isNewTopSelected = NO;
-//            isPriceTopSelected = !isPriceTopSelected;
-//            break;
-//        default:
-//            break;
-//    }
-//    
-//    if(isPriceTopSelected) {
-//        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter.png"] forState:UIControlStateNormal];
-//        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter.png"] forState:UIControlStateHighlighted];
-//        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter.png"] forState:UIControlStateSelected];
-//    } else {
-//        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter1.png"] forState:UIControlStateNormal];
-//        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter1.png"] forState:UIControlStateHighlighted];
-//        [btnPrice setImage:[UIImage imageNamed:@"ic_price_filter1.png"] forState:UIControlStateSelected];
-//    }
-//    
-//    if(isNewTopSelected) {
-//        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter.png"] forState:UIControlStateNormal];
-//        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter.png"] forState:UIControlStateHighlighted];
-//        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter.png"] forState:UIControlStateSelected];
-//    } else {
-//        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter1.png"] forState:UIControlStateNormal];
-//        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter1.png"] forState:UIControlStateHighlighted];
-//        [btnNew setImage:[UIImage imageNamed:@"ic_new_filter1.png"] forState:UIControlStateSelected];
-//    }
-//    
-//    if(isFavoriteTopSelected) {
-//        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateNormal];
-//        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateHighlighted];
-//        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter.png"] forState:UIControlStateSelected];
-//    } else {
-//        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateNormal];
-//        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateHighlighted];
-//        [btnFavorite setImage:[UIImage imageNamed:@"ic_favorite_filter1.png"] forState:UIControlStateSelected];
-//    }
-//}
-
-//- (IBAction)priceBtnClick:(id)sender
-//{
-//    //isPriceTopSelected = !isPriceTopSelected;
-//    UIButton *btn = (UIButton*)sender;
-//    [self updateSelected:btn.tag];
-//    
-//    if(isPriceTopSelected) {
-//        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"price" ascending:YES];
-//        NSArray *finalArray = [productMasterData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
-//        productData = finalArray;
-//    } else {
-//        productData = productMasterData;
-//    }
-//    [self.tableView reloadData];
-//}
-//
-//- (IBAction)newBtnClick:(id)sender
-//{
-//    //isNewTopSelected = !isNewTopSelected;
-//    UIButton *btn = (UIButton*)sender;
-//    [self updateSelected:btn.tag];
-//    
-//    if(isNewTopSelected) {
-//        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
-//        NSArray *finalArray = [productMasterData sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
-//        productData = finalArray;
-//    } else {
-//        productData = productMasterData;
-//    }
-//    [self.tableView reloadData];
-//}
-//
-//- (IBAction)favoriteBtnClick:(id)sender
-//{
-//    if (![self checkIfUserLoggedIn]) {
-//        [self performSegueWithIdentifier:@"product_list_form_login" sender:self];
-//    } else {
-//        UIButton *btn = (UIButton*)sender;
-//        [self updateSelected:btn.tag];
-//    
-//        if(isFavoriteTopSelected) {
-//            NSMutableArray *finalArray = [[NSMutableArray alloc] init];
-//            for (int i = 0; i < productMasterData.count; i++) {
-//                NSArray *iFavorite = [[productMasterData objectAtIndex:i] objectForKey:@"favoritors"];
-//                if ([self checkItemisFavorited:iFavorite]) {
-//                    [finalArray addObject:[productMasterData objectAtIndex:i]];
-//                }
-//            }
-//            productData = finalArray;
-//            productFavoriteData = productData;
-//        } else {
-//            productData = productMasterData;
-//        }
-//    
-//        [self.tableView reloadData];
-//    }
-//}
-
 - (IBAction)gotoSearcg:(UIBarButtonItem *)sender {
     [self.productSearchBar becomeFirstResponder];
 }
@@ -545,7 +453,8 @@
 // called when keyboard search button pressed
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [self.productSearchBar resignFirstResponder];
-    //[self filterResults:@"Cali"];
+    [self filterResults:searchBar.text];
+   
 }
 
 // called when bookmark button pressed
@@ -555,7 +464,8 @@
 
 // called when cancel button pressed
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    
+    [productData removeAllObjects];
+    [self loadProductList];
 }
 
 
@@ -683,7 +593,7 @@
 - (void) addItemsOnBottom
 {
     [self loadProductList];
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
     
     // Inform STableViewController that we have finished loading more items
     [self loadMoreCompleted];
