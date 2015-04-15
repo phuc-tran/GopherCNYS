@@ -38,6 +38,8 @@
         self.messageButton.enabled = YES;
     }
     carouselProduct.pagingEnabled = true;
+    carouselProduct.type = iCarouselTypeRotary;
+    
         
     PFGeoPoint *positionItem  = [[productData objectAtIndex:selectedIndex] objectForKey:@"position"];
     self.productlocationLbl.text = [NSString stringWithFormat:@"%.f miles", [currentLocaltion distanceInMilesTo:positionItem]];
@@ -317,23 +319,18 @@
 {
     if (view == nil)
     {
-        view = [[UIImageView alloc] initWithFrame:carousel.bounds];
-        view.contentMode = UIViewContentModeScaleAspectFit;
+        view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 220.0f, 180.0f)];
+        ((UIImageView *)view).image = productImageList[index];
+        view.contentMode = UIViewContentModeScaleAspectFill;
         view.backgroundColor = [UIColor clearColor];
+        [view.layer setMasksToBounds:YES];
+        [view.layer setBorderColor: [[UIColor lightGrayColor] CGColor]];
+        [view.layer setBorderWidth: 3.0];
     }
     else
     {
         //get a reference to the label in the recycled view
     }
-    
-    UIImageView *imageview = [[UIImageView alloc] initWithFrame:view.bounds];
-    imageview.image = productImageList[index];
-    imageview.contentMode = UIViewContentModeScaleAspectFit;
-    [imageview.layer setMasksToBounds:YES];
-    [imageview.layer setBorderColor: [[UIColor groupTableViewBackgroundColor] CGColor]];
-    [imageview.layer setBorderWidth: 1.0];
-    [imageview.layer setCornerRadius:8.0];
-    [view addSubview:imageview];
     return view;
 }
 
@@ -341,9 +338,20 @@
 {
     if (option == iCarouselOptionSpacing)
     {
-        return value * 1.0;
-    }else if (option == iCarouselOptionWrap) {
+        return value * 1.114729;
+        
+    } else if (option == iCarouselOptionWrap) {
+        
         return 1.0;
+        
+    } else if (option == iCarouselOptionArc) {
+        
+        return 2 * M_PI * 0.5f;
+        
+    } else if (option == iCarouselOptionRadius) {
+        
+        return value * 0.8f;
+        
     }
     return value;
 }
