@@ -170,6 +170,23 @@
 
 - (IBAction)defaultLocationClick:(UIButton*)sender {
     
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+        if (!error) {
+            NSLog(@"defaultLocationClick get location %@", geoPoint);
+            // Update to current user
+            PFUser *curUser = [PFUser currentUser];
+            curUser[@"position"] = geoPoint;
+            [curUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+                if (succeeded) {
+                    // save successful
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Your location has been updated" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                    [alert show];
+                }
+            }];
+        }
+        
+    }];
+    
 }
 
 - (IBAction)userfollowClick:(UIButton*)sender {
