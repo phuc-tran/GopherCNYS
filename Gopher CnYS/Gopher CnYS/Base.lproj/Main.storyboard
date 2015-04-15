@@ -584,7 +584,7 @@
                                     <constraint firstAttribute="bottom" secondItem="fhK-ig-HhV" secondAttribute="bottom" id="xQc-jY-pRj"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iJT-od-RjM">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJT-od-RjM">
                                 <rect key="frame" x="0.0" y="302" width="320" height="216"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ixs-rb-8S4" userLabel="ContentView">
@@ -678,7 +678,7 @@
                                                 <color key="textColor" red="0.72941176470000002" green="0.72941176470000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="product description" translatesAutoresizingMaskIntoConstraints="NO" id="gHT-vu-Tvi">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="product description" translatesAutoresizingMaskIntoConstraints="NO" id="gHT-vu-Tvi">
                                                 <rect key="frame" x="10" y="107" width="300" height="156"/>
                                                 <color key="textColor" red="0.58039215690000001" green="0.58039215690000001" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
