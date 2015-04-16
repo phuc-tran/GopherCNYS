@@ -23,6 +23,8 @@
     PFGeoPoint *currentLocaltion;
     NSUInteger selectedIndex;
     PFQuery *queryTotal;
+    BOOL isSearchNavi;
+    BOOL isLoadFinished;
 }
 @end
 
@@ -49,6 +51,7 @@
     
     [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil] forCellReuseIdentifier:@"ProductTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.searchDisplayController.searchResultsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     self.pullToRefreshEnabled = NO;
     
@@ -74,6 +77,9 @@
     [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
     [queryTotal orderByDescending:@"createdAt"];
     queryTotal.limit = 100;
+    
+    isSearchNavi = NO;
+    isLoadFinished = NO;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -185,6 +191,7 @@
     if (queryTotal != nil) {
         NSLog(@"load product list");
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        isLoadFinished = NO;
         queryTotal.skip = [productData count];
         [queryTotal findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -209,6 +216,10 @@
                         [self filterResultsWithSearch];
                     }
                     [self.tableView reloadData];
+                    if (isSearchNavi) {
+                        [self.searchDisplayController.searchResultsTableView reloadData];
+                    }
+                    isLoadFinished = YES;
                 }
             } else {
                 // Log details of the failure
@@ -221,26 +232,21 @@
 - (void)filterResults:(NSString *)searchTerm
 {
     [productData removeAllObjects];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFQuery *queryTitle = [ProductInformation query];
     [queryTitle whereKey:@"title" matchesRegex:searchTerm modifiers:@"i"];
-    [queryTitle whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
     
     PFQuery *queryDes = [ProductInformation query];
     [queryDes whereKey:@"description" matchesRegex:searchTerm modifiers:@"i"];
-    [queryDes whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
     
     queryTotal = [PFQuery orQueryWithSubqueries:@[queryTitle, queryDes]];
     [queryTotal orderByDescending:@"createdAt"];
+    [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
     queryTotal.limit = 100;
     
     [queryTotal findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (!error) {
             // The find succeeded.
-//            self.canLoadMore = (objects.count > 0);
-//            NSLog(@"can load more %d", self.canLoadMore);
-//            if (self.canLoadMore) {
                 for (ProductInformation *object in objects) {
                     [productData addObject:object];
                 }
@@ -254,9 +260,7 @@
                 productData = [NSMutableArray arrayWithArray:tmpArr];
                 NSLog(@"product count %ld", (unsigned long)[productData count]);
             //}
-            [self.tableView reloadData];
             [self.searchDisplayController.searchResultsTableView reloadData];
-            
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -334,7 +338,9 @@
 
 #pragma mark - Action
 - (IBAction)gotoSearcg:(UIBarButtonItem *)sender {
-    [self.productSearchBar becomeFirstResponder];
+    if (isLoadFinished) {
+        [self.productSearchBar becomeFirstResponder];
+    }
 }
 
 #pragma mark - UITabBarDelegate
@@ -456,6 +462,7 @@
 #pragma mark - UISearchBarDelegate
 // called when keyboard search button pressed
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    isSearchNavi = YES;
     [self.productSearchBar resignFirstResponder];
     [self filterResults:searchBar.text];
    
@@ -468,7 +475,12 @@
 
 // called when cancel button pressed
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    isSearchNavi = NO;
     [productData removeAllObjects];
+    queryTotal = [ProductInformation query];
+    [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
+    [queryTotal orderByDescending:@"createdAt"];
+    queryTotal.limit = 100;
     [self loadProductList];
 }
 
