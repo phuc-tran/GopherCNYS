@@ -25,10 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    if (![self checkIfUserLoggedIn]) {
-        [self performSegueWithIdentifier:@"search_from_login" sender:self];
-        return;
-    }
     categoryData = [NSArray arrayWithObjects:@"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];
     
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Town", @"City", @"State", @"Country", @"World"]];
@@ -51,6 +47,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super setupLeftBackBarButtonItem];
     [self.categoryCollectionView reloadData];
+    
+    if (![self checkIfUserLoggedIn]) {
+        self.favButton.hidden = YES;
+    } else {
+        self.favButton.hidden = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

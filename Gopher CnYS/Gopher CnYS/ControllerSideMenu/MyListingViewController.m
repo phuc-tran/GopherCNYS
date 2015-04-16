@@ -12,6 +12,7 @@
 #import "UserListingTableViewCell.h"
 #import "JSQMessages.h"
 #import "ProductDetailViewController.h"
+#import "ProductInformation.h"
 
 @interface MyListingViewController ()
 
@@ -81,10 +82,9 @@
 
 - (void)loadProducts {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    PFQuery *query = [PFQuery queryWithClassName:@"Products"];
+    PFQuery *query = [ProductInformation query];
     [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
     [query whereKey:@"seller" equalTo:[PFUser currentUser]];
-    [query selectKeys:@[@"description", @"title", @"photo1", @"photo2", @"photo3", @"photo4", @"price", @"position", @"createdAt", @"updatedAt", @"favoritors", @"category", @"condition", @"quantity", @"seller", @"country", @"adminArea", @"locality"]];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];

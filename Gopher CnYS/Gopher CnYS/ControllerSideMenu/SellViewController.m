@@ -22,6 +22,9 @@
 {
     [super viewDidLoad];
     
+    if (![self checkIfUserLoggedIn]) {
+        [self performSegueWithIdentifier:@"addproduct_form_login" sender:self];
+    }    
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
         if (!error) {
             // do something with the new geoPoint
