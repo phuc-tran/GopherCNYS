@@ -22,6 +22,7 @@
     NSMutableArray *productData;
     PFGeoPoint *currentLocaltion;
     NSUInteger selectedIndex;
+    PFQuery *queryTotal;
 }
 @end
 
@@ -61,15 +62,18 @@
     ProductListTableFooterView *footerView = (ProductListTableFooterView *)[nib objectAtIndex:0];
     self.footerView = footerView;
     
-    
-    //[self loadProductList];
-    
     [self.productSearchBar setShowsScopeBar:NO];
     [self.productSearchBar sizeToFit];
     // Hide the search bar until user scrolls up
     CGRect newBounds = [[self tableView] bounds];
     newBounds.origin.y = newBounds.origin.y + self.productSearchBar.bounds.size.height;
     [[self tableView] setBounds:newBounds];
+    
+    //init query
+    queryTotal = [ProductInformation query];
+    [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
+    [queryTotal orderByDescending:@"createdAt"];
+    queryTotal.limit = 100;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -144,7 +148,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"count %lu", (unsigned long)productData.count);
     return productData.count;
 }
 
@@ -179,41 +182,40 @@
 }
 
 - (void) loadProductList {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    PFQuery *query = [ProductInformation query];
-    [query whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    [query orderByDescending:@"createdAt"];
-    query.limit = 100;
-    query.skip = [productData count];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        if (!error) {
-            // The find succeeded.
-            self.canLoadMore = (objects.count > 0);
-            NSLog(@"can load more %d", self.canLoadMore);
-            if (self.canLoadMore) {
-                for (ProductInformation *object in objects) {
-                    [productData addObject:object];
+    if (queryTotal != nil) {
+        NSLog(@"load product list");
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        queryTotal.skip = [productData count];
+        [queryTotal findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if (!error) {
+                // The find succeeded.
+                self.canLoadMore = (objects.count > 0);
+                NSLog(@"can load more %d", self.canLoadMore);
+                if (self.canLoadMore) {
+                    for (ProductInformation *object in objects) {
+                        [productData addObject:object];
+                    }
+                    
+                    NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
+                    NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                        ProductInformation *first = (ProductInformation*)a;
+                        ProductInformation *second = (ProductInformation*)b;
+                        return [self compare:first withProduct:second];
+                    }];
+                    productData = [NSMutableArray arrayWithArray:tmpArr];
+                    NSLog(@"product count %ld", (unsigned long)[productData count]);
+                    if (_isNewSearch) {
+                        [self filterResultsWithSearch];
+                    }
+                    [self.tableView reloadData];
                 }
-                
-                NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
-                NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-                    ProductInformation *first = (ProductInformation*)a;
-                    ProductInformation *second = (ProductInformation*)b;
-                    return [self compare:first withProduct:second];
-                }];
-                productData = [NSMutableArray arrayWithArray:tmpArr];
-                NSLog(@"product count %ld", (unsigned long)[productData count]);
-                if (_isNewSearch) {
-                    [self filterResultsWithSearch];
-                }
-                [self.tableView reloadData];
+            } else {
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
             }
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+        }];
+    }
 }
 
 - (void)filterResults:(NSString *)searchTerm
@@ -228,10 +230,9 @@
     [queryDes whereKey:@"description" matchesRegex:searchTerm modifiers:@"i"];
     [queryDes whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
     
-    PFQuery *queryTotal = [PFQuery orQueryWithSubqueries:@[queryTitle, queryDes]];
+    queryTotal = [PFQuery orQueryWithSubqueries:@[queryTitle, queryDes]];
     [queryTotal orderByDescending:@"createdAt"];
     queryTotal.limit = 100;
-    queryTotal.skip = [productData count];
     
     [queryTotal findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -351,40 +352,40 @@
 
 #pragma mark - SearchViewControllerDelegate
 - (void)onFilterContentForSearch:(NSMutableArray*)categoryList withPrice:(NSInteger)price withZipCode:(NSString *)zipcode withKeyword:(NSString *)keywords favoriteSelected:(BOOL)isSelected {
-    NSMutableArray *finalArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < productData.count; i++) {
-        ProductInformation *product = [productData objectAtIndex:i];
-        NSInteger ctg = [product.category integerValue];
-        NSInteger p  = [product.price integerValue];
-        //NSString *postalCode  = [[productData objectAtIndex:i] valueForKey:@"postalCode"];
-        NSArray *iFavorite = product.favoritors;
-        NSLog(@"root %ld price %ld", (long)ctg, (long)p);
-        if (categoryList.count <= 0) {
-            if (isSelected) {
-                if ([self checkItemisFavorited:iFavorite]) {
-                    [finalArray addObject:[productData objectAtIndex:i]];
-                }
-            } else {
-                if (p <= price) {
-                    NSLog(@"ADD");
-                    [finalArray addObject:[productData objectAtIndex:i]];
-                }
-            }
-            
-
-        } else {
-            for (int j = 0; j < categoryList.count; j++) {
-                NSInteger index = [[categoryList objectAtIndex:j] integerValue];
-                if (ctg == index && p <= price) {
-                    NSLog(@"ADD");
-                    [finalArray addObject:[productData objectAtIndex:i]];
-                }
-            }
+    [productData removeAllObjects];
+    self.canLoadMore = YES;
+    if (keywords != nil && keywords.length > 0 && [keywords stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] ) {
+        PFQuery *queryTitle = [ProductInformation query];
+        [queryTitle whereKey:@"title" matchesRegex:keywords modifiers:@"i"];
+        
+        PFQuery *queryDes = [ProductInformation query];
+        [queryDes whereKey:@"description" matchesRegex:keywords modifiers:@"i"];
+        
+        queryTotal = [PFQuery orQueryWithSubqueries:@[queryTitle, queryDes]];
+    } else {
+        queryTotal = [ProductInformation query];
+    }
+        
+    
+    if (price > 0) {
+        [queryTotal whereKey:@"price" lessThanOrEqualTo:[NSNumber numberWithInteger:price]];
+    }
+    if (zipcode != nil && zipcode.length > 0 && [zipcode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] ) {
+        if (![zipcode isEqualToString:@"85345"]) {
+            [queryTotal whereKey:@"postalCode" equalTo:zipcode];
         }
     }
-    productData = finalArray;
-    NSLog(@"productData %ld", (unsigned long)productData.count);
-    [self.tableView reloadData];
+    if (isSelected) {
+        [queryTotal whereKey:@"favoritors" containsAllObjectsInArray:@[[PFUser currentUser].objectId]];
+    }
+    
+    if (categoryList.count > 0) {
+        [queryTotal whereKey:@"category" containedIn:categoryList];
+    }
+    
+    [queryTotal orderByDescending:@"createdAt"];
+    [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
+    queryTotal.limit = 100;
 }
 
 #pragma mark - ProductTableViewCellDelegate

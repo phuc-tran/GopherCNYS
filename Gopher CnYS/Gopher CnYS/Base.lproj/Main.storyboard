@@ -254,11 +254,11 @@
                         <viewControllerLayoutGuide type="bottom" id="94A-CD-XrR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iIv-pm-kMW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUS-dt-baG">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pc5-lq-HOU" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -373,7 +373,7 @@
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sn5-ZG-50K" userLabel="BottomView">
-                                <rect key="frame" x="0.0" y="521" width="320" height="47"/>
+                                <rect key="frame" x="0.0" y="620" width="320" height="47"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfx-Xs-Awi">
                                         <rect key="frame" x="220" y="0.0" width="100" height="47"/>
@@ -1052,7 +1052,7 @@
                         <viewControllerLayoutGuide type="bottom" id="fDD-pN-nXU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="VgA-zB-huq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qg6-3s-xUP">
@@ -1178,7 +1178,7 @@
                                                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <segments>
                                                             <segment title="New"/>
-                                                            <segment title="Old"/>
+                                                            <segment title="Used"/>
                                                         </segments>
                                                         <color key="tintColor" red="0.25098039215686274" green="0.87058823529411766" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
@@ -2530,5 +2530,6 @@
         <segue reference="Hcj-1n-Msb"/>
         <segue reference="e0P-cp-GQQ"/>
         <segue reference="ExP-uq-3s7"/>
+        <segue reference="zpZ-Cr-DCh"/>
     </inferredMetricsTieBreakers>
 </document>
