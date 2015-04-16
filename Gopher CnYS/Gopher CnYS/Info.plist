@@ -51,8 +51,6 @@
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>To set your location for the app</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
