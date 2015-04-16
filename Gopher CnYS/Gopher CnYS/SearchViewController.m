@@ -36,6 +36,7 @@
     segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     segmentedControl.backgroundColor = [UIColor clearColor];
+    segmentedControl.selectedSegmentIndex = 3;
     [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
     [self.rangeSegmentControl addSubview:segmentedControl];
     
@@ -44,6 +45,7 @@
     for (int i = 0; i < categoryData.count; i++) {
         [categorySelectedList addObject:[NSNumber numberWithBool:b]];
     }
+    self.conditionSegmentControl.selectedSegmentIndex = 2;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -149,7 +151,7 @@
 
     }
     if(delegate != nil)
-        [delegate onFilterContentForSearch:categoryList withPrice:[self.priceField.text integerValue] withZipCode:self.zipCodeField.text withKeyword:self.keywordField.text favoriteSelected:isFavoriteSelected];
+        [delegate onFilterContentForSearch:categoryList withPrice:[self.priceField.text integerValue] withZipCode:self.zipCodeField.text withKeyword:self.keywordField.text favoriteSelected:isFavoriteSelected conditionOption:self.conditionSegmentControl.selectedSegmentIndex];
     
     
     [self.navigationController popViewControllerAnimated:YES];

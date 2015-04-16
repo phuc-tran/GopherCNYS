@@ -351,7 +351,7 @@
 }
 
 #pragma mark - SearchViewControllerDelegate
-- (void)onFilterContentForSearch:(NSMutableArray*)categoryList withPrice:(NSInteger)price withZipCode:(NSString *)zipcode withKeyword:(NSString *)keywords favoriteSelected:(BOOL)isSelected {
+- (void)onFilterContentForSearch:(NSMutableArray*)categoryList withPrice:(NSInteger)price withZipCode:(NSString *)zipcode withKeyword:(NSString *)keywords favoriteSelected:(BOOL)isSelected conditionOption:(NSInteger)condition {
     [productData removeAllObjects];
     self.canLoadMore = YES;
     if (keywords != nil && keywords.length > 0 && [keywords stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] ) {
@@ -381,6 +381,9 @@
     
     if (categoryList.count > 0) {
         [queryTotal whereKey:@"category" containedIn:categoryList];
+    }
+    if (condition < 2) {
+        [queryTotal whereKey:@"condition" equalTo:[NSNumber numberWithBool:(condition == 0)]];
     }
     
     [queryTotal orderByDescending:@"createdAt"];

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -1173,20 +1173,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="op3-A2-k86">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                                                 <subviews>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="P8P-LT-aqh">
-                                                        <rect key="frame" x="176" y="11" width="85" height="29"/>
-                                                        <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <segments>
-                                                            <segment title="New"/>
-                                                            <segment title="Used"/>
-                                                        </segments>
-                                                        <color key="tintColor" red="0.25098039215686274" green="0.87058823529411766" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <connections>
-                                                            <action selector="conditionControlChangedValue:" destination="tzO-Lr-hr1" eventType="valueChanged" id="54H-oD-r4b"/>
-                                                        </connections>
-                                                    </segmentedControl>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50v-R1-LgF">
-                                                        <rect key="frame" x="278" y="9" width="32" height="32"/>
+                                                        <rect key="frame" x="285" y="9" width="32" height="32"/>
                                                         <state key="normal" image="ic_favorite_filter1">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -1264,6 +1252,19 @@
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5SU-7c-Dc9">
                                                         <rect key="frame" x="81" y="114" width="239" height="36"/>
                                                     </view>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="P8P-LT-aqh">
+                                                        <rect key="frame" x="160" y="11" width="120" height="29"/>
+                                                        <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <segments>
+                                                            <segment title="New"/>
+                                                            <segment title="Used"/>
+                                                            <segment title="Both"/>
+                                                        </segments>
+                                                        <color key="tintColor" red="0.25098039215686274" green="0.87058823529411766" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <connections>
+                                                            <action selector="conditionControlChangedValue:" destination="tzO-Lr-hr1" eventType="valueChanged" id="54H-oD-r4b"/>
+                                                        </connections>
+                                                    </segmentedControl>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -1435,6 +1436,7 @@
                         <outlet property="categoryCollectionView" destination="B1f-jH-4ck" id="cu7-zr-uvO"/>
                         <outlet property="categoryResetBtn" destination="jyf-wg-zCd" id="vcd-GD-jT5"/>
                         <outlet property="categorySelectAllBtn" destination="1f3-3f-X9G" id="qec-uB-ar0"/>
+                        <outlet property="conditionSegmentControl" destination="P8P-LT-aqh" id="HEt-3S-KVX"/>
                         <outlet property="favButton" destination="50v-R1-LgF" id="odx-g1-5QY"/>
                         <outlet property="keywordField" destination="dg9-vM-2Nb" id="IyU-oV-5Xh"/>
                         <outlet property="priceField" destination="pec-N0-FID" id="aUL-yQ-oHc"/>
@@ -2526,10 +2528,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="vS2-dj-XjI"/>
-        <segue reference="Hcj-1n-Msb"/>
-        <segue reference="e0P-cp-GQQ"/>
-        <segue reference="ExP-uq-3s7"/>
         <segue reference="zpZ-Cr-DCh"/>
+        <segue reference="e0P-cp-GQQ"/>
+        <segue reference="Hcj-1n-Msb"/>
+        <segue reference="ExP-uq-3s7"/>
     </inferredMetricsTieBreakers>
 </document>

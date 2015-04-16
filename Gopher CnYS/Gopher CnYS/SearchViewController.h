@@ -14,7 +14,7 @@
 
 @protocol SearchViewControllerDelegate <NSObject>
 @optional
-- (void)onFilterContentForSearch:(NSMutableArray*)categoryList withPrice:(NSInteger)price withZipCode:(NSString*)zipcode withKeyword:(NSString*)keywor favoriteSelected:(BOOL)isSelected;
+- (void)onFilterContentForSearch:(NSMutableArray*)categoryList withPrice:(NSInteger)price withZipCode:(NSString*)zipcode withKeyword:(NSString*)keywor favoriteSelected:(BOOL)isSelected conditionOption:(NSInteger)condition;
 @end
 
 @interface SearchViewController : BaseViewController <UICollectionViewDataSource, UICollectionViewDelegate, CategoryCollectionViewCellDelegate>
@@ -34,5 +34,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *priceField;
 @property (weak, nonatomic) IBOutlet UITextField *zipCodeField;
 @property (weak, nonatomic) IBOutlet UITextField *keywordField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *conditionSegmentControl;
 
 @end
