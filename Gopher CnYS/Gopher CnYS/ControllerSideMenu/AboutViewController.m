@@ -44,7 +44,7 @@
 }
 
 - (IBAction)facebookClick:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@" https://www.facebook.com/groups/GopherCnYs/"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.facebook.com/groups/GopherCnYs/"]];
 }
 
 - (IBAction)twiterClick:(id)sender {
