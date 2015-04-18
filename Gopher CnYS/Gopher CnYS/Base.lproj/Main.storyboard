@@ -458,7 +458,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NmB-5v-OEL" userLabel="TopView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NmB-5v-OEL" userLabel="TopView">
                                 <rect key="frame" x="0.0" y="44" width="320" height="60"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WyO-w8-d6d">
@@ -584,7 +584,7 @@
                                     <constraint firstAttribute="bottom" secondItem="fhK-ig-HhV" secondAttribute="bottom" id="xQc-jY-pRj"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJT-od-RjM">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJT-od-RjM">
                                 <rect key="frame" x="0.0" y="302" width="320" height="216"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ixs-rb-8S4" userLabel="ContentView">
@@ -730,7 +730,7 @@
                                     <constraint firstAttribute="trailing" secondItem="ixs-rb-8S4" secondAttribute="trailing" id="xKv-OG-jAX"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xud-ug-0bV" customClass="iCarousel">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xud-ug-0bV" customClass="iCarousel">
                                 <rect key="frame" x="0.0" y="104" width="320" height="190"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -743,7 +743,7 @@
                                     <outlet property="delegate" destination="yMM-1Y-rcA" id="amO-4W-QMo"/>
                                 </connections>
                             </view>
-                            <pageControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1DH-Rb-hRP">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1DH-Rb-hRP">
                                 <rect key="frame" x="141" y="281" width="39" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="IWw-nt-PMb"/>
@@ -839,7 +839,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cOa-Rf-pJU" userLabel="TopView">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cOa-Rf-pJU" userLabel="TopView">
                                 <rect key="frame" x="0.0" y="64" width="320" height="70"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarDefault" translatesAutoresizingMaskIntoConstraints="NO" id="FoD-Ti-fLG">
@@ -900,7 +900,7 @@
                                     <constraint firstItem="KBy-qr-B7q" firstAttribute="leading" secondItem="FoD-Ti-fLG" secondAttribute="trailing" constant="8" id="tcN-Fh-UuJ"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HsF-Xo-rLm">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HsF-Xo-rLm">
                                 <rect key="frame" x="0.0" y="142" width="320" height="426"/>
                                 <color key="backgroundColor" red="0.95686274509803926" green="0.95686274509803926" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
@@ -945,7 +945,7 @@
         <!--Products-->
         <scene sceneID="6n8-01-IEE">
             <objects>
-                <viewController storyboardIdentifier="productListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KUb-wv-JfL" customClass="ProductListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="productListViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KUb-wv-JfL" customClass="ProductListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hRF-yn-HF8"/>
                         <viewControllerLayoutGuide type="bottom" id="5Ug-d9-gBZ"/>
@@ -955,7 +955,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Hq-iF-pDA">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="DiY-fn-9FK">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1007,7 +1007,7 @@
                             <constraint firstAttribute="bottom" secondItem="7Hq-iF-pDA" secondAttribute="bottom" id="Opf-ve-lWm"/>
                             <constraint firstAttribute="centerX" secondItem="7Hq-iF-pDA" secondAttribute="centerX" id="Sfg-HB-wlD"/>
                             <constraint firstAttribute="trailing" secondItem="7Hq-iF-pDA" secondAttribute="trailing" id="dia-o9-p5W"/>
-                            <constraint firstItem="7Hq-iF-pDA" firstAttribute="top" secondItem="uc3-gh-lbp" secondAttribute="top" id="k65-hj-aum"/>
+                            <constraint firstItem="7Hq-iF-pDA" firstAttribute="top" secondItem="uc3-gh-lbp" secondAttribute="top" constant="64" id="k65-hj-aum"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Products" id="eB2-tM-6cZ">
@@ -2530,9 +2530,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="bfk-BZ-XLj"/>
+        <segue reference="Hcj-1n-Msb"/>
+        <segue reference="G1w-cs-YeN"/>
         <segue reference="ExP-uq-3s7"/>
         <segue reference="e0P-cp-GQQ"/>
-        <segue reference="cis-VW-GFR"/>
     </inferredMetricsTieBreakers>
 </document>

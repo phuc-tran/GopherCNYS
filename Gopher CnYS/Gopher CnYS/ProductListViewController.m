@@ -15,6 +15,7 @@
 #import "MyListingViewController.h"
 #import "ProductListTableHeaderView.h"
 #import "ProductListTableFooterView.h"
+#import "SVPullToRefresh.h"
 
 @interface ProductListViewController () <ProductTableViewCellDelegate>
 {
@@ -25,13 +26,14 @@
     PFQuery *queryTotal;
     BOOL isSearchNavi;
     BOOL isLoadFinished;
+    BOOL isSearchMainPage;
 }
 @end
 
 
 @implementation ProductListViewController
 
-//@synthesize btnFavorite, btnNew, btnPrice, btnSelectCategory;
+@synthesize isLoadingOrders;
 
 #pragma mark - Self View Life Cycle
 - (void)viewDidLoad {
@@ -44,6 +46,11 @@
         }
         NSLog(@"get location %@", currentLocaltion);
     }];
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    [locationManager startUpdatingLocation];
 
     productData = [[NSMutableArray alloc] init];
     
@@ -53,18 +60,7 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.searchDisplayController.searchResultsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    self.pullToRefreshEnabled = NO;
-    
-    // set the custom view for "pull to refresh". See ProductListTableHeaderView.xib.
-//    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ProductListTableHeaderView" owner:self options:nil];
-//    ProductListTableHeaderView *headerView = (ProductListTableHeaderView *)[nib objectAtIndex:0];
-//    self.headerView = headerView;
-    
-    // set the custom view for "load more". See ProductListTableFooterView.xib.
-    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ProductListTableFooterView" owner:self options:nil];
-    ProductListTableFooterView *footerView = (ProductListTableFooterView *)[nib objectAtIndex:0];
-    self.footerView = footerView;
-    
+    //self.pullToRefreshEnabled = NO;
     [self.productSearchBar setShowsScopeBar:NO];
     [self.productSearchBar sizeToFit];
     // Hide the search bar until user scrolls up
@@ -75,11 +71,59 @@
     //init query
     queryTotal = [ProductInformation query];
     [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger rangeIndex;
+    if ([defaults objectForKey:@"product_range"] != nil) {
+        rangeIndex = [[defaults objectForKey:@"product_range"] integerValue];
+    } else {
+        rangeIndex = 3;
+    }
+    
+    if(rangeIndex >= 0) {
+        switch (rangeIndex) {
+            case 0: // Town
+                if (localityStr != nil) {
+                    [queryTotal whereKey:@"locality" equalTo:localityStr];
+                }
+                break;
+            case 1: // City
+                break;
+            case 2: // State
+                if (adminAreaStr != nil) {
+                    [queryTotal whereKey:@"adminArea" equalTo:adminAreaStr];
+                }
+                break;
+            case 3: // Country
+                if (countryStr != nil) {
+                    [queryTotal whereKey:@"country" equalTo:countryStr];
+                }
+                break;
+            case 4: // World
+                break;
+            default:
+                break;
+        }
+    }
+    
     [queryTotal orderByDescending:@"createdAt"];
     queryTotal.limit = 100;
     
+    
     isSearchNavi = NO;
     isLoadFinished = YES;
+    isSearchMainPage = NO;
+    
+    // setup pull-to-refresh
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [self loadProductList];
+    }];
+    
+    // setup infinite scrolling
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [self loadProductList];
+    }];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -91,8 +135,72 @@
     isNewTopSelected = NO;
     isPriceTopSelected = NO;
     
-    [self.tableView reloadData];
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.tableView triggerPullToRefresh];
+}
+
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    CLLocation *currentLocation = newLocation;
+    
+    if (currentLocation != nil)
+        NSLog(@"longitude = %.8f\nlatitude = %.8f", currentLocation.coordinate.longitude,currentLocation.coordinate.latitude);
+    
+    // stop updating location in order to save battery power
+    [locationManager stopUpdatingLocation];
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error)
+     {
+         if (error == nil && [placemarks count] > 0)
+         {
+             CLPlacemark *placemark = [placemarks lastObject];
+             
+             // strAdd -> take bydefault value nil
+             NSString *strAdd = nil;
+             
+             if ([placemark.subThoroughfare length] != 0) {
+                 strAdd = placemark.subThoroughfare;
+                 NSLog(@"subThoroughfare %@", strAdd);
+             }
+             
+             if ([placemark.thoroughfare length] != 0) {
+                 strAdd = placemark.thoroughfare;
+                 NSLog(@"thoroughfare %@", strAdd);
+             }
+             
+             if ([placemark.postalCode length] != 0) {
+                 strAdd = placemark.postalCode;
+                 postalCodeStr = strAdd;
+                 NSLog(@"postalCodeStr %@", postalCodeStr);
+             }
+             
+             if ([placemark.locality length] != 0) {
+                 strAdd = placemark.locality;
+                 localityStr = strAdd;
+                 NSLog(@"localityStr %@", localityStr);
+             }
+             
+             if ([placemark.administrativeArea length] != 0) {
+                 strAdd = placemark.administrativeArea;
+                 adminAreaStr = strAdd;
+                 NSLog(@"adminAreaStr %@", adminAreaStr);
+             }
+             
+             if ([placemark.country length] != 0) {
+                 strAdd = placemark.country;
+                 countryStr = strAdd;
+                 NSLog(@"countryStr %@", countryStr);
+             }
+             
+         }
+     }];
+}
+
 
 - (UIBarButtonItem *)leftMenuBarButtonItem {
     UIImage *buttonImage = [UIImage imageNamed:@"menu-icon.png"];
@@ -131,22 +239,6 @@
 }
 
 #pragma mark - TableView delegate
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [super scrollViewWillBeginDragging:scrollView];
-    pointNow = scrollView.contentOffset;
-}
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [super scrollViewDidScroll:scrollView];
-    if (scrollView.contentOffset.y< pointNow.y) {
-        self.bottomView.hidden = NO;
-    } else if (scrollView.contentOffset.y> pointNow.y) {
-        self.bottomView.hidden = YES;
-    }
-    
-}
-
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 162;
@@ -193,38 +285,38 @@
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         isLoadFinished = NO;
         queryTotal.skip = [productData count];
+        NSLog(@"query %ld", (long)queryTotal.skip);
         [queryTotal findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.tableView.pullToRefreshView stopAnimating];
             if (!error) {
                 // The find succeeded.
-                self.canLoadMore = (objects.count > 0);
-                NSLog(@"can load more %d", self.canLoadMore);
-                if (self.canLoadMore) {
-                    for (ProductInformation *object in objects) {
-                        [productData addObject:object];
-                    }
-                    
-                    NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
-                    NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-                        ProductInformation *first = (ProductInformation*)a;
-                        ProductInformation *second = (ProductInformation*)b;
-                        return [self compare:first withProduct:second];
-                    }];
-                    productData = [NSMutableArray arrayWithArray:tmpArr];
-                    NSLog(@"product count %ld", (unsigned long)[productData count]);
-                    if (_isNewSearch) {
-                        [self filterResultsWithSearch];
-                    }
-                    [self.tableView reloadData];
-                    if (isSearchNavi) {
-                        [self.searchDisplayController.searchResultsTableView reloadData];
-                    }
-                    isLoadFinished = YES;
+                isLoadFinished = YES;
+                for (ProductInformation *object in objects) {
+                    [productData addObject:object];
+                }
+                
+                NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
+                NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                    ProductInformation *first = (ProductInformation*)a;
+                    ProductInformation *second = (ProductInformation*)b;
+                    return [self compare:first withProduct:second];
+                }];
+                productData = [NSMutableArray arrayWithArray:tmpArr];
+                NSLog(@"product count %ld", (unsigned long)[productData count]);
+                if (_isNewSearch) {
+                    [self filterResultsWithSearch];
+                }
+                [self.tableView reloadData];
+                if (isSearchNavi) {
+                    [self.searchDisplayController.searchResultsTableView reloadData];
                 }
             } else {
                 // Log details of the failure
                 NSLog(@"Error: %@ %@", error, [error userInfo]);
             }
+            
+            isLoadingOrders = NO;
         }];
     }
 }
@@ -350,10 +442,6 @@
         return;
     }
     if (item == self.cameraTabBarItem) {
-//        MyListingViewController *myListing = (MyListingViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"MyListingViewController"];
-//        myListing.isFromTabBar = YES;
-//        [[self navigationController] pushViewController:myListing animated:YES];
-
         SellViewController *sellVC = (SellViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"sellViewController"];
         [[self navigationController] pushViewController:sellVC animated:YES];
         
@@ -365,9 +453,10 @@
 }
 
 #pragma mark - SearchViewControllerDelegate
-- (void)onFilterContentForSearch:(NSMutableArray*)categoryList withPrice:(NSInteger)price withZipCode:(NSString *)zipcode withKeyword:(NSString *)keywords favoriteSelected:(BOOL)isSelected conditionOption:(NSInteger)condition {
+- (void)onFilterContentForSearch:(NSMutableArray*)categoryList withPrice:(NSInteger)price withZipCode:(NSString *)zipcode withKeyword:(NSString *)keywords favoriteSelected:(BOOL)isSelected conditionOption:(NSInteger)condition rangeOption:(NSInteger)rangindex {
     [productData removeAllObjects];
-    self.canLoadMore = YES;
+    NSLog(@"aaaa %ld", (unsigned long)productData.count);
+    
     if (keywords != nil && keywords.length > 0 && [keywords stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] ) {
         PFQuery *queryTitle = [ProductInformation query];
         [queryTitle whereKey:@"title" matchesRegex:keywords modifiers:@"i"];
@@ -400,8 +489,34 @@
         [queryTotal whereKey:@"condition" equalTo:[NSNumber numberWithBool:(condition == 0)]];
     }
     
-    [queryTotal orderByDescending:@"createdAt"];
+    if(rangindex >= 0) {
+        switch (rangindex) {
+            case 0: // Town
+                if (localityStr != nil) {
+                    [queryTotal whereKey:@"locality" equalTo:localityStr];
+                }
+                break;
+            case 1: // City
+                break;
+            case 2: // State
+                if (adminAreaStr != nil) {
+                    [queryTotal whereKey:@"adminArea" equalTo:adminAreaStr];
+                }
+                break;
+            case 3: // Country
+                if (countryStr != nil) {
+                    [queryTotal whereKey:@"country" equalTo:countryStr];
+                }
+                break;
+            case 4: // World
+                break;
+            default:
+                break;
+        }
+    }
+    
     [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
+    [queryTotal orderByDescending:@"createdAt"];
     queryTotal.limit = 100;
 }
 
@@ -491,136 +606,4 @@
     queryTotal.limit = 100;
     [self loadProductList];
 }
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Pull to Refresh
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) pinHeaderView
-{
-    [super pinHeaderView];
-    
-    // do custom handling for the header view
-    ProductListTableHeaderView *hv = (ProductListTableHeaderView *)self.headerView;
-    [hv.activityIndicator startAnimating];
-    hv.title.text = @"Loading...";
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) unpinHeaderView
-{
-    [super unpinHeaderView];
-    
-    // do custom handling for the header view
-    [[(ProductListTableHeaderView *)self.headerView activityIndicator] stopAnimating];
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-// Update the header text while the user is dragging
-//
-- (void) headerViewDidScroll:(BOOL)willRefreshOnRelease scrollView:(UIScrollView *)scrollView
-{
-    ProductListTableHeaderView *hv = (ProductListTableHeaderView *)self.headerView;
-    if (willRefreshOnRelease)
-        hv.title.text = @"Release to refresh...";
-    else
-        hv.title.text = @"Pull down to refresh...";
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-// refresh the list. Do your async calls here.
-//
-- (BOOL) refresh
-{
-    if (![super refresh])
-        return NO;
-    
-    // Do your async call here
-    // This is just a dummy data loader:
-    [self performSelector:@selector(addItemsOnTop) withObject:nil afterDelay:2.0];
-    // See -addItemsOnTop for more info on how to finish loading
-    return YES;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Load More
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-// The method -loadMore was called and will begin fetching data for the next page (more).
-// Do custom handling of -footerView if you need to.
-//
-- (void) willBeginLoadingMore
-{
-    ProductListTableFooterView *fv = (ProductListTableFooterView *)self.footerView;
-    [fv.activityIndicator startAnimating];
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-// Do UI handling after the "load more" process was completed. In this example, -footerView will
-// show a "No more items to load" text.
-//
-- (void) loadMoreCompleted
-{
-    [super loadMoreCompleted];
-    
-    ProductListTableFooterView *fv = (ProductListTableFooterView *)self.footerView;
-    [fv.activityIndicator stopAnimating];
-    
-    if (!self.canLoadMore) {
-        // Do something if there are no more items to load
-        
-        // We can hide the footerView by: [self setFooterViewVisibility:NO];
-        
-        // Just show a textual info that there are no more items to load
-        fv.infoLabel.hidden = NO;
-    }
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL) loadMore
-{
-    if (![super loadMore])
-        return NO;
-    
-    // Do your async loading here
-    [self performSelector:@selector(addItemsOnBottom) withObject:nil afterDelay:2.0];
-    // See -addItemsOnBottom for more info on what to do after loading more items
-    
-    return YES;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Dummy data methods
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) addItemsOnTop
-{
-//    for (int i = 0; i < 3; i++)
-//        [items insertObject:[self createRandomValue] atIndex:0];
-    
-    [self.tableView reloadData];
-    
-    // Call this to indicate that we have finished "refreshing".
-    // This will then result in the headerView being unpinned (-unpinHeaderView will be called).
-    [self refreshCompleted];
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) addItemsOnBottom
-{
-    [self loadProductList];
-    //[self.tableView reloadData];
-    
-    // Inform STableViewController that we have finished loading more items
-    [self loadMoreCompleted];
-}
-
 @end

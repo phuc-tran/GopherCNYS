@@ -23,7 +23,6 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [Parse setApplicationId:@"5ipBuTmdEryP29CFELzxMx2qXGzgndRPhG4ltAnc"
@@ -70,6 +69,7 @@
         // Receive notification from remote
         [[NSNotificationCenter defaultCenter] postNotificationName:@"GopherBackgroundReceivePushNotificationFromParse" object:nil userInfo:notification.userInfo];
     }
+    
     return YES;
 }
 
@@ -200,7 +200,8 @@
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    
+    _currentLocation = newLocation;
+    [locationManager stopUpdatingLocation];
 }
 
 @end

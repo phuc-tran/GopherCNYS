@@ -13,6 +13,7 @@
 {
     NSArray *categoryData;
     NSMutableArray *categorySelectedList;
+    HMSegmentedControl *rangeHMSegmentedControl;
 }
 @end
 
@@ -27,14 +28,20 @@
     // Do any additional setup after loading the view.
     categoryData = [NSArray arrayWithObjects:@"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];
     
-    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Town", @"City", @"State", @"Country", @"World"]];
-    segmentedControl.frame = CGRectMake(0, 0, self.rangeSegmentControl.frame.size.width, self.rangeSegmentControl.frame.size.height);
-    segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
-    segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    segmentedControl.backgroundColor = [UIColor clearColor];
-    segmentedControl.selectedSegmentIndex = 3;
-    [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
-    [self.rangeSegmentControl addSubview:segmentedControl];
+    rangeHMSegmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Town", @"City", @"State", @"Country", @"World"]];
+    rangeHMSegmentedControl.frame = CGRectMake(0, 0, self.rangeSegmentControl.frame.size.width, self.rangeSegmentControl.frame.size.height);
+    rangeHMSegmentedControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
+    rangeHMSegmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    rangeHMSegmentedControl.backgroundColor = [UIColor clearColor];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"product_range"] != nil) {
+        rangeHMSegmentedControl.selectedSegmentIndex = [[defaults objectForKey:@"product_range"] integerValue];
+    } else {
+        rangeHMSegmentedControl.selectedSegmentIndex = 3;
+    }
+    
+    [rangeHMSegmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+    [self.rangeSegmentControl addSubview:rangeHMSegmentedControl];
     
     categorySelectedList = [[NSMutableArray alloc] init];
     BOOL b = FALSE;
@@ -73,6 +80,10 @@
 #pragma mark - UICollectionViewDataSource
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
     NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
+    // Store the data
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:segmentedControl.selectedSegmentIndex forKey:@"product_range"];
+    [defaults synchronize];
 }
 
 - (IBAction)conditionControlChangedValue:(UISegmentedControl *)segmentedControl {
@@ -153,7 +164,7 @@
 
     }
     if(delegate != nil)
-        [delegate onFilterContentForSearch:categoryList withPrice:[self.priceField.text integerValue] withZipCode:self.zipCodeField.text withKeyword:self.keywordField.text favoriteSelected:isFavoriteSelected conditionOption:self.conditionSegmentControl.selectedSegmentIndex];
+        [delegate onFilterContentForSearch:categoryList withPrice:[self.priceField.text integerValue] withZipCode:self.zipCodeField.text withKeyword:self.keywordField.text favoriteSelected:isFavoriteSelected conditionOption:self.conditionSegmentControl.selectedSegmentIndex rangeOption:rangeHMSegmentedControl.selectedSegmentIndex];
     
     
     [self.navigationController popViewControllerAnimated:YES];

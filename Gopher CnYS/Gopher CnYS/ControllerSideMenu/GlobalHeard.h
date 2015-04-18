@@ -13,5 +13,6 @@
 
 NSDictionary* _searchTab;
 BOOL    _isNewSearch;
+CLLocation *_currentLocation;
 
 #endif

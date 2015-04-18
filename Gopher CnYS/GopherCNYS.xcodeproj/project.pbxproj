@@ -65,7 +65,6 @@
 		ABA8F6B41AC7BB9500198A4A /* UserFollowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA8F6B31AC7BB9500198A4A /* UserFollowTableViewCell.m */; };
 		ABBB13021AD032C1001D31EC /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBB13011AD032C1001D31EC /* HMSegmentedControl.m */; };
 		ABBEEF761ADA4A750051D60B /* ProductInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBEEF751ADA4A750051D60B /* ProductInformation.m */; };
-		ABBF71521AD6DB9A00A446C4 /* STableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF71511AD6DB9A00A446C4 /* STableViewController.m */; };
 		ABBF715A1AD6DD2600A446C4 /* ProductListTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF71551AD6DD2600A446C4 /* ProductListTableFooterView.m */; };
 		ABBF715B1AD6DD2600A446C4 /* ProductListTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABBF71561AD6DD2600A446C4 /* ProductListTableFooterView.xib */; };
 		ABBF715C1AD6DD2600A446C4 /* ProductListTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF71581AD6DD2600A446C4 /* ProductListTableHeaderView.m */; };
@@ -76,6 +75,8 @@
 		ABBF94601ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF945E1ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m */; };
 		ABBF94641ACFCB5600E308F5 /* AddNewSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBF94621ACFCB5600E308F5 /* AddNewSearchViewController.m */; };
 		ABBF94651ACFCB5600E308F5 /* AddNewSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */; };
+		ABC031C91AE2558400060495 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC031C61AE2558400060495 /* UIScrollView+SVInfiniteScrolling.m */; };
+		ABC031CA1AE2558400060495 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC031C81AE2558400060495 /* UIScrollView+SVPullToRefresh.m */; };
 		ABC069951AD5816500893187 /* MyListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC069941AD5816500893187 /* MyListingViewController.m */; };
 		ABC0AED21AD8F609004ECC20 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC0AED11AD8F609004ECC20 /* iCarousel.m */; };
 		ABC0AEE01AD9105F004ECC20 /* JTSAnimatedGIFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC0AED51AD9105F004ECC20 /* JTSAnimatedGIFUtility.m */; };
@@ -210,8 +211,6 @@
 		ABBB13011AD032C1001D31EC /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
 		ABBEEF741ADA4A750051D60B /* ProductInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductInformation.h; sourceTree = "<group>"; };
 		ABBEEF751ADA4A750051D60B /* ProductInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductInformation.m; sourceTree = "<group>"; };
-		ABBF71501AD6DB9A00A446C4 /* STableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STableViewController.h; sourceTree = "<group>"; };
-		ABBF71511AD6DB9A00A446C4 /* STableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STableViewController.m; sourceTree = "<group>"; };
 		ABBF71541AD6DD2600A446C4 /* ProductListTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListTableFooterView.h; sourceTree = "<group>"; };
 		ABBF71551AD6DD2600A446C4 /* ProductListTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListTableFooterView.m; sourceTree = "<group>"; };
 		ABBF71561AD6DD2600A446C4 /* ProductListTableFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductListTableFooterView.xib; sourceTree = "<group>"; };
@@ -229,6 +228,11 @@
 		ABBF94611ACFCB5600E308F5 /* AddNewSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddNewSearchViewController.h; path = ../AddNewSearchViewController.h; sourceTree = "<group>"; };
 		ABBF94621ACFCB5600E308F5 /* AddNewSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddNewSearchViewController.m; path = ../AddNewSearchViewController.m; sourceTree = "<group>"; };
 		ABBF94631ACFCB5600E308F5 /* AddNewSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddNewSearchViewController.xib; path = ../AddNewSearchViewController.xib; sourceTree = "<group>"; };
+		ABC031C41AE2558400060495 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
+		ABC031C51AE2558400060495 /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
+		ABC031C61AE2558400060495 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
+		ABC031C71AE2558400060495 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
+		ABC031C81AE2558400060495 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		ABC069931AD5816500893187 /* MyListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyListingViewController.h; sourceTree = "<group>"; };
 		ABC069941AD5816500893187 /* MyListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyListingViewController.m; sourceTree = "<group>"; };
 		ABC069961AD5956F00893187 /* GlobalHeard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GlobalHeard.h; path = ControllerSideMenu/GlobalHeard.h; sourceTree = "<group>"; };
@@ -526,11 +530,11 @@
 		AB8B709A1ABB388B0028DC47 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				ABC031C31AE2558400060495 /* SVPullToRefresh */,
 				ABC0AED31AD9105F004ECC20 /* JTSSimpleImage */,
 				ABC0AECF1AD8F609004ECC20 /* iCarousel */,
 				ABC813F61AD8281D0040FE31 /* ChatInput */,
 				ABC813F91AD8281D0040FE31 /* TranslucentView */,
-				ABBF714F1AD6DB9A00A446C4 /* STableViewController */,
 				ABBB12FF1AD032C1001D31EC /* HMSegmentedControl */,
 				ABBF945A1ACFCB1700E308F5 /* MJPopupView */,
 				ABA4F0D11AC4711E008915F7 /* CountryPicker */,
@@ -608,15 +612,6 @@
 			name = General;
 			sourceTree = "<group>";
 		};
-		ABBF714F1AD6DB9A00A446C4 /* STableViewController */ = {
-			isa = PBXGroup;
-			children = (
-				ABBF71501AD6DB9A00A446C4 /* STableViewController.h */,
-				ABBF71511AD6DB9A00A446C4 /* STableViewController.m */,
-			);
-			path = STableViewController;
-			sourceTree = "<group>";
-		};
 		ABBF71531AD6DC3A00A446C4 /* ProductList */ = {
 			isa = PBXGroup;
 			children = (
@@ -641,6 +636,18 @@
 				ABBF945E1ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m */,
 			);
 			path = MJPopupView;
+			sourceTree = "<group>";
+		};
+		ABC031C31AE2558400060495 /* SVPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				ABC031C41AE2558400060495 /* SVPullToRefresh.h */,
+				ABC031C51AE2558400060495 /* UIScrollView+SVInfiniteScrolling.h */,
+				ABC031C61AE2558400060495 /* UIScrollView+SVInfiniteScrolling.m */,
+				ABC031C71AE2558400060495 /* UIScrollView+SVPullToRefresh.h */,
+				ABC031C81AE2558400060495 /* UIScrollView+SVPullToRefresh.m */,
+			);
+			path = SVPullToRefresh;
 			sourceTree = "<group>";
 		};
 		ABC0AECF1AD8F609004ECC20 /* iCarousel */ = {
@@ -914,7 +921,6 @@
 				ABC813FD1AD8281D0040FE31 /* ILTranslucentView.m in Sources */,
 				ABBF715C1AD6DD2600A446C4 /* ProductListTableHeaderView.m in Sources */,
 				B904A0981ACAFCB900DCE491 /* UserFeedbackViewController.m in Sources */,
-				ABBF71521AD6DB9A00A446C4 /* STableViewController.m in Sources */,
 				AB6E34AF1ABC69D900867CA3 /* RESideMenu.m in Sources */,
 				ABBF94601ACFCB1700E308F5 /* UIViewController+MJPopupViewController.m in Sources */,
 				AB7CB4CB1AB1F0A20017E183 /* ProductHeaderView.m in Sources */,
@@ -945,10 +951,12 @@
 				B9B1EC331AC6C50300377E36 /* MessageTableViewCell.m in Sources */,
 				ABBF945F1ACFCB1700E308F5 /* MJPopupBackgroundView.m in Sources */,
 				ABC069951AD5816500893187 /* MyListingViewController.m in Sources */,
+				ABC031CA1AE2558400060495 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				1864BF0B1A4B1EA300EF5DD7 /* main.m in Sources */,
 				AB6E34BF1ABC6A9A00867CA3 /* RootViewController.m in Sources */,
 				ABC813FC1AD8281D0040FE31 /* THChatInput.m in Sources */,
 				B904A0991ACAFCB900DCE491 /* UserListingViewController.m in Sources */,
+				ABC031C91AE2558400060495 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1078,8 +1086,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Dzemal Zulcic (GQK38CY73M)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dzemal Zulcic (GQK38CY73M)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1092,7 +1100,7 @@
 				OTHER_CODE_SIGN_FLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = GopherCNYS;
-				PROVISIONING_PROFILE = "2e2e175e-65b4-404b-a342-7158a348607a";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -1104,8 +1112,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Dzemal Zulcic (GQK38CY73M)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dzemal Zulcic (GQK38CY73M)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1118,7 +1126,7 @@
 				OTHER_CODE_SIGN_FLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = GopherCNYS;
-				PROVISIONING_PROFILE = "2e2e175e-65b4-404b-a342-7158a348607a";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};

@@ -12,21 +12,29 @@
 #import "BaseViewController.h"
 #import "SBPickerSelector.h"
 #import "SearchViewController.h"
-#import "STableViewController.h"
 #import "ProductInformation.h"
 
-@interface ProductListViewController : STableViewController <UITabBarDelegate, UISearchBarDelegate, UISearchDisplayDelegate, SearchViewControllerDelegate>
+@interface ProductListViewController : BaseViewController <UITabBarDelegate, UISearchBarDelegate, UISearchDisplayDelegate, SearchViewControllerDelegate, CLLocationManagerDelegate>
 {
     NSArray *categoryData;
     BOOL isFavoriteTopSelected;
     BOOL isPriceTopSelected;
     BOOL isNewTopSelected;
+    CLLocationManager *locationManager;
+    NSString *countryStr;
+    NSString *localityStr;
+    NSString *adminAreaStr;
+    NSString *postalCodeStr;
+    NSString *subLocalityStr;
+    NSString *subAdminAreaStr;
 }
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSMutableArray *filteredProductArray;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UITabBarItem *cameraTabBarItem;
 @property (weak, nonatomic) IBOutlet UISearchBar *productSearchBar;
+@property (nonatomic, assign) BOOL isLoadingOrders;
 
 @property (weak, nonatomic) IBOutlet UITabBarItem *settingTabBarItem;
 - (int)compare:(PFObject*)product1 withProduct:(PFObject*)product2;
