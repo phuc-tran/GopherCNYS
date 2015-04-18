@@ -7,10 +7,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommentViewController">
             <connections>
+                <outlet property="commentTableHeightConstraint" destination="nvd-9v-zFc" id="6Tl-72-zDU"/>
                 <outlet property="commentTableView" destination="W8m-Hj-iMe" id="zU6-n4-W5E"/>
                 <outlet property="hideCommentDescLabel" destination="SvM-I4-swY" id="aEs-43-cYk"/>
                 <outlet property="hideCommentLabel" destination="AiU-j6-4UW" id="7RO-dt-6NI"/>
                 <outlet property="inputView" destination="DnH-ZM-9Fy" id="15T-HO-X9U"/>
+                <outlet property="topView" destination="N8D-QW-hRP" id="rX5-pK-gI5"/>
+                <outlet property="verticalBottomTableConstraint" destination="jCe-s3-wJE" id="FQf-K1-XqV"/>
+                <outlet property="verticalTopTableConstraint" destination="DGC-1e-KLW" id="Gpl-eN-cpo"/>
                 <outlet property="view" destination="bww-Kh-DNR" id="ScU-Wf-bve"/>
             </connections>
         </placeholder>
@@ -61,6 +65,7 @@
                         <constraint firstItem="Ltg-Ah-AhO" firstAttribute="top" secondItem="N8D-QW-hRP" secondAttribute="top" id="PuM-HL-2kj"/>
                         <constraint firstItem="SvM-I4-swY" firstAttribute="top" secondItem="N8D-QW-hRP" secondAttribute="top" constant="20" id="Taz-GD-VxH"/>
                         <constraint firstItem="Ltg-Ah-AhO" firstAttribute="leading" secondItem="SvM-I4-swY" secondAttribute="leading" id="XXO-vQ-BuG"/>
+                        <constraint firstAttribute="height" constant="51" id="aSx-NL-954"/>
                         <constraint firstAttribute="trailing" secondItem="Ltg-Ah-AhO" secondAttribute="trailing" id="bij-JU-rnU"/>
                         <constraint firstItem="ZLd-OM-DYb" firstAttribute="leading" secondItem="Ltg-Ah-AhO" secondAttribute="leading" id="dBN-97-ZsJ"/>
                         <constraint firstAttribute="bottom" secondItem="AiU-j6-4UW" secondAttribute="bottom" constant="23" id="iRz-8R-dr5"/>
