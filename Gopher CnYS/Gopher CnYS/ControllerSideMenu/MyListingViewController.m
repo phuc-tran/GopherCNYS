@@ -13,6 +13,7 @@
 #import "JSQMessages.h"
 #import "ProductDetailViewController.h"
 #import "ProductInformation.h"
+#import "SellViewController.h"
 
 @interface MyListingViewController ()
 
@@ -35,6 +36,7 @@
     [self.productTableView registerNib:[UINib nibWithNibName:@"UserListingTableViewCell" bundle:nil] forCellReuseIdentifier:@"ProductCell"];
     self.productTableView.rowHeight = 140.0f;
     self.productTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+   
     self.products = [[NSArray alloc] init];
 }
 
@@ -75,6 +77,11 @@
         [vc setProductData:self.products];
         [vc setSelectedIndex:self.seletectedIndex];
         [vc setCurrentLocaltion:self.currentLocaltion];
+    }
+    else if ([[segue identifier] isEqualToString:@"addProductViewController"])
+    {
+        SellViewController *sellVC = [segue destinationViewController];
+        [sellVC setProductInfo:self.products[self.seletectedIndex]];
     }
 
 }
@@ -144,10 +151,42 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    // Go to Product Detail
     self.seletectedIndex = indexPath.row;
-    [self performSegueWithIdentifier:@"mylisting_to_productdetail" sender:self];
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Product" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Edit product", @"View detail", nil];
+    [actionSheet showInView:self.view];
+    
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        ProductInformation *item = self.products[indexPath.row];
+        item[@"deleted"] = [NSNumber numberWithBool:YES];
+        [item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            NSLog(@"error %@", error);
+            [self loadProducts];
+        }];
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+#pragma mark - UIActionSheet Delegate Method
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"Button at index: %ld clicked\nIts title is '%@'", (long)buttonIndex, [actionSheet buttonTitleAtIndex:buttonIndex]);
+    
+    switch (buttonIndex) {
+        case 0: // Edit product
+            [self performSegueWithIdentifier:@"addProductViewController" sender:self];
+            break;
+        case 1: //View Detail
+            [self performSegueWithIdentifier:@"mylisting_to_productdetail" sender:self];
+            break;
+        default:
+            break;
+    }
+}
 @end

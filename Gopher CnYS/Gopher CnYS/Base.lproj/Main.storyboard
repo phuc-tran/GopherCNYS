@@ -1890,7 +1890,7 @@
                     <navigationItem key="navigationItem" title="My listing" id="2NN-0S-77c">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="i0d-jz-3ST">
                             <connections>
-                                <segue destination="tyi-7c-ZIe" kind="push" id="1TK-Yz-sRg"/>
+                                <segue destination="tyi-7c-ZIe" kind="push" identifier="addProductViewController" id="1TK-Yz-sRg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2136,6 +2136,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Product" id="tAm-Yr-nCX"/>
                     <connections>
+                        <outlet property="addProductBtn" destination="ANV-p1-TfU" id="CgC-UN-bGu"/>
                         <outlet property="btnCapture1" destination="ptI-kg-ulU" id="tKV-up-Kz7"/>
                         <outlet property="btnCapture2" destination="7rS-fg-cFC" id="Kj3-u4-lpB"/>
                         <outlet property="btnCapture3" destination="hhj-J2-2c5" id="FjP-7G-D35"/>
@@ -2529,9 +2530,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="e0P-cp-GQQ"/>
-        <segue reference="Hcj-1n-Msb"/>
-        <segue reference="G1w-cs-YeN"/>
+        <segue reference="bfk-BZ-XLj"/>
         <segue reference="ExP-uq-3s7"/>
+        <segue reference="e0P-cp-GQQ"/>
+        <segue reference="cis-VW-GFR"/>
     </inferredMetricsTieBreakers>
 </document>

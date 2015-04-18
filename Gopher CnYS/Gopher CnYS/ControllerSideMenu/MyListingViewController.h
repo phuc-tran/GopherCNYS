@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface MyListingViewController : BaseViewController
+@interface MyListingViewController : BaseViewController <UIActionSheetDelegate>
 
 
 @property (nonatomic, assign) BOOL isFromTabBar;
 @property (nonatomic, weak) IBOutlet UITableView *productTableView;
 @property (nonatomic, strong) NSArray *products;
+
 
 @end

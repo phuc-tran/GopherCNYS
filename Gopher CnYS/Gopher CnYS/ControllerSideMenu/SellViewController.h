@@ -12,6 +12,7 @@
 #import "SBPickerSelector.h"
 #import <Parse/Parse.h>
 #import "UzysAssetsPickerController.h"
+#import "ProductInformation.h"
 
 @interface SellViewController : BaseViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, SBPickerSelectorDelegate, UITextViewDelegate, CLLocationManagerDelegate, UIActionSheetDelegate>
 {
@@ -31,6 +32,10 @@
     PFFile *imageFile3;
     PFFile *imageFile4;
 }
+
+@property (nonatomic, retain) ProductInformation *productInfo;
+@property (nonatomic, assign) BOOL isEdit;
+@property (weak, nonatomic) IBOutlet UIButton *addProductBtn;
 
 - (IBAction)pushViewController:(id)sender;
 
@@ -57,7 +62,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (weak, nonatomic) UITextField *activeField;
-@property (weak, nonatomic) IBOutlet UIButton *addproductBtn;
 
 - (void) keyboardWillShow:(NSNotification *)notification;
 - (void) keyboardDidHide:(NSNotification *)note;

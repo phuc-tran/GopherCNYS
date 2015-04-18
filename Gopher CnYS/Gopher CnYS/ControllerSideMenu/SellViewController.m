@@ -13,10 +13,17 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface SellViewController ()
-
+{
+    SBPickerSelector *pickerCategory;
+    NSArray *categoryData ;
+    
+    SBPickerSelector *pickerCondition;
+}
 @end
 
 @implementation SellViewController
+
+@synthesize isEdit;
 
 - (void)viewDidLoad
 {
@@ -33,7 +40,10 @@
         NSLog(@"get location %@", currentLocaltion);
     }];
     
+    pickerCondition = [SBPickerSelector picker];
     categoryId = 0;
+    pickerCategory = [SBPickerSelector picker];
+    categoryData = [NSArray arrayWithObjects:@"All Categories", @"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];
     
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
@@ -63,11 +73,80 @@
     self.productImageView4.layer.borderWidth = 2.0f;
     self.productImageView4.layer.borderColor = [UIColor colorWithRed:226/255.0f green:226/255.0f blue:226/255.0f alpha:1.0f].CGColor;
     self.productImageView4.clipsToBounds = YES;
+    
+    self.isEdit = NO;
+    if(self.productInfo != nil) {
+        self.isEdit = YES;
+        [self.addProductBtn setTitle:@"Save product" forState:UIControlStateNormal];
+
+        PFFile *imageFile = [self.productInfo objectForKey:@"photo1"];
+        if (imageFile != nil) {
+            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                if (!error) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    self.productImageView1.image = image;
+                    self.btnCapture1.hidden = TRUE;
+                }
+            }];
+        }
+        
+        imageFile = [self.productInfo objectForKey:@"photo2"];
+        if (imageFile != nil) {
+            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                if (!error) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    self.productImageView2.image = image;
+                    self.btnCapture2.hidden = TRUE;
+                }
+            }];
+        }
+        
+        imageFile = [self.productInfo objectForKey:@"photo3"];
+        if (imageFile != nil) {
+            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                if (!error) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    self.productImageView3.image = image;
+                    self.btnCapture3.hidden = TRUE;
+                }
+            }];
+        }
+        
+        imageFile = [self.productInfo objectForKey:@"photo4"];
+        if (imageFile != nil) {
+            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                if (!error) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    self.productImageView4.image = image;
+                    self.btnCapture4.hidden = TRUE;
+                }
+            }];
+        }
+        
+        self.productTitleField.text = self.productInfo.title;
+        self.productDescriptionField.text = [[self.productInfo objectForKey:@"description"] description];
+        NSInteger price  = [self.productInfo.price integerValue];
+        self.productPriceField.text = [NSString stringWithFormat:@"%ld", (long)price];
+        bool condition = self.productInfo.condition;
+        [self.btnCondition setTitle:((condition == true) ? @"New" : @"Used") forState:UIControlStateNormal];
+        conditionId = ((condition == true) ? 0 : 1);
+       
+        [pickerCondition.pickerView selectRow:conditionId inComponent:0 animated:YES];
+        NSInteger quantity = [self.productInfo.quantity integerValue];
+        self.productQuatityField.text = [NSString stringWithFormat:@"%ld", (long)quantity];
+        
+        NSInteger category = [self.productInfo.category integerValue];
+        categoryId = category;
+        [pickerCondition.pickerView selectRow:category inComponent:0 animated:YES];
+        [self.btnCategory setTitle:categoryData[category] forState:UIControlStateNormal];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [self setupLeftBackBarButtonItem];
+    
+    
 }
 
 - (IBAction)leftBackClick:(id)sender {
@@ -225,6 +304,70 @@
     }];
 }
 
+- (void)editProduct {
+    
+    if (![self validationInput]) {
+        return;
+    }
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    if (imageFile1 != nil) {
+//        product[@"photo1"] = imageFile1;
+//    }
+//    
+//    if (imageFile2 != nil) {
+//        product[@"photo2"] = imageFile2;
+//    }
+//    
+//    if (imageFile3 != nil) {
+//        product[@"photo3"] = imageFile3;
+//    }
+//    
+//    if (imageFile4 != nil) {
+//        product[@"photo4"] = imageFile4;
+//    }
+    
+    self.productInfo.title = self.productTitleField.text;
+    self.productInfo[@"description"] = self.productDescriptionField.text;
+    self.productInfo.category = @(categoryId);
+    BOOL condition = (conditionId == 0);
+    self.productInfo[@"condition"] = @(condition);
+    self.productInfo[@"deleted"] = @NO;
+    NSLog(@"price  %@", self.productPriceField.text);
+    self.productInfo.price = @([self.productPriceField.text integerValue]);
+    self.productInfo.quantity = @([self.productQuatityField.text integerValue]);
+    self.productInfo[@"seller"] = [PFUser currentUser];
+    
+    if (currentLocaltion != nil) {
+        self.productInfo[@"position"] = currentLocaltion;
+    }
+    if (adminAreaStr != nil) {
+        self.productInfo[@"adminArea"] = adminAreaStr;
+    }
+    if (countryStr != nil) {
+        self.productInfo[@"country"] = countryStr;
+    }
+    if (localityStr != nil) {
+        self.productInfo[@"locality"] = localityStr;
+    }
+    if (postalCodeStr != nil) {
+        self.productInfo[@"postalCode"] = postalCodeStr;
+    }
+    
+    
+    [self.productInfo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (succeeded) {
+            // The object has been saved.
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Product eidt success" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            alert.tag = 1;
+            [alert show];
+        } else {
+            NSLog(@"Error %@", error);
+            // There was a problem, check error.description
+        }
+    }];
+}
+
 - (BOOL) validationInput {
     if (self.productImageView1.image == nil && self.productImageView2.image == nil && self.productImageView3.image == nil && self.productImageView3.image == nil)
     {
@@ -268,7 +411,11 @@
 #pragma mark - Seft action
 
 - (IBAction)addProductBtnClick:(id)sender {
-    [self addProduct];
+    if (self.isEdit && self.productInfo != nil) {
+        [self editProduct];
+    } else {
+        [self addProduct];
+    }
 }
 
 - (IBAction)caputerBtnClick:(UIButton*)sender
@@ -364,27 +511,24 @@
 
 - (IBAction)categoryBtnClick:(id)sender {
     [self.view endEditing:true];
-    SBPickerSelector *picker = [SBPickerSelector picker];
-    NSArray *categoryData = [NSArray arrayWithObjects:@"All Categories", @"Apparel & Accessories", @"Arts & Entertainment", @"Baby & Toddler", @"Cameras & Optics", @"Electronics", @"Farmers Market", @"Furniture", @"Hardware", @"Health & Beauty", @"Home & Garden", @"Luggage & Bags", @"Media", @"Office Supplies", @"Pets and Accessories", @"Religious & Ceremonial", @"Seasonal Items", @"Software", @"Sporting Goods", @"Toys & Games", @"Vehicles & Parts", nil];
-    picker.pickerData = [[NSMutableArray alloc] initWithArray:categoryData];
-    picker.delegate = self;
-    picker.pickerType = SBPickerSelectorTypeText;
-    picker.doneButtonTitle = @"Done";
-    picker.cancelButtonTitle = @"Cancel";
-    picker.tag = 100;
-    [picker showPickerIpadFromRect:self.view.frame inView:self.view];
+    pickerCategory.pickerData = [[NSMutableArray alloc] initWithArray:categoryData];
+    pickerCategory.delegate = self;
+    pickerCategory.pickerType = SBPickerSelectorTypeText;
+    pickerCategory.doneButtonTitle = @"Done";
+    pickerCategory.cancelButtonTitle = @"Cancel";
+    pickerCategory.tag = 100;
+    [pickerCategory showPickerIpadFromRect:self.view.frame inView:self.view];
 }
 
 - (IBAction)conditionBtnClick:(id)sender {
     [self.view endEditing:true];
-    SBPickerSelector *picker = [SBPickerSelector picker];
-    picker.pickerData = [[NSMutableArray alloc] initWithArray:@[@"New", @"Used"]];
-    picker.delegate = self;
-    picker.pickerType = SBPickerSelectorTypeText;
-    picker.doneButtonTitle = @"Done";
-    picker.cancelButtonTitle = @"Cancel";
-    picker.tag = 200;
-    [picker showPickerIpadFromRect:self.view.frame inView:self.view];
+    pickerCondition.pickerData = [[NSMutableArray alloc] initWithArray:@[@"New", @"Used"]];
+    pickerCondition.delegate = self;
+    pickerCondition.pickerType = SBPickerSelectorTypeText;
+    pickerCondition.doneButtonTitle = @"Done";
+    pickerCondition.cancelButtonTitle = @"Cancel";
+    pickerCondition.tag = 200;
+    [pickerCondition showPickerIpadFromRect:self.view.frame inView:self.view];
 }
 
 #pragma mark - UIActionSheet Delegate Method
@@ -418,7 +562,6 @@
             break;
     }
 }
-
 
 #pragma mark - SBPickerSelectorDelegate
 -(void) pickerSelector:(SBPickerSelector *)selector selectedValue:(NSString *)value index:(NSInteger)idx;

@@ -18,6 +18,8 @@
 @dynamic favoritors;
 @dynamic category;
 @dynamic photo1, photo2, photo3, photo4;
+@dynamic condition;
+@dynamic quantity;
 
 + (void)load {
     [self registerSubclass];

@@ -99,9 +99,6 @@
         }
     }
    
-    
-    
-    
     NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
     attachment.image = [UIImage imageNamed:@"chat_icon.png"];
     NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];

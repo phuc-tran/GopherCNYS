@@ -13,6 +13,8 @@
 
 @implementation SBPickerSelector
 
+@synthesize pickerView;
+
 + (instancetype) picker {
     return [SBPickerSelector pickerWithNibName:@"SBPickerSelector"];
 }

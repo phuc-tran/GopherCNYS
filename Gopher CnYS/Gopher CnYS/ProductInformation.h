@@ -19,6 +19,8 @@
 @property (nonatomic, retain) NSArray *favoritors;
 @property (nonatomic, retain) NSNumber *price;
 @property (nonatomic, retain) NSNumber *category;
+@property (nonatomic, retain) NSNumber *quantity;
+@property (nonatomic, assign) BOOL condition;
 @property (nonatomic, retain) PFFile *photo1;
 @property (nonatomic, retain) PFFile *photo2;
 @property (nonatomic, retain) PFFile *photo3;
