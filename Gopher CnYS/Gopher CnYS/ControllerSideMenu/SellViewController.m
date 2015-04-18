@@ -85,7 +85,8 @@
                 if (!error) {
                     UIImage *image = [UIImage imageWithData:data];
                     self.productImageView1.image = image;
-                    self.btnCapture1.hidden = TRUE;
+                    [self.btnCapture1 setImage:[UIImage imageNamed:@"icon_capture.png"] forState:UIControlStateNormal];
+                    [self.btnCapture1 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, -50, 0)];
                 }
             }];
         }
@@ -96,7 +97,8 @@
                 if (!error) {
                     UIImage *image = [UIImage imageWithData:data];
                     self.productImageView2.image = image;
-                    self.btnCapture2.hidden = TRUE;
+                    [self.btnCapture2 setImage:[UIImage imageNamed:@"icon_capture.png"] forState:UIControlStateNormal];
+                    [self.btnCapture2 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, -50, 0)];
                 }
             }];
         }
@@ -107,7 +109,8 @@
                 if (!error) {
                     UIImage *image = [UIImage imageWithData:data];
                     self.productImageView3.image = image;
-                    self.btnCapture3.hidden = TRUE;
+                    [self.btnCapture3 setImage:[UIImage imageNamed:@"icon_capture.png"] forState:UIControlStateNormal];
+                    [self.btnCapture3 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, -50, 0)];
                 }
             }];
         }
@@ -118,7 +121,8 @@
                 if (!error) {
                     UIImage *image = [UIImage imageWithData:data];
                     self.productImageView4.image = image;
-                    self.btnCapture4.hidden = TRUE;
+                    [self.btnCapture4 setImage:[UIImage imageNamed:@"icon_capture.png"] forState:UIControlStateNormal];
+                    [self.btnCapture4 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, -50, 0)];
                 }
             }];
         }
@@ -310,21 +314,21 @@
         return;
     }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    if (imageFile1 != nil) {
-//        product[@"photo1"] = imageFile1;
-//    }
-//    
-//    if (imageFile2 != nil) {
-//        product[@"photo2"] = imageFile2;
-//    }
-//    
-//    if (imageFile3 != nil) {
-//        product[@"photo3"] = imageFile3;
-//    }
-//    
-//    if (imageFile4 != nil) {
-//        product[@"photo4"] = imageFile4;
-//    }
+    if (imageFile1 != nil) {
+        self.productInfo.photo1 = imageFile1;
+    }
+    
+    if (imageFile2 != nil) {
+        self.productInfo.photo2 = imageFile2;
+    }
+    
+    if (imageFile3 != nil) {
+        self.productInfo.photo3 = imageFile3;
+    }
+    
+    if (imageFile4 != nil) {
+        self.productInfo.photo4 = imageFile4;
+    }
     
     self.productInfo.title = self.productTitleField.text;
     self.productInfo[@"description"] = self.productDescriptionField.text;
@@ -358,7 +362,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (succeeded) {
             // The object has been saved.
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Product eidt success" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Product edit success" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             alert.tag = 1;
             [alert show];
         } else {
@@ -442,7 +446,8 @@
         case 1:
         {
             self.productImageView1.image = gotImage;
-            self.btnCapture1.hidden = TRUE;
+            [self.btnCapture1 setImage:[UIImage imageNamed:@"icon_capture.png"] forState:UIControlStateNormal];
+            [self.btnCapture1 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, -50, 0)];
             NSData *imageData = UIImagePNGRepresentation(smallImage);
             imageFile1 = [PFFile fileWithName:@"productImage1.png" data:imageData];
             [imageFile1 saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -457,7 +462,8 @@
         case 2:
         {
             self.productImageView2.image = gotImage;
-            self.btnCapture2.hidden = TRUE;
+            [self.btnCapture2 setImage:[UIImage imageNamed:@"icon_capture.png"] forState:UIControlStateNormal];
+            [self.btnCapture2 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, -50, 0)];
             NSData *imageData = UIImagePNGRepresentation(smallImage);
             imageFile2 = [PFFile fileWithName:@"productImage2.png" data:imageData];
             [imageFile2 saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -472,7 +478,8 @@
         case 3:
         {
             self.productImageView3.image = gotImage;
-            self.btnCapture3.hidden = TRUE;
+            [self.btnCapture3 setImage:[UIImage imageNamed:@"icon_capture.png"] forState:UIControlStateNormal];
+            [self.btnCapture3 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, -50, 0)];
             NSData *imageData = UIImagePNGRepresentation(smallImage);
             imageFile3 = [PFFile fileWithName:@"productImage3.png" data:imageData];
             [imageFile3 saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -487,7 +494,8 @@
         case 4:
         {
             self.productImageView4.image = gotImage;
-            self.btnCapture4.hidden = TRUE;
+            [self.btnCapture4 setImage:[UIImage imageNamed:@"icon_capture.png"] forState:UIControlStateNormal];
+            [self.btnCapture4 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, -50, 0)];
             NSData *imageData = UIImagePNGRepresentation(smallImage);
             imageFile4 = [PFFile fileWithName:@"productImage4.png" data:imageData];
             [imageFile4 saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
