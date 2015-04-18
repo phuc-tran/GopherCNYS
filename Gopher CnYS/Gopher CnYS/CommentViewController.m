@@ -22,6 +22,10 @@
 @property (nonatomic, weak) IBOutlet UILabel *hideCommentDescLabel;
 @property (nonatomic, weak) IBOutlet UITableView *commentTableView;
 @property (nonatomic, weak) IBOutlet THChatInput *inputView;
+@property (weak, nonatomic) IBOutlet UIView *topView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentTableHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *verticalTopTableConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *verticalBottomTableConstraint;
 
 @end
 
@@ -54,6 +58,7 @@ static void * kCommentsKeyValueObservingContext = &kCommentsKeyValueObservingCon
     
     // initialize array comments
     self.comments = [[NSMutableArray alloc] init];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,11 +67,17 @@ static void * kCommentsKeyValueObservingContext = &kCommentsKeyValueObservingCon
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     // Add observers
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:@"UIKeyboardWillShowNotification" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:@"UIKeyboardDidHideNotification" object:nil];
 
+    self.commentTableHeightConstraint.constant = CGRectGetHeight(self.view.frame) - (CGRectGetHeight(self.topView.frame) + self.verticalTopTableConstraint.constant + self.verticalBottomTableConstraint.constant + CGRectGetHeight(self.inputView.frame));
+//    NSLog(@"CGRectGetHeight(self.view.frame) %f", CGRectGetHeight(self.view.frame));
+//    NSLog(@"commentTableView frame %@", NSStringFromCGRect(self.commentTableView.frame));
+
+    
     [self loadComments];
 }
 
