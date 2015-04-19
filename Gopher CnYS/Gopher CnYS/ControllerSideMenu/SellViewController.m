@@ -73,76 +73,75 @@
     self.productImageView4.layer.borderWidth = 2.0f;
     self.productImageView4.layer.borderColor = [UIColor colorWithRed:226/255.0f green:226/255.0f blue:226/255.0f alpha:1.0f].CGColor;
     self.productImageView4.clipsToBounds = YES;
-    
-    self.isEdit = NO;
-    if(self.productInfo != nil) {
-        self.isEdit = YES;
-        [self.addProductBtn setTitle:@"Save product" forState:UIControlStateNormal];
+    if(isEdit) {
+        if(self.productInfo != nil) {
+            [self.addProductBtn setTitle:@"Save product" forState:UIControlStateNormal];
 
-        PFFile *imageFile = [self.productInfo objectForKey:@"photo1"];
-        if (imageFile != nil) {
-            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-                if (!error) {
-                    UIImage *image = [UIImage imageWithData:data];
-                    self.productImageView1.image = image;
-                    [self.btnCapture1 setImage:[UIImage imageNamed:@"icon_capture.png"] forState:UIControlStateNormal];
-                    [self.btnCapture1 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, -50, 0)];
-                }
-            }];
+            PFFile *imageFile = [self.productInfo objectForKey:@"photo1"];
+            if (imageFile != nil) {
+                [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                    if (!error) {
+                        UIImage *image = [UIImage imageWithData:data];
+                        self.productImageView1.image = image;
+                        [self.btnCapture1 setImage:[UIImage imageNamed:@"icon_capture.png"] forState:UIControlStateNormal];
+                        [self.btnCapture1 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, -50, 0)];
+                    }
+                }];
+            }
+            
+            imageFile = [self.productInfo objectForKey:@"photo2"];
+            if (imageFile != nil) {
+                [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                    if (!error) {
+                        UIImage *image = [UIImage imageWithData:data];
+                        self.productImageView2.image = image;
+                        [self.btnCapture2 setImage:[UIImage imageNamed:@"icon_capture.png"] forState:UIControlStateNormal];
+                        [self.btnCapture2 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, -50, 0)];
+                    }
+                }];
+            }
+            
+            imageFile = [self.productInfo objectForKey:@"photo3"];
+            if (imageFile != nil) {
+                [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                    if (!error) {
+                        UIImage *image = [UIImage imageWithData:data];
+                        self.productImageView3.image = image;
+                        [self.btnCapture3 setImage:[UIImage imageNamed:@"icon_capture.png"] forState:UIControlStateNormal];
+                        [self.btnCapture3 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, -50, 0)];
+                    }
+                }];
+            }
+            
+            imageFile = [self.productInfo objectForKey:@"photo4"];
+            if (imageFile != nil) {
+                [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                    if (!error) {
+                        UIImage *image = [UIImage imageWithData:data];
+                        self.productImageView4.image = image;
+                        [self.btnCapture4 setImage:[UIImage imageNamed:@"icon_capture.png"] forState:UIControlStateNormal];
+                        [self.btnCapture4 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, -50, 0)];
+                    }
+                }];
+            }
+            
+            self.productTitleField.text = self.productInfo.title;
+            self.productDescriptionField.text = [[self.productInfo objectForKey:@"description"] description];
+            NSInteger price  = [self.productInfo.price integerValue];
+            self.productPriceField.text = [NSString stringWithFormat:@"%ld", (long)price];
+            bool condition = self.productInfo.condition;
+            [self.btnCondition setTitle:((condition == true) ? @"New" : @"Used") forState:UIControlStateNormal];
+            conditionId = ((condition == true) ? 0 : 1);
+           
+            [pickerCondition.pickerView selectRow:conditionId inComponent:0 animated:YES];
+            NSInteger quantity = [self.productInfo.quantity integerValue];
+            self.productQuatityField.text = [NSString stringWithFormat:@"%ld", (long)quantity];
+            
+            NSInteger category = [self.productInfo.category integerValue];
+            categoryId = category;
+            [pickerCondition.pickerView selectRow:category inComponent:0 animated:YES];
+            [self.btnCategory setTitle:categoryData[category] forState:UIControlStateNormal];
         }
-        
-        imageFile = [self.productInfo objectForKey:@"photo2"];
-        if (imageFile != nil) {
-            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-                if (!error) {
-                    UIImage *image = [UIImage imageWithData:data];
-                    self.productImageView2.image = image;
-                    [self.btnCapture2 setImage:[UIImage imageNamed:@"icon_capture.png"] forState:UIControlStateNormal];
-                    [self.btnCapture2 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, -50, 0)];
-                }
-            }];
-        }
-        
-        imageFile = [self.productInfo objectForKey:@"photo3"];
-        if (imageFile != nil) {
-            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-                if (!error) {
-                    UIImage *image = [UIImage imageWithData:data];
-                    self.productImageView3.image = image;
-                    [self.btnCapture3 setImage:[UIImage imageNamed:@"icon_capture.png"] forState:UIControlStateNormal];
-                    [self.btnCapture3 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, -50, 0)];
-                }
-            }];
-        }
-        
-        imageFile = [self.productInfo objectForKey:@"photo4"];
-        if (imageFile != nil) {
-            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-                if (!error) {
-                    UIImage *image = [UIImage imageWithData:data];
-                    self.productImageView4.image = image;
-                    [self.btnCapture4 setImage:[UIImage imageNamed:@"icon_capture.png"] forState:UIControlStateNormal];
-                    [self.btnCapture4 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, -50, 0)];
-                }
-            }];
-        }
-        
-        self.productTitleField.text = self.productInfo.title;
-        self.productDescriptionField.text = [[self.productInfo objectForKey:@"description"] description];
-        NSInteger price  = [self.productInfo.price integerValue];
-        self.productPriceField.text = [NSString stringWithFormat:@"%ld", (long)price];
-        bool condition = self.productInfo.condition;
-        [self.btnCondition setTitle:((condition == true) ? @"New" : @"Used") forState:UIControlStateNormal];
-        conditionId = ((condition == true) ? 0 : 1);
-       
-        [pickerCondition.pickerView selectRow:conditionId inComponent:0 animated:YES];
-        NSInteger quantity = [self.productInfo.quantity integerValue];
-        self.productQuatityField.text = [NSString stringWithFormat:@"%ld", (long)quantity];
-        
-        NSInteger category = [self.productInfo.category integerValue];
-        categoryId = category;
-        [pickerCondition.pickerView selectRow:category inComponent:0 animated:YES];
-        [self.btnCategory setTitle:categoryData[category] forState:UIControlStateNormal];
     }
 }
 

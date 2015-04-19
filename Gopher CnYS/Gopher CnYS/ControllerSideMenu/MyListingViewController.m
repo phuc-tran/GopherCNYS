@@ -16,6 +16,9 @@
 #import "SellViewController.h"
 
 @interface MyListingViewController ()
+{
+    BOOL isEditProduct;
+}
 
 @property (nonatomic, assign) NSInteger seletectedIndex;
 @property (nonatomic, strong) PFGeoPoint *currentLocaltion;
@@ -38,6 +41,8 @@
     self.productTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
    
     self.products = [[NSArray alloc] init];
+    
+    isEditProduct = NO;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -58,6 +63,12 @@
         [super leftBackClick:nil];
     }
 }
+
+- (IBAction)addProductBtnClick:(id)sender {
+    isEditProduct = NO;
+    [self performSegueWithIdentifier:@"addProductViewController" sender:self];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -81,6 +92,7 @@
     else if ([[segue identifier] isEqualToString:@"addProductViewController"])
     {
         SellViewController *sellVC = [segue destinationViewController];
+        sellVC.isEdit = isEditProduct;
         [sellVC setProductInfo:self.products[self.seletectedIndex]];
     }
 
@@ -180,6 +192,7 @@
     
     switch (buttonIndex) {
         case 0: // Edit product
+            isEditProduct = YES;
             [self performSegueWithIdentifier:@"addProductViewController" sender:self];
             break;
         case 1: //View Detail

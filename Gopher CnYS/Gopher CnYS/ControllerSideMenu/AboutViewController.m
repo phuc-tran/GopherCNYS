@@ -78,6 +78,13 @@
 }
 
 - (IBAction)generalInfoClick:(id)sender {
-
+    MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] init];
+    if ([MFMailComposeViewController canSendMail]) {
+        [composeViewController setMailComposeDelegate:self];
+        [composeViewController setToRecipients:@[@"info@gopherclassifieds.com"]];
+        [composeViewController setSubject:@"Gopher general info"];
+        [composeViewController setMessageBody:@"" isHTML:NO];
+        [self presentViewController:composeViewController animated:YES completion:nil];
+    }
 }
 @end
