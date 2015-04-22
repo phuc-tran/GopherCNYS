@@ -27,6 +27,9 @@
     BOOL isSearchNavi;
     BOOL isLoadFinished;
     BOOL isSearchMainPage;
+    
+    UILabel *noDataLable;
+    BOOL isShowNoData;
 }
 @end
 
@@ -55,8 +58,16 @@
 
     productData = [[NSMutableArray alloc] init];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil] forCellReuseIdentifier:@"ProductTableViewCell"];
+    noDataLable = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2, self.tableView.frame.size.width, 40)];
+    noDataLable.text = @"No listings are available for this zip code";
+    noDataLable.textColor = [UIColor darkGrayColor];
+    noDataLable.textAlignment = NSTextAlignmentCenter;
+    noDataLable.hidden = YES;
+    isShowNoData = NO;
+    [self.tableView addSubview:noDataLable];
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil] forCellReuseIdentifier:@"ProductTableViewCell"];
+
     [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil] forCellReuseIdentifier:@"ProductTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.searchDisplayController.searchResultsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -311,6 +322,16 @@
                 if (_isNewSearch) {
                     [self filterResultsWithSearch];
                 }
+                if (isShowNoData) {
+                    if (productData.count <= 0) {
+                        noDataLable.hidden = NO;
+                    } else {
+                        noDataLable.hidden = YES;
+                    }
+                } else {
+                    noDataLable.hidden = YES;
+                }
+                
                 [self.tableView reloadData];
                 if (isSearchNavi) {
                     [self.searchDisplayController.searchResultsTableView reloadData];
@@ -460,7 +481,7 @@
 - (void)onFilterContentForSearch:(NSMutableArray*)categoryList withPrice:(NSInteger)price withZipCode:(NSString *)zipcode withKeyword:(NSString *)keywords favoriteSelected:(BOOL)isSelected conditionOption:(NSInteger)condition rangeOption:(NSInteger)rangindex {
     [productData removeAllObjects];
     NSLog(@"aaaa %ld", (unsigned long)productData.count);
-    
+    isShowNoData = NO;
     if (keywords != nil && keywords.length > 0 && [keywords stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] ) {
         PFQuery *queryTitle = [ProductInformation query];
         [queryTitle whereKey:@"title" matchesRegex:keywords modifiers:@"i"];
@@ -481,6 +502,7 @@
         if (![zipcode isEqualToString:@"85345"]) {
             [queryTotal whereKey:@"postalCode" equalTo:zipcode];
         }
+        isShowNoData = YES;
     }
     if (isSelected) {
         [queryTotal whereKey:@"favoritors" containsAllObjectsInArray:@[[PFUser currentUser].objectId]];
