@@ -116,7 +116,13 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-//  [self.tableView triggerPullToRefresh];
+    NSString *model = [[UIDevice currentDevice] model];
+    if ([model isEqualToString:@"iPhone Simulator"]) {
+        [self.tableView triggerPullToRefresh];
+        NSLog(@"iPhone Simulator");
+    }
+ 
+
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -544,7 +550,11 @@
     [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
     [queryTotal orderByDescending:@"createdAt"];
     queryTotal.limit = 100;
-    [self.tableView triggerPullToRefresh];
+    
+    NSString *model = [[UIDevice currentDevice] model];
+    if (![model isEqualToString:@"iPhone Simulator"]) {
+        [self.tableView triggerPullToRefresh];
+    }
 }
 
 #pragma mark - ProductTableViewCellDelegate
