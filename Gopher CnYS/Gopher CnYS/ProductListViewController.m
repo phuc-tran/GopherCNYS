@@ -105,7 +105,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    //[self.tableView triggerPullToRefresh];
+//  [self.tableView triggerPullToRefresh];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -529,6 +529,7 @@
 
 - (void)onFavoriteCheck:(NSInteger)index isFavorite:(BOOL)isFv
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSLog(@"index %ld is check %d", (long)index, isFv);
     if(isFv)
     {
@@ -538,7 +539,12 @@
         [array addObject:[PFUser currentUser].objectId];
         PFObject *item = [productData objectAtIndex:index];
         item[@"favoritors"] = array;
-        [item saveInBackground];
+        [item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if (succeeded) {
+                
+            }
+        }];
         
     } else {
         
@@ -555,7 +561,12 @@
             
             PFObject *item = [productData objectAtIndex:index];
             [item setObject:array forKey:@"favoritors"];
-            [item saveInBackground];
+            [item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                if (succeeded) {
+                    
+                }
+            }];
         }
     }
 }

@@ -114,7 +114,6 @@
 
 - (IBAction)favoriteItemBtnClick:(id)sender
 {
-    
     isFavorited = !isFavorited;
     if(delegate) {
         [delegate onFavoriteCheck:cellIndex isFavorite:isFavorited];
