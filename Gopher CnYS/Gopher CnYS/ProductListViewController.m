@@ -50,6 +50,7 @@
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    
     [locationManager startUpdatingLocation];
 
     productData = [[NSMutableArray alloc] init];
@@ -71,41 +72,6 @@
     //init query
     queryTotal = [ProductInformation query];
     [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSInteger rangeIndex;
-    if ([defaults objectForKey:@"product_range"] != nil) {
-        rangeIndex = [[defaults objectForKey:@"product_range"] integerValue];
-    } else {
-        rangeIndex = 3;
-    }
-    
-    if(rangeIndex >= 0) {
-        switch (rangeIndex) {
-            case 0: // Town
-                if (localityStr != nil) {
-                    [queryTotal whereKey:@"locality" equalTo:localityStr];
-                }
-                break;
-            case 1: // City
-                break;
-            case 2: // State
-                if (adminAreaStr != nil) {
-                    [queryTotal whereKey:@"adminArea" equalTo:adminAreaStr];
-                }
-                break;
-            case 3: // Country
-                if (countryStr != nil) {
-                    [queryTotal whereKey:@"country" equalTo:countryStr];
-                }
-                break;
-            case 4: // World
-                break;
-            default:
-                break;
-        }
-    }
-    
     [queryTotal orderByDescending:@"createdAt"];
     queryTotal.limit = 100;
     
@@ -139,7 +105,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.tableView triggerPullToRefresh];
+    //[self.tableView triggerPullToRefresh];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -153,9 +119,11 @@
     
     // stop updating location in order to save battery power
     [locationManager stopUpdatingLocation];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error)
      {
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
          if (error == nil && [placemarks count] > 0)
          {
              CLPlacemark *placemark = [placemarks lastObject];
@@ -196,8 +164,44 @@
                  countryStr = strAdd;
                  NSLog(@"countryStr %@", countryStr);
              }
+           
+             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+             NSInteger rangeIndex;
+             if ([defaults objectForKey:@"product_range"] != nil) {
+                 rangeIndex = [[defaults objectForKey:@"product_range"] integerValue];
+             } else {
+                 rangeIndex = 3;
+             }
              
+             if(rangeIndex >= 0) {
+                 switch (rangeIndex) {
+                     case 0: // Town
+                         if (localityStr != nil) {
+                             [queryTotal whereKey:@"locality" equalTo:localityStr];
+                         }
+                         break;
+                     case 1: // City
+                         break;
+                     case 2: // State
+                         if (adminAreaStr != nil) {
+                             [queryTotal whereKey:@"adminArea" equalTo:adminAreaStr];
+                         }
+                         break;
+                     case 3: // Country
+                         if (countryStr != nil) {
+                             [queryTotal whereKey:@"country" equalTo:countryStr];
+                         }
+                         break;
+                     case 4: // World
+                         break;
+                     default:
+                         break;
+                 }
+             }
+             
+             [self.tableView triggerPullToRefresh];
          }
+         
      }];
 }
 
@@ -518,6 +522,7 @@
     [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
     [queryTotal orderByDescending:@"createdAt"];
     queryTotal.limit = 100;
+    [self.tableView triggerPullToRefresh];
 }
 
 #pragma mark - ProductTableViewCellDelegate
