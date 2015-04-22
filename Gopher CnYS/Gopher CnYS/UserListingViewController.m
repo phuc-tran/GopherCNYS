@@ -103,18 +103,21 @@
         }
     }];
 
+    
     // Following
     PFRelation *followRelation = [[PFUser currentUser] relationForKey:@"follow"];
     PFQuery *followQuery = [followRelation query];
     [followQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
+        BOOL shouldHideFollowButton = NO;
         for (PFUser *user in objects) {
             if ([user.objectId isEqualToString:self.curUser.objectId]) {
                 // has followed this user
                 // hide follow button
-                self.followButton.hidden = YES;
+                shouldHideFollowButton = YES;
                 break;
             }
         }
+        self.followButton.hidden = shouldHideFollowButton;
     }];
 }
 
