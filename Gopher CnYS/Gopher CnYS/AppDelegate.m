@@ -64,10 +64,11 @@
        [self requestAlwaysAuthorization];
     }
     
-    UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-    if (notification) {
+    NSDictionary *remoteNotifDict = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (remoteNotifDict) {
         // Receive notification from remote
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"GopherBackgroundReceivePushNotificationFromParse" object:nil userInfo:notification.userInfo];
+//        NSLog(@"Receive notification from remote %@", remoteNotifDict);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"GopherBackgroundReceivePushNotificationFromParse" object:nil userInfo:remoteNotifDict];
     }
     
     return YES;
