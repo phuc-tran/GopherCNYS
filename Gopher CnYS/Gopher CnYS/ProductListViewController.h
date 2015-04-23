@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *productSearchBar;
 @property (nonatomic, assign) BOOL isLoadingOrders;
 
+@property (weak, nonatomic) IBOutlet UITabBar *mainTabBar;
 @property (weak, nonatomic) IBOutlet UITabBarItem *settingTabBarItem;
 - (int)compare:(PFObject*)product1 withProduct:(PFObject*)product2;
 

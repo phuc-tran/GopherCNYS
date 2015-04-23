@@ -112,6 +112,7 @@
     isFavoriteTopSelected = NO;
     isNewTopSelected = NO;
     isPriceTopSelected = NO;
+    [self.mainTabBar setSelectedItem:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
