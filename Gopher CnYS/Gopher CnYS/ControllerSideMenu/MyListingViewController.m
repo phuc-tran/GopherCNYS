@@ -93,7 +93,9 @@
     {
         SellViewController *sellVC = [segue destinationViewController];
         sellVC.isEdit = isEditProduct;
-        [sellVC setProductInfo:self.products[self.seletectedIndex]];
+        if(isEditProduct && self.products.count > 0){
+            [sellVC setProductInfo:self.products[self.seletectedIndex]];
+        }
     }
 
 }

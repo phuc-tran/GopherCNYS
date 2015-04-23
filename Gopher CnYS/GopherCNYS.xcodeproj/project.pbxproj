@@ -90,6 +90,7 @@
 		ABCAFF1B1AD2D85400BD7C31 /* SearchTabListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCAFF1A1AD2D85400BD7C31 /* SearchTabListViewController.m */; };
 		ABCAFF1D1AD2DF3100BD7C31 /* searchtab.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABCAFF1C1AD2DF3100BD7C31 /* searchtab.plist */; };
 		ABCAFF201AD2EAAA00BD7C31 /* SearchTabTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCAFF1F1AD2EAAA00BD7C31 /* SearchTabTableViewCell.m */; };
+		ABDB19931AE944C5003FE637 /* CLPlacemark+ShortState.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDB19921AE944C5003FE637 /* CLPlacemark+ShortState.m */; };
 		ABEC4DB91ABD6719000CF27C /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DB81ABD6719000CF27C /* AboutViewController.m */; };
 		ABEC4DBC1ABD6898000CF27C /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DBB1ABD6898000CF27C /* ProfileViewController.m */; };
 		ABEC4DBF1ABD6A12000CF27C /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABEC4DBE1ABD6A12000CF27C /* BaseViewController.m */; };
@@ -259,6 +260,8 @@
 		ABCAFF1C1AD2DF3100BD7C31 /* searchtab.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = searchtab.plist; sourceTree = "<group>"; };
 		ABCAFF1E1AD2EAAA00BD7C31 /* SearchTabTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTabTableViewCell.h; sourceTree = "<group>"; };
 		ABCAFF1F1AD2EAAA00BD7C31 /* SearchTabTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTabTableViewCell.m; sourceTree = "<group>"; };
+		ABDB19911AE944C5003FE637 /* CLPlacemark+ShortState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLPlacemark+ShortState.h"; sourceTree = "<group>"; };
+		ABDB19921AE944C5003FE637 /* CLPlacemark+ShortState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLPlacemark+ShortState.m"; sourceTree = "<group>"; };
 		ABEC4DB71ABD6719000CF27C /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		ABEC4DB81ABD6719000CF27C /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		ABEC4DBA1ABD6898000CF27C /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -608,6 +611,8 @@
 				1864BF0D1A4B1EA300EF5DD7 /* AppDelegate.m */,
 				ABBEEF741ADA4A750051D60B /* ProductInformation.h */,
 				ABBEEF751ADA4A750051D60B /* ProductInformation.m */,
+				ABDB19911AE944C5003FE637 /* CLPlacemark+ShortState.h */,
+				ABDB19921AE944C5003FE637 /* CLPlacemark+ShortState.m */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -948,6 +953,7 @@
 				184962A61A6657B30054AFFE /* ProductListViewController.m in Sources */,
 				B9E2EF051AC6FE7F0085BCDC /* PrivateMessageViewController.m in Sources */,
 				AB6E34C01ABC6A9A00867CA3 /* MessagesViewController.m in Sources */,
+				ABDB19931AE944C5003FE637 /* CLPlacemark+ShortState.m in Sources */,
 				ABBEEF761ADA4A750051D60B /* ProductInformation.m in Sources */,
 				B9B1EC331AC6C50300377E36 /* MessageTableViewCell.m in Sources */,
 				ABBF945F1ACFCB1700E308F5 /* MJPopupBackgroundView.m in Sources */,

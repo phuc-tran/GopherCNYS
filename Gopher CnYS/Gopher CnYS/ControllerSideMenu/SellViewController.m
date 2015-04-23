@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 #import "HomeViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "CLPlacemark+ShortState.h"
 
 @interface SellViewController ()
 {
@@ -196,7 +197,7 @@
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error)
      {
-         NSLog(@"Found placemarks: %@, error: %@", placemarks, error);
+         //NSLog(@"Found placemarks: %@, error: %@", placemarks, error);
          if (error == nil && [placemarks count] > 0)
          {
              CLPlacemark *placemark = [placemarks lastObject];
@@ -227,7 +228,7 @@
              }
              
              if ([placemark.administrativeArea length] != 0) {
-                 strAdd = placemark.administrativeArea;
+                 strAdd = placemark.shortState;
                  adminAreaStr = strAdd;
                   NSLog(@"adminAreaStr %@", adminAreaStr);
              }

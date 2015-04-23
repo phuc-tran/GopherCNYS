@@ -16,6 +16,7 @@
 #import "ProductListTableHeaderView.h"
 #import "ProductListTableFooterView.h"
 #import "SVPullToRefresh.h"
+#import "CLPlacemark+ShortState.h"
 
 @interface ProductListViewController () <ProductTableViewCellDelegate>
 {
@@ -111,18 +112,15 @@
     isFavoriteTopSelected = NO;
     isNewTopSelected = NO;
     isPriceTopSelected = NO;
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    NSString *model = [[UIDevice currentDevice] model];
-    if ([model isEqualToString:@"iPhone Simulator"]) {
-        [self.tableView triggerPullToRefresh];
-        NSLog(@"iPhone Simulator");
-    }
- 
-
+//    NSString *model = [[UIDevice currentDevice] model];
+//    if ([model isEqualToString:@"iPhone Simulator"]) {
+//        [self.tableView triggerPullToRefresh];
+//        NSLog(@"iPhone Simulator");
+//    }
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -171,7 +169,7 @@
              }
              
              if ([placemark.administrativeArea length] != 0) {
-                 strAdd = placemark.administrativeArea;
+                 strAdd = placemark.shortState;
                  adminAreaStr = strAdd;
                  NSLog(@"adminAreaStr %@", adminAreaStr);
              }
@@ -216,7 +214,11 @@
                  }
              }
              
-             [self.tableView triggerPullToRefresh];
+//             NSString *model = [[UIDevice currentDevice] model];
+//             if (![model isEqualToString:@"iPhone Simulator"]) {
+//                 NSLog(@"Real device");
+                 [self.tableView triggerPullToRefresh];
+//             }
          }
          
      }];
