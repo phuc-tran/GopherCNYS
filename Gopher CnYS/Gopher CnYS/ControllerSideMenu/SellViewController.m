@@ -227,18 +227,18 @@
                  NSLog(@"localityStr %@", localityStr);
              }
              
+             if ([placemark.country length] != 0) {
+                 strAdd = placemark.country;
+                 countryStr = strAdd;
+                 NSLog(@"countryStr %@", countryStr);
+             }
+             
              if ([placemark.administrativeArea length] != 0) {
                  strAdd = placemark.shortState;
                  adminAreaStr = strAdd;
                   NSLog(@"adminAreaStr %@", adminAreaStr);
              }
-             
-             if ([placemark.country length] != 0) {
-                 strAdd = placemark.country;
-                 countryStr = strAdd;
-                NSLog(@"countryStr %@", countryStr);
-             }
-
+           
          }
     }];
 }

@@ -22,7 +22,12 @@
     
     if (state.length==0)
         return nil;
-    return [[self nameAbbreviations] objectForKey:state];
+    NSString *stateName = [[self nameAbbreviations] objectForKey:state];
+    if (stateName == nil)
+    {
+        stateName = self.administrativeArea;
+    }
+    return stateName;
     
 }
 
