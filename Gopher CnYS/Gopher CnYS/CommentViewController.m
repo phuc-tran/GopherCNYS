@@ -192,7 +192,11 @@ static void * kCommentsKeyValueObservingContext = &kCommentsKeyValueObservingCon
                 for (NSObject *obj in [fbProfileImageView subviews]) {
                     if ([obj isMemberOfClass:[UIImageView class]]) {
                         UIImageView *objImg = (UIImageView *)obj;
-                        cell.avatar.image = [JSQMessagesAvatarImageFactory circularAvatarImage:objImg.image withDiameter:70];
+                        if (objImg.image != nil)  {
+                            cell.avatar.image = [JSQMessagesAvatarImageFactory circularAvatarImage:objImg.image withDiameter:70];
+                        } else {
+                            cell.avatar.image = [JSQMessagesAvatarImageFactory circularAvatarImage:[UIImage imageNamed:@"avatarDefault"] withDiameter:70];
+                        }
                         break;
                     }
                 }
