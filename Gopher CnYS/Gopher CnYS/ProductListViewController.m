@@ -31,6 +31,7 @@
     
     UILabel *noDataLable;
     BOOL isShowNoData;
+    NSInteger rangeIndex;
 }
 @end
 
@@ -182,7 +183,6 @@
              }
              
              NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-             NSInteger rangeIndex;
              if ([defaults objectForKey:@"product_range"] != nil) {
                  rangeIndex = [[defaults objectForKey:@"product_range"] integerValue];
              } else {
@@ -318,7 +318,20 @@
                 // The find succeeded.
                 isLoadFinished = YES;
                 for (ProductInformation *object in objects) {
-                    [productData addObject:object];
+                    if (rangeIndex == 1) // City <= 30 miles
+                    {
+                        PFGeoPoint *point = [object objectForKey:@"position"];
+                        if(currentLocaltion != nil && point != nil)
+                        {
+                            double dist = [currentLocaltion distanceInMilesTo:point];
+                            NSLog(@"dist %f", dist);
+                            if(dist <= 30) {
+                                [productData addObject:object];
+                            }
+                        }
+                    } else {
+                        [productData addObject:object];
+                    }
                 }
                 
                 NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
@@ -518,7 +531,7 @@
     if (condition < 2) {
         [queryTotal whereKey:@"condition" equalTo:[NSNumber numberWithBool:(condition == 0)]];
     }
-    
+    rangeIndex = rangindex;
     if(rangindex >= 0) {
         switch (rangindex) {
             case 0: // Town
