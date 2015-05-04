@@ -120,4 +120,20 @@
     }
 }
 
+- (void)loadfbAvatar:(NSString *)fbID withImage:(UIImageView *)avatarImage {
+    FBProfilePictureView *fbProfileImageView = [[FBProfilePictureView alloc] initWithFrame:avatarImage.frame];
+    fbProfileImageView.profileID = fbID;
+    // Delay execution of my block for 2 seconds.
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        for (NSObject *obj in [fbProfileImageView subviews]) {
+            if ([obj isMemberOfClass:[UIImageView class]]) {
+                UIImageView *objImg = (UIImageView *)obj;
+                avatarImage.image = objImg.image;
+                break;
+            }
+        }
+    });
+
+}
+
 @end

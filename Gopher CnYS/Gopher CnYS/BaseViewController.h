@@ -31,5 +31,6 @@
 
 -(BOOL) checkIfUserLoggedIn;
 - (void)loadAvatar:(NSString*)strUrl withImage:(UIImageView*)avatarImage;
+- (void)loadfbAvatar:(NSString *)fbID withImage:(UIImageView *)avatarImage;
 
 @end

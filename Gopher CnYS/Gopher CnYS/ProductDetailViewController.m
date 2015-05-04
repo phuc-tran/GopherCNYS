@@ -69,7 +69,14 @@
                 }];
             } else {
                 NSString *url = [user objectForKey:@"profileImageURL"];
-                [self loadAvatar:url withImage:self.profileAvatar];
+                if (url.length > 0) {
+                    [self loadAvatar:url withImage:self.profileAvatar];
+                }
+                else {
+                    // load fb avatar
+                    NSString *userFBID = [user objectForKey:@"fbId"];
+                    [self loadfbAvatar:userFBID withImage:self.profileAvatar];
+                }
             }
         } else {
             // Log details of the failure
