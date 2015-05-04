@@ -64,7 +64,16 @@
         }];
     } else {
         NSString *url = [[PFUser currentUser] objectForKey:@"profileImageURL"];
-        [self loadAvatar:url withImage:self.profileImageView];
+        if (url.length > 0) {
+            [self loadAvatar:url withImage:self.profileImageView];
+        }
+        else {
+            // load fb avatar
+            NSString *userFBID = [[PFUser currentUser] objectForKey:@"fbId"];
+            if (userFBID != nil) {
+                [self loadfbAvatar:userFBID withImage:self.profileImageView];
+            }
+        }
     }
 }
 

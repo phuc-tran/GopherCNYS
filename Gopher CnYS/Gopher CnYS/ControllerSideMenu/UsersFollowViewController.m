@@ -87,7 +87,17 @@
         }];
     } else {
         NSString *url = [user objectForKey:@"profileImageURL"];
-        [self loadAvatar:url withImage:cell.avatarImageView];
+        if (url.length > 0) {
+            [self loadAvatar:url withImage:cell.avatarImageView];
+        }
+        else {
+            // load fb avatar
+            NSString *userFBID = [user objectForKey:@"fbId"];
+            if (userFBID != nil) {
+                [self loadfbAvatar:userFBID withImage:cell.avatarImageView];
+            }
+        }
+        
     }
     
     return cell;

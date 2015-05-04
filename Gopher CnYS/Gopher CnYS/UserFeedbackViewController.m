@@ -108,7 +108,7 @@
 - (void)loadUserProfile {
     PFQuery *query = [PFUser query];
     [query whereKey:@"objectId" equalTo:[self.curUser objectId]];
-    [query selectKeys:@[@"username", @"name", @"profileImage", @"profileImageURL"]];
+    [query selectKeys:@[@"username", @"name", @"profileImage", @"profileImageURL", @"fbId"]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
@@ -130,7 +130,16 @@
                 }];
             } else {
                 NSString *url = [user objectForKey:@"profileImageURL"];
-                [self loadAvatar:url withImage:self.conversationImageView];
+                if (url.length > 0) {
+                    [self loadAvatar:url withImage:self.conversationImageView];
+                }
+                else {
+                    // load fb avatar
+                    NSString *userFBID = [user objectForKey:@"fbId"];
+                    if (userFBID != nil) {
+                        [self loadfbAvatar:userFBID withImage:self.conversationImageView];
+                    }
+                }
             }
             
         } else {
@@ -191,6 +200,22 @@
                                   activityIndicator = nil;
                               }];
     }
+}
+
+- (void)loadfbAvatar:(NSString *)fbID withImage:(UIImageView *)avatarImage {
+    FBProfilePictureView *fbProfileImageView = [[FBProfilePictureView alloc] initWithFrame:avatarImage.frame];
+    fbProfileImageView.profileID = fbID;
+    // Delay execution of my block for 2 seconds.
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        for (NSObject *obj in [fbProfileImageView subviews]) {
+            if ([obj isMemberOfClass:[UIImageView class]]) {
+                UIImageView *objImg = (UIImageView *)obj;
+                avatarImage.image = objImg.image;
+                break;
+            }
+        }
+    });
+    
 }
 
 #pragma mark - JSQMessagesViewController method overrides

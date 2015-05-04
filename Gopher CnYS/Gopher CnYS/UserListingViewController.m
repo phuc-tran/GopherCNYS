@@ -72,7 +72,7 @@
 - (void)loadUserProfile {
     PFQuery *query = [PFUser query];
     [query whereKey:@"objectId" equalTo:[self.curUser objectId]];
-    [query selectKeys:@[@"username", @"name", @"profileImage", @"profileImageURL", @"follow"]];
+    [query selectKeys:@[@"username", @"name", @"profileImage", @"profileImageURL", @"fbId", @"follow"]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
@@ -94,7 +94,16 @@
                 }];
             } else {
                 NSString *url = [user objectForKey:@"profileImageURL"];
-                [self loadAvatar:url withImage:self.userImageView];
+                if (url.length > 0) {
+                    [self loadAvatar:url withImage:self.userImageView];
+                }
+                else {
+                    // load fb avatar
+                    NSString *userFBID = [user objectForKey:@"fbId"];
+                    if (userFBID != nil) {
+                        [self loadfbAvatar:userFBID withImage:self.userImageView];
+                    }
+                }
             }
             
         } else {

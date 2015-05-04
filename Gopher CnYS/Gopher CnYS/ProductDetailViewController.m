@@ -75,7 +75,9 @@
                 else {
                     // load fb avatar
                     NSString *userFBID = [user objectForKey:@"fbId"];
-                    [self loadfbAvatar:userFBID withImage:self.profileAvatar];
+                    if (userFBID != nil) {
+                        [self loadfbAvatar:userFBID withImage:self.profileAvatar];
+                    }
                 }
             }
         } else {
