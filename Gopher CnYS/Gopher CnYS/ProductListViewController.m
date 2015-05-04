@@ -359,6 +359,7 @@
 - (void)filterResults:(NSString *)searchTerm
 {
     [productData removeAllObjects];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFQuery *queryTitle = [ProductInformation query];
     [queryTitle whereKey:@"title" matchesRegex:searchTerm modifiers:@"i"];
     
@@ -368,23 +369,16 @@
     queryTotal = [PFQuery orQueryWithSubqueries:@[queryTitle, queryDes]];
     [queryTotal orderByDescending:@"createdAt"];
     [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    queryTotal.limit = 100;
+    //queryTotal.limit = 100;
     
     [queryTotal findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (!error) {
             // The find succeeded.
+                NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
                 for (ProductInformation *object in objects) {
                     [productData addObject:object];
                 }
-                
-                NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
-//                NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-//                    ProductInformation *first = (ProductInformation*)a;
-//                    ProductInformation *second = (ProductInformation*)b;
-//                    return [self compare:first withProduct:second];
-//                }];
-//                productData = [NSMutableArray arrayWithArray:tmpArr];
                 NSLog(@"product count %ld", (unsigned long)[productData count]);
             //}
             [self.searchDisplayController.searchResultsTableView reloadData];
@@ -653,7 +647,6 @@
     [productData removeAllObjects];
     queryTotal = [ProductInformation query];
     [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-   // [queryTotal orderByDescending:@"createdAt"];
     queryTotal.limit = 100;
     [self loadProductList];
 }
