@@ -122,6 +122,21 @@
                                         }
                                     }];
             }
+            else if ([[PFUser currentUser] objectForKey:@"fbId"]){
+                // load facebook avatar
+                FBProfilePictureView *fbProfileImageView = [[FBProfilePictureView alloc] initWithFrame:CGRectMake(0, 0, kJSQMessagesCollectionViewAvatarSizeDefault, kJSQMessagesCollectionViewAvatarSizeDefault)];
+                fbProfileImageView.profileID = [[PFUser currentUser] objectForKey:@"fbId"];
+                // Delay execution of my block for 2 seconds.
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    for (NSObject *obj in [fbProfileImageView subviews]) {
+                        if ([obj isMemberOfClass:[UIImageView class]]) {
+                            UIImageView *objImg = (UIImageView *)obj;
+                            self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:objImg.image diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+                            break;
+                        }
+                    }
+                });
+            }
             else { // No avatar, load default one
                 self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"avatarDefault"] diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
             }
@@ -154,9 +169,25 @@
                                         }
                                     }];
             }
-
             
-        } else {
+            
+        } else if (self.incomingfbId) {
+            // load facebook avatar
+            // load facebook avatar
+            FBProfilePictureView *fbProfileImageView = [[FBProfilePictureView alloc] initWithFrame:CGRectMake(0, 0, kJSQMessagesCollectionViewAvatarSizeDefault, kJSQMessagesCollectionViewAvatarSizeDefault)];
+            fbProfileImageView.profileID = [[PFUser currentUser] objectForKey:@"fbId"];
+            // Delay execution of my block for 2 seconds.
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                for (NSObject *obj in [fbProfileImageView subviews]) {
+                    if ([obj isMemberOfClass:[UIImageView class]]) {
+                        UIImageView *objImg = (UIImageView *)obj;
+                        self.incomingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:objImg.image diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+                        break;
+                    }
+                }
+            });
+        }
+        else {
             self.incomingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"avatarDefault"]
                                                                              diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
         }

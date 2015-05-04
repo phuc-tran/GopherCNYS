@@ -183,6 +183,21 @@ static void * kCommentsKeyValueObservingContext = &kCommentsKeyValueObservingCon
                                     }
                                 }];
         }
+        else if ([iUser objectForKey:@"fbId"]) {
+            // load fb avatar
+            FBProfilePictureView *fbProfileImageView = [[FBProfilePictureView alloc] initWithFrame:cell.avatar.frame];
+            fbProfileImageView.profileID = [iUser objectForKey:@"fbId"];
+            // Delay execution of my block for 1 seconds.
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                for (NSObject *obj in [fbProfileImageView subviews]) {
+                    if ([obj isMemberOfClass:[UIImageView class]]) {
+                        UIImageView *objImg = (UIImageView *)obj;
+                        cell.avatar.image = [JSQMessagesAvatarImageFactory circularAvatarImage:objImg.image withDiameter:70];
+                        break;
+                    }
+                }
+            });
+        }
         else { // No avatar, load default one
             cell.avatar.image = [JSQMessagesAvatarImageFactory circularAvatarImage:[UIImage imageNamed:@"avatarDefault"] withDiameter:70];
         }

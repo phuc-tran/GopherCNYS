@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSString *selectedProfileImageURL;
 @property (nonatomic, strong) PFObject *selectedChatRoom;
 @property (nonatomic, strong) NSString *selectedUserId;
+@property (nonatomic, strong) NSString *selectedFBId;
 
 @end
 
@@ -174,11 +175,19 @@
             }];
         } else {
             NSString *url = [messenger objectForKey:@"profileImageURL"];
-            [self loadAvatar:url withImage:cell.avatarImageView];
+            if (url.length > 0) {
+                [self loadAvatar:url withImage:cell.avatarImageView];
+            }
+            else {
+                // load fb avatar
+                NSString *fbId = [messenger objectForKey:@"fbId"];
+                if (fbId && fbId.length > 0) {
+                    [self loadfbAvatar:fbId withImage:cell.avatarImageView];    
+                }
+                
+            }
         }
-        if (profileAvatar != nil) {
-            
-        }
+        
     }];
     
     
@@ -245,6 +254,8 @@
 
         self.selectedProfileImageURL = [messenger objectForKey:@"profileImageURL"];
         
+        self.selectedFBId = [messenger objectForKey:@"fbId"];
+        
         self.selectedChatRoom = self.messagesList[indexPath.row];
         
         self.selectedUserId = messenger.objectId;
@@ -266,6 +277,7 @@
          destViewController.chatRoom = self.selectedChatRoom;
          destViewController.incomingImageURLStr = self.selectedProfileImageURL;
          destViewController.incomingSenderID = self.selectedUserId;
+         destViewController.incomingfbId = self.selectedFBId;
      }
      else if ([segue.identifier isEqualToString:@"message_from_login"]) {
          HomeViewController *destViewController = (HomeViewController *)[segue destinationViewController];
