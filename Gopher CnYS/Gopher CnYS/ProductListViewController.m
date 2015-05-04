@@ -84,7 +84,7 @@
     //init query
     queryTotal = [ProductInformation query];
     [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    [queryTotal orderByDescending:@"createdAt"];
+    //[queryTotal orderByDescending:@"createdAt"];
     queryTotal.limit = 100;
     
     
@@ -308,6 +308,7 @@
         NSLog(@"load product list");
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         isLoadFinished = NO;
+        [queryTotal orderByDescending:@"createdAt"];
         queryTotal.skip = [productData count];
         NSLog(@"query %ld", (long)queryTotal.skip);
         [queryTotal findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -321,12 +322,12 @@
                 }
                 
                 NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
-                NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-                    ProductInformation *first = (ProductInformation*)a;
-                    ProductInformation *second = (ProductInformation*)b;
-                    return [self compare:first withProduct:second];
-                }];
-                productData = [NSMutableArray arrayWithArray:tmpArr];
+//                NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+//                    ProductInformation *first = (ProductInformation*)a;
+//                    ProductInformation *second = (ProductInformation*)b;
+//                    return [self compare:first withProduct:second];
+//                }];
+//                productData = [NSMutableArray arrayWithArray:tmpArr];
                 NSLog(@"product count %ld", (unsigned long)[productData count]);
                 if (_isNewSearch) {
                     [self filterResultsWithSearch];
@@ -378,12 +379,12 @@
                 }
                 
                 NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
-                NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-                    ProductInformation *first = (ProductInformation*)a;
-                    ProductInformation *second = (ProductInformation*)b;
-                    return [self compare:first withProduct:second];
-                }];
-                productData = [NSMutableArray arrayWithArray:tmpArr];
+//                NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+//                    ProductInformation *first = (ProductInformation*)a;
+//                    ProductInformation *second = (ProductInformation*)b;
+//                    return [self compare:first withProduct:second];
+//                }];
+//                productData = [NSMutableArray arrayWithArray:tmpArr];
                 NSLog(@"product count %ld", (unsigned long)[productData count]);
             //}
             [self.searchDisplayController.searchResultsTableView reloadData];
@@ -551,7 +552,6 @@
     }
     
     [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    [queryTotal orderByDescending:@"createdAt"];
     queryTotal.limit = 100;
     
     NSString *model = [[UIDevice currentDevice] model];
@@ -653,7 +653,7 @@
     [productData removeAllObjects];
     queryTotal = [ProductInformation query];
     [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    [queryTotal orderByDescending:@"createdAt"];
+   // [queryTotal orderByDescending:@"createdAt"];
     queryTotal.limit = 100;
     [self loadProductList];
 }
