@@ -85,7 +85,6 @@
     //init query
     queryTotal = [ProductInformation query];
     [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
-    //[queryTotal orderByDescending:@"createdAt"];
     queryTotal.limit = 100;
     
     
@@ -109,20 +108,20 @@
 {
     self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
-    
-    isFavoriteTopSelected = NO;
-    isNewTopSelected = NO;
-    isPriceTopSelected = NO;
     [self.mainTabBar setSelectedItem:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-//    NSString *model = [[UIDevice currentDevice] model];
-//    if ([model isEqualToString:@"iPhone Simulator"]) {
-//        [self.tableView triggerPullToRefresh];
-//        NSLog(@"iPhone Simulator");
-//    }
+    if (_isNewSearch) {
+        [locationManager startUpdatingLocation];
+        [self filterResultsWithSearch];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    _isNewSearch = NO;
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -215,11 +214,7 @@
                  }
              }
              
-//             NSString *model = [[UIDevice currentDevice] model];
-//             if (![model isEqualToString:@"iPhone Simulator"]) {
-//                 NSLog(@"Real device");
-                 [self.tableView triggerPullToRefresh];
-//             }
+            [self.tableView triggerPullToRefresh];
          }
          
      }];
@@ -317,15 +312,20 @@
             if (!error) {
                 // The find succeeded.
                 isLoadFinished = YES;
+                NSInteger distance = 30;
+                if(_isNewSearch) {
+                    distance = [_searchTab[@"distance"] integerValue];
+                }
+                
                 for (ProductInformation *object in objects) {
-                    if (rangeIndex == 1) // City <= 30 miles
+                    if (rangeIndex == 1 || _isNewSearch) // City <= 30 miles
                     {
                         PFGeoPoint *point = [object objectForKey:@"position"];
                         if(currentLocaltion != nil && point != nil)
                         {
                             double dist = [currentLocaltion distanceInMilesTo:point];
                             NSLog(@"dist %f", dist);
-                            if(dist <= 30) {
+                            if(dist <= distance) {
                                 [productData addObject:object];
                             }
                         }
@@ -335,16 +335,7 @@
                 }
                 
                 NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
-//                NSArray *tmpArr = [productData sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-//                    ProductInformation *first = (ProductInformation*)a;
-//                    ProductInformation *second = (ProductInformation*)b;
-//                    return [self compare:first withProduct:second];
-//                }];
-//                productData = [NSMutableArray arrayWithArray:tmpArr];
                 NSLog(@"product count %ld", (unsigned long)[productData count]);
-                if (_isNewSearch) {
-                    [self filterResultsWithSearch];
-                }
                 if (isShowNoData) {
                     if (productData.count <= 0) {
                         noDataLable.hidden = NO;
@@ -390,7 +381,20 @@
             // The find succeeded.
                 NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
                 for (ProductInformation *object in objects) {
-                    [productData addObject:object];
+                    if (rangeIndex == 1) // City <= 30 miles
+                    {
+                        PFGeoPoint *point = [object objectForKey:@"position"];
+                        if(currentLocaltion != nil && point != nil)
+                        {
+                            double dist = [currentLocaltion distanceInMilesTo:point];
+                            NSLog(@"dist %f", dist);
+                            if(dist <= 30) {
+                                [productData addObject:object];
+                            }
+                        }
+                    } else {
+                        [productData addObject:object];
+                    }
                 }
                 NSLog(@"product count %ld", (unsigned long)[productData count]);
             //}
@@ -431,28 +435,19 @@
     BOOL notify = [_searchTab[@"notify"] boolValue];
     NSString *notifystr = ((notify == YES) ? @"YES" : @"NO");
     NSLog(@"name %@ - %@ - %ld miles - Notify me when new post match my search key criteria: %@", name, keywords, (long)distance, notifystr);
-    _isNewSearch = NO;
-    NSMutableArray *finalArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < productData.count; i++) {
-        NSString *title = [[productData objectAtIndex:i] valueForKey:@"title"];
-        NSString *desc = [[[productData objectAtIndex:i] objectForKey:@"description"] description];
-        PFGeoPoint *positionItem  = [[productData objectAtIndex:i] objectForKey:@"position"];
-        double miles = [currentLocaltion distanceInMilesTo:positionItem];
-        if ([keywords isEqualToString:@""]) {
-            if (miles <= distance) {
-                [finalArray addObject:[productData objectAtIndex:i]];
-            }
-        } else {
-            if ([title rangeOfString:keywords options:NSCaseInsensitiveSearch].location != NSNotFound ||
-                [desc rangeOfString:keywords options:NSCaseInsensitiveSearch].location != NSNotFound
-                || miles <= distance
-                )
-            {
-                [finalArray addObject:[productData objectAtIndex:i]];
-            }
-        }
-    }
-    productData = finalArray;
+    //_isNewSearch = NO;
+    
+    [productData removeAllObjects];
+    PFQuery *queryTitle = [ProductInformation query];
+    [queryTitle whereKey:@"title" matchesRegex:keywords modifiers:@"i"];
+    
+    PFQuery *queryDes = [ProductInformation query];
+    [queryDes whereKey:@"description" matchesRegex:keywords modifiers:@"i"];
+    
+    queryTotal = [PFQuery orQueryWithSubqueries:@[queryTitle, queryDes]];
+    [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
+    queryTotal.limit = 100;
+    
 }
 
 -(BOOL) checkIfUserLoggedIn

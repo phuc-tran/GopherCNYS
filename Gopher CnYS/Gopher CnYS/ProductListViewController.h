@@ -17,9 +17,6 @@
 @interface ProductListViewController : BaseViewController <UITabBarDelegate, UISearchBarDelegate, UISearchDisplayDelegate, SearchViewControllerDelegate, CLLocationManagerDelegate>
 {
     NSArray *categoryData;
-    BOOL isFavoriteTopSelected;
-    BOOL isPriceTopSelected;
-    BOOL isNewTopSelected;
     CLLocationManager *locationManager;
     NSString *countryStr;
     NSString *localityStr;
