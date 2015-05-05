@@ -639,6 +639,7 @@
 // called when keyboard search button pressed
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     isSearchNavi = YES;
+    _isNewSearch = NO;
     [self.productSearchBar resignFirstResponder];
     [self filterResults:searchBar.text];
    
@@ -652,6 +653,7 @@
 // called when cancel button pressed
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     isSearchNavi = NO;
+    _isNewSearch = NO;
     [productData removeAllObjects];
     queryTotal = [ProductInformation query];
     [queryTotal whereKey:@"deleted" notEqualTo:[NSNumber numberWithBool:YES]];
