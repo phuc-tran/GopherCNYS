@@ -68,7 +68,11 @@
     if (remoteNotifDict) {
         // Receive notification from remote
 //        NSLog(@"Receive notification from remote %@", remoteNotifDict);
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"GopherBackgroundReceivePushNotificationFromParse" object:nil userInfo:remoteNotifDict];
+        NSLog(@"post nsnotification when app launch");
+        // Post notification after 2 seconds
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"GopherBackgroundReceivePushNotificationFromParse" object:nil userInfo:remoteNotifDict];
+        });
     }
     
     return YES;
