@@ -123,19 +123,39 @@
                                     }];
             }
             else if ([[PFUser currentUser] objectForKey:@"fbId"]){
+                
                 // load facebook avatar
-                FBProfilePictureView *fbProfileImageView = [[FBProfilePictureView alloc] initWithFrame:CGRectMake(0, 0, kJSQMessagesCollectionViewAvatarSizeDefault, kJSQMessagesCollectionViewAvatarSizeDefault)];
-                fbProfileImageView.profileID = [[PFUser currentUser] objectForKey:@"fbId"];
-                // Delay execution of my block for 2 seconds.
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    for (NSObject *obj in [fbProfileImageView subviews]) {
-                        if ([obj isMemberOfClass:[UIImageView class]]) {
-                            UIImageView *objImg = (UIImageView *)obj;
-                            self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:objImg.image diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
-                            break;
-                        }
-                    }
-                });
+                NSString *fbURLImage = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=small", [[PFUser currentUser] objectForKey:@"fbId"]];
+                [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:fbURLImage]] queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+//                    NSLog(@"response %@", [[response URL] absoluteString]);
+                    
+                    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+                    [manager downloadImageWithURL:[NSURL URLWithString:[[response URL] absoluteString]]
+                                          options:0
+                                         progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                             // progression tracking code
+                                         }
+                                        completed:^(UIImage *image, NSError *sd_error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                            if (image) {
+                                                self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:image
+                                                                                                                 diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+                                            }
+                                        }];
+                }];
+                
+//                // load facebook avatar
+//                FBProfilePictureView *fbProfileImageView = [[FBProfilePictureView alloc] initWithFrame:CGRectMake(0, 0, kJSQMessagesCollectionViewAvatarSizeDefault, kJSQMessagesCollectionViewAvatarSizeDefault)];
+//                fbProfileImageView.profileID = [[PFUser currentUser] objectForKey:@"fbId"];
+//                // Delay execution of my block for 2 seconds.
+//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//                    for (NSObject *obj in [fbProfileImageView subviews]) {
+//                        if ([obj isMemberOfClass:[UIImageView class]]) {
+//                            UIImageView *objImg = (UIImageView *)obj;
+//                            self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:objImg.image diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+//                            break;
+//                        }
+//                    }
+//                });
             }
             else { // No avatar, load default one
                 self.outgoingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"avatarDefault"] diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
@@ -173,19 +193,24 @@
             
         } else if (self.incomingfbId) {
             // load facebook avatar
-            // load facebook avatar
-            FBProfilePictureView *fbProfileImageView = [[FBProfilePictureView alloc] initWithFrame:CGRectMake(0, 0, kJSQMessagesCollectionViewAvatarSizeDefault, kJSQMessagesCollectionViewAvatarSizeDefault)];
-            fbProfileImageView.profileID = [[PFUser currentUser] objectForKey:@"fbId"];
-            // Delay execution of my block for 2 seconds.
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                for (NSObject *obj in [fbProfileImageView subviews]) {
-                    if ([obj isMemberOfClass:[UIImageView class]]) {
-                        UIImageView *objImg = (UIImageView *)obj;
-                        self.incomingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:objImg.image diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
-                        break;
-                    }
-                }
-            });
+            NSString *fbURLImage = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=small", self.incomingfbId];
+            [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:fbURLImage]] queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                NSLog(@"response %@", [[response URL] absoluteString]);
+                
+                SDWebImageManager *manager = [SDWebImageManager sharedManager];
+                [manager downloadImageWithURL:[NSURL URLWithString:[[response URL] absoluteString]]
+                                      options:0
+                                     progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                         // progression tracking code
+                                     }
+                                    completed:^(UIImage *image, NSError *sd_error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                        if (image) {
+                                            self.incomingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:image
+                                                                                                             diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+                                        }
+                                    }];
+            }];
+            
         }
         else {
             self.incomingAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"avatarDefault"]

@@ -176,15 +176,41 @@
         } else {
             NSString *url = [messenger objectForKey:@"profileImageURL"];
             if (url.length > 0) {
-                [self loadAvatar:url withImage:cell.avatarImageView];
+//                [self loadAvatar:url withImage:cell.avatarImageView];
+                SDWebImageManager *manager = [SDWebImageManager sharedManager];
+                [manager downloadImageWithURL:[NSURL URLWithString:url]
+                                      options:0
+                                     progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                         // progression tracking code
+                                     }
+                                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                        if (image) {
+                                            cell.avatarImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:image withDiameter:70];
+                                        }
+                                    }];
             }
             else {
                 // load fb avatar
                 NSString *fbId = [messenger objectForKey:@"fbId"];
                 if (fbId && fbId.length > 0) {
-                    [self loadfbAvatar:fbId withImage:cell.avatarImageView];    
+//                    [self loadfbAvatar:fbId withImage:cell.avatarImageView];
+                    NSString *fbURLImage = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=small", fbId];
+                    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:fbURLImage]] queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+//                        NSLog(@"response %@", [[response URL] absoluteString]);
+//                        [cell.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[[response URL] absoluteString]]];
+                        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+                        [manager downloadImageWithURL:[NSURL URLWithString:[[response URL] absoluteString]]
+                                              options:0
+                                             progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                                 // progression tracking code
+                                             }
+                                            completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                                if (image) {
+                                                    cell.avatarImageView.image = [JSQMessagesAvatarImageFactory circularAvatarImage:image withDiameter:70];
+                                                }
+                                            }];
+                    }];
                 }
-                
             }
         }
         

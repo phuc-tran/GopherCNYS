@@ -184,23 +184,41 @@ static void * kCommentsKeyValueObservingContext = &kCommentsKeyValueObservingCon
                                 }];
         }
         else if ([iUser objectForKey:@"fbId"]) {
-            // load fb avatar
-            FBProfilePictureView *fbProfileImageView = [[FBProfilePictureView alloc] initWithFrame:cell.avatar.frame];
-            fbProfileImageView.profileID = [iUser objectForKey:@"fbId"];
-            // Delay execution of my block for 1 seconds.
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                for (NSObject *obj in [fbProfileImageView subviews]) {
-                    if ([obj isMemberOfClass:[UIImageView class]]) {
-                        UIImageView *objImg = (UIImageView *)obj;
-                        if (objImg.image != nil)  {
-                            cell.avatar.image = [JSQMessagesAvatarImageFactory circularAvatarImage:objImg.image withDiameter:70];
-                        } else {
-                            cell.avatar.image = [JSQMessagesAvatarImageFactory circularAvatarImage:[UIImage imageNamed:@"avatarDefault"] withDiameter:70];
-                        }
-                        break;
-                    }
-                }
-            });
+            // load facebook avatar
+            NSString *fbURLImage = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=small", [iUser objectForKey:@"fbId"]];
+            [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:fbURLImage]] queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                NSLog(@"response %@", [[response URL] absoluteString]);
+            
+                SDWebImageManager *manager = [SDWebImageManager sharedManager];
+                [manager downloadImageWithURL:[NSURL URLWithString:[[response URL] absoluteString]]
+                                      options:0
+                                     progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                         // progression tracking code
+                                     }
+                                    completed:^(UIImage *image, NSError *sd_error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                        if (image) {
+                                            cell.avatar.image = [JSQMessagesAvatarImageFactory circularAvatarImage:image withDiameter:70];
+                                        }
+                                    }];
+            }];
+
+            
+//            FBProfilePictureView *fbProfileImageView = [[FBProfilePictureView alloc] initWithFrame:cell.avatar.frame];
+//            fbProfileImageView.profileID = [iUser objectForKey:@"fbId"];
+//            // Delay execution of my block for 1 seconds.
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//                for (NSObject *obj in [fbProfileImageView subviews]) {
+//                    if ([obj isMemberOfClass:[UIImageView class]]) {
+//                        UIImageView *objImg = (UIImageView *)obj;
+//                        if (objImg.image != nil)  {
+//                            cell.avatar.image = [JSQMessagesAvatarImageFactory circularAvatarImage:objImg.image withDiameter:70];
+//                        } else {
+//                            cell.avatar.image = [JSQMessagesAvatarImageFactory circularAvatarImage:[UIImage imageNamed:@"avatarDefault"] withDiameter:70];
+//                        }
+//                        break;
+//                    }
+//                }
+//            });
         }
         else { // No avatar, load default one
             cell.avatar.image = [JSQMessagesAvatarImageFactory circularAvatarImage:[UIImage imageNamed:@"avatarDefault"] withDiameter:70];
