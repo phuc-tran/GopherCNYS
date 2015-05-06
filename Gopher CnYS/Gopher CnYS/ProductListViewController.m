@@ -70,17 +70,17 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil] forCellReuseIdentifier:@"ProductTableViewCell"];
 
-    [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil] forCellReuseIdentifier:@"ProductTableViewCell"];
+//    [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil] forCellReuseIdentifier:@"ProductTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.searchDisplayController.searchResultsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+//    self.searchDisplayController.searchResultsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     //self.pullToRefreshEnabled = NO;
-    [self.productSearchBar setShowsScopeBar:NO];
-    [self.productSearchBar sizeToFit];
+    //[self.productSearchBar setShowsScopeBar:NO];
+    //[self.productSearchBar sizeToFit];
     // Hide the search bar until user scrolls up
-    CGRect newBounds = [[self tableView] bounds];
-    newBounds.origin.y = newBounds.origin.y + self.productSearchBar.bounds.size.height;
-    [[self tableView] setBounds:newBounds];
+    //CGRect newBounds = [[self tableView] bounds];
+    //newBounds.origin.y = newBounds.origin.y + self.productSearchBar.bounds.size.height;
+    //[[self tableView] setBounds:newBounds];
     
     //init query
     queryTotal = [ProductInformation query];
@@ -108,6 +108,7 @@
 {
     self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
+    self.navigationItem.rightBarButtonItem = nil;
     [self.mainTabBar setSelectedItem:nil];
 }
 
@@ -347,9 +348,9 @@
                 }
                 
                 [self.tableView reloadData];
-                if (isSearchNavi) {
-                    [self.searchDisplayController.searchResultsTableView reloadData];
-                }
+//                if (isSearchNavi) {
+//                    [self.searchDisplayController.searchResultsTableView reloadData];
+//                }
             } else {
                 // Log details of the failure
                 NSLog(@"Error: %@ %@", error, [error userInfo]);

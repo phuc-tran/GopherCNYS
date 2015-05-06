@@ -20,6 +20,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    if (![self checkIfUserLoggedIn]) {
+        [self performSegueWithIdentifier:@"searchTab_to_login" sender:self];
+    }
+
     // Do any additional setup after loading the view.
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];

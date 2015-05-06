@@ -147,6 +147,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="fpx-Ca-bPA" id="BmJ-cI-Xt4"/>
+                        <segue destination="KBN-7p-nVk" kind="push" identifier="searchTab_to_login" id="PAM-TQ-DJX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B37-0P-qom" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -458,7 +459,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NmB-5v-OEL" userLabel="TopView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NmB-5v-OEL" userLabel="TopView">
                                 <rect key="frame" x="0.0" y="44" width="320" height="60"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WyO-w8-d6d">
@@ -584,7 +585,7 @@
                                     <constraint firstAttribute="bottom" secondItem="fhK-ig-HhV" secondAttribute="bottom" id="xQc-jY-pRj"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJT-od-RjM">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJT-od-RjM">
                                 <rect key="frame" x="0.0" y="302" width="320" height="216"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ixs-rb-8S4" userLabel="ContentView">
@@ -730,7 +731,7 @@
                                     <constraint firstAttribute="trailing" secondItem="ixs-rb-8S4" secondAttribute="trailing" id="xKv-OG-jAX"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xud-ug-0bV" customClass="iCarousel">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xud-ug-0bV" customClass="iCarousel">
                                 <rect key="frame" x="0.0" y="104" width="320" height="190"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -743,7 +744,7 @@
                                     <outlet property="delegate" destination="yMM-1Y-rcA" id="amO-4W-QMo"/>
                                 </connections>
                             </view>
-                            <pageControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1DH-Rb-hRP">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1DH-Rb-hRP">
                                 <rect key="frame" x="141" y="281" width="39" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="IWw-nt-PMb"/>
@@ -956,14 +957,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Hq-iF-pDA">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="DiY-fn-9FK">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="KUb-wv-JfL" id="Gaf-f7-glT"/>
-                                    </connections>
-                                </searchBar>
                                 <connections>
                                     <outlet property="dataSource" destination="KUb-wv-JfL" id="mua-lg-2Ek"/>
                                     <outlet property="delegate" destination="KUb-wv-JfL" id="PS5-rj-9Yu"/>
@@ -1022,7 +1015,6 @@
                         <outlet property="bottomView" destination="zJo-1g-VxG" id="1zY-Tp-RiH"/>
                         <outlet property="cameraTabBarItem" destination="v2Z-0Q-hHJ" id="ZeF-d3-dyU"/>
                         <outlet property="mainTabBar" destination="e4w-pS-9BF" id="XTc-XZ-GLz"/>
-                        <outlet property="productSearchBar" destination="DiY-fn-9FK" id="vO9-rs-BkK"/>
                         <outlet property="searchDisplayController" destination="Uoh-WK-MSi" id="2bG-L3-EzN"/>
                         <outlet property="settingTabBarItem" destination="Df1-I7-JkI" id="tYg-69-pw9"/>
                         <outlet property="tableView" destination="7Hq-iF-pDA" id="kCu-F4-v0l"/>
@@ -1034,7 +1026,6 @@
                 <searchDisplayController id="Uoh-WK-MSi">
                     <connections>
                         <outlet property="delegate" destination="KUb-wv-JfL" id="QNQ-zY-U6s"/>
-                        <outlet property="searchBar" destination="DiY-fn-9FK" id="Tln-Cq-3Lm"/>
                         <outlet property="searchContentsController" destination="KUb-wv-JfL" id="hLg-f7-ZCS"/>
                         <outlet property="searchResultsDataSource" destination="KUb-wv-JfL" id="X2O-zQ-qRB"/>
                         <outlet property="searchResultsDelegate" destination="KUb-wv-JfL" id="n3g-GV-J0p"/>
@@ -2390,8 +2381,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="G1w-cs-YeN"/>
         <segue reference="Hcj-1n-Msb"/>
+        <segue reference="G1w-cs-YeN"/>
         <segue reference="ExP-uq-3s7"/>
         <segue reference="e0P-cp-GQQ"/>
     </inferredMetricsTieBreakers>
