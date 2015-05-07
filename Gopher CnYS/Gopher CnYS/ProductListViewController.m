@@ -315,7 +315,7 @@
                 isLoadFinished = YES;
                 NSInteger distance = 30;
                 if(_isNewSearch) {
-                    distance = [_searchTab[@"distance"] integerValue];
+                    distance = [[_searchTab valueForKey:@"distance"] integerValue];
                 }
                 
                 for (ProductInformation *object in objects) {
@@ -430,10 +430,10 @@
 
 - (void)filterResultsWithSearch
 {
-    NSString *name = _searchTab[@"name"];
-    NSString *keywords = _searchTab[@"keywords"];
-    NSInteger distance = [_searchTab[@"distance"] integerValue];
-    BOOL notify = [_searchTab[@"notify"] boolValue];
+    NSString *name = [_searchTab valueForKey:@"tab_name"];
+    NSString *keywords = [_searchTab valueForKey:@"keywords"];
+     NSInteger distance = [[_searchTab valueForKey:@"distance"] integerValue];
+    BOOL notify = [[_searchTab valueForKey:@"notification"] boolValue];
     NSString *notifystr = ((notify == YES) ? @"YES" : @"NO");
     NSLog(@"name %@ - %@ - %ld miles - Notify me when new post match my search key criteria: %@", name, keywords, (long)distance, notifystr);
     //_isNewSearch = NO;

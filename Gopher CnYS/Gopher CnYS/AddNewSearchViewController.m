@@ -7,6 +7,7 @@
 //
 
 #import "AddNewSearchViewController.h"
+#import "MBProgressHUD.h"
 
 @interface AddNewSearchViewController ()
 
@@ -58,41 +59,29 @@
 }
 
 - (void)saveSearchTabList{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"searchtab.plist"];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    PFObject *searchTab = [PFObject objectWithClassName:@"SearchTab"];
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+    searchTab[@"owner"] = [PFUser currentUser];
+    searchTab[@"tab_name"] = self.tabNameField.text;
+    searchTab[@"keywords"] = self.keywordsField.text;
+    searchTab[@"distance"] = [NSNumber numberWithFloat:self.milesSlider.value];
+    searchTab[@"notification"] = [NSNumber numberWithBool:isNotify];
     
-    if (![fileManager fileExistsAtPath: path])
-    {
-        NSString *bundle = [[NSBundle mainBundle] pathForResource:@"searchtab" ofType:@"plist"];
-        [fileManager copyItemAtPath:bundle toPath: path error:nil];
-        NSLog(@"File did not exist! Default copied...");
-    }
+    [searchTab saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (succeeded) {
+            [self closePopup:nil];
+            if (self.delegate && [self.delegate respondsToSelector:@selector(addTabButtonClicked:)]) {
+                [self.delegate addTabButtonClicked:self];
+            }
+        } else {
+            NSLog(@"Error %@", error);
+        }
+    }];
     
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
-    
-    NSArray *searchTabList = [dict objectForKey:@"search_tab"];
-    
-    NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:searchTabList];
-    
-    //Create a new Dictionary
-    NSMutableDictionary *newTab = [[NSMutableDictionary alloc] init];
-    
-    [newTab setObject:self.tabNameField.text forKey:@"name"];
-    [newTab setObject:self.keywordsField.text forKey:@"keywords"];
-    [newTab setObject:[NSNumber numberWithFloat:self.milesSlider.value] forKey:@"distance"];
-    [newTab setValue:@(isNotify) forKey:@"notify"];
-    
-    //add dictionary to array
-    [tempArray addObject:newTab];
-    
-    //set the new array for location key
-    [dict setObject:tempArray forKey:@"search_tab"];
-    
-    //update the plist
-    [dict writeToFile:path atomically:true];
+    return;
+
 }
 
 - (IBAction)notifyClick:(id)sender
@@ -134,10 +123,7 @@
         return;
     }
     [self saveSearchTabList];
-    [self closePopup:nil];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(addTabButtonClicked:)]) {
-        [self.delegate addTabButtonClicked:self];
-    }
+    
 }
 
 - (IBAction)sliderMilesChangeValue:(UISlider*)sender {

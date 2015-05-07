@@ -10,10 +10,12 @@
 #import "BaseViewController.h"
 #import "AddNewSearchViewController.h"
 #import "UIViewController+MJPopupViewController.h"
+#import <Parse/Parse.h>
 
 @interface SearchTabListViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *searchTabList;
 
 @end
