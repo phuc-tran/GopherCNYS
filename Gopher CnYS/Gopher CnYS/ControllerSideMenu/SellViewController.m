@@ -246,6 +246,46 @@
 #pragma mark - Helper
 - (void)addProduct {
     
+//    PFQuery *query = [PFQuery queryWithClassName:@"SearchTab"];
+//    [query orderByAscending:@"createdAt"];
+//    [query includeKey:@"owner"];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (!error) {
+//            // The find succeeded.
+//            NSLog(@"%ld", (unsigned long)objects.count);
+//            NSMutableArray *searchTabList = [NSMutableArray arrayWithArray:objects];
+//            for (int i = 0; i < searchTabList.count; i++) {
+//                NSString *keywords = [[searchTabList objectAtIndex:i] valueForKey:@"keywords"];
+//                //NSLog(@"keywords %@", keywords);
+//                //NSLog(@"self.productTitleField.text %@", self.productTitleField.text);
+//                if ([self.productTitleField.text rangeOfString:keywords options:NSCaseInsensitiveSearch].location != NSNotFound ||
+//                    [self.productDescriptionField.text rangeOfString:keywords options:NSCaseInsensitiveSearch].location != NSNotFound) {
+//                    NSLog(@"string contains keywords!");
+//                    BOOL notify = [[searchTabList[i] valueForKey:@"notification"] boolValue];
+//                    NSLog(@"notify %d", notify);
+//                    if (notify) {
+//                        PFUser *userRecipient = [[searchTabList objectAtIndex:i] valueForKey:@"owner"];
+//                        NSLog(@"Push for user %@", userRecipient.objectId);
+//                        PFQuery *installationQuery = [PFInstallation query];
+//                        [installationQuery whereKey:@"user" equalTo:userRecipient];
+//                        PFPush *push = [[PFPush alloc] init];
+//                        [push setQuery:installationQuery];
+//                        [push setMessage:@"Have new product added match your search key"];
+//                        [push sendPushInBackground];
+//                    }
+//                } else {
+//                    NSLog(@"string does not contain keywords");
+//                }
+//            }
+//            
+//        } else {
+//            // Log details of the failure
+//            NSLog(@"Error: %@ %@", error, [error userInfo]);
+//        }
+//    }];
+//    
+//    return;
+    
     if (![self validationInput]) {
         return;
     }
@@ -293,14 +333,63 @@
         product[@"postalCode"] = postalCodeStr;
     }
     
-    
     [product saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [product fetchInBackground];
+         NSLog(@"product %@", product);
         if (succeeded) {
             // The object has been saved.
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Product has been listed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             alert.tag = 1;
             [alert show];
+            
+            PFQuery *query = [PFQuery queryWithClassName:@"SearchTab"];
+            [query orderByAscending:@"createdAt"];
+            [query includeKey:@"owner"];
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if (!error) {
+                    // The find succeeded.
+                    NSLog(@"%ld", (unsigned long)objects.count);
+                    NSMutableArray *searchTabList = [NSMutableArray arrayWithArray:objects];
+                    for (int i = 0; i < searchTabList.count; i++) {
+                        NSString *keywords = [[searchTabList objectAtIndex:i] valueForKey:@"keywords"];
+                        NSInteger distance = [[[searchTabList objectAtIndex:i] valueForKey:@"distance"] integerValue];
+                        BOOL notify = [[searchTabList[i] valueForKey:@"notification"] boolValue];
+                        NSLog(@"notify %d", notify);
+                        if (notify) {
+                            if ([self.productTitleField.text rangeOfString:keywords options:NSCaseInsensitiveSearch].location != NSNotFound ||
+                                [self.productDescriptionField.text rangeOfString:keywords options:NSCaseInsensitiveSearch].location != NSNotFound) {
+                                NSLog(@"string contains keywords!");
+                                PFUser *userRecipient = [[searchTabList objectAtIndex:i] valueForKey:@"owner"];
+                                NSLog(@"Push for user %@", userRecipient.objectId);
+                                PFGeoPoint *pointProduct = [product objectForKey:@"position"];
+                                PFGeoPoint *pointUser = [userRecipient objectForKey:@"position"];
+                                
+                                if(pointProduct != nil && pointUser != nil)
+                                {
+                                    double dist = [pointUser distanceInMilesTo:pointProduct];
+                                    NSLog(@"dist %f", dist);
+                                    if(dist <= distance) {
+                                        PFQuery *installationQuery = [PFInstallation query];
+                                        [installationQuery whereKey:@"user" equalTo:userRecipient];
+                                        PFPush *push = [[PFPush alloc] init];
+                                        [push setQuery:installationQuery];
+                                        [push setMessage:@"Have new product added match your search key"];
+                                        [push sendPushInBackground];
+                                    }
+                                }
+                                
+                            } else {
+                                NSLog(@"string does not contain keywords");
+                            }
+                        }
+                    }
+                    
+                } else {
+                    // Log details of the failure
+                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+                }
+            }];
         } else {
             NSLog(@"Error %@", error);
             // There was a problem, check error.description
