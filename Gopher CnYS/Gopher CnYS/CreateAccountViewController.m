@@ -48,6 +48,7 @@
         return;
     }
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFUser *user = [PFUser user];
     user.username = userName;
     user.password = password;
@@ -55,7 +56,23 @@
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
-            [self openProductList];
+            [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                if (!error) {
+                    NSLog(@"Facebook get location %@", geoPoint);
+                    // Update to current user
+                    PFUser *curUser = [PFUser currentUser];
+                    curUser[@"position"] = geoPoint;
+                    [curUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+                        if (succeeded) {
+                            // save successful
+                            [self openProductList];
+                           
+                        }
+                    }];
+                }
+                
+            }];
         } else {
             NSString *errorString = [error userInfo][@"error"];
             NSLog(@"%@", errorString);
@@ -66,7 +83,8 @@
 
 -(void) openProductList
 {
-    [self performSegueWithIdentifier:@"product_list_from_sign_up" sender:self];
+    [self.navigationController popViewControllerAnimated:YES];
+    //[self performSegueWithIdentifier:@"product_list_from_sign_up" sender:self];
 }
 
 #pragma mark - UITextFieldDelegate

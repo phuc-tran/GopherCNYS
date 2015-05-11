@@ -31,19 +31,17 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:@"UIKeyboardWillShowNotification" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:@"UIKeyboardDidHideNotification" object:nil];
-    
-    if ([self checkIfUserLoggedIn])
-    {
-        NSLog(@"User has logged in with FB. Let's load data");
-        [self openProductList];
-    }
-    
     self.contentScrollView.contentSize = CGSizeMake(self.contentScrollView.frame.size.width, self.contentScrollView.frame.size.height);
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = YES;
+    if ([self checkIfUserLoggedIn])
+    {
+        NSLog(@"User has logged. Let's load data");
+        [self openProductList];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -132,17 +130,17 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
             NSString *errorMessage = nil;
             if (!error) {
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");
-                errorMessage = @"Uh oh. The user cancelled the Facebook login.";
+                errorMessage = @"The user cancelled the Facebook login.";
             } else {
                 NSLog(@"Uh oh. An error occurred: %@", error);
                 errorMessage = [error localizedDescription];
             }
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error"
-                                                            message:errorMessage
-                                                           delegate:nil
-                                                  cancelButtonTitle:nil
-                                                  otherButtonTitles:@"Dismiss", nil];
-            [alert show];
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error"
+//                                                            message:errorMessage
+//                                                           delegate:nil
+//                                                  cancelButtonTitle:nil
+//                                                  otherButtonTitles:@"Dismiss", nil];
+//            [alert show];
         } else {
             
             [self openProductList];
@@ -162,6 +160,22 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
                     NSNumber *userType = [[NSNumber alloc] initWithInt:1];
                     [[PFUser currentUser] setObject:userType forKey:@"userType"];
                     [[PFUser currentUser] saveEventually];
+                    
+                    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+                        if (!error) {
+                            NSLog(@"Facebook get location %@", geoPoint);
+                            // Update to current user
+                            PFUser *curUser = [PFUser currentUser];
+                            curUser[@"position"] = geoPoint;
+                            [curUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+                                if (succeeded) {
+                                    // save successful
+                                }
+                            }];
+                        }
+                        
+                    }];
+                    
                 } else {
                     NSLog(@"Error getting the FB username %@", [error description]);
                 }

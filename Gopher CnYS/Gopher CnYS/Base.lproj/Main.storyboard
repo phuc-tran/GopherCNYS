@@ -391,13 +391,16 @@
                                             <segue destination="Mir-iW-Hbc" kind="push" id="yJ2-YD-wjE"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zou-yW-awK">
-                                        <rect key="frame" x="0.0" y="0.0" width="134" height="47"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zou-yW-awK">
+                                        <rect key="frame" x="8" y="0.0" width="213" height="47"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="Forgot Password?">
                                             <color key="titleColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="TBP-ki-Pl1" kind="push" id="FnO-68-fDf"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1032,7 +1035,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1515" y="292"/>
+            <point key="canvasLocation" x="1509" y="226"/>
         </scene>
         <!--Sign up-->
         <scene sceneID="soy-75-C68">
@@ -1141,7 +1144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8M-an-cfy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1379" y="1029"/>
+            <point key="canvasLocation" x="1420" y="1029"/>
         </scene>
         <!--Search-->
         <scene sceneID="uT1-cl-o0N">
@@ -2331,6 +2334,77 @@
             </objects>
             <point key="canvasLocation" x="2053" y="1117"/>
         </scene>
+        <!--Reset Password-->
+        <scene sceneID="Tlr-Mg-AHB">
+            <objects>
+                <viewController id="TBP-ki-Pl1" customClass="ForgotPasswordViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AEY-MK-ZqC"/>
+                        <viewControllerLayoutGuide type="bottom" id="J0u-8x-nc0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xry-ww-lFa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XPE-AF-HTX">
+                                <rect key="frame" x="0.0" y="143" width="320" height="282"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JCN-Ga-8Tc">
+                                        <rect key="frame" x="10" y="51" width="300" height="47"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="signup_email" translatesAutoresizingMaskIntoConstraints="NO" id="NbV-9a-mgN">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
+                                            </imageView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b4X-V7-AtM">
+                                                <rect key="frame" x="52" y="9" width="249" height="30"/>
+                                                <color key="textColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="TBP-ki-Pl1" id="p9c-BH-lci"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="We send you a password reset email." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIW-bN-Za2">
+                                        <rect key="frame" x="12" y="8" width="300" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.72941176470000002" green="0.72941176470000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjA-Vk-pVQ">
+                                        <rect key="frame" x="10" y="135" width="300" height="44"/>
+                                        <state key="normal" title="Send" backgroundImage="sign_normal">
+                                            <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendButton:" destination="TBP-ki-Pl1" eventType="touchUpInside" id="x1X-1s-mOP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="282" id="epi-4Q-Qdy"/>
+                                    <constraint firstAttribute="width" constant="320" id="wmk-6X-bLD"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="XPE-AF-HTX" secondAttribute="centerY" id="JvI-ot-z4O"/>
+                            <constraint firstAttribute="centerX" secondItem="XPE-AF-HTX" secondAttribute="centerX" id="v6O-am-9W7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Reset Password" id="ZQY-wR-1Vd"/>
+                    <connections>
+                        <outlet property="btnSubmit" destination="hjA-Vk-pVQ" id="wpX-ld-DMV"/>
+                        <outlet property="txtEmail" destination="b4X-V7-AtM" id="Bqy-r7-rhp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oPl-q5-mjY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="958" y="1713"/>
+        </scene>
     </scenes>
     <resources>
         <image name="about_fb" width="50" height="50"/>
@@ -2383,7 +2457,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Hcj-1n-Msb"/>
         <segue reference="G1w-cs-YeN"/>
-        <segue reference="ExP-uq-3s7"/>
         <segue reference="e0P-cp-GQQ"/>
+        <segue reference="ExP-uq-3s7"/>
     </inferredMetricsTieBreakers>
 </document>

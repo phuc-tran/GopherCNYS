@@ -53,15 +53,25 @@
     
     // Load profile image
     PFFile *imageFile = [[PFUser currentUser] objectForKey:@"profileImage"];
+    //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
     if (imageFile != nil) {
         [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+            //[MBProgressHUD hideHUDForView:self.view animated:YES];
+            NSLog(@"error %@", error);
             if (!error) {
                 if (data != nil) {
                     UIImage *image = [UIImage imageWithData:data];
                     self.profileImageView.image = image;
                 }
+            } else {
+                NSLog(@"error %@", error);
             }
+        } progressBlock:^(int percentDone) {
+            // Update your progress spinner here. percentDone will be between 0 and 100.
+            NSLog(@"percentDone %d", percentDone);
         }];
+        
     } else {
         NSString *url = [[PFUser currentUser] objectForKey:@"profileImageURL"];
         if (url.length > 0) {
@@ -94,7 +104,9 @@
         UIImage *newImage = [change objectForKey:NSKeyValueChangeNewKey];
         
         // Set image of background
-        self.profileBgImageView.image = newImage;
+        if (newImage != NULL) {
+            self.profileBgImageView.image = newImage;
+        }
     }
 }
 
