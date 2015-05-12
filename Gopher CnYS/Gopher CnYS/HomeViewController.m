@@ -39,6 +39,13 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
     self.navigationController.navigationBar.hidden = YES;
     if ([self checkIfUserLoggedIn])
     {
+        
+        if (![[[PFUser currentUser] objectForKey:@"emailVerified"] boolValue]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please verify your email first." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+            [PFUser logOut];
+            return;
+        }
         NSLog(@"User has logged. Let's load data");
         [self openProductList];
     }
@@ -242,23 +249,45 @@ static NSString * const kClientId = @"27474982896-5b5a9a73q19res441a3niie8e3mi7j
         return;
     }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [PFUser logInWithUsernameInBackground:userName password:password
-                                    block:^(PFUser *user, NSError *error) {
-                                        [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                        if (user) {
-                                            NSLog(@"Login OK");
-                                            
-                                            // Add user to PFInstallation
-                                            [[PFInstallation currentInstallation] setObject:user forKey:@"user"];
-                                            [[PFInstallation currentInstallation] saveEventually];
-                                            
-                                            [self openProductList];
-                                        } else {
-                                            NSLog(@"Failed");
-                                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Invalid username or password" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-                                            [alert show];
-                                        }
-                                    }];
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"username" equalTo:userName];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        if (!error) {
+            if (objects.count > 0) {
+                PFUser *user = objects[0];
+                if (![[user objectForKey:@"emailVerified"] boolValue]) {
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please verify your email first." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                    [alert show];
+                } else {
+                    [PFUser logInWithUsernameInBackground:userName password:password
+                                                    block:^(PFUser *user, NSError *error) {
+                                                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                                        if (user) {
+                                                            NSLog(@"Login OK");
+                                                            
+                                                            // Add user to PFInstallation
+                                                            [[PFInstallation currentInstallation] setObject:user forKey:@"user"];
+                                                            [[PFInstallation currentInstallation] saveEventually];
+                                                            
+                                                            [self openProductList];
+                                                        } else {
+                                                            NSLog(@"Failed");
+                                                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Invalid username or password" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                                                            [alert show];
+                                                        }
+                                                    }];
+                }
+            }
+        } else {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }
+    }];
+    
+    return;
+    
+    
 }
 
 -(IBAction) cancelClick:(id)sender {
