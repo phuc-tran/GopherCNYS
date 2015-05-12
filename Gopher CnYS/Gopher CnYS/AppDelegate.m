@@ -98,6 +98,13 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     
+    NSLog(@"openURL || sourceApplication %@ || %@", url, sourceApplication);
+    // Post notification after 2 seconds
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:url, @"openURL", sourceApplication, @"sourceApplication", nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"GopherReceivePushBacklink" object:nil userInfo:dict];
+    });
+    
     if ([FBAppCall handleOpenURL:url
                sourceApplication:sourceApplication
                      withSession:[PFFacebookUtils session]]) {

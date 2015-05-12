@@ -110,6 +110,9 @@
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
     self.navigationItem.rightBarButtonItem = nil;
     [self.mainTabBar setSelectedItem:nil];
+    
+    // Add observer
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBacklink:) name:@"GopherReceivePushBacklink" object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -123,6 +126,7 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     _isNewSearch = NO;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"GopherReceivePushBacklink" object:nil];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -661,4 +665,10 @@
     queryTotal.limit = 100;
     [self loadProductList];
 }
+
+#pragma mark - Notification handling
+- (void)handleBacklink:(NSDictionary *)backlinkDict {
+    NSLog(@"backlinkDict %@", backlinkDict);
+}
+
 @end
