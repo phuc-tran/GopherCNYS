@@ -32,6 +32,9 @@
     UILabel *noDataLable;
     BOOL isShowNoData;
     NSInteger rangeIndex;
+    
+    BOOL handlingBacklink;
+    NSArray *backlinkProducts;
 }
 @end
 
@@ -44,6 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    handlingBacklink = NO;
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
         if (!error) {
             // do something with the new geoPoint
@@ -251,9 +255,17 @@
     if ([[segue identifier] isEqualToString:@"ProductDetaiFormProduct"])
     {
         ProductDetailViewController *vc = [segue destinationViewController];
-        [vc setProductData:productData];
-        [vc setSelectedIndex:selectedIndex];
-        [vc setCurrentLocaltion:currentLocaltion];
+        if (handlingBacklink) {
+            [vc setProductData:backlinkProducts];
+            [vc setSelectedIndex:0]; // always 0 because there is only one product sent by backlink
+            [vc setCurrentLocaltion:currentLocaltion];
+        }
+        else {
+            [vc setProductData:productData];
+            [vc setSelectedIndex:selectedIndex];
+            [vc setCurrentLocaltion:currentLocaltion];
+        }
+       
     }
     else if ([segue.identifier isEqualToString:@"product_list_form_login"]) {
         HomeViewController *destViewController = (HomeViewController *)[segue destinationViewController];
@@ -667,8 +679,34 @@
 }
 
 #pragma mark - Notification handling
-- (void)handleBacklink:(NSDictionary *)backlinkDict {
-    NSLog(@"backlinkDict %@", backlinkDict);
+- (void)handleBacklink:(NSNotification *)backlinkNotification {
+    NSLog(@"backlinkDict %@", backlinkNotification);
+//    NSDictionary *userInfo = [backlinkDict objectForKey:@"userInfo"];
+    NSURL *openURL = [backlinkNotification.userInfo objectForKey:@"openURL"];
+    NSString *urlString = openURL.absoluteString;
+    NSString *customURL = [NSString stringWithFormat:@"%@://", openURL.scheme];
+    NSRange questionmarkRange = [urlString rangeOfString:@"?al_applink_data"];
+    NSString *productID = [urlString substringWithRange:NSMakeRange(customURL.length, questionmarkRange.location - customURL.length)];
+    productID = @"NHIAFsyO9w";
+    NSLog(@"productID %@", productID);
+    PFQuery *productQuery = [PFQuery queryWithClassName:@"Products"];
+    [productQuery whereKey:@"objectId" equalTo:productID];
+    [productQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
+            if (objects.count > 0) {
+                PFObject *product = [objects objectAtIndex:0];
+                backlinkProducts = [NSArray arrayWithObjects:product, nil];
+                handlingBacklink = YES;
+                [self performSegueWithIdentifier:@"ProductDetaiFormProduct" sender:self];
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            handlingBacklink = NO;
+        }
+    }];
 }
 
 @end

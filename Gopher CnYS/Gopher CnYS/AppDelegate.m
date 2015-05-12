@@ -98,12 +98,17 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     
-    NSLog(@"openURL || sourceApplication %@ || %@", url, sourceApplication);
-    // Post notification after 2 seconds
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:url, @"openURL", sourceApplication, @"sourceApplication", nil];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"GopherReceivePushBacklink" object:nil userInfo:dict];
-    });
+    NSString *customURLPrefix = @"watchoverme://";
+    NSString *urlString = [url absoluteString];
+    if ([urlString hasPrefix:customURLPrefix]) {
+//        NSLog(@"openURL || sourceApplication %@ || %@", url, sourceApplication);
+        // Post notification after 2 seconds
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:url, @"openURL", sourceApplication, @"sourceApplication", nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"GopherReceivePushBacklink" object:nil userInfo:dict];
+        });
+        return YES;
+    }
     
     if ([FBAppCall handleOpenURL:url
                sourceApplication:sourceApplication
