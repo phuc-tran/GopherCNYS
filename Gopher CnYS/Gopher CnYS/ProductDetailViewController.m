@@ -249,7 +249,8 @@
         // Configure Compose View Controller
         NSString *shareText = [NSString stringWithFormat:@"%@\n%@\n$%@\n", [[productData objectAtIndex:selectedIndex] valueForKey:@"title"], [[[productData objectAtIndex:selectedIndex] objectForKey:@"description"] description], [[productData objectAtIndex:selectedIndex] valueForKey:@"price"]];
         [vc setInitialText:shareText];
-        [vc addURL:[NSURL URLWithString:@"https://fb.me/1029164840445781"]];
+        NSString *sharingURLString = [NSString stringWithFormat:@"http://gophercnys.parseapp.com/products/%@", [[productData objectAtIndex:selectedIndex] objectId]];
+        [vc addURL:[NSURL URLWithString:sharingURLString]];
         [vc addImage:productImageList[0]];
         // Present Compose View Controller
         [self presentViewController:vc animated:YES completion:nil];

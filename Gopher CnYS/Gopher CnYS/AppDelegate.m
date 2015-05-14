@@ -98,7 +98,7 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     
-    NSString *customURLPrefix = @"watchoverme://";
+    NSString *customURLPrefix = @"gophercnys://";
     NSString *urlString = [url absoluteString];
     if ([urlString hasPrefix:customURLPrefix]) {
 //        NSLog(@"openURL || sourceApplication %@ || %@", url, sourceApplication);

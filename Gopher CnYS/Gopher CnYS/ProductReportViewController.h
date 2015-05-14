@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 #import <MessageUI/MessageUI.h>
 
-@interface ProductReportViewController : BaseViewController <UITextViewDelegate,MFMailComposeViewControllerDelegate>
+@interface ProductReportViewController : BaseViewController <UITextViewDelegate,MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) PFObject *product;
 @property (nonatomic, strong) UIImage *productImage;

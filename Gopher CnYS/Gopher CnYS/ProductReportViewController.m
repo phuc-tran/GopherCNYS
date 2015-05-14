@@ -142,7 +142,19 @@
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
     //Add an alert in case of failure
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if (result == MFMailComposeResultSent) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Thank you for reporting this item. We will review this listing and act accordingly." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+    else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // Go back to previous page
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

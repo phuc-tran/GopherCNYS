@@ -687,7 +687,7 @@
     NSString *customURL = [NSString stringWithFormat:@"%@://", openURL.scheme];
     NSRange questionmarkRange = [urlString rangeOfString:@"?al_applink_data"];
     NSString *productID = [urlString substringWithRange:NSMakeRange(customURL.length, questionmarkRange.location - customURL.length)];
-    productID = @"NHIAFsyO9w";
+//    productID = @"NHIAFsyO9w";
     NSLog(@"productID %@", productID);
     PFQuery *productQuery = [PFQuery queryWithClassName:@"Products"];
     [productQuery whereKey:@"objectId" equalTo:productID];
