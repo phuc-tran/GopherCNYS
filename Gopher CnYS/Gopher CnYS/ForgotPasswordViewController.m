@@ -45,7 +45,7 @@
     [PFUser requestPasswordResetForEmailInBackground:email block:^(BOOL succeeded, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (succeeded) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"We will send you password reset email." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Check your email for instructions." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alert show];
         } else {
             NSString *errorString = [error userInfo][@"error"];
