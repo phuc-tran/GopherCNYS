@@ -30,7 +30,8 @@
     BOOL isSearchMainPage;
     
     UILabel *noDataLable;
-    BOOL isShowNoData;
+    BOOL isSearchZipCode;
+    BOOL isShowNoDataError;
     NSInteger rangeIndex;
     
     BOOL handlingBacklink;
@@ -64,13 +65,15 @@
 
     productData = [[NSMutableArray alloc] init];
     
-    noDataLable = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2, self.tableView.frame.size.width, 40)];
+    noDataLable = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - (self.view.frame.size.width - 80)/2, self.view.frame.size.height/2 - 40, self.view.frame.size.width - 80, 80)];
+    noDataLable.numberOfLines = 2;
     noDataLable.text = @"No listings are available for this zip code";
     noDataLable.textColor = [UIColor darkGrayColor];
     noDataLable.textAlignment = NSTextAlignmentCenter;
     noDataLable.hidden = YES;
-    isShowNoData = NO;
-    [self.tableView addSubview:noDataLable];
+    //isShowNoDataError = NO;
+    isSearchZipCode = NO;
+    [self.view addSubview:noDataLable];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ProductTableViewCell" bundle:nil] forCellReuseIdentifier:@"ProductTableViewCell"];
 
@@ -130,6 +133,9 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     _isNewSearch = NO;
+    noDataLable.hidden = YES;
+    //isShowNoDataError = NO;
+    isSearchZipCode = NO;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"GopherReceivePushBacklink" object:nil];
 }
 
@@ -353,12 +359,13 @@
                 
                 NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
                 NSLog(@"product count %ld", (unsigned long)[productData count]);
-                if (isShowNoData) {
-                    if (productData.count <= 0) {
-                        noDataLable.hidden = NO;
-                    } else {
-                        noDataLable.hidden = YES;
-                    }
+                if (isSearchZipCode) {
+                    noDataLable.text = @"No listings are available for this zip code";
+                } else {
+                    noDataLable.text = @"No matching listings";
+                }
+                if (productData.count <= 0) {
+                    noDataLable.hidden = NO;
                 } else {
                     noDataLable.hidden = YES;
                 }
@@ -510,7 +517,6 @@
 - (void)onFilterContentForSearch:(NSMutableArray*)categoryList withPrice:(NSInteger)price withZipCode:(NSString *)zipcode withKeyword:(NSString *)keywords favoriteSelected:(BOOL)isSelected conditionOption:(NSInteger)condition rangeOption:(NSInteger)rangindex {
     [productData removeAllObjects];
     NSLog(@"aaaa %ld", (unsigned long)productData.count);
-    isShowNoData = NO;
     if (keywords != nil && keywords.length > 0 && [keywords stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] ) {
         PFQuery *queryTitle = [ProductInformation query];
         [queryTitle whereKey:@"title" matchesRegex:keywords modifiers:@"i"];
@@ -531,7 +537,7 @@
         if (![zipcode isEqualToString:@"85345"]) {
             [queryTotal whereKey:@"postalCode" equalTo:zipcode];
         }
-        isShowNoData = YES;
+        isSearchZipCode = YES;
     }
     if (isSelected) {
         [queryTotal whereKey:@"favoritors" containsAllObjectsInArray:@[[PFUser currentUser].objectId]];

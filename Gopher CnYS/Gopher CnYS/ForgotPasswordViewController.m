@@ -39,6 +39,8 @@
     NSString *email = _txtEmail.text;
     
     if (email.length <= 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please input your email" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
         return;
     }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
