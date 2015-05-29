@@ -96,8 +96,9 @@
     
     
     isSearchNavi = NO;
-    isLoadFinished = YES;
+    isLoadFinished = NO;
     isSearchMainPage = NO;
+    isLoadingOrders = NO;
     
     // setup pull-to-refresh
     [self.tableView addPullToRefreshWithActionHandler:^{
@@ -337,65 +338,68 @@
 }
 
 - (void) loadProductList {
+    NSLog(@"Start product list");
     if (queryTotal != nil) {
-        NSLog(@"load product list");
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        isLoadFinished = NO;
-        [queryTotal orderByDescending:@"createdAt"];
-        queryTotal.skip = [productData count];
-        NSLog(@"query %ld", (long)queryTotal.skip);
-        [queryTotal findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self.tableView.pullToRefreshView stopAnimating];
-            if (!error) {
-                // The find succeeded.
-                isLoadFinished = YES;
-                NSInteger distance = 30;
-                if(_isNewSearch) {
-                    distance = [[_searchTab valueForKey:@"distance"] integerValue];
-                }
-                
-                for (ProductInformation *object in objects) {
-                    if (rangeIndex == 1 || _isNewSearch) // City <= 30 miles
-                    {
-                        PFGeoPoint *point = [object objectForKey:@"position"];
-                        if(currentLocaltion != nil && point != nil)
-                        {
-                            double dist = [currentLocaltion distanceInMilesTo:point];
-                            NSLog(@"dist %f", dist);
-                            if(dist <= distance) {
-                                [productData addObject:object];
-                            }
-                        }
-                    } else {
-                        [productData addObject:object];
+        if (isLoadingOrders == NO) {
+            NSLog(@"load product list");
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            isLoadFinished = NO;
+            isLoadingOrders = YES;
+            [queryTotal orderByDescending:@"createdAt"];
+            queryTotal.skip = [productData count];
+            NSLog(@"query %ld", (long)queryTotal.skip);
+            [queryTotal findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self.tableView.pullToRefreshView stopAnimating];
+                if (!error) {
+                    // The find succeeded.
+                    NSInteger distance = 30;
+                    if(_isNewSearch) {
+                        distance = [[_searchTab valueForKey:@"distance"] integerValue];
                     }
-                }
-                
-                NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
-                NSLog(@"product count %ld", (unsigned long)[productData count]);
-                if (isSearchZipCode) {
-                    noDataLable.text = @"No listings are available for this zip code";
+                    
+                    for (ProductInformation *object in objects) {
+                        if (rangeIndex == 1 || _isNewSearch) // City <= 30 miles
+                        {
+                            PFGeoPoint *point = [object objectForKey:@"position"];
+                            if(currentLocaltion != nil && point != nil)
+                            {
+                                double dist = [currentLocaltion distanceInMilesTo:point];
+                                NSLog(@"dist %f", dist);
+                                if(dist <= distance) {
+                                    [productData addObject:object];
+                                }
+                            }
+                        } else {
+                            [productData addObject:object];
+                        }
+                    }
+                    
+                    NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
+                    NSLog(@"product count %ld", (unsigned long)[productData count]);
+                    if (isSearchZipCode) {
+                        noDataLable.text = @"No listings are available for this zip code";
+                    } else {
+                        noDataLable.text = @"No matching listings";
+                    }
+                    if (productData.count <= 0) {
+                        noDataLable.hidden = NO;
+                    } else {
+                        noDataLable.hidden = YES;
+                    }
+                    
+                    [self.tableView reloadData];
+    //                if (isSearchNavi) {
+    //                    [self.searchDisplayController.searchResultsTableView reloadData];
+    //                }
                 } else {
-                    noDataLable.text = @"No matching listings";
+                    // Log details of the failure
+                    NSLog(@"Error: %@ %@", error, [error userInfo]);
                 }
-                if (productData.count <= 0) {
-                    noDataLable.hidden = NO;
-                } else {
-                    noDataLable.hidden = YES;
-                }
-                
-                [self.tableView reloadData];
-//                if (isSearchNavi) {
-//                    [self.searchDisplayController.searchResultsTableView reloadData];
-//                }
-            } else {
-                // Log details of the failure
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-            }
-            
-            isLoadingOrders = NO;
-        }];
+                isLoadingOrders = NO;
+                isLoadFinished = YES;
+            }];
+        }
     }
 }
 
