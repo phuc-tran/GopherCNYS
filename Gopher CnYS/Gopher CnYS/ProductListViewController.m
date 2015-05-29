@@ -18,7 +18,7 @@
 #import "SVPullToRefresh.h"
 #import "CLPlacemark+ShortState.h"
 
-@interface ProductListViewController () <ProductTableViewCellDelegate>
+@interface ProductListViewController () <ProductTableViewCellDelegate, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 {
     CGPoint pointNow;
     NSMutableArray *productData;
@@ -284,6 +284,18 @@
 }
 
 #pragma mark - TableView delegate
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    pointNow = scrollView.contentOffset;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.contentOffset.y< pointNow.y) {
+        self.bottomView.hidden = NO;
+    } else if (scrollView.contentOffset.y> pointNow.y) {
+        self.bottomView.hidden = YES;
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 162;
