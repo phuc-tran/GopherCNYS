@@ -120,6 +120,8 @@
     
     // Add observer
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBacklink:) name:@"GopherReceivePushBacklink" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushNotificationDidReceive:) name:@"GopherBackgroundReceivePushNotificationFromParse" object:nil];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -137,6 +139,7 @@
     //isShowNoDataError = NO;
     isSearchZipCode = NO;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"GopherReceivePushBacklink" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"GopherBackgroundReceivePushNotificationFromParse" object:nil];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -714,5 +717,33 @@
         }
     }];
 }
+
+- (void)pushNotificationDidReceive:(NSNotification *)notification {
+    NSLog(@"LeftMenuViewController pushNotificationDidReceive %@", notification.userInfo);
+    NSDictionary *userInfo = notification.userInfo;
+    if ([userInfo valueForKey:@"type"] && [[userInfo valueForKey:@"type"] isEqualToString:@"ProductComment"]) {
+        if ([userInfo valueForKey:@"productId"]) {
+            PFQuery *productQuery = [PFQuery queryWithClassName:@"Products"];
+            [productQuery whereKey:@"objectId" equalTo:[userInfo valueForKey:@"productId"]];
+            [productQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if (!error) {
+                    // The find succeeded.
+                    NSLog(@"Successfully retrieved %lu products.", (unsigned long)objects.count);
+                    if (objects.count > 0) {
+                        PFObject *product = [objects objectAtIndex:0];
+                        backlinkProducts = [NSArray arrayWithObjects:product, nil];
+                        handlingBacklink = YES;
+                        [self performSegueWithIdentifier:@"ProductDetaiFormProduct" sender:self];
+                    }
+                } else {
+                    // Log details of the failure
+                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+                    handlingBacklink = NO;
+                }
+            }];
+        }
+    }
+}
+
 
 @end

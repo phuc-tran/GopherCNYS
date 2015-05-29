@@ -318,8 +318,9 @@ static void * kCommentsKeyValueObservingContext = &kCommentsKeyValueObservingCon
                 nameStr = [[PFUser currentUser] username];
             }
             PFPush *push = [[PFPush alloc] init];
-            [push setQuery:installationQuery];
-            [push setMessage:[NSString stringWithFormat:@"%@ commented on your product", nameStr]];
+            
+            NSDictionary *payload = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@ commented on your product", nameStr], @"alert", @"ProductComment", @"type", self.productId, @"productId", nil];
+            [push setData:payload];
             [push sendPushInBackground];
         }
     }];

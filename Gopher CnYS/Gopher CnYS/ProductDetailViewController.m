@@ -251,7 +251,7 @@
         [vc setInitialText:shareText];
         NSString *sharingURLString = [NSString stringWithFormat:@"http://gophercnys.parseapp.com/products/%@", [[productData objectAtIndex:selectedIndex] objectId]];
         [vc addURL:[NSURL URLWithString:sharingURLString]];
-        [vc addImage:productImageList[0]];
+//        [vc addImage:productImageList[0]];
         // Present Compose View Controller
         [self presentViewController:vc animated:YES completion:nil];
     } else {
