@@ -163,12 +163,27 @@
 - (void)pushNotificationDidReceive:(NSNotification *)notification {
     NSLog(@"LeftMenuViewController pushNotificationDidReceive %@", notification.userInfo);
     NSDictionary *userInfo = notification.userInfo;
-    if ([userInfo valueForKey:@"type"] && [[userInfo valueForKey:@"type"] isEqualToString:@"PrivateMessage"]) {
-        // Should load message page
-        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"messageViewController"]]
-                                                     animated:YES];
-        [self.sideMenuViewController hideMenuViewController];
+    if ([userInfo valueForKey:@"type"]) {
+        if ([[userInfo valueForKey:@"type"] isEqualToString:@"PrivateMessage"]) {
+            // Should load message page
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"messageViewController"]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+        }
+        if ([[userInfo valueForKey:@"type"] isEqualToString:@"ProductComment"]) {
+            // Should load product details
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"productListViewController"]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"LeftMenuNotification" object:nil userInfo:userInfo];
+            });
+            
+        }
     }
+    
+    
 }
 
 

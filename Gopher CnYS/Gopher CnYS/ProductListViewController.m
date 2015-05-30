@@ -121,7 +121,7 @@
     
     // Add observer
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBacklink:) name:@"GopherReceivePushBacklink" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushNotificationDidReceive:) name:@"GopherBackgroundReceivePushNotificationFromParse" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushNotificationDidReceive:) name:@"LeftMenuNotification" object:nil];
 
 }
 
@@ -140,7 +140,7 @@
     //isShowNoDataError = NO;
     isSearchZipCode = NO;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"GopherReceivePushBacklink" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"GopherBackgroundReceivePushNotificationFromParse" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"LeftMenuNotification" object:nil];
 }
 
 #pragma mark - CLLocationManagerDelegate
