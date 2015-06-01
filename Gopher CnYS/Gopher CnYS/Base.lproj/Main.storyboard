@@ -592,7 +592,7 @@
                                 <rect key="frame" x="0.0" y="302" width="320" height="216"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ixs-rb-8S4" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="263"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="213"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCv-lP-0TM">
                                                 <rect key="frame" x="0.0" y="37" width="320" height="1"/>
@@ -682,24 +682,25 @@
                                                 <color key="textColor" red="0.72941176470000002" green="0.72941176470000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="product description" translatesAutoresizingMaskIntoConstraints="NO" id="gHT-vu-Tvi">
-                                                <rect key="frame" x="10" y="107" width="300" height="156"/>
-                                                <color key="textColor" red="0.58039215690000001" green="0.58039215690000001" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6KJ-5R-DD0">
                                                 <rect key="frame" x="67" y="73" width="94" height="35"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                 <color key="textColor" red="0.25098039220000001" green="0.87058823529999996" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G26-cg-tyY">
+                                                <rect key="frame" x="8" y="107" width="304" height="106"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="OCv-lP-0TM" firstAttribute="top" secondItem="1mc-dE-ewM" secondAttribute="bottom" id="3uO-xr-XKa"/>
+                                            <constraint firstAttribute="trailing" secondItem="G26-cg-tyY" secondAttribute="trailing" constant="8" id="5XO-pw-cty"/>
                                             <constraint firstAttribute="trailing" secondItem="OCv-lP-0TM" secondAttribute="trailing" id="8RH-NL-bAf"/>
-                                            <constraint firstAttribute="height" constant="263" id="ESy-ZI-Hvs"/>
+                                            <constraint firstAttribute="height" constant="213" id="ESy-ZI-Hvs"/>
                                             <constraint firstItem="Dq1-KX-mPL" firstAttribute="top" secondItem="wUL-pk-UMV" secondAttribute="bottom" constant="34" id="EpS-uI-Z2e"/>
                                             <constraint firstItem="HgQ-St-R1v" firstAttribute="leading" secondItem="B2l-aS-gH5" secondAttribute="trailing" constant="2" id="GaN-cl-Ks6"/>
                                             <constraint firstItem="XW2-pu-Kka" firstAttribute="top" secondItem="OCv-lP-0TM" secondAttribute="bottom" id="HbR-Aa-TUP"/>
@@ -709,20 +710,19 @@
                                             <constraint firstAttribute="centerX" secondItem="1mc-dE-ewM" secondAttribute="centerX" id="MOS-gK-qEb"/>
                                             <constraint firstItem="B2l-aS-gH5" firstAttribute="top" secondItem="acM-fq-RYw" secondAttribute="bottom" id="Mbc-jo-peR"/>
                                             <constraint firstAttribute="trailing" secondItem="Dq1-KX-mPL" secondAttribute="trailing" id="Py7-eb-MzQ"/>
+                                            <constraint firstItem="G26-cg-tyY" firstAttribute="leading" secondItem="ixs-rb-8S4" secondAttribute="leading" constant="8" id="RVh-Xb-M2x"/>
                                             <constraint firstItem="wUL-pk-UMV" firstAttribute="leading" secondItem="ixs-rb-8S4" secondAttribute="leading" id="U4O-AN-dSp"/>
                                             <constraint firstAttribute="trailing" secondItem="1mc-dE-ewM" secondAttribute="trailing" constant="10" id="VTi-lF-dvJ"/>
                                             <constraint firstItem="wUL-pk-UMV" firstAttribute="top" secondItem="OCv-lP-0TM" secondAttribute="bottom" constant="34" id="a6K-Pk-yGH"/>
                                             <constraint firstAttribute="trailing" secondItem="XW2-pu-Kka" secondAttribute="trailing" constant="8" id="aJz-l5-Jru"/>
-                                            <constraint firstAttribute="trailing" secondItem="gHT-vu-Tvi" secondAttribute="trailing" constant="10" id="agc-12-adA"/>
-                                            <constraint firstAttribute="bottom" secondItem="gHT-vu-Tvi" secondAttribute="bottom" id="asl-Z9-3vm"/>
+                                            <constraint firstAttribute="bottom" secondItem="G26-cg-tyY" secondAttribute="bottom" id="bc8-Ed-3Fp"/>
                                             <constraint firstItem="OCv-lP-0TM" firstAttribute="leading" secondItem="ixs-rb-8S4" secondAttribute="leading" id="cNe-GY-A5X"/>
+                                            <constraint firstItem="G26-cg-tyY" firstAttribute="top" secondItem="B2l-aS-gH5" secondAttribute="bottom" id="eHG-bl-V5e"/>
                                             <constraint firstItem="acM-fq-RYw" firstAttribute="top" secondItem="ixs-rb-8S4" secondAttribute="top" constant="37" id="eOR-9N-dP4"/>
                                             <constraint firstItem="Dq1-KX-mPL" firstAttribute="leading" secondItem="ixs-rb-8S4" secondAttribute="leading" id="ekd-4J-Iz0"/>
-                                            <constraint firstItem="gHT-vu-Tvi" firstAttribute="leading" secondItem="ixs-rb-8S4" secondAttribute="leading" constant="10" id="lm0-Ah-3zI"/>
                                             <constraint firstItem="HgQ-St-R1v" firstAttribute="top" secondItem="XW2-pu-Kka" secondAttribute="bottom" id="pOy-V5-Ghv"/>
                                             <constraint firstItem="1mc-dE-ewM" firstAttribute="top" secondItem="ixs-rb-8S4" secondAttribute="top" constant="2" id="vh9-h8-ctb"/>
                                             <constraint firstAttribute="trailing" secondItem="wUL-pk-UMV" secondAttribute="trailing" id="yYH-7z-p0a"/>
-                                            <constraint firstItem="gHT-vu-Tvi" firstAttribute="top" secondItem="B2l-aS-gH5" secondAttribute="bottom" id="zgs-Ib-2aB"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -779,7 +779,7 @@
                         <outlet property="carouselProduct" destination="xud-ug-0bV" id="vee-Jk-qLh"/>
                         <outlet property="messageButton" destination="vrI-OA-H58" id="UC5-Dl-24n"/>
                         <outlet property="productConditionLbl" destination="132-jK-1lQ" id="0pg-GN-zLV"/>
-                        <outlet property="productDescription" destination="gHT-vu-Tvi" id="GP4-Yp-Mv2"/>
+                        <outlet property="productDescription" destination="G26-cg-tyY" id="EdZ-l7-Glu"/>
                         <outlet property="productNameLbl" destination="1mc-dE-ewM" id="GBj-GS-dMc"/>
                         <outlet property="productPage" destination="1DH-Rb-hRP" id="10L-1T-YIq"/>
                         <outlet property="productPostedLbl" destination="HgQ-St-R1v" id="Ej6-u1-JKk"/>
@@ -2455,8 +2455,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="PRy-In-HQn"/>
         <segue reference="Hcj-1n-Msb"/>
-        <segue reference="G1w-cs-YeN"/>
         <segue reference="e0P-cp-GQQ"/>
         <segue reference="ExP-uq-3s7"/>
     </inferredMetricsTieBreakers>
