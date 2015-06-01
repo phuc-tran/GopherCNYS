@@ -312,14 +312,15 @@ static void * kCommentsKeyValueObservingContext = &kCommentsKeyValueObservingCon
             PFQuery *installationQuery = [PFInstallation query];
             [installationQuery whereKey:@"user" matchesQuery:recipientQuery];
             
+            PFPush *push = [[PFPush alloc] init];
+            [push setQuery:installationQuery];
             
             NSString *nameStr = [[PFUser currentUser] valueForKey:@"name"];
             if (nameStr == nil) {
                 nameStr = [[PFUser currentUser] username];
             }
-            PFPush *push = [[PFPush alloc] init];
-            
             NSDictionary *payload = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@ commented on your product", nameStr], @"alert", @"ProductComment", @"type", self.productId, @"productId", nil];
+
             [push setData:payload];
             [push sendPushInBackground];
         }
