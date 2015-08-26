@@ -494,7 +494,11 @@
             
             PFPush *push = [[PFPush alloc] init];
             [push setQuery:installationQuery];
-            NSDictionary *payload = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@: %@", message.senderDisplayName, message.text], @"alert", @"PrivateMessage", @"type", nil];
+            NSString *productID = @"";
+            if (self.product) {
+                productID = self.product.objectId;
+            }
+            NSDictionary *payload = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@: %@", message.senderDisplayName, message.text], @"alert", @"PrivateMessage", @"type", productID, @"productId", self.chatRoom.objectId, @"roomId", nil];
             [push setData:payload];
             [push sendPushInBackground];
         }
