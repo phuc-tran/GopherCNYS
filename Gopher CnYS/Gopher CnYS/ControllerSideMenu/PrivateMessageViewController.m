@@ -279,6 +279,7 @@
             if (!error) {
                 // The find succeeded.
                 NSLog(@"found product %@", objects);
+                self.product = objects[0];
                 
                 PFFile *imageFile = [objects[0] objectForKey:@"photo1"];
                 [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
